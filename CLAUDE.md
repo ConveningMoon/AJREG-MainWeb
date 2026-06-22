@@ -293,6 +293,31 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Elevación de diseño "Moderno y Atrevido — Exaggerated Minimalism" completada.**
+  10 tareas ejecutadas vía Subagent-Driven Development (SDD). Cambios en 12 archivos.
+  **(1) globals.css:** keyframes `slideUp` / `slideUpFast`; `@source not "../../docs/**"` para excluir
+  docs del escáner de Tailwind v4 (fix de `bg-[url(...)]` preexistente). **(2) Eyebrow:**
+  regla `h-0.5 w-12` (más gruesa/larga). **(3) Hero:** fondo `bg-navy-900` completo, headline
+  `clamp(3.5rem,8vw,8rem)` EB Garamond, barra gold `h-1 w-20`, retrato `rounded-none lg:ring-2
+  ring-gold/40`, CTAs `rounded-sm`. **(4) WhoWeAre:** tarjetas `bg-navy-950 rounded-sm` con
+  `border-t-[3px]` por miembro (adriana=gold, john=slate, viviane=blush, melany=gold/70), rol como
+  pill `bg-gold/15`, stagger 40ms. **(5) Stats:** números `clamp(4rem,9vw,9rem)` EB Garamond
+  text-gold, etiqueta inline a la derecha, divisores `border-l border-gold/20`. **(6)
+  TestimonialsCarousel:** sección `bg-navy-950`, comilla decorativa `"` text-[12rem] text-gold/8,
+  avatar `bg-gold text-navy-950`, tarjeta `bg-navy-800`, controles `bg-navy-800`. **(7)
+  SalesStories:** grid `lg:grid-cols-[1.4fr_1fr]`, primera tarjeta `aspect-[4/5]`, play button
+  `bg-gold text-navy-950`, fondo `bg-taupe/15`. **(8) ContactSection:** barra gold `h-0.5 w-20`
+  sobre headline, headline `text-4xl sm:text-5xl`, CTA `rounded-sm`. **(9) PropertyCard:** precio
+  en cuerpo `font-display text-3xl`, badge FOR SALE `bg-gold rounded-sm`, specs con `·`, botón
+  Inquire real con `hover:bg-gold`. **(10) TeamMemberProfile:** hero `bg-navy-900`, nombre
+  `text-5xl lg:text-6xl text-cream`, rol como pill, avatar `bg-gold text-navy-950 text-7xl`,
+  tagline como pull-quote `text-2xl italic`, tarjetas "meet the rest" dark con border-color.
+  **Lenguaje visual uniforme:** `rounded-sm` en todos los CTAs y tarjetas estructurales;
+  `rounded-full` solo en pills de idioma pequeños. Navbar y Footer también pulidos
+  (`rounded-sm` en "Free Guide", separador `border-t-2 border-gold/25` en footer). Build SSG
+  limpio (17 commits, 12 archivos). Spec: `docs/superpowers/specs/2026-06-22-design-elevation-spec.md`.
+  Plan: `docs/superpowers/plans/2026-06-22-design-elevation.md`.
+
 - **2026-06-22** — **Fase 5 (SEO + accesibilidad) completada.**
   **(A) Metadata/OG por página y locale:** `generateMetadata` en `[locale]/layout.tsx`
   (metadataBase `ajrealestateva.com`, title template `%s | A&J Real Estate Group`,
