@@ -6,10 +6,16 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { brand } from "@/lib/brand";
 import { seedTeam, type TeamMember } from "@/data/team";
 
-// First slug segment maps to the i18n member key (adriana, john, viviane, melany).
 const memberKey = (slug: string) => slug.split("-")[0];
 
 const langLabelKey = { en: "english", es: "spanish", pt: "portuguese" } as const;
+
+const memberBorderClass: Record<string, string> = {
+  "adriana-melendez": "border-t-[3px] border-gold",
+  "john-leonard": "border-t-[3px] border-slate",
+  "viviane-chiu": "border-t-[3px] border-blush",
+  "melany-valencia": "border-t-[3px] border-gold/70",
+};
 
 export async function TeamMemberProfile({ member }: { member: TeamMember }) {
   const t = await getTranslations("team");
@@ -21,95 +27,111 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
   const others = seedTeam.filter((m) => m.slug !== member.slug);
 
   return (
-    <main className="flex flex-1 flex-col bg-cream">
-      <div className="mx-auto w-full max-w-5xl px-6 pt-8">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-navy-600 transition-colors hover:text-gold"
-        >
-          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-          {t("profile.back")}
-        </Link>
+    <main className="flex flex-1 flex-col">
+      {/* Dark profile hero */}
+      <div className="bg-navy-900">
+        <div className="mx-auto w-full max-w-5xl px-6 pt-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-navy-300 transition-colors hover:text-gold"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            {t("profile.back")}
+          </Link>
+        </div>
+
+        <section className="py-10 lg:py-14">
+          <div className="mx-auto grid max-w-5xl items-start gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr]">
+            {/* Photo / placeholder */}
+            <div className="relative aspect-4/5 overflow-hidden rounded-sm bg-linear-to-br from-navy-800 to-slate shadow-sm">
+              {member.photoUrl ? (
+                <Image
+                  src={member.photoUrl}
+                  alt={member.name}
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center bg-gold/10">
+                  <span className="font-display text-7xl font-semibold text-gold">
+                    {initial}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div>
+              <Eyebrow>{member.role}</Eyebrow>
+              <h1
+                className="mt-4 font-display font-semibold leading-tight text-cream"
+                style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
+              >
+                {member.name}
+              </h1>
+
+              {/* Pull-quote tagline */}
+              <div className="relative mt-5 pl-7">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 font-display text-4xl leading-none text-gold"
+                >
+                  &ldquo;
+                </span>
+                <p className="font-display text-lg italic leading-relaxed text-navy-200">
+                  {tagline}
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <span className="text-xs font-semibold uppercase tracking-wider text-navy-400">
+                  {t("profile.languagesLabel")}
+                </span>
+                <ul className="mt-2 flex flex-wrap gap-2">
+                  {member.languages.map((lang) => (
+                    <li
+                      key={lang}
+                      className="rounded-full border border-navy-600 bg-navy-800 px-3.5 py-1.5 text-sm font-medium text-cream"
+                    >
+                      {tc(langLabelKey[lang])}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-7 space-y-4 text-base leading-relaxed text-navy-200">
+                {bio.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/contact-us"
+                  className="group inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
+                >
+                  {t("profile.contactCta", { name: member.name.split(" ")[0] })}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
+                </Link>
+                <a
+                  href={brand.phoneHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+                >
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  {t("profile.callCta")}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section className="py-10 lg:py-14">
-        <div className="mx-auto grid max-w-5xl items-start gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr]">
-          {/* Photo / placeholder */}
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-br from-navy-800 to-slate shadow-sm ring-1 ring-navy-900/5">
-            {member.photoUrl ? (
-              <Image
-                src={member.photoUrl}
-                alt={member.name}
-                fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="object-cover"
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <span className="font-display text-7xl font-semibold text-cream/70">
-                  {initial}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Info */}
-          <div>
-            <Eyebrow>{member.role}</Eyebrow>
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-tight text-navy sm:text-5xl">
-              {member.name}
-            </h1>
-            <p className="mt-4 text-lg leading-relaxed text-navy-700">
-              {tagline}
-            </p>
-
-            <div className="mt-5">
-              <span className="text-xs font-semibold uppercase tracking-wider text-navy-500">
-                {t("profile.languagesLabel")}
-              </span>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {member.languages.map((lang) => (
-                  <li
-                    key={lang}
-                    className="rounded-full bg-blush/60 px-3.5 py-1.5 text-sm font-medium text-navy-800"
-                  >
-                    {tc(langLabelKey[lang])}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-7 space-y-4 text-base leading-relaxed text-navy-700">
-              {bio.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact-us"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-              >
-                {t("profile.contactCta", { name: member.name.split(" ")[0] })}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </Link>
-              <a
-                href={brand.phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-navy-300 px-7 py-3.5 text-sm font-semibold text-navy transition-colors hover:border-gold hover:text-gold"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {t("profile.callCta")}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Rest of the team */}
-      <section className="border-t border-navy-100 py-12 lg:py-16">
+      {/* Meet the rest — light section */}
+      <section className="bg-cream border-t border-navy-100 py-12 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="font-display text-2xl font-semibold text-navy">
             {t("profile.otherTitle")}
@@ -119,13 +141,13 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
               <li key={m.slug}>
                 <Link
                   href={`/team/${m.slug}`}
-                  className="group flex items-center justify-between gap-3 rounded-xl bg-white p-5 shadow-sm ring-1 ring-navy-900/5 transition-shadow hover:shadow-md"
+                  className={`group flex items-center justify-between gap-3 rounded-sm bg-navy-950 p-5 transition-opacity hover:opacity-90 ${memberBorderClass[m.slug] ?? "border-t-[3px] border-gold"}`}
                 >
                   <span>
-                    <span className="block font-display text-lg font-medium text-navy">
+                    <span className="block font-display text-lg font-medium text-cream">
                       {m.name}
                     </span>
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-gold">
+                    <span className="mt-1 inline-block rounded-sm bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold">
                       {m.role}
                     </span>
                   </span>
