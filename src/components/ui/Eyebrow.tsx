@@ -11,7 +11,7 @@ export function Eyebrow({
     <span
       className={`inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.25em] text-gold ${className}`}
     >
-      <span className="h-px w-8 bg-gold" aria-hidden="true" />
+      <span className="h-0.5 w-12 bg-gold" aria-hidden="true" />
       {children}
     </span>
   );
