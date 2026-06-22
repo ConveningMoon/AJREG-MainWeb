@@ -10,8 +10,57 @@
     "coverage": "Virginia · Carolina del Norte, EE. UU."
   },
   "home": {
-    "heroHeadline": "Acompañamos a las familias a su nuevo hogar con integridad y claridad",
-    "heroSubheadline": "Un equipo inmobiliario bilingüe y centrado en la familia, al servicio de Virginia y Carolina del Norte."
+    "hero": {
+      "eyebrow": "Virginia · Carolina del Norte",
+      "headline": "Acompañamos a las familias a su hogar con integridad y claridad",
+      "subheadline": "Un equipo inmobiliario bilingüe y centrado en la familia que te ayuda a construir estabilidad, seguridad y un lugar que tu familia pueda llamar hogar.",
+      "ctaPrimary": "Encuentra tu hogar",
+      "ctaGuide": "Recibe la guía gratis",
+      "portraitAlt": "El equipo de A&J Real Estate Group"
+    },
+    "whoWeAre": {
+      "eyebrow": "Quiénes Somos",
+      "title": "Donde la experiencia, el servicio y la energía fresca se unen para tu éxito",
+      "intro": "Somos A&J Real Estate — un equipo centrado en la familia y dedicado al servicio, comprometido a acompañarte a tu hogar con integridad y claridad. Combinamos conocimiento del mercado, estrategia y cariño genuino para ayudarte a construir estabilidad, seguridad y un lugar que tu familia pueda llamar hogar de verdad.",
+      "members": {
+        "adriana": "Experta de confianza en Virginia y Carolina del Norte y mamá de tres, que arraiga a nuestro equipo en el servicio y las relaciones a largo plazo.",
+        "john": "Militar en servicio activo de la Marina que aporta disciplina y precisión estratégica.",
+        "viviane": "Ingeniera civil y mamá multicultural que ofrece análisis experto y servicio trilingüe en Hampton Roads.",
+        "melany": "Mamá primeriza y bilingüe que aporta energía fresca y una profunda comprensión de las familias que crecen."
+      },
+      "badgeLanguages": "Español · English · Português",
+      "badgeFamily": "Centrados en la familia",
+      "badgeAssist": "Asistencia personal, cuando la necesites"
+    },
+    "stats": {
+      "housesLabel": "Casas vendidas y compradas",
+      "familiesLabel": "Familias felices",
+      "yearsLabel": "Años de experiencia"
+    },
+    "testimonials": {
+      "eyebrow": "Testimonios",
+      "title": "Familias que encontraron su hogar con nosotros",
+      "familyLabel": "Familia {name}",
+      "prev": "Testimonio anterior",
+      "next": "Testimonio siguiente",
+      "goTo": "Ir al testimonio {n}"
+    },
+    "salesStories": {
+      "eyebrow": "Nuestras Ventas",
+      "title": "Miles de sonrisas, un hogar a la vez",
+      "intro": "A lo largo de mi carrera he tenido la fortuna de ver miles de sonrisas y abrazos. Por eso decidí ser agente de bienes raíces — porque conozco la alegría de una familia abriendo las puertas de la casa de sus sueños.",
+      "familyLabel": "Familia {name}",
+      "cta": "Encuentra tu hogar",
+      "playLabel": "Reproducir la historia de la familia {name}"
+    },
+    "contactCta": {
+      "eyebrow": "Consulta gratis",
+      "title": "¿List@ para encontrar la casa de tus sueños?",
+      "subtitle": "Encontrémosla juntos. Escríbenos — siempre nos encanta conversar contigo.",
+      "button": "Contáctame ahora",
+      "callButton": "Llámanos",
+      "whatsappButton": "WhatsApp"
+    }
   },
   "newsletter": {
     "eyebrow": "Guía gratis",

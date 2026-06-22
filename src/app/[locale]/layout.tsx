@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { TopBar } from "@/components/layout/TopBar";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { NewsletterProvider } from "@/components/layout/NewsletterProvider";
 import "../globals.css";
 
 // Official brand fonts: Montserrat (primary/body + UI) and EB Garamond
@@ -56,10 +57,12 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
         <NextIntlClientProvider>
-          <TopBar />
-          <Navbar />
-          <div className="flex flex-1 flex-col">{children}</div>
-          <Footer />
+          <NewsletterProvider>
+            <TopBar />
+            <Navbar />
+            <div className="flex flex-1 flex-col">{children}</div>
+            <Footer />
+          </NewsletterProvider>
         </NextIntlClientProvider>
       </body>
     </html>

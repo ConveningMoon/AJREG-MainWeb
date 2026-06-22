@@ -8,14 +8,14 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { seedTeam } from "@/data/team";
 import { brand } from "@/lib/brand";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { NewsletterModal } from "./NewsletterModal";
+import { useNewsletter } from "./NewsletterProvider";
 
 export function Navbar() {
   const t = useTranslations();
   const pathname = usePathname();
+  const openNewsletter = useNewsletter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [teamOpen, setTeamOpen] = useState(false);
-  const [newsletterOpen, setNewsletterOpen] = useState(false);
   const teamRef = useRef<HTMLLIElement>(null);
 
   // Close the "Our Team" dropdown on outside click / Escape.
@@ -146,7 +146,7 @@ export function Navbar() {
           </a>
           <button
             type="button"
-            onClick={() => setNewsletterOpen(true)}
+            onClick={openNewsletter}
             className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
           >
             {t("nav.freeGuide")}
@@ -223,7 +223,7 @@ export function Navbar() {
               type="button"
               onClick={() => {
                 setMobileOpen(false);
-                setNewsletterOpen(true);
+                openNewsletter();
               }}
               className="block w-full rounded-full bg-gold px-5 py-2.5 text-center text-sm font-semibold text-navy-950"
             >
@@ -233,11 +233,6 @@ export function Navbar() {
           </div>
         </div>
       )}
-
-      <NewsletterModal
-        open={newsletterOpen}
-        onClose={() => setNewsletterOpen(false)}
-      />
     </header>
   );
 }

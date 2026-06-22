@@ -297,6 +297,21 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Fase 2 (Home) completada.** Secciones en
+  `src/components/home/`: **Hero** (cliente — retrato del equipo, titular EB
+  Garamond, CTA "Find your home"→/houses + "Free guide" que abre el modal vía
+  `NewsletterProvider`), **WhoWeAre** (eyebrow, intro, badges idiomas/familia/
+  asistencia, 4 tarjetas del equipo), **Stats** (+100 / +20 / +10 en banda navy),
+  **TestimonialsCarousel** (cliente — 6 testimonios reales en español con autoplay
+  pausable y reduced-motion, avatars placeholder por inicial), **SalesStories**
+  (4 historias reales; media en **placeholder** hasta tener thumbnails) y
+  **ContactSection** (banda navy con CTA a `/contact-us` + tel + WhatsApp; sin form
+  inline, según la regla de cablear solo Contáctanos). Nuevo `NewsletterProvider`
+  (contexto) para abrir el modal desde navbar y hero; `ui/Eyebrow` (firma de
+  sección). Data real: `data/testimonials.ts`, `data/salesStories.ts`. i18n `home.*`
+  ampliado (EN/ES). Contenido verbatim extraído del sitio actual. Verificado:
+  build SSG + runtime (`/en`, `/es`). **Pendiente de assets:** avatars de
+  testimonios y thumbnails de Sales Stories (hoy placeholder).
 - **2026-06-22** — **Fase 1 (Layout global) completada.** Componentes en
   `src/components/layout/`: **TopBar** (email, cobertura, redes; oculto en móvil),
   **Navbar** (cliente — logo blanco `logo-white_2.webp`, links Home/Houses/Contact,

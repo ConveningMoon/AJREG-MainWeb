@@ -10,8 +10,57 @@
     "coverage": "Virginia · North Carolina, USA"
   },
   "home": {
-    "heroHeadline": "Guiding families home with integrity and clarity",
-    "heroSubheadline": "A family-centered, bilingual real estate team serving Virginia and North Carolina."
+    "hero": {
+      "eyebrow": "Virginia · North Carolina",
+      "headline": "Guiding families home with integrity and clarity",
+      "subheadline": "A family-centered, bilingual real estate team helping you build stability, security, and a place your family can truly call home.",
+      "ctaPrimary": "Find your home",
+      "ctaGuide": "Get the free guide",
+      "portraitAlt": "The A&J Real Estate Group team"
+    },
+    "whoWeAre": {
+      "eyebrow": "Who We Are",
+      "title": "Where experience, service, and fresh energy unite for your success",
+      "intro": "We are A&J Real Estate — a family-centered, service-driven team committed to guiding you home with integrity and clarity. We combine market knowledge, strategy, and genuine care to help you build stability, security, and a place your family can truly call home.",
+      "members": {
+        "adriana": "Trusted Virginia/North Carolina expert and mother of three, rooting our team in service and long-term relationships.",
+        "john": "Active duty Navy serviceman who delivers discipline and strategic precision.",
+        "viviane": "Civil engineer and multicultural mom offering analytical expertise and trilingual service across Hampton Roads.",
+        "melany": "Bilingual new mom who brings fresh energy and a deep understanding of growing families."
+      },
+      "badgeLanguages": "Español · English · Português",
+      "badgeFamily": "Family-centered",
+      "badgeAssist": "Personal assistance, anytime"
+    },
+    "stats": {
+      "housesLabel": "Houses sold & bought",
+      "familiesLabel": "Happy families",
+      "yearsLabel": "Years of experience"
+    },
+    "testimonials": {
+      "eyebrow": "Testimonials",
+      "title": "Families who found their home with us",
+      "familyLabel": "{name} Family",
+      "prev": "Previous testimonial",
+      "next": "Next testimonial",
+      "goTo": "Go to testimonial {n}"
+    },
+    "salesStories": {
+      "eyebrow": "Our Sales",
+      "title": "Thousands of smiles, one home at a time",
+      "intro": "Throughout my career I've been fortunate to see thousands of smiles and hugs. That's why I became a real estate agent — because I know the joy of a family opening the doors to their dream home.",
+      "familyLabel": "{name} Family",
+      "cta": "Find your home",
+      "playLabel": "Play the {name} family story"
+    },
+    "contactCta": {
+      "eyebrow": "Free consultation",
+      "title": "Ready to find your dream home?",
+      "subtitle": "Let's find it together. Reach out — we're always happy to talk with you.",
+      "button": "Contact me now",
+      "callButton": "Call us",
+      "whatsappButton": "WhatsApp"
+    }
   },
   "newsletter": {
     "eyebrow": "Free guide",
