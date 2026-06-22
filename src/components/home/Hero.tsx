@@ -12,7 +12,7 @@ export function Hero() {
   const openNewsletter = useNewsletter();
 
   return (
-    <section className="relative overflow-hidden bg-navy-900">
+    <section className="relative bg-navy-900">
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-2 lg:gap-12 lg:py-24">
         {/* Copy */}
         <div className="order-2 lg:order-1 motion-safe:animate-[slideUp_550ms_ease-out_both]">

@@ -35,7 +35,7 @@ export async function SalesStories() {
                 }`}
               >
                 <span
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-navy-950 shadow-lg"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-navy-950"
                   aria-hidden="true"
                 >
                   <Play className="ml-0.5 h-6 w-6" fill="currentColor" />

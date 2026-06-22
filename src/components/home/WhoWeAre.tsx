@@ -57,7 +57,7 @@ export async function WhoWeAre() {
           {seedTeam.map((m, i) => (
             <article
               key={m.slug}
-              className={`flex flex-col overflow-hidden rounded-sm bg-navy-950 shadow-lg motion-safe:animate-[slideUp_450ms_ease-out_both] ${memberBorderClass[m.slug] ?? "border-t-[3px] border-gold"}`}
+              className={`flex flex-col overflow-hidden rounded-sm bg-navy-950 motion-safe:animate-[slideUp_450ms_ease-out_both] ${memberBorderClass[m.slug] ?? "border-t-[3px] border-gold"}`}
               style={{ animationDelay: `${i * 40}ms` }}
             >
               <div className="flex flex-1 flex-col p-6">

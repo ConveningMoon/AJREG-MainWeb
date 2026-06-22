@@ -24,7 +24,7 @@ export async function Stats() {
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <p
                 className="font-display font-semibold text-gold"
-                style={{ fontSize: "clamp(4rem, 9vw, 7rem)", lineHeight: 1 }}
+                style={{ fontSize: "clamp(4rem, 9vw, 9rem)", lineHeight: 1 }}
               >
                 {s.value}
               </p>
