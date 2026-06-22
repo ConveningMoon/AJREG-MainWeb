@@ -195,9 +195,10 @@ servicio activo), Viviane Chiu (ingeniera civil, trilingüe), Melany Valencia
 - **Tipografía (confirmada):** **Montserrat** (principal — cuerpo/UI) + **EB
   Garamond** (secundaria — títulos/display). Cargadas vía `next/font` y expuestas
   como tokens `--font-body` / `--font-display`.
-- **Colores:** logo en navy y blanco → **navy como color primario**, blanco de base,
-  acento por confirmar. **Extraer los hex exactos del sitio actual** y fijarlos como
-  design tokens en Tailwind. No inventar la paleta.
+- **Colores (confirmados):** `#102037` navy (primario), `#597383` slate (azul
+  secundario), `#49443e` taupe (neutro cálido), `#fff7f5` crema (fondo base),
+  `#e9d8d0` blush (superficies suaves), `#c7a260` gold (acento). Fijados como
+  design tokens en `globals.css` (escala navy + tokens nombrados).
 - **Tono visual:** seguro, cálido, aspiracional pero realista, limpio y elegante
   (no llamativo). Momentos familiares reales, hogares cálidos, escenas comunitarias.
 
@@ -279,9 +280,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
       pública vía anon key + RLS). Los formularios NO van a Supabase (van al CRM).
 - [x] **Fuentes reales** → **Montserrat** (principal) + **EB Garamond**
       (secundaria). Ya cargadas vía `next/font`.
-- [ ] **Paleta exacta (hex)** del sitio Webflow — *pendiente*: la extracción por
-      red estuvo bloqueada en setup. Tokens actuales en `globals.css` son
-      provisionales (escala navy + acento dorado). **Se necesitan los hex exactos.**
+- [x] **Paleta exacta (hex)** → confirmada y fijada como tokens en `globals.css`:
+      `#102037` navy, `#597383` slate, `#49443e` taupe, `#fff7f5` crema,
+      `#e9d8d0` blush, `#c7a260` gold (acento).
 - [~] **Assets/imágenes reales** — parcial: `public/images/Logo.PNG` y
       `Team_Portrait_2.webp` ya están en el repo. Para lo que falte (testimonios,
       thumbnails de Sales Stories, contacto, etc.) se usará placeholder y se

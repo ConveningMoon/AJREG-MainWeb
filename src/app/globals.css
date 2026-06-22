@@ -3,37 +3,52 @@
 /*
   A&J Real Estate Group — Design tokens (Tailwind v4, CSS-first).
 
-  Fonts are CONFIRMED: Montserrat (body/primary) + EB Garamond (display).
-  NOTE: Navy scale + accent below are still PROVISIONAL, brand-aligned defaults.
-  The exact hex values should be confirmed against the live Webflow site
-  (network extraction was blocked in setup). Components consume the semantic
-  tokens (navy, accent, background, foreground) so refining here propagates
-  everywhere.
+  Fonts: Montserrat (body/primary) + EB Garamond (display/headings).
+
+  Official brand palette (confirmed):
+    #102037 navy   · primary dark (text, headings, buttons)
+    #597383 slate  · secondary blue (muted text, borders) — same hue as navy-500
+    #49443e taupe  · warm dark neutral
+    #fff7f5 cream  · warm white base background
+    #e9d8d0 blush  · soft warm surface (cards, alt sections)
+    #c7a260 gold   · accent
+
+  The navy scale below is a tonal ramp anchored on the two exact brand
+  blues (navy-900 = #102037, navy-500 = #597383); the other stops are
+  interpolated tints for hover/border/background states. Components consume
+  the semantic tokens so any future refinement propagates everywhere.
 */
 
 @theme {
   /* Brand fonts (loaded via next/font in the locale layout) */
-  --font-display: var(--font-display), ui-serif, Georgia, serif; /* EB Garamond */
   --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif; /* Montserrat */
+  --font-display: var(--font-display), ui-serif, Georgia, serif; /* EB Garamond */
 
-  /* Navy scale — primary brand color */
-  --color-navy-50: #f0f4f8;
-  --color-navy-100: #d9e2ec;
-  --color-navy-200: #bcccdc;
-  --color-navy-300: #9fb3c8;
-  --color-navy-400: #829ab1;
-  --color-navy-500: #627d98;
-  --color-navy-600: #486581;
-  --color-navy-700: #334e68;
-  --color-navy-800: #243b53;
-  --color-navy-900: #102a43;
-  --color-navy-950: #0a1b2e;
+  /* Navy scale — primary brand color (anchored on #102037 / #597383) */
+  --color-navy-50: #f1f4f6;
+  --color-navy-100: #d2dadf;
+  --color-navy-200: #b4c0c8;
+  --color-navy-300: #96a7b1;
+  --color-navy-400: #778d9a;
+  --color-navy-500: #597383;
+  --color-navy-600: #475e70;
+  --color-navy-700: #344a5d;
+  --color-navy-800: #22354a;
+  --color-navy-900: #102037;
+  --color-navy-950: #0a1321;
+
+  /* Named brand tokens */
+  --color-navy: #102037;
+  --color-slate: #597383;
+  --color-taupe: #49443e;
+  --color-cream: #fff7f5;
+  --color-blush: #e9d8d0;
+  --color-gold: #c7a260;
+  --color-accent: #c7a260;
 
   /* Semantic aliases */
-  --color-navy: #102a43;
-  --color-accent: #c8a45c; /* provisional warm gold accent */
-  --color-background: #ffffff;
-  --color-foreground: #102a43;
+  --color-background: #fff7f5;
+  --color-foreground: #102037;
 }
 
 body {
