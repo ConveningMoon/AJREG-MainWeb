@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "Home",
+    "houses": "Houses",
+    "ourTeam": "Our Team",
+    "contact": "Contact Us"
+  },
+  "home": {
+    "heroHeadline": "Guiding families home with integrity and clarity",
+    "heroSubheadline": "A family-centered, bilingual real estate team serving Virginia and North Carolina."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "coverage": "Virginia · North Carolina, USA"
+  },
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for doesn't exist or has moved.",
+    "backHome": "Back to home"
+  }
+}

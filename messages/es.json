@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "houses": "Casas",
+    "ourTeam": "Nuestro Equipo",
+    "contact": "Contáctanos"
+  },
+  "home": {
+    "heroHeadline": "Acompañamos a las familias a su nuevo hogar con integridad y claridad",
+    "heroSubheadline": "Un equipo inmobiliario bilingüe y centrado en la familia, al servicio de Virginia y Carolina del Norte."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "coverage": "Virginia · Carolina del Norte, EE. UU."
+  },
+  "common": {
+    "language": "Idioma",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe o fue movida.",
+    "backHome": "Volver al inicio"
+  }
+}
