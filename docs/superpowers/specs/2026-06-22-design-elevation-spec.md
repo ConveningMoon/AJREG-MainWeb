@@ -151,8 +151,8 @@ This staggered reading is more editorial than a centered stack.
 
 **Dividers:** `border-l border-gold/20` between stats at desktop (invisible on mobile).
 
-**Background:** Keep `bg-navy-900`. Optionally add a `bg-[url(...)]` subtle texture
-at `opacity-[0.03]` if a pattern asset is available — otherwise skip (no decoration
+**Background:** Keep `bg-navy-900`. Optionally add a CSS background-image with a subtle
+texture at `opacity-[0.03]` if a pattern asset is available — otherwise skip (no decoration
 without purpose).
 
 **ASCII wireframe (desktop):**

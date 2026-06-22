@@ -296,7 +296,7 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - **2026-06-22** — **Elevación de diseño "Moderno y Atrevido — Exaggerated Minimalism" completada.**
   10 tareas ejecutadas vía Subagent-Driven Development (SDD). Cambios en 12 archivos.
   **(1) globals.css:** keyframes `slideUp` / `slideUpFast`; `@source not "../../docs/**"` para excluir
-  docs del escáner de Tailwind v4 (fix de `bg-[url(...)]` preexistente). **(2) Eyebrow:**
+  docs del escáner de Tailwind v4 (fix de clase bg-url generada por Tailwind). **(2) Eyebrow:**
   regla `h-0.5 w-12` (más gruesa/larga). **(3) Hero:** fondo `bg-navy-900` completo, headline
   `clamp(3.5rem,8vw,8rem)` EB Garamond, barra gold `h-1 w-20`, retrato `rounded-none lg:ring-2
   ring-gold/40`, CTAs `rounded-sm`. **(4) WhoWeAre:** tarjetas `bg-navy-950 rounded-sm` con
