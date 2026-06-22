@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { ArrowLeft, ArrowRight, Phone } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { brand } from "@/lib/brand";
 import { seedTeam, type TeamMember } from "@/data/team";
 
@@ -53,8 +52,8 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
                   className="object-cover"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center bg-gold/10">
-                  <span className="font-display text-7xl font-semibold text-gold">
+                <div className="flex h-full items-center justify-center bg-gold">
+                  <span className="font-display text-7xl font-semibold text-navy-950">
                     {initial}
                   </span>
                 </div>
@@ -63,11 +62,10 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
 
             {/* Info */}
             <div>
-              <Eyebrow>{member.role}</Eyebrow>
-              <h1
-                className="mt-4 font-display font-semibold leading-tight text-cream"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-              >
+              <span className="inline-block rounded-sm bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold">
+                {member.role}
+              </span>
+              <h1 className="mt-4 font-display text-5xl font-semibold leading-tight text-cream lg:text-6xl">
                 {member.name}
               </h1>
 
@@ -79,7 +77,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
                 >
                   &ldquo;
                 </span>
-                <p className="font-display text-lg italic leading-relaxed text-navy-200">
+                <p className="font-display text-2xl italic leading-relaxed text-navy-200">
                   {tagline}
                 </p>
               </div>
@@ -119,7 +117,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
                 </Link>
                 <a
                   href={brand.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-gold/40 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
                   {t("profile.callCta")}
