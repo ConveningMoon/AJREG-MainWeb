@@ -297,6 +297,19 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Fase 3 (Houses) completada.** Página `/houses` (hero + grilla)
+  con **capa de datos lista para Supabase**: `lib/listings.ts#getListings()` lee la
+  tabla `public.listings` (anon key + RLS) y **cae al seed estático** si la tabla
+  falta/está vacía/no responde, así la página siempre renderiza. **PropertyCard**
+  (precio USD, dirección, specs camas/baños/sqft con íconos; imagen real si existe,
+  si no **placeholder** con gradiente + ícono) y **ListingsGrid** (grilla responsive
+  + estado vacío). i18n `houses.*` (EN/ES). ISR `revalidate=3600`. **Esquema SQL**
+  documentado en `supabase/schema.sql` (CREATE TABLE + RLS de lectura pública + seed
+  de las 3 propiedades) para activar datos en vivo desde Supabase. Verificado: build
+  SSG (`/en/houses`, `/es/houses`) + runtime con fallback al seed. **Nota MCP:** las
+  tools de Supabase aún no cargan en sesión (requiere reiniciar Claude Code tras
+  fijar `AJREG_SUPABASE_ACCESS_TOKEN`); el MCP es read-only, así que la tabla se crea
+  corriendo `supabase/schema.sql` en Supabase.
 - **2026-06-22** — **Fase 2 (Home) completada.** Secciones en
   `src/components/home/`: **Hero** (cliente — retrato del equipo, titular EB
   Garamond, CTA "Find your home"→/houses + "Free guide" que abre el modal vía

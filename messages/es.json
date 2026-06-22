@@ -74,6 +74,21 @@
     "notActive": "El registro aún no está activo. Mientras tanto, escríbenos directamente:",
     "contactLink": "Contactar al equipo"
   },
+  "houses": {
+    "hero": {
+      "eyebrow": "Casas destacadas",
+      "title": "Encuentra un lugar que tu familia pueda llamar hogar",
+      "subtitle": "Una selección de casas en Hampton Roads. Cuéntanos qué buscas y te ayudamos a encontrar el resto."
+    },
+    "card": {
+      "forSale": "En venta",
+      "beds": "{count} rec",
+      "baths": "{count} baños",
+      "sqft": "{count} ft²",
+      "inquire": "Pregunta por esta casa"
+    },
+    "empty": "No hay casas disponibles en este momento. Escríbenos y encontraremos el hogar ideal para ti."
+  },
   "footer": {
     "tagline": "Un equipo inmobiliario bilingüe y centrado en la familia que acompaña a las familias a su hogar en Virginia y Carolina del Norte.",
     "quickLinks": "Enlaces rápidos",
