@@ -147,7 +147,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openNewsletter}
-            className="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+            className="rounded-sm bg-gold px-5 py-2 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
           >
             {t("nav.freeGuide")}
           </button>
@@ -225,7 +225,7 @@ export function Navbar() {
                 setMobileOpen(false);
                 openNewsletter();
               }}
-              className="block w-full rounded-full bg-gold px-5 py-2.5 text-center text-sm font-semibold text-navy-950"
+              className="block w-full rounded-sm bg-gold px-5 py-2.5 text-center text-sm font-semibold text-navy-950"
             >
               {t("nav.freeGuide")}
             </button>

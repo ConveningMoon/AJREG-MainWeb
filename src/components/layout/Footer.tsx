@@ -11,7 +11,7 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-900 text-navy-100">
+    <footer className="border-t-2 border-gold/25 bg-navy-900 text-navy-100">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div className="lg:col-span-1">
@@ -36,7 +36,7 @@ export async function Footer() {
 
         {/* Quick links */}
         <nav aria-label={t("footer.quickLinks")}>
-          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+          <h2 className="font-display text-base font-semibold tracking-wide text-gold">
             {t("footer.quickLinks")}
           </h2>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -63,7 +63,7 @@ export async function Footer() {
 
         {/* Team */}
         <nav aria-label={t("nav.ourTeam")}>
-          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+          <h2 className="font-display text-base font-semibold tracking-wide text-gold">
             {t("nav.ourTeam")}
           </h2>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -82,7 +82,7 @@ export async function Footer() {
 
         {/* Contact */}
         <div>
-          <h2 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+          <h2 className="font-display text-base font-semibold tracking-wide text-gold">
             {t("footer.contactTitle")}
           </h2>
           <ul className="mt-4 space-y-3 text-sm">
