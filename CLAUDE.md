@@ -249,6 +249,44 @@ página y locale, sitemap, favicon, pulido responsive y accesibilidad.
 Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 **→ commit:** `chore: production deploy + QA fixes`
 
+### 🔴 SESIÓN 4 — UI polish + nuevas páginas (en curso)
+> Pendiente de completar antes del deploy.
+
+**Mini-Fase 6a — Home UI polish**
+- Hero: fondo `Hero_Home_Background.webp`, layout horizontal (texto izq / portrait der),
+  portrait con aspect ratio horizontal para ver a todos los agentes, overlay gradiente.
+- Eliminar skip-to-content link del layout (era poco intuitivo para el cliente).
+- `WhoWeAre` — avatar placeholder (círculo con inicial) en cada tarjeta de agente.
+- `Stats` — compacto + animación count-up con IntersectionObserver (client component).
+- `TestimonialsCarousel` — avatar más grande, quote más compacto, más personalidad.
+- `ContactSection` — patrón de puntos SVG sobre el fondo navy.
+- `SalesStories` — bordes más redondeados.
+- Global: bordes redondeados en todos los bloques (`rounded-2xl` en cards,
+  `rounded-xl` en botones, `rounded-lg` en inputs).
+**→ commit:** `feat: home ui polish (hero, stats, testimonials, rounded)`
+
+**Mini-Fase 6b — Houses detail page**
+- Extender tipo `Listing` con `description`, `features[]`, `gallery[]`, `status`,
+  `neighborhood`, `yearBuilt`, `garageSpaces`, `lotSqft`.
+- Componente `PropertyGallery` (client) con thumbnails + lightbox modal al hacer clic.
+- Nueva ruta `/[locale]/houses/[id]/page.tsx`: hero con info + galería, descripción,
+  features, floor plan placeholder, CTA (contactar / WhatsApp), related properties.
+- `PropertyCard` → hace clic a la página de detalle; botón "Inquire" queda en detail.
+- i18n `houses.detail.*` en EN/ES.
+**→ commit:** `feat: property detail page with gallery lightbox`
+
+**Mini-Fase 6c — Agent profile additions**
+- Video placeholder en perfiles de agente (thumbnail + play, mismo patrón que
+  SalesStories). Ubicado al inicio del hero de perfil.
+- Sección "Free Resource" por agente: título, descripción y CTA a formulario.
+- Nueva ruta `/[locale]/resources/[agentSlug]/page.tsx`: formulario multi-paso (3
+  pasos: info personal → preguntas calificadoras → confirmación). Preguntas
+  distintas por agente según su público objetivo. Envío al CRM ITMANO (channel ID
+  pendiente de configurar por agente — se deja como `ITMANO_[SLUG]_CHANNEL_ID` env).
+- Datos de resource por agente en `data/resources.ts`.
+- i18n `resources.*` en EN/ES.
+**→ commit:** `feat: agent video + free resource form pages`
+
 ---
 
 ## 🔧 CONVENCIONES

@@ -85,9 +85,34 @@
       "beds": "{count} rec",
       "baths": "{count} baños",
       "sqft": "{count} ft²",
-      "inquire": "Pregunta por esta casa"
+      "inquire": "Pregunta por esta casa",
+      "viewDetails": "Ver detalles"
     },
-    "empty": "No hay casas disponibles en este momento. Escríbenos y encontraremos el hogar ideal para ti."
+    "empty": "No hay casas disponibles en este momento. Escríbenos y encontraremos el hogar ideal para ti.",
+    "detail": {
+      "available": "Disponible",
+      "pending": "En proceso",
+      "sold": "Vendida",
+      "beds": "{count} Recámaras",
+      "baths": "{count} Baños",
+      "sqft": "{count} pie²",
+      "yearBuilt": "Año de construcción",
+      "garage": "Garaje para {count}",
+      "lot": "Terreno de {count} pie²",
+      "descriptionTitle": "Sobre esta casa",
+      "featuresTitle": "Características y amenidades",
+      "floorPlanTitle": "Plano de planta",
+      "floorPlanPlaceholder": "Plano disponible próximamente",
+      "ctaTitle": "¿Te interesa esta casa?",
+      "ctaSubtitle": "Nuestro equipo puede agendar una visita o responder todas tus preguntas.",
+      "ctaButton": "Solicitar una visita",
+      "whatsappButton": "Chatea por WhatsApp",
+      "relatedTitle": "Más casas que podrían gustarte",
+      "backToListings": "Volver a listados",
+      "share": "Compartir",
+      "download": "Descargar detalles",
+      "imageAlt": "{name} — foto {n}"
+    }
   },
   "contact": {
     "hero": {
@@ -142,12 +167,136 @@
       "whatsappCta": "Escríbenos por WhatsApp"
     }
   },
+  "resources": {
+    "cta": "Quiero mi guía gratis",
+    "adriana": {
+      "title": "Guía Gratis: Cómo Comprar Casa siendo Familia Hispana",
+      "description": "Todo lo que necesitas saber para comprar tu primera casa en Virginia — explicado en español, paso a paso. Adriana te guía desde el principio hasta el cierre."
+    },
+    "john": {
+      "title": "Guía Gratis: Reubicación Militar en Hampton Roads",
+      "description": "¿Mudanza PCS? La guía de John cubre elegibilidad de préstamos VA, ubicaciones cerca de bases militares y todo lo que las familias militares necesitan saber."
+    },
+    "viviane": {
+      "title": "Guía Gratis: Análisis de Inversión Inmobiliaria",
+      "description": "La guía de Viviane (con enfoque de ingeniería) te ayuda a evaluar propiedades como un experto — cálculos de ROI, datos del vecindario y checklist para inversores."
+    },
+    "melany": {
+      "title": "Guía Gratis: Checklist para Compradores Primerizos",
+      "description": "¿Lista para comprar tu primera casa? El checklist de Melany guía a las familias paso a paso, desde la preaprobación hasta el cierre, sin que nada se escape."
+    },
+    "steps": {
+      "info": "Tus datos",
+      "questions": "Preguntas rápidas",
+      "confirm": "Casi listo"
+    },
+    "fields": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "optional": "opcional"
+    },
+    "submit": "Envíame la guía",
+    "submitting": "Enviando…",
+    "successTitle": "¡Tu guía está en camino!",
+    "successBody": "Revisa tu bandeja de entrada — te enviamos la guía gratis y un miembro de nuestro equipo se pondrá en contacto pronto.",
+    "errorTitle": "Algo salió mal",
+    "errorBody": "No pudimos procesar tu solicitud. Inténtalo de nuevo o comunícate con nosotros directamente.",
+    "questions": {
+      "adriana": {
+        "barrier": "¿Cuál es tu principal barrera para comprar casa?",
+        "barrierOptions": {
+          "creditScore": "Historial de crédito",
+          "downPayment": "Enganche / inicial",
+          "language": "Idioma / proceso",
+          "process": "No sé por dónde empezar"
+        },
+        "timeline": "¿Cuándo planeas comprar?",
+        "timelineOptions": {
+          "immediately": "Ahora mismo",
+          "3months": "En 3 meses",
+          "6months": "En 6 meses",
+          "1year": "En un año"
+        },
+        "preApproved": "¿Ya tienes preaprobación de préstamo?",
+        "preApprovedOptions": {
+          "yes": "Sí",
+          "no": "Todavía no",
+          "notSure": "No estoy seguro/a"
+        }
+      },
+      "john": {
+        "status": "¿Cuál es tu estatus militar?",
+        "statusOptions": {
+          "activeDuty": "Servicio activo",
+          "veteran": "Veterano/a",
+          "dependent": "Dependiente / cónyuge",
+          "civilian": "Civil"
+        },
+        "pcsDate": "¿Cuándo es tu mudanza PCS?",
+        "pcsDateOptions": {
+          "within3months": "En menos de 3 meses",
+          "3to6months": "3 a 6 meses",
+          "6to12months": "6 a 12 meses",
+          "over1year": "Más de un año"
+        },
+        "vaBenefit": "¿Utilizarás el beneficio de préstamo VA?",
+        "vaBenefitOptions": {
+          "yes": "Sí",
+          "no": "No",
+          "notSure": "No estoy seguro/a"
+        }
+      },
+      "viviane": {
+        "purpose": "¿Cuál es tu objetivo?",
+        "purposeOptions": {
+          "invest": "Inversión / renta",
+          "primaryHome": "Residencia principal",
+          "both": "Ambos"
+        },
+        "budget": "¿Cuál es tu rango de presupuesto?",
+        "budgetOptions": {
+          "under200k": "Menos de $200k",
+          "200to350k": "$200k – $350k",
+          "350to500k": "$350k – $500k",
+          "over500k": "Más de $500k"
+        },
+        "existing": "¿Actualmente tienes otras propiedades?",
+        "existingOptions": {
+          "yes": "Sí",
+          "no": "No"
+        }
+      },
+      "melany": {
+        "firstTime": "¿Es tu primera compra de casa?",
+        "firstTimeOptions": {
+          "yes": "Sí",
+          "no": "No, ya he comprado antes"
+        },
+        "familySize": "¿Cuántas personas hay en tu hogar?",
+        "familySizeOptions": {
+          "1to2": "1–2",
+          "3to4": "3–4",
+          "5plus": "5 o más"
+        },
+        "area": "¿Qué zona estás considerando?",
+        "areaOptions": {
+          "norfolk": "Norfolk",
+          "virginiaBeach": "Virginia Beach",
+          "suffolk": "Suffolk",
+          "other": "Otra / no estoy seguro/a"
+        }
+      }
+    }
+  },
   "team": {
     "profile": {
       "back": "Volver al inicio",
       "languagesLabel": "Idiomas",
       "contactCta": "Trabaja con {name}",
       "callCta": "Llámanos",
+      "videoLabel": "Ver la presentación de {name}",
       "otherTitle": "Conoce al resto del equipo"
     },
     "members": {

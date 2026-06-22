@@ -12,9 +12,6 @@ import "../globals.css";
 
 const SITE_URL = "https://ajrealestateva.com";
 
-// Official brand fonts: Montserrat (primary/body + UI) and EB Garamond
-// (secondary, used for elegant display headings). Exposed as CSS variables
-// consumed by the design tokens (--font-body / --font-display).
 const montserrat = Montserrat({
   variable: "--font-body",
   subsets: ["latin"],
@@ -63,7 +60,6 @@ export async function generateMetadata({
   };
 }
 
-// Pre-render both locales at build time.
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -80,7 +76,6 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(locale);
-  const tc = await getTranslations({ locale, namespace: "common" });
 
   return (
     <html
@@ -90,12 +85,6 @@ export default async function LocaleLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
         <NextIntlClientProvider>
           <NewsletterProvider>
-            <a
-              href="#main-content"
-              className="absolute left-4 top-4 z-[200] -translate-y-full rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-navy-950 shadow-md transition-transform focus:translate-y-0 focus:outline-none"
-            >
-              {tc("skipToContent")}
-            </a>
             <TopBar />
             <Navbar />
             <div id="main-content" className="flex flex-1 flex-col">{children}</div>

@@ -12,11 +12,25 @@ export function Hero() {
   const openNewsletter = useNewsletter();
 
   return (
-    <section className="relative bg-navy-900">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-2 lg:gap-12 lg:py-24">
+    <section className="relative overflow-hidden bg-navy-950">
+      {/* Scenic background image */}
+      <Image
+        src="/images/Hero_Home_Background.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+        aria-hidden="true"
+      />
+      {/* Gradient overlay: strong left, fading right so portrait stays visible */}
+      <div className="absolute inset-0 bg-linear-to-r from-navy-950/95 via-navy-950/70 to-navy-950/30" />
+      {/* Bottom fade for smooth transition */}
+      <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-navy-950/60 to-transparent" />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-6 py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:py-28">
         {/* Copy */}
-        <div className="order-2 lg:order-1 motion-safe:animate-[slideUp_550ms_ease-out_both]">
-          {/* Gold accent bar — the section signature */}
+        <div className="motion-safe:animate-[slideUp_550ms_ease-out_both]">
           <span aria-hidden="true" className="mb-4 block h-1 w-20 bg-gold" />
           <Eyebrow>
             <span className="inline-flex items-center gap-1.5">
@@ -25,18 +39,18 @@ export function Hero() {
             </span>
           </Eyebrow>
           <h1
-            className="mt-5 font-display font-semibold text-cream leading-[0.88] tracking-[-0.03em]"
-            style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)" }}
+            className="mt-5 font-display font-semibold text-cream leading-[0.9] tracking-[-0.03em]"
+            style={{ fontSize: "clamp(2.75rem, 5.5vw, 6rem)" }}
           >
             {t("headline")}
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-navy-200 sm:text-lg">
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-navy-200 sm:text-lg">
             {t("subheadline")}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/houses"
-              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
             >
               {t("ctaPrimary")}
               <ArrowRight
@@ -47,26 +61,27 @@ export function Hero() {
             <button
               type="button"
               onClick={openNewsletter}
-              className="inline-flex items-center justify-center rounded-sm border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="inline-flex items-center justify-center rounded-xl border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {t("ctaGuide")}
             </button>
           </div>
         </div>
 
-        {/* Portrait */}
+        {/* Team portrait — horizontal aspect ratio so all agents are visible */}
         <div
-          className="order-1 lg:order-2 motion-safe:animate-[fadeIn_700ms_ease-out_both]"
-          style={{ animationDelay: "150ms" }}
+          className="motion-safe:animate-[fadeIn_700ms_ease-out_both]"
+          style={{ animationDelay: "200ms" }}
         >
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-lg shadow-2xl lg:max-w-none lg:rounded-none lg:ring-2 lg:ring-gold/40">
+          <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl ring-2 ring-gold/25"
+               style={{ aspectRatio: "3 / 2" }}>
             <Image
               src="/images/Team_Portrait_2.webp"
               alt={t("portraitAlt")}
               fill
               priority
-              sizes="(min-width: 1024px) 40vw, 90vw"
-              className="object-cover"
+              sizes="(min-width: 1024px) 52vw, 100vw"
+              className="object-cover object-center"
             />
           </div>
         </div>

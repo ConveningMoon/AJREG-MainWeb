@@ -85,9 +85,34 @@
       "beds": "{count} bd",
       "baths": "{count} ba",
       "sqft": "{count} sqft",
-      "inquire": "Ask about this home"
+      "inquire": "Ask about this home",
+      "viewDetails": "View details"
     },
-    "empty": "No listings available right now. Reach out and we'll find the right home for you."
+    "empty": "No listings available right now. Reach out and we'll find the right home for you.",
+    "detail": {
+      "available": "Available",
+      "pending": "Pending",
+      "sold": "Sold",
+      "beds": "{count} Bedrooms",
+      "baths": "{count} Bathrooms",
+      "sqft": "{count} sq ft",
+      "yearBuilt": "Year built",
+      "garage": "{count} garage",
+      "lot": "{count} sq ft lot",
+      "descriptionTitle": "About this home",
+      "featuresTitle": "Features & amenities",
+      "floorPlanTitle": "Floor plan",
+      "floorPlanPlaceholder": "Floor plan coming soon",
+      "ctaTitle": "Interested in this home?",
+      "ctaSubtitle": "Our team is ready to schedule a showing or answer any questions.",
+      "ctaButton": "Request a showing",
+      "whatsappButton": "Chat on WhatsApp",
+      "relatedTitle": "More homes you might like",
+      "backToListings": "Back to listings",
+      "share": "Share",
+      "download": "Download details",
+      "imageAlt": "{name} — photo {n}"
+    }
   },
   "contact": {
     "hero": {
@@ -142,12 +167,136 @@
       "whatsappCta": "Message us on WhatsApp"
     }
   },
+  "resources": {
+    "cta": "Get my free guide",
+    "adriana": {
+      "title": "Free Guide: Homeownership for Hispanic Families",
+      "description": "Everything you need to know to buy your first home in Virginia — explained in plain language, in Español. Adriana walks you through the process step by step."
+    },
+    "john": {
+      "title": "Free Guide: Military PCS Relocation in Hampton Roads",
+      "description": "Navigating a PCS move? John's guide covers VA loan eligibility, base proximity, timelines, and everything military families need to know before choosing a home."
+    },
+    "viviane": {
+      "title": "Free Guide: Property Investment Analysis",
+      "description": "Viviane's engineer-backed guide helps you evaluate properties like a pro — ROI calculations, neighborhood data, and a due-diligence checklist for Hampton Roads investors."
+    },
+    "melany": {
+      "title": "Free Guide: First-Time Buyer Checklist",
+      "description": "Ready to buy your first home? Melany's checklist walks growing families through every step — from pre-approval to closing — so nothing falls through the cracks."
+    },
+    "steps": {
+      "info": "Your info",
+      "questions": "Quick questions",
+      "confirm": "Almost done"
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "optional": "optional"
+    },
+    "submit": "Send me the guide",
+    "submitting": "Sending…",
+    "successTitle": "Your guide is on its way!",
+    "successBody": "Check your inbox — we've sent you the free guide and one of our team members will follow up shortly.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "We couldn't process your request. Please try again or reach us directly.",
+    "questions": {
+      "adriana": {
+        "barrier": "What is your biggest barrier to buying a home?",
+        "barrierOptions": {
+          "creditScore": "Credit score",
+          "downPayment": "Down payment",
+          "language": "Language / process",
+          "process": "Don't know where to start"
+        },
+        "timeline": "When are you looking to buy?",
+        "timelineOptions": {
+          "immediately": "Right now",
+          "3months": "Within 3 months",
+          "6months": "Within 6 months",
+          "1year": "Within a year"
+        },
+        "preApproved": "Are you pre-approved for a loan?",
+        "preApprovedOptions": {
+          "yes": "Yes",
+          "no": "Not yet",
+          "notSure": "Not sure"
+        }
+      },
+      "john": {
+        "status": "What is your military status?",
+        "statusOptions": {
+          "activeDuty": "Active duty",
+          "veteran": "Veteran",
+          "dependent": "Dependent / spouse",
+          "civilian": "Civilian"
+        },
+        "pcsDate": "When is your PCS move?",
+        "pcsDateOptions": {
+          "within3months": "Within 3 months",
+          "3to6months": "3–6 months",
+          "6to12months": "6–12 months",
+          "over1year": "More than a year"
+        },
+        "vaBenefit": "Are you using a VA home loan benefit?",
+        "vaBenefitOptions": {
+          "yes": "Yes",
+          "no": "No",
+          "notSure": "Not sure"
+        }
+      },
+      "viviane": {
+        "purpose": "What is your goal?",
+        "purposeOptions": {
+          "invest": "Investment / rental",
+          "primaryHome": "Primary residence",
+          "both": "Both"
+        },
+        "budget": "What is your budget range?",
+        "budgetOptions": {
+          "under200k": "Under $200k",
+          "200to350k": "$200k – $350k",
+          "350to500k": "$350k – $500k",
+          "over500k": "Over $500k"
+        },
+        "existing": "Do you currently own other properties?",
+        "existingOptions": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "melany": {
+        "firstTime": "Is this your first home purchase?",
+        "firstTimeOptions": {
+          "yes": "Yes",
+          "no": "No, I've bought before"
+        },
+        "familySize": "How many people are in your household?",
+        "familySizeOptions": {
+          "1to2": "1–2",
+          "3to4": "3–4",
+          "5plus": "5 or more"
+        },
+        "area": "Which area are you considering?",
+        "areaOptions": {
+          "norfolk": "Norfolk",
+          "virginiaBeach": "Virginia Beach",
+          "suffolk": "Suffolk",
+          "other": "Other / not sure"
+        }
+      }
+    }
+  },
   "team": {
     "profile": {
       "back": "Back to home",
       "languagesLabel": "Languages",
       "contactCta": "Work with {name}",
       "callCta": "Call us",
+      "videoLabel": "Watch {name}'s introduction",
       "otherTitle": "Meet the rest of the team"
     },
     "members": {

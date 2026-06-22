@@ -2,9 +2,18 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { testimonials } from "@/data/testimonials";
+
+const avatarColors = [
+  "bg-gold text-navy-950",
+  "bg-slate text-cream",
+  "bg-blush text-navy-900",
+  "bg-navy-700 text-cream",
+  "bg-gold/70 text-navy-950",
+  "bg-taupe text-cream",
+];
 
 export function TestimonialsCarousel() {
   const t = useTranslations("home.testimonials");
@@ -19,16 +28,13 @@ export function TestimonialsCarousel() {
 
   useEffect(() => {
     if (paused) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => go(1), 6500);
     return () => clearInterval(id);
   }, [paused, go]);
 
   const active = testimonials[index];
+  const colorClass = avatarColors[index % avatarColors.length];
 
   return (
     <section className="bg-navy-950 py-16 lg:py-24">
@@ -48,37 +54,42 @@ export function TestimonialsCarousel() {
           onBlurCapture={() => setPaused(false)}
           aria-roledescription="carousel"
         >
-          <div className="relative overflow-hidden rounded-sm bg-navy-800 p-8 sm:p-12">
-            {/* Decorative large quote mark */}
-            <span
+          <div className="relative overflow-hidden rounded-2xl bg-navy-800 p-8 sm:p-12">
+            {/* Decorative quote mark */}
+            <Quote
+              className="absolute -top-1 left-5 h-16 w-16 rotate-180 text-gold/10"
               aria-hidden="true"
-              className="pointer-events-none select-none absolute -top-2 left-4 font-display text-[12rem] leading-none text-gold/8"
-            >
-              &ldquo;
-            </span>
+            />
 
             <div
               key={active.id}
               className="relative motion-safe:animate-[fadeIn_350ms_ease-out]"
             >
-              <blockquote className="mt-4 flex min-h-[7rem] items-center justify-center text-center text-xl leading-relaxed text-cream sm:text-2xl">
-                <p>"{active.quote}"</p>
-              </blockquote>
-              <div className="mt-8 flex flex-col items-center gap-3">
+              {/* Attribution at top — avatar prominent */}
+              <div className="mb-8 flex flex-col items-center gap-4">
                 <span
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gold font-display text-xl font-semibold text-navy-950"
+                  className={`flex h-20 w-20 items-center justify-center rounded-full font-display text-2xl font-semibold shadow-lg ${colorClass}`}
                   aria-hidden="true"
                 >
                   {active.family.charAt(0)}
                 </span>
-                <p className="font-display text-base font-semibold text-cream">
-                  {t("familyLabel", { name: active.family })}
-                </p>
+                <div className="text-center">
+                  <p className="font-display text-lg font-semibold text-cream">
+                    {t("familyLabel", { name: active.family })}
+                  </p>
+                  </div>
               </div>
+
+              {/* Quote */}
+              <blockquote className="flex min-h-20 items-center justify-center text-center">
+                <p className="text-base leading-relaxed text-navy-200 sm:text-lg">
+                  &ldquo;{active.quote}&rdquo;
+                </p>
+              </blockquote>
             </div>
           </div>
 
-          {/* Controls */}
+          {/* Prev/Next buttons */}
           <button
             type="button"
             onClick={() => go(-1)}
@@ -107,7 +118,7 @@ export function TestimonialsCarousel() {
               aria-label={t("goTo", { n: i + 1 })}
               aria-current={i === index ? "true" : undefined}
               className={`h-2.5 rounded-full transition-all ${
-                i === index ? "w-6 bg-gold" : "w-2.5 bg-navy-600 hover:bg-navy-500"
+                i === index ? "w-7 bg-gold" : "w-2.5 bg-navy-600 hover:bg-navy-500"
               }`}
             />
           ))}

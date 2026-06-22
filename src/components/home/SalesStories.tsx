@@ -26,7 +26,7 @@ export async function SalesStories() {
           {salesStories.map((story, i) => (
             <article
               key={story.id}
-              className="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm ring-1 ring-navy-900/5"
+              className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-900/5"
             >
               {/* Placeholder media panel */}
               <div
