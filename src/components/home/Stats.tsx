@@ -11,15 +11,27 @@ export async function Stats() {
 
   return (
     <section className="bg-navy-900 text-cream">
-      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 sm:grid-cols-3 lg:py-16">
-        {stats.map((s) => (
-          <div key={s.label} className="text-center">
-            <p className="font-display text-5xl font-semibold text-gold lg:text-6xl">
-              {s.value}
-            </p>
-            <p className="mt-2 text-sm font-medium uppercase tracking-wider text-navy-200">
-              {s.label}
-            </p>
+      <div className="mx-auto grid max-w-7xl px-6 py-12 sm:grid-cols-3 lg:py-16">
+        {stats.map((s, i) => (
+          <div
+            key={s.label}
+            className={`px-8 py-6 ${
+              i > 0
+                ? "border-t border-gold/20 sm:border-t-0 sm:border-l sm:border-gold/20"
+                : ""
+            }`}
+          >
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <p
+                className="font-display font-semibold text-gold"
+                style={{ fontSize: "clamp(4rem, 9vw, 7rem)", lineHeight: 1 }}
+              >
+                {s.value}
+              </p>
+              <p className="text-sm font-medium uppercase leading-tight tracking-wider text-navy-200">
+                {s.label}
+              </p>
+            </div>
           </div>
         ))}
       </div>
