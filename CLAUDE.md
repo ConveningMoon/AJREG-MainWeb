@@ -192,9 +192,9 @@ servicio activo), Viviane Chiu (ingeniera civil, trilingüe), Melany Valencia
 
 - **Fidelidad:** replicar el diseño de Webflow y pulir (espaciado consistente,
   jerarquía tipográfica, estados hover/focus, responsive impecable, accesibilidad).
-- **Tipografía:** marca usa **Playfair Display** (títulos) + **Lato** (cuerpo) como
-  referencia. **Verificar las fuentes reales del sitio Webflow** en la fase de setup
-  y ajustar si difieren. Cargar vía `next/font`.
+- **Tipografía (confirmada):** **Montserrat** (principal — cuerpo/UI) + **EB
+  Garamond** (secundaria — títulos/display). Cargadas vía `next/font` y expuestas
+  como tokens `--font-body` / `--font-display`.
 - **Colores:** logo en navy y blanco → **navy como color primario**, blanco de base,
   acento por confirmar. **Extraer los hex exactos del sitio actual** y fijarlos como
   design tokens en Tailwind. No inventar la paleta.
@@ -277,13 +277,15 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - [x] **Locale por defecto** → `en` (routing `localePrefix: "always"`: `/en`, `/es`).
 - [x] **Rol de Supabase** → fuente de datos de **listados** y **equipo** (lectura
       pública vía anon key + RLS). Los formularios NO van a Supabase (van al CRM).
-- [ ] **Paleta exacta (hex) y fuentes reales** del sitio Webflow — *pendiente*:
-      la extracción por red estuvo bloqueada en setup. Tokens actuales en
-      `globals.css` son provisionales (escala navy + acento dorado). **Se necesitan
-      los hex exactos o el export de Webflow para fijarlos.**
-- [ ] **Assets/imágenes reales** (logo, retrato del equipo, testimonios, etc.):
-      pendiente recibir el export de Webflow o los archivos (el CDN no es
-      descargable desde el sandbox). Ya se identificaron los nombres en el CDN.
+- [x] **Fuentes reales** → **Montserrat** (principal) + **EB Garamond**
+      (secundaria). Ya cargadas vía `next/font`.
+- [ ] **Paleta exacta (hex)** del sitio Webflow — *pendiente*: la extracción por
+      red estuvo bloqueada en setup. Tokens actuales en `globals.css` son
+      provisionales (escala navy + acento dorado). **Se necesitan los hex exactos.**
+- [~] **Assets/imágenes reales** — parcial: `public/images/Logo.PNG` y
+      `Team_Portrait_2.webp` ya están en el repo. Para lo que falte (testimonios,
+      thumbnails de Sales Stories, contacto, etc.) se usará placeholder y se
+      reportará en el chat.
 - [ ] Lista definitiva de listados de propiedades (seed actual = 3 del sitio).
 - [ ] Contenido/bios finales de cada miembro del equipo.
 - [ ] ¿Agregar blog/recursos para SEO en una fase futura?

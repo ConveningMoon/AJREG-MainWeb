@@ -3,18 +3,18 @@
 /*
   A&J Real Estate Group — Design tokens (Tailwind v4, CSS-first).
 
-  NOTE: Navy scale + accent below are PROVISIONAL, brand-aligned defaults.
-  The exact hex values and fonts should be confirmed against the live Webflow
-  site (network extraction was blocked in setup). Update these tokens once the
-  official palette / Webflow export is available — components consume the
-  semantic tokens (navy, accent, background, foreground) so refining here
-  propagates everywhere.
+  Fonts are CONFIRMED: Montserrat (body/primary) + EB Garamond (display).
+  NOTE: Navy scale + accent below are still PROVISIONAL, brand-aligned defaults.
+  The exact hex values should be confirmed against the live Webflow site
+  (network extraction was blocked in setup). Components consume the semantic
+  tokens (navy, accent, background, foreground) so refining here propagates
+  everywhere.
 */
 
 @theme {
   /* Brand fonts (loaded via next/font in the locale layout) */
-  --font-display: var(--font-display), ui-serif, Georgia, serif;
-  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif; /* EB Garamond */
+  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif; /* Montserrat */
 
   /* Navy scale — primary brand color */
   --color-navy-50: #f0f4f8;

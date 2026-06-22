@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { Playfair_Display, Lato } from "next/font/google";
+import { Montserrat, EB_Garamond } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-// Brand reference fonts (per CLAUDE.md): Playfair Display for headings,
-// Lato for body. Exposed as CSS variables consumed by the design tokens.
-const playfair = Playfair_Display({
-  variable: "--font-display",
+// Official brand fonts: Montserrat (primary/body + UI) and EB Garamond
+// (secondary, used for elegant display headings). Exposed as CSS variables
+// consumed by the design tokens (--font-body / --font-display).
+const montserrat = Montserrat({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const lato = Lato({
-  variable: "--font-body",
+const ebGaramond = EB_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
   display: "swap",
 });
 
@@ -49,7 +49,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${playfair.variable} ${lato.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${ebGaramond.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-body">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
