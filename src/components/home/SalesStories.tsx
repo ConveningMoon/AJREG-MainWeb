@@ -10,11 +10,11 @@ export async function SalesStories() {
   const t = await getTranslations("home.salesStories");
 
   return (
-    <section className="bg-blush/30 py-16 lg:py-24">
+    <section className="bg-taupe/15 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
           <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+          <h2 className="mt-5 font-display text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             {t("title")}
           </h2>
           <p className="mt-5 text-base leading-relaxed text-navy-700">
@@ -22,28 +22,32 @@ export async function SalesStories() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-7 sm:grid-cols-2">
-          {salesStories.map((story) => (
+        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr]">
+          {salesStories.map((story, i) => (
             <article
               key={story.id}
-              className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-900/5"
+              className="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm ring-1 ring-navy-900/5"
             >
               {/* Placeholder media panel */}
-              <div className="relative flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-navy-800 to-slate">
+              <div
+                className={`relative flex items-center justify-center bg-gradient-to-br from-navy-800 to-slate ${
+                  i === 0 ? "aspect-[4/5]" : "aspect-[16/9]"
+                }`}
+              >
                 <span
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-cream/90 text-navy shadow-lg"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-gold text-navy-950 shadow-lg"
                   aria-hidden="true"
                 >
                   <Play className="ml-0.5 h-6 w-6" fill="currentColor" />
                 </span>
-                <span className="absolute bottom-3 left-4 font-display text-lg font-semibold text-cream">
+                <span className="absolute bottom-3 left-4 font-display text-xl text-cream">
                   {t("familyLabel", { name: story.family })}
                 </span>
               </div>
 
               <div className="flex flex-1 flex-col p-6">
                 <p className="flex-1 text-sm leading-relaxed text-navy-700">
-                  “{story.quote}”
+                  "{story.quote}"
                 </p>
                 <Link
                   href="/houses"
