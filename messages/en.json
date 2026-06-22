@@ -89,6 +89,98 @@
     },
     "empty": "No listings available right now. Reach out and we'll find the right home for you."
   },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact us",
+      "title": "Let's find your family's next home",
+      "subtitle": "Tell us what you're looking for and we'll be in touch. Whether you're buying, selling, or investing, we're here to help — in English, Español, or Português."
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "optional": "optional",
+      "language": "Preferred language",
+      "langEs": "Español",
+      "langEn": "English",
+      "langPt": "Português",
+      "intent": "How can we help?",
+      "intentBuy": "I want to buy",
+      "intentSell": "I want to sell",
+      "intentInvest": "I want to invest",
+      "message": "Message",
+      "messagePlaceholder": "Tell us a bit about what you're looking for…",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "requiredNote": "* Required fields"
+    },
+    "validation": {
+      "firstName": "Please enter your first name.",
+      "lastName": "Please enter your last name.",
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Please enter a valid email address.",
+      "intent": "Please choose how we can help."
+    },
+    "result": {
+      "successTitle": "Thank you — your message is on its way!",
+      "successBody": "We've received your details and a member of our team will be in touch shortly.",
+      "sendAnother": "Send another message",
+      "duplicateTitle": "You're already on our list",
+      "duplicateBody": "It looks like we already have your details. We'll be in touch soon — or reach us directly below.",
+      "errorTitle": "Something went wrong",
+      "errorBody": "We couldn't send your message right now. Please try again, or contact us directly below."
+    },
+    "info": {
+      "title": "Talk with us",
+      "subtitle": "Have a question or ready to get started? Reach out and a member of our team will get back to you.",
+      "callLabel": "Call or text",
+      "emailLabel": "Email",
+      "coverageLabel": "Service area",
+      "coverageValue": "Virginia · North Carolina (Hampton Roads)",
+      "followLabel": "Follow us",
+      "whatsappCta": "Message us on WhatsApp"
+    }
+  },
+  "team": {
+    "profile": {
+      "back": "Back to home",
+      "languagesLabel": "Languages",
+      "contactCta": "Work with {name}",
+      "callCta": "Call us",
+      "otherTitle": "Meet the rest of the team"
+    },
+    "members": {
+      "adriana": {
+        "tagline": "Lead agent, trusted across Virginia and North Carolina — and a proud mom of three.",
+        "bio": [
+          "Adriana Meléndez leads A&J Real Estate Group with a deep commitment to families and long-term relationships. With years of experience across Virginia and North Carolina, she guides buyers and sellers through every step with honesty, patience, and genuine care.",
+          "As a mother of three, Adriana understands what it means to find a place a family can truly call home. She pairs sharp market knowledge with a warm, personal approach so every client feels supported from the first conversation to the closing table."
+        ]
+      },
+      "john": {
+        "tagline": "Agent and active-duty Navy serviceman bringing discipline and strategy to every deal.",
+        "bio": [
+          "John Leonard brings the focus and discipline of active-duty Navy service to real estate. He approaches each transaction with strategic precision, clear communication, and a steady hand that puts clients at ease.",
+          "Having experienced the realities of relocation and military life firsthand, John is especially attuned to the needs of service members and families on the move across Hampton Roads."
+        ]
+      },
+      "viviane": {
+        "tagline": "Agent, civil engineer, and trilingual mom offering an analytical, detail-driven approach.",
+        "bio": [
+          "Viviane Chiu pairs a civil engineering background with a sharp eye for detail, helping clients make confident, well-informed decisions. Her analytical approach means nothing gets overlooked — from a property's condition to the numbers behind the deal.",
+          "Trilingual and multicultural, Viviane connects easily with families from all backgrounds across Hampton Roads, offering attentive service in English, Spanish, and Portuguese."
+        ]
+      },
+      "melany": {
+        "tagline": "Bilingual agent and new mom bringing fresh energy and heart to growing families.",
+        "bio": [
+          "Melany Valencia brings fresh energy, enthusiasm, and a genuine love for helping families find their place. As a bilingual agent, she makes the process clear and welcoming for Spanish- and English-speaking clients alike.",
+          "A new mom herself, Melany deeply understands the hopes and needs of growing families, and she's dedicated to making each client feel heard, supported, and excited about the journey ahead."
+        ]
+      }
+    }
+  },
   "footer": {
     "tagline": "A family-centered, bilingual real estate team guiding families home across Virginia and North Carolina.",
     "quickLinks": "Quick links",
@@ -102,6 +194,7 @@
     "language": "Language",
     "english": "English",
     "spanish": "Español",
+    "portuguese": "Português",
     "callUs": "Call us",
     "email": "Email",
     "openMenu": "Open menu",

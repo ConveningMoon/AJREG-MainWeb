@@ -58,22 +58,18 @@ primerizos, clientes de reubicación.
 
 | Capa | Tecnología | Notas |
 |---|---|---|
-| Framework | **Next.js 16 (App Router)** | Última estable (el doc nació apuntando a 15; `create-next-app@latest` instaló 16, 100% App Router). Server Components por defecto. Turbopack. Convención `proxy.ts` (ex-`middleware.ts`) |
+| Framework | **Next.js 16.2.9 (App Router)** | `create-next-app@latest` instaló 16. 100% App Router. Server Components por defecto. Turbopack. Convención `proxy.ts` (ex-`middleware.ts`) |
 | Lenguaje | **TypeScript** | Estricto (`strict: true`) |
-| Estilos | **Tailwind CSS** | Design tokens en `globals.css` / config |
-| i18n | **next-intl** | Routing `[locale]`, EN/ES |
+| Estilos | **Tailwind CSS v4** | CSS-first: `@theme` en `globals.css`. Sin `tailwind.config.js`. |
+| i18n | **next-intl** | Routing `[locale]`, EN/ES, `localePrefix: "always"` |
 | Iconos | **lucide-react** | Consistencia visual |
 | Imágenes | **next/image** | Optimización automática |
 | Formularios | **React Hook Form + Zod** | Validación tipada |
-| Envío de forms | *Por confirmar* (ver Fase 5) | Default propuesto: **Resend** (email) |
-| Deploy | **Vercel** | Preview por rama + producción |
+| Envío de forms | **ITMANO CRM** (solo `/contact-us`) | `POST https://app.itmano.com/api/intake/chn_qv8uhxg9qizl/submit`. Newsletter y ContactSection NO se cablean — muestran aviso + link a /contact-us. |
+| Base de datos | **Supabase** | Anon key + RLS para listados y equipo. Forms NO van a Supabase. |
+| MCP | **Vercel** (HTTP) + **Supabase** (npx) | `.mcp.json`. Token Supabase: `AJREG_SUPABASE_ACCESS_TOKEN` (User env). MCP sin `--read-only` — puede aplicar migraciones. |
+| Deploy | **Vercel** | Preview por rama + producción. Team: "James Dylan's projects". |
 | Node | 20 LTS+ | |
-
-> **Decisión abierta — manejo de formularios:** El sitio tiene 3 entradas de form
-> (newsletter modal, contacto home, página contacto). Antes de implementar el envío
-> real (Fase 5), **confirmar con el usuario**: ¿enviar por email vía Resend?,
-> ¿integrar con el CRM existente vía webhook/API?, ¿usar un servicio tipo Formspree?
-> No implementar envío real sin confirmar el destino.
 
 ---
 
@@ -297,6 +293,39 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Fase 4 (Equipo + Contacto) completada.**
+  **(A) `/contact-us`** — único formulario cableado, va al CRM **ITMANO**.
+  Stack: **React Hook Form + Zod** (`lib/contact-schema.ts`, compartido cliente/
+  servidor; mensajes de validación como claves i18n) + **Server Action**
+  (`contact-us/actions.ts`) que revalida y delega en `lib/itmano.ts#submitContact()`
+  (`POST https://app.itmano.com/api/intake/<channel>/submit`, canal contacto
+  `chn_qv8uhxg9qizl`, override por env `ITMANO_CONTACT_CHANNEL_ID`). Campos:
+  `first_name`, `last_name`, `email` (req), `phone` (opc), `language` (es|en|pt,
+  default = locale), `intent` (compra|vende|invierte), `form_answers[]` (intent +
+  mensaje opcional). Manejo de estados: **éxito** (panel de gracias + reset),
+  **duplicado** (HTTP 409 o body que diga "already/duplicate/registrad…") y
+  **error** genérico. Página con hero + form + aside de contacto (tel, email,
+  cobertura, redes, WhatsApp). **(B) `/team/[slug]`** — template `TeamMemberProfile`
+  + 4 perfiles SSG (`adriana-melendez`, `john-leonard`, `viviane-chiu`,
+  `melany-valencia`); `generateStaticParams` + `notFound()` para slugs inválidos.
+  Datos estructurados desde **`lib/team.ts#getTeamMembers()`** (lee tabla Supabase
+  `team` con **fallback al seed**, mismo patrón que listings; ISR `revalidate=3600`);
+  bios/taglines viven en i18n (`team.members.<nombre>.*`, párrafos vía `t.raw`).
+  Foto con **placeholder** (inicial sobre gradiente) hasta tener retratos
+  individuales. i18n `contact.*` y `team.*` + `common.portuguese` (EN/ES). **SQL:**
+  `supabase/schema.sql` ampliado con tabla `public.team` (RLS lectura pública +
+  seed de los 4). Verificado: **build SSG** (10 rutas nuevas) + **runtime** (200 en
+  contact/team, 404 en slug inexistente). **Pendientes reportados:** (1) Supabase
+  MCP sigue **Unauthorized** — no se pudo aplicar la migración; correr
+  `supabase/schema.sql` en el dashboard. (2) Bios redactadas a partir de los datos
+  conocidos (no verbatim del sitio actual). (3) Retratos individuales del equipo.
+  (4) Forma exacta de `form_answers[]` del API ITMANO asumida `{question, answer}`.
+- **2026-06-22** — **MCP Supabase actualizado:** eliminado `--read-only` de `.mcp.json`
+  — ahora puede aplicar migraciones directamente vía `apply_migration`. Token
+  `AJREG_SUPABASE_ACCESS_TOKEN` debe estar en el entorno al arrancar Claude Code
+  (setx ya hecho; requiere reiniciar Claude Code para que el subprocess lo herede).
+  Pendiente: correr `supabase/schema.sql` (vía MCP `apply_migration` o dashboard)
+  para crear tabla `public.listings` y activar datos en vivo.
 - **2026-06-22** — **Fase 3 (Houses) completada.** Página `/houses` (hero + grilla)
   con **capa de datos lista para Supabase**: `lib/listings.ts#getListings()` lee la
   tabla `public.listings` (anon key + RLS) y **cae al seed estático** si la tabla
@@ -305,11 +334,8 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   si no **placeholder** con gradiente + ícono) y **ListingsGrid** (grilla responsive
   + estado vacío). i18n `houses.*` (EN/ES). ISR `revalidate=3600`. **Esquema SQL**
   documentado en `supabase/schema.sql` (CREATE TABLE + RLS de lectura pública + seed
-  de las 3 propiedades) para activar datos en vivo desde Supabase. Verificado: build
-  SSG (`/en/houses`, `/es/houses`) + runtime con fallback al seed. **Nota MCP:** las
-  tools de Supabase aún no cargan en sesión (requiere reiniciar Claude Code tras
-  fijar `AJREG_SUPABASE_ACCESS_TOKEN`); el MCP es read-only, así que la tabla se crea
-  corriendo `supabase/schema.sql` en Supabase.
+  de las 3 propiedades). Verificado: build SSG (`/en/houses`, `/es/houses`) + runtime
+  con fallback al seed.
 - **2026-06-22** — **Fase 2 (Home) completada.** Secciones en
   `src/components/home/`: **Hero** (cliente — retrato del equipo, titular EB
   Garamond, CTA "Find your home"→/houses + "Free guide" que abre el modal vía

@@ -89,6 +89,98 @@
     },
     "empty": "No hay casas disponibles en este momento. Escríbenos y encontraremos el hogar ideal para ti."
   },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contáctanos",
+      "title": "Encontremos el próximo hogar de tu familia",
+      "subtitle": "Cuéntanos qué buscas y nos pondremos en contacto. Ya sea que quieras comprar, vender o invertir, estamos aquí para ayudarte — en español, English o Português."
+    },
+    "form": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "optional": "opcional",
+      "language": "Idioma preferido",
+      "langEs": "Español",
+      "langEn": "English",
+      "langPt": "Português",
+      "intent": "¿Cómo podemos ayudarte?",
+      "intentBuy": "Quiero comprar",
+      "intentSell": "Quiero vender",
+      "intentInvest": "Quiero invertir",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos un poco sobre lo que buscas…",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando…",
+      "requiredNote": "* Campos obligatorios"
+    },
+    "validation": {
+      "firstName": "Por favor ingresa tu nombre.",
+      "lastName": "Por favor ingresa tu apellido.",
+      "emailRequired": "Por favor ingresa tu correo electrónico.",
+      "emailInvalid": "Por favor ingresa un correo electrónico válido.",
+      "intent": "Por favor elige cómo podemos ayudarte."
+    },
+    "result": {
+      "successTitle": "¡Gracias — tu mensaje está en camino!",
+      "successBody": "Hemos recibido tus datos y un miembro de nuestro equipo se pondrá en contacto contigo muy pronto.",
+      "sendAnother": "Enviar otro mensaje",
+      "duplicateTitle": "Ya estás en nuestra lista",
+      "duplicateBody": "Parece que ya tenemos tus datos. Nos pondremos en contacto pronto — o escríbenos directamente aquí abajo.",
+      "errorTitle": "Algo salió mal",
+      "errorBody": "No pudimos enviar tu mensaje en este momento. Inténtalo de nuevo o contáctanos directamente aquí abajo."
+    },
+    "info": {
+      "title": "Conversemos",
+      "subtitle": "¿Tienes una pregunta o estás list@ para empezar? Escríbenos y un miembro de nuestro equipo te responderá.",
+      "callLabel": "Llama o escribe",
+      "emailLabel": "Correo",
+      "coverageLabel": "Zona de servicio",
+      "coverageValue": "Virginia · Carolina del Norte (Hampton Roads)",
+      "followLabel": "Síguenos",
+      "whatsappCta": "Escríbenos por WhatsApp"
+    }
+  },
+  "team": {
+    "profile": {
+      "back": "Volver al inicio",
+      "languagesLabel": "Idiomas",
+      "contactCta": "Trabaja con {name}",
+      "callCta": "Llámanos",
+      "otherTitle": "Conoce al resto del equipo"
+    },
+    "members": {
+      "adriana": {
+        "tagline": "Agente líder, de confianza en Virginia y Carolina del Norte — y orgullosa mamá de tres.",
+        "bio": [
+          "Adriana Meléndez lidera A&J Real Estate Group con un profundo compromiso con las familias y las relaciones a largo plazo. Con años de experiencia en Virginia y Carolina del Norte, acompaña a compradores y vendedores en cada paso con honestidad, paciencia y un cariño genuino.",
+          "Como mamá de tres, Adriana sabe lo que significa encontrar un lugar que una familia pueda llamar hogar de verdad. Combina un sólido conocimiento del mercado con un trato cálido y cercano para que cada cliente se sienta acompañado desde la primera conversación hasta el cierre."
+        ]
+      },
+      "john": {
+        "tagline": "Agente y militar en servicio activo de la Marina que aporta disciplina y estrategia a cada negociación.",
+        "bio": [
+          "John Leonard aporta el enfoque y la disciplina del servicio activo en la Marina al mundo inmobiliario. Encara cada transacción con precisión estratégica, comunicación clara y una serenidad que tranquiliza a sus clientes.",
+          "Habiendo vivido de primera mano la realidad de las mudanzas y la vida militar, John entiende especialmente las necesidades de los militares y las familias que se reubican en Hampton Roads."
+        ]
+      },
+      "viviane": {
+        "tagline": "Agente, ingeniera civil y mamá trilingüe que ofrece un enfoque analítico y detallista.",
+        "bio": [
+          "Viviane Chiu combina su formación en ingeniería civil con una gran atención al detalle, ayudando a sus clientes a tomar decisiones seguras y bien informadas. Su enfoque analítico hace que nada se pase por alto — desde el estado de una propiedad hasta los números detrás del negocio.",
+          "Trilingüe y multicultural, Viviane conecta con facilidad con familias de todos los orígenes en Hampton Roads, ofreciendo un servicio atento en español, inglés y portugués."
+        ]
+      },
+      "melany": {
+        "tagline": "Agente bilingüe y mamá primeriza que aporta energía fresca y corazón a las familias que crecen.",
+        "bio": [
+          "Melany Valencia aporta energía fresca, entusiasmo y un amor genuino por ayudar a las familias a encontrar su lugar. Como agente bilingüe, hace que el proceso sea claro y acogedor tanto para clientes hispanohablantes como angloparlantes.",
+          "Mamá primeriza ella misma, Melany comprende profundamente las ilusiones y necesidades de las familias que crecen, y se dedica a que cada cliente se sienta escuchado, acompañado y entusiasmado con el camino por delante."
+        ]
+      }
+    }
+  },
   "footer": {
     "tagline": "Un equipo inmobiliario bilingüe y centrado en la familia que acompaña a las familias a su hogar en Virginia y Carolina del Norte.",
     "quickLinks": "Enlaces rápidos",
@@ -102,6 +194,7 @@
     "language": "Idioma",
     "english": "English",
     "spanish": "Español",
+    "portuguese": "Português",
     "callUs": "Llámanos",
     "email": "Correo",
     "openMenu": "Abrir menú",
