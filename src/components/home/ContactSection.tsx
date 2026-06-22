@@ -11,7 +11,7 @@ export async function ContactSection() {
     <section className="bg-navy-900 py-16 text-cream lg:py-24">
       <div className="mx-auto max-w-3xl px-6 text-center">
         {/* Gold bar */}
-        <span aria-hidden="true" className="mx-auto mb-6 block h-1 w-20 bg-gold" />
+        <span aria-hidden="true" className="mx-auto mb-6 block h-0.5 w-20 bg-gold" />
         <div className="flex justify-center">
           <Eyebrow>{t("eyebrow")}</Eyebrow>
         </div>
