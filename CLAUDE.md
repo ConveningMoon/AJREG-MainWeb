@@ -297,6 +297,20 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Fase 1 (Layout global) completada.** Componentes en
+  `src/components/layout/`: **TopBar** (email, cobertura, redes; oculto en móvil),
+  **Navbar** (cliente — logo blanco `logo-white_2.webp`, links Home/Houses/Contact,
+  dropdown "Our Team" con los 4 miembros, teléfono, botón "Free Guide" que abre el
+  modal, **toggle EN/ES** que preserva ruta, menú móvil), **Footer** (logo, quick
+  links, equipo, contacto, redes, copyright + ITMANO) y **NewsletterModal** (UI fiel
+  con accesibilidad; **sin envío real** — muestra aviso y enlaza a Contacto, según
+  decisión de no cablear forms salvo Contáctanos). Soporte: `components/ui/SocialLinks`
+  (SVG de marca IG/FB/WhatsApp, lucide no trae brand icons), `lib/brand.ts` (datos de
+  contacto, email correcto sin el typo del sitio actual). i18n extendido (nav, topbar,
+  newsletter, footer, common) en EN/ES. Keyframes `fadeIn`/`popIn` en `globals.css`.
+  Cableado en `[locale]/layout.tsx`. Verificado: build SSG + runtime (`/en`, `/es` 200,
+  `/`→`/en`). **Nota:** los links a `/houses`, `/contact-us` y `/team/[slug]` dan 404
+  hasta construirse en sus fases.
 - **2026-06-22** — **Fase 0 (Setup) completada.** Scaffold con `create-next-app`:
   **Next.js 16.2.9** + React 19 + TypeScript estricto + **Tailwind v4** (CSS-first
   con `@theme` en `globals.css`). i18n con **next-intl** (locales `en`/`es`,

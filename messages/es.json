@@ -3,20 +3,46 @@
     "home": "Inicio",
     "houses": "Casas",
     "ourTeam": "Nuestro Equipo",
-    "contact": "Contáctanos"
+    "contact": "Contáctanos",
+    "freeGuide": "Guía gratis"
+  },
+  "topbar": {
+    "coverage": "Virginia · Carolina del Norte, EE. UU."
   },
   "home": {
     "heroHeadline": "Acompañamos a las familias a su nuevo hogar con integridad y claridad",
     "heroSubheadline": "Un equipo inmobiliario bilingüe y centrado en la familia, al servicio de Virginia y Carolina del Norte."
   },
+  "newsletter": {
+    "eyebrow": "Guía gratis",
+    "title": "¡Mantente al día en el mercado inmobiliario!",
+    "subtitle": "Sé el primero en recibir información exclusiva, novedades del mercado y consejos de expertos.",
+    "offer": "Regístrate y recibe nuestra guía gratuita: 10 secretos para maximizar el valor de tu propiedad.",
+    "firstName": "Nombre",
+    "email": "Correo electrónico",
+    "submit": "Envíenme la guía",
+    "close": "Cerrar",
+    "notActive": "El registro aún no está activo. Mientras tanto, escríbenos directamente:",
+    "contactLink": "Contactar al equipo"
+  },
   "footer": {
+    "tagline": "Un equipo inmobiliario bilingüe y centrado en la familia que acompaña a las familias a su hogar en Virginia y Carolina del Norte.",
+    "quickLinks": "Enlaces rápidos",
+    "contactTitle": "Contacto",
+    "followTitle": "Síguenos",
     "rights": "Todos los derechos reservados.",
-    "coverage": "Virginia · Carolina del Norte, EE. UU."
+    "coverage": "Virginia · Carolina del Norte, EE. UU.",
+    "designedBy": "Sitio web por ITMANO"
   },
   "common": {
     "language": "Idioma",
     "english": "English",
-    "spanish": "Español"
+    "spanish": "Español",
+    "callUs": "Llámanos",
+    "email": "Correo",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "logoAlt": "A&J Real Estate Group"
   },
   "notFound": {
     "title": "Página no encontrada",

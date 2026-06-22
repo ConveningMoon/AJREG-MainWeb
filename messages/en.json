@@ -3,20 +3,46 @@
     "home": "Home",
     "houses": "Houses",
     "ourTeam": "Our Team",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "freeGuide": "Free Guide"
+  },
+  "topbar": {
+    "coverage": "Virginia · North Carolina, USA"
   },
   "home": {
     "heroHeadline": "Guiding families home with integrity and clarity",
     "heroSubheadline": "A family-centered, bilingual real estate team serving Virginia and North Carolina."
   },
+  "newsletter": {
+    "eyebrow": "Free guide",
+    "title": "Stay Ahead in Real Estate Trends!",
+    "subtitle": "Be the first to get exclusive real estate insights, market updates, and expert tips.",
+    "offer": "Sign up and receive our free guide: 10 Secrets to Maximizing Your Property Value.",
+    "firstName": "First name",
+    "email": "Email address",
+    "submit": "Send me the guide",
+    "close": "Close",
+    "notActive": "Sign-up isn't live yet. In the meantime, reach us directly:",
+    "contactLink": "Contact the team"
+  },
   "footer": {
+    "tagline": "A family-centered, bilingual real estate team guiding families home across Virginia and North Carolina.",
+    "quickLinks": "Quick links",
+    "contactTitle": "Contact",
+    "followTitle": "Follow us",
     "rights": "All rights reserved.",
-    "coverage": "Virginia · North Carolina, USA"
+    "coverage": "Virginia · North Carolina, USA",
+    "designedBy": "Website by ITMANO"
   },
   "common": {
     "language": "Language",
     "english": "English",
-    "spanish": "Español"
+    "spanish": "Español",
+    "callUs": "Call us",
+    "email": "Email",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "logoAlt": "A&J Real Estate Group"
   },
   "notFound": {
     "title": "Page not found",
