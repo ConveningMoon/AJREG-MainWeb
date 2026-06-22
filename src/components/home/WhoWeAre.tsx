@@ -3,8 +3,14 @@ import { Globe, HeartHandshake, Users } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { seedTeam } from "@/data/team";
 
-// First slug segment maps to the i18n member key (adriana, john, viviane, melany).
 const memberKey = (slug: string) => slug.split("-")[0];
+
+const memberBorderClass: Record<string, string> = {
+  "adriana-melendez": "border-t-[3px] border-gold",
+  "john-leonard": "border-t-[3px] border-slate",
+  "viviane-chiu": "border-t-[3px] border-blush",
+  "melany-valencia": "border-t-[3px] border-gold/70",
+};
 
 export async function WhoWeAre() {
   const t = await getTranslations("home.whoWeAre");
@@ -27,7 +33,7 @@ export async function WhoWeAre() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
           <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-semibold leading-tight text-navy sm:text-4xl">
+          <h2 className="mt-5 font-display text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             {t("title")}
           </h2>
           <p className="mt-5 text-base leading-relaxed text-navy-700">
@@ -48,20 +54,25 @@ export async function WhoWeAre() {
         </ul>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {seedTeam.map((m) => (
+          {seedTeam.map((m, i) => (
             <article
               key={m.slug}
-              className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5 transition-shadow hover:shadow-md"
+              className={`flex flex-col overflow-hidden rounded-sm bg-navy-950 shadow-lg motion-safe:animate-[slideUp_450ms_ease-out_both] ${memberBorderClass[m.slug] ?? "border-t-[3px] border-gold"}`}
+              style={{ animationDelay: `${i * 40}ms` }}
             >
-              <h3 className="font-display text-xl font-semibold text-navy">
-                {m.name}
-              </h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold">
-                {m.role}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-navy-600">
-                {memberDesc[memberKey(m.slug)]}
-              </p>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-display text-xl font-semibold text-cream">
+                  {m.name}
+                </h3>
+                <p className="mt-2">
+                  <span className="inline-block rounded-sm bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold">
+                    {m.role}
+                  </span>
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-navy-300">
+                  {memberDesc[memberKey(m.slug)]}
+                </p>
+              </div>
             </article>
           ))}
         </div>
