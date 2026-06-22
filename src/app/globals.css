@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source not "../../docs/**";
 
 /*
   A&J Real Estate Group — Design tokens (Tailwind v4, CSS-first).
