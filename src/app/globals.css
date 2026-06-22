@@ -56,6 +56,11 @@ body {
   color: var(--color-foreground);
 }
 
+/* Account for the sticky navbar when scrolling to anchor targets */
+html {
+  scroll-padding-top: 4.5rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

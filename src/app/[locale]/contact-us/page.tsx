@@ -1,9 +1,24 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { brand } from "@/lib/brand";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.contact" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: { title: t("title"), description: t("description") },
+  };
+}
 
 export default async function ContactPage({
   params,

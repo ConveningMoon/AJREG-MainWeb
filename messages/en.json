@@ -199,11 +199,31 @@
     "email": "Email",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "logoAlt": "A&J Real Estate Group"
+    "logoAlt": "A&J Real Estate Group",
+    "skipToContent": "Skip to main content"
   },
   "notFound": {
     "title": "Page not found",
     "description": "The page you are looking for doesn't exist or has moved.",
     "backHome": "Back to home"
+  },
+  "meta": {
+    "siteName": "A&J Real Estate Group",
+    "home": {
+      "title": "A&J Real Estate Group — Family Real Estate in Virginia & NC",
+      "description": "A bilingual, family-centered real estate team helping buyers, sellers, and military families find their home across Virginia and North Carolina."
+    },
+    "houses": {
+      "title": "Homes for Sale in Hampton Roads",
+      "description": "Browse featured homes for sale across Hampton Roads, Virginia and North Carolina. Bilingual agents ready to help you find the right fit."
+    },
+    "contact": {
+      "title": "Contact Us — Get a Free Consultation",
+      "description": "Reach A&J Real Estate Group for a free consultation. Bilingual agents serving Virginia and North Carolina — available in English, Español, and Português."
+    },
+    "team": {
+      "title": "{name} — Real Estate Agent",
+      "description": "{name} is a {role} at A&J Real Estate Group, guiding families home across Virginia and North Carolina."
+    }
   }
 }

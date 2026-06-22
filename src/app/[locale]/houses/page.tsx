@@ -1,11 +1,24 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ListingsGrid } from "@/components/houses/ListingsGrid";
 import { getListings } from "@/lib/listings";
 
-// Refresh listings from Supabase at most hourly (falls back to seed if the
-// table is empty or unreachable).
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.houses" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: { title: t("title"), description: t("description") },
+  };
+}
 
 export default async function HousesPage({
   params,

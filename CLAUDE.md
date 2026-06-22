@@ -293,6 +293,20 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-22** — **Fase 5 (SEO + accesibilidad) completada.**
+  **(A) Metadata/OG por página y locale:** `generateMetadata` en `[locale]/layout.tsx`
+  (metadataBase `ajrealestateva.com`, title template `%s | A&J Real Estate Group`,
+  OpenGraph con imagen `Team_Portrait_2.webp`, Twitter card, `alternates.languages`,
+  favicon desde `Logo.PNG`) + `generateMetadata` individual en home (title absolute),
+  houses, contact-us y team/[slug] (incluye nombre y rol del miembro). Claves `meta.*`
+  en EN/ES. **(B) Sitemap + robots:** `src/app/sitemap.ts` (18 URLs: rutas estáticas
+  × 2 locales + 4 slugs de equipo × 2 locales, con `alternates.languages`) +
+  `src/app/robots.ts`. Pre-renderizados como `/sitemap.xml` y `/robots.txt`.
+  **(C) Accesibilidad:** skip-to-content link (z-200, visible al foco, texto i18n
+  `common.skipToContent` EN/ES) en el layout; `id="main-content"` en el wrapper
+  principal; `<main>` wrapper en la home page; `scroll-padding-top: 4.5rem` en
+  globals.css para el navbar sticky. Build: 19 rutas SSG + sitemap + robots.
+
 - **2026-06-22** — **Fase 4 (Equipo + Contacto) completada.**
   **(A) `/contact-us`** — único formulario cableado, va al CRM **ITMANO**.
   Stack: **React Hook Form + Zod** (`lib/contact-schema.ts`, compartido cliente/
