@@ -5,18 +5,33 @@ import {
   type ContactFormValues,
   type ContactLanguage,
 } from "@/lib/contact-schema";
-import { submitContact, type ItmanoResult } from "@/lib/itmano";
+import {
+  submitContact,
+  type ItmanoResult,
+  type FormAnswer,
+} from "@/lib/itmano";
 
 export type ContactActionResult = { status: ItmanoResult };
 
-// Localized labels for the free-form answers we attach to the CRM lead, so the
-// agent reads the question in the visitor's chosen language.
-const intentQuestion: Record<ContactLanguage, string> = {
-  es: "¿Qué te gustaría hacer?",
-  en: "What would you like to do?",
-  pt: "O que você gostaria de fazer?",
+const intentLabels: Record<
+  ContactLanguage,
+  { question: string; labels: Record<string, string> }
+> = {
+  es: {
+    question: "¿Qué te gustaría hacer?",
+    labels: { compra: "Quiero comprar", vende: "Quiero vender", invierte: "Quiero invertir" },
+  },
+  en: {
+    question: "What would you like to do?",
+    labels: { compra: "I want to buy", vende: "I want to sell", invierte: "I want to invest" },
+  },
+  pt: {
+    question: "O que você gostaria de fazer?",
+    labels: { compra: "Quero comprar", vende: "Quero vender", invierte: "Quero investir" },
+  },
 };
-const messageQuestion: Record<ContactLanguage, string> = {
+
+const messageLabel: Record<ContactLanguage, string> = {
   es: "Mensaje",
   en: "Message",
   pt: "Mensagem",
@@ -30,11 +45,23 @@ export async function submitContactAction(
   if (!parsed.success) return { status: "error" };
   const v = parsed.data;
 
-  const form_answers: { question: string; answer: string }[] = [
-    { question: intentQuestion[v.language], answer: v.intent },
+  const { question, labels } = intentLabels[v.language];
+  const form_answers: FormAnswer[] = [
+    {
+      key: "intent",
+      question,
+      value: v.intent,
+      label: labels[v.intent] ?? v.intent,
+    },
   ];
+
   if (v.message && v.message.length > 0) {
-    form_answers.push({ question: messageQuestion[v.language], answer: v.message });
+    form_answers.push({
+      key: "message",
+      question: messageLabel[v.language],
+      value: v.message,
+      label: v.message,
+    });
   }
 
   const status = await submitContact({

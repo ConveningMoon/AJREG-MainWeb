@@ -10,6 +10,13 @@ const CONTACT_CHANNEL_ID =
 
 export type ItmanoResult = "success" | "duplicate" | "error";
 
+export type FormAnswer = {
+  key: string;
+  question: string;
+  value: string;
+  label: string;
+};
+
 export type ContactPayload = {
   first_name: string;
   last_name: string;
@@ -17,9 +24,7 @@ export type ContactPayload = {
   phone?: string;
   language: ContactLanguage;
   intent: ContactIntent;
-  // Free-form Q&A pairs (intent + optional message). The exact item shape is an
-  // assumption pending confirmation from the ITMANO spec — see CHANGELOG.
-  form_answers: { question: string; answer: string }[];
+  form_answers: FormAnswer[];
 };
 
 /**
