@@ -81,7 +81,7 @@ export function TestimonialsCarousel() {
               </div>
 
               {/* Quote */}
-              <blockquote className="flex min-h-20 items-center justify-center text-center">
+              <blockquote className="text-center">
                 <p className="text-base leading-relaxed text-navy-200 sm:text-lg">
                   &ldquo;{active.quote}&rdquo;
                 </p>

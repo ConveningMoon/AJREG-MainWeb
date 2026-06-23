@@ -24,18 +24,20 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
   const tc = await getTranslations("common");
   const tr = await getTranslations("resources");
 
-  const key     = memberKey(member.slug);
-  const bio     = t.raw(`members.${key}.bio`) as string[];
-  const tagline = t(`members.${key}.tagline`);
-  const initial = member.name.charAt(0);
-  const others  = seedTeam.filter((m) => m.slug !== member.slug);
+  const key      = memberKey(member.slug);
+  const bio      = t.raw(`members.${key}.bio`) as string[];
+  const tagline  = t(`members.${key}.tagline`);
+  const initial  = member.name.charAt(0);
+  const others   = seedTeam.filter((m) => m.slug !== member.slug);
   const resource = getResourceByAgent(member.slug);
 
   return (
     <main className="flex flex-1 flex-col">
-      {/* Dark hero */}
-      <div className="bg-navy-900">
-        <div className="mx-auto w-full max-w-5xl px-6 pt-8">
+      {/* ── SECTION 1: Dark hero — identity + video + primary CTAs ─────────── */}
+      <section className="bg-navy-950 pb-14 pt-8">
+        <div className="mx-auto max-w-5xl px-6">
+
+          {/* Back link */}
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-navy-300 transition-colors hover:text-gold"
@@ -43,112 +45,114 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t("profile.back")}
           </Link>
-        </div>
 
-        <section className="py-10 lg:py-14">
-          <div className="mx-auto grid max-w-5xl items-start gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr]">
-            {/* Left column: photo + video */}
-            <div className="flex flex-col gap-5">
-              {/* Photo placeholder */}
-              <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-linear-to-br from-navy-800 to-slate shadow-sm">
-                {member.photoUrl ? (
-                  <Image
-                    src={member.photoUrl}
-                    alt={member.name}
-                    fill
-                    sizes="(min-width: 1024px) 40vw, 100vw"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center">
-                    <span className="font-display text-7xl font-semibold text-gold/60">
-                      {initial}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Video placeholder */}
-              <AgentVideoSection
-                member={member}
-                label={t("profile.videoLabel", { name: member.name.split(" ")[0] })}
-              />
-            </div>
-
-            {/* Right column: info */}
+          {/* Identity header ─────────────────────────────────────────────── */}
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <span className="inline-block rounded-full bg-gold/15 px-3 py-0.5 text-xs font-semibold text-gold">
                 {member.role}
               </span>
-              <h1 className="mt-4 font-display text-5xl font-semibold leading-tight text-cream lg:text-6xl">
+              <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-cream sm:text-5xl lg:text-6xl">
                 {member.name}
               </h1>
+            </div>
 
-              {/* Tagline */}
-              <div className="relative mt-5 pl-7">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 font-display text-4xl leading-none text-gold"
-                >
-                  &ldquo;
+            {/* Avatar */}
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-linear-to-br from-gold to-gold/60 shadow-lg ring-2 ring-gold/30 sm:h-24 sm:w-24">
+              {member.photoUrl ? (
+                <Image
+                  src={member.photoUrl}
+                  alt={member.name}
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                />
+              ) : (
+                <span className="flex h-full w-full items-center justify-center font-display text-3xl font-semibold text-navy-950 sm:text-4xl">
+                  {initial}
                 </span>
-                <p className="font-display text-xl italic leading-relaxed text-navy-200">
-                  {tagline}
-                </p>
-              </div>
-
-              {/* Languages */}
-              <div className="mt-6">
-                <span className="text-xs font-semibold uppercase tracking-wider text-navy-400">
-                  {t("profile.languagesLabel")}
-                </span>
-                <ul className="mt-2 flex flex-wrap gap-2">
-                  {member.languages.map((lang) => (
-                    <li
-                      key={lang}
-                      className="rounded-full border border-navy-600 bg-navy-800 px-3.5 py-1.5 text-sm font-medium text-cream"
-                    >
-                      {tc(langLabelKey[lang])}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bio */}
-              <div className="mt-7 space-y-4 text-base leading-relaxed text-navy-200">
-                {bio.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
-              </div>
-
-              {/* CTAs */}
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/contact-us"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy"
-                >
-                  {t("profile.contactCta", { name: member.name.split(" ")[0] })}
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </Link>
-                <a
-                  href={brand.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-gold/40 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
-                >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  {t("profile.callCta")}
-                </a>
-              </div>
+              )}
             </div>
           </div>
-        </section>
-      </div>
 
-      {/* Free resource band */}
+          {/* Tagline */}
+          <div className="relative mt-5 pl-6">
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-0 font-display text-3xl leading-none text-gold"
+            >
+              &ldquo;
+            </span>
+            <p className="font-display text-lg italic leading-relaxed text-navy-300 sm:text-xl">
+              {tagline}
+            </p>
+          </div>
+
+          {/* Languages */}
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {member.languages.map((lang) => (
+              <li
+                key={lang}
+                className="rounded-full border border-navy-600 bg-navy-800 px-3.5 py-1 text-sm font-medium text-cream"
+              >
+                {tc(langLabelKey[lang])}
+              </li>
+            ))}
+          </ul>
+
+          {/* Gold divider */}
+          <div className="mt-8 h-px w-full bg-gold/15" />
+
+          {/* VIDEO — the star of the show ──────────────────────────────────── */}
+          <div className="mt-8">
+            <AgentVideoSection
+              member={member}
+              label={t("profile.videoLabel", { name: member.name.split(" ")[0] })}
+              large
+            />
+          </div>
+
+          {/* Primary CTAs — right below the video while attention is warm ─── */}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/contact-us"
+              className="group inline-flex flex-1 items-center justify-center gap-2 rounded-sm bg-gold px-7 py-4 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream sm:flex-none"
+            >
+              {t("profile.contactCta", { name: member.name.split(" ")[0] })}
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+            <a
+              href={brand.phoneHref}
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-sm border border-gold/40 px-7 py-4 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold sm:flex-none"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              {t("profile.callCta")}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: Bio — light background, calm reading environment ─────── */}
+      <section className="bg-cream py-12 lg:py-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <span className="mb-1 block h-0.5 w-10 bg-gold" aria-hidden="true" />
+          <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-taupe">
+            {member.name.split(" ")[0]}
+          </p>
+          <div className="mt-6 space-y-5 text-base leading-relaxed text-navy-800 sm:text-lg">
+            {bio.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3: Free resource — secondary lead capture ───────────────── */}
       {resource && (
-        <div className="bg-cream border-y border-navy-100 py-10 lg:py-14">
+        <section className="border-y border-navy-100 bg-white py-10 lg:py-14">
           <div className="mx-auto max-w-5xl px-6">
             <AgentResourceSection
               resource={resource}
@@ -159,10 +163,10 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
               ctaText={tr("cta")}
             />
           </div>
-        </div>
+        </section>
       )}
 
-      {/* Meet the rest */}
+      {/* ── SECTION 4: Meet the rest ─────────────────────────────────────────── */}
       <section className="bg-cream py-12 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="font-display text-2xl font-semibold text-navy">
@@ -173,7 +177,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
               <li key={m.slug}>
                 <Link
                   href={`/team/${m.slug}`}
-                  className={`group flex items-center justify-between gap-3 rounded-2xl bg-navy-950 p-5 transition-opacity hover:opacity-90 ${memberAccent[m.slug] ?? "border-t-[3px] border-gold"}`}
+                  className={`group flex items-center justify-between gap-3 rounded-sm bg-navy-950 p-5 transition-opacity hover:opacity-90 ${memberAccent[m.slug] ?? "border-t-[3px] border-gold"}`}
                 >
                   <span>
                     <span className="block font-display text-lg font-medium text-cream">

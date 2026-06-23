@@ -12,45 +12,65 @@ export function Hero() {
   const openNewsletter = useNewsletter();
 
   return (
-    <section className="relative overflow-hidden bg-navy-950">
-      {/* Scenic background image */}
+    <section className="relative flex min-h-[88vh] flex-col items-center justify-end overflow-hidden bg-navy-950">
+      {/* Team portrait fills the entire hero */}
       <Image
-        src="/images/Hero_Home_Background.webp"
-        alt=""
+        src="/images/Team_Portrait_2.webp"
+        alt={t("portraitAlt")}
         fill
         priority
         sizes="100vw"
         className="object-cover object-center"
-        aria-hidden="true"
       />
-      {/* Gradient overlay: strong left, fading right so portrait stays visible */}
-      <div className="absolute inset-0 bg-linear-to-r from-navy-950/95 via-navy-950/70 to-navy-950/30" />
-      {/* Bottom fade for smooth transition */}
-      <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-navy-950/60 to-transparent" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-6 py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-12 lg:py-28">
-        {/* Copy */}
-        <div className="motion-safe:animate-[slideUp_550ms_ease-out_both]">
-          <span aria-hidden="true" className="mb-4 block h-1 w-20 bg-gold" />
-          <Eyebrow>
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              {t("eyebrow")}
-            </span>
-          </Eyebrow>
+      {/* Multi-layer gradient: heavy at bottom for text legibility, subtle at top */}
+      <div className="absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/55 to-navy-950/10" />
+      {/* Vignette on sides */}
+      <div className="absolute inset-0 bg-linear-to-r from-navy-950/40 via-transparent to-navy-950/40" />
+
+      {/* Text block — center bottom */}
+      <div className="relative w-full">
+        <div className="mx-auto max-w-3xl px-6 pb-20 text-center">
+          {/* Eyebrow */}
+          <div
+            className="motion-safe:animate-[slideUp_500ms_ease-out_both]"
+            style={{ animationDelay: "0ms" }}
+          >
+            <Eyebrow>
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                {t("eyebrow")}
+              </span>
+            </Eyebrow>
+          </div>
+
+          {/* Headline */}
           <h1
-            className="mt-5 font-display font-semibold text-cream leading-[0.9] tracking-[-0.03em]"
-            style={{ fontSize: "clamp(2.75rem, 5.5vw, 6rem)" }}
+            className="mt-5 font-display font-semibold text-cream leading-[0.9] tracking-[-0.03em] motion-safe:animate-[slideUp_650ms_ease-out_both]"
+            style={{
+              fontSize: "clamp(2.75rem, 6vw, 6.5rem)",
+              animationDelay: "150ms",
+            }}
           >
             {t("headline")}
           </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-navy-200 sm:text-lg">
+
+          {/* Subheadline */}
+          <p
+            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-navy-200 sm:text-lg motion-safe:animate-[slideUp_550ms_ease-out_both]"
+            style={{ animationDelay: "350ms" }}
+          >
             {t("subheadline")}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+
+          {/* CTAs */}
+          <div
+            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center motion-safe:animate-[slideUp_500ms_ease-out_both]"
+            style={{ animationDelay: "550ms" }}
+          >
             <Link
               href="/houses"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
             >
               {t("ctaPrimary")}
               <ArrowRight
@@ -61,28 +81,10 @@ export function Hero() {
             <button
               type="button"
               onClick={openNewsletter}
-              className="inline-flex items-center justify-center rounded-xl border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="inline-flex items-center justify-center rounded-sm border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {t("ctaGuide")}
             </button>
-          </div>
-        </div>
-
-        {/* Team portrait — horizontal aspect ratio so all agents are visible */}
-        <div
-          className="motion-safe:animate-[fadeIn_700ms_ease-out_both]"
-          style={{ animationDelay: "200ms" }}
-        >
-          <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl ring-2 ring-gold/25"
-               style={{ aspectRatio: "3 / 2" }}>
-            <Image
-              src="/images/Team_Portrait_2.webp"
-              alt={t("portraitAlt")}
-              fill
-              priority
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              className="object-cover object-center"
-            />
           </div>
         </div>
       </div>
