@@ -51,7 +51,10 @@
       "intro": "Throughout my career I've been fortunate to see thousands of smiles and hugs. That's why I became a real estate agent — because I know the joy of a family opening the doors to their dream home.",
       "familyLabel": "{name} Family",
       "cta": "Find your home",
-      "playLabel": "Play the {name} family story"
+      "playLabel": "Play the {name} family story",
+      "prev": "Previous stories",
+      "next": "Next stories",
+      "goTo": "Go to slide {n}"
     },
     "contactCta": {
       "eyebrow": "Free consultation",

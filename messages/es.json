@@ -51,7 +51,10 @@
       "intro": "A lo largo de mi carrera he tenido la fortuna de ver miles de sonrisas y abrazos. Por eso decidí ser agente de bienes raíces — porque conozco la alegría de una familia abriendo las puertas de la casa de sus sueños.",
       "familyLabel": "Familia {name}",
       "cta": "Encuentra tu hogar",
-      "playLabel": "Reproducir la historia de la familia {name}"
+      "playLabel": "Reproducir la historia de la familia {name}",
+      "prev": "Historias anteriores",
+      "next": "Siguientes historias",
+      "goTo": "Ir a la diapositiva {n}"
     },
     "contactCta": {
       "eyebrow": "Consulta gratis",

@@ -12,30 +12,26 @@ export function Hero() {
   const openNewsletter = useNewsletter();
 
   return (
-    <section className="relative flex min-h-[88vh] flex-col items-center justify-end overflow-hidden bg-navy-950">
-      {/* Team portrait fills the entire hero */}
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-navy-950">
+      {/* Scenic background */}
       <Image
-        src="/images/Team_Portrait_2.webp"
-        alt={t("portraitAlt")}
+        src="/images/main_hero_background.webp"
+        alt=""
         fill
         priority
         sizes="100vw"
         className="object-cover object-center"
+        aria-hidden="true"
       />
+      {/* Strong left-to-right gradient: text side is fully readable, portrait side stays visible */}
+      <div className="absolute inset-0 bg-linear-to-r from-navy-950/95 via-navy-950/70 to-navy-950/20" />
+      {/* Bottom fade for smooth section transition */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-navy-950/50 to-transparent" />
 
-      {/* Multi-layer gradient: heavy at bottom for text legibility, subtle at top */}
-      <div className="absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/55 to-navy-950/10" />
-      {/* Vignette on sides */}
-      <div className="absolute inset-0 bg-linear-to-r from-navy-950/40 via-transparent to-navy-950/40" />
-
-      {/* Text block — center bottom */}
-      <div className="relative w-full">
-        <div className="mx-auto max-w-3xl px-6 pb-20 text-center">
-          {/* Eyebrow */}
-          <div
-            className="motion-safe:animate-[slideUp_500ms_ease-out_both]"
-            style={{ animationDelay: "0ms" }}
-          >
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-20 lg:grid-cols-[1fr_1.25fr] lg:gap-16 lg:py-28">
+        {/* Left column — copy */}
+        <div>
+          <div className="motion-safe:animate-[slideUp_500ms_ease-out_both]">
             <Eyebrow>
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
@@ -44,28 +40,25 @@ export function Hero() {
             </Eyebrow>
           </div>
 
-          {/* Headline */}
           <h1
             className="mt-5 font-display font-semibold text-cream leading-[0.9] tracking-[-0.03em] motion-safe:animate-[slideUp_650ms_ease-out_both]"
             style={{
-              fontSize: "clamp(2.75rem, 6vw, 6.5rem)",
+              fontSize: "clamp(2.75rem, 5.5vw, 6rem)",
               animationDelay: "150ms",
             }}
           >
             {t("headline")}
           </h1>
 
-          {/* Subheadline */}
           <p
-            className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-navy-200 sm:text-lg motion-safe:animate-[slideUp_550ms_ease-out_both]"
+            className="mt-6 max-w-lg text-base leading-relaxed text-navy-200 sm:text-lg motion-safe:animate-[slideUp_550ms_ease-out_both]"
             style={{ animationDelay: "350ms" }}
           >
             {t("subheadline")}
           </p>
 
-          {/* CTAs */}
           <div
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center motion-safe:animate-[slideUp_500ms_ease-out_both]"
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center motion-safe:animate-[slideUp_500ms_ease-out_both]"
             style={{ animationDelay: "550ms" }}
           >
             <Link
@@ -85,6 +78,24 @@ export function Hero() {
             >
               {t("ctaGuide")}
             </button>
+          </div>
+        </div>
+
+        {/* Right column — team portrait (visible on desktop) */}
+        <div
+          className="hidden lg:block motion-safe:animate-[fadeIn_700ms_ease-out_both]"
+          style={{ animationDelay: "300ms" }}
+        >
+          <div className="relative w-full overflow-hidden rounded-none shadow-2xl ring-2 ring-gold/25"
+               style={{ aspectRatio: "3 / 2" }}>
+            <Image
+              src="/images/Team_Portrait_2.webp"
+              alt={t("portraitAlt")}
+              fill
+              priority
+              sizes="55vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </div>
