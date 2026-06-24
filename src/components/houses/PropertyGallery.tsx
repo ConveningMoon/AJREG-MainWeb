@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, X, Home, ZoomIn } from "lucide-react";
 type Props = {
   images: string[];
   name: string;
-  imageAltPattern: string; // "{name} — photo {n}"
+  imageAltPattern: string;
 };
 
 export function PropertyGallery({ images, name, imageAltPattern }: Props) {
@@ -28,7 +28,7 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
   useEffect(() => {
     if (lightbox === null) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape")     close();
       if (e.key === "ArrowLeft")  prev();
       if (e.key === "ArrowRight") next();
     };
@@ -39,27 +39,34 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
   const altFor = (n: number) =>
     imageAltPattern.replace("{name}", name).replace("{n}", String(n + 1));
 
-  const hasImages = images.length > 0;
-
-  if (!hasImages) {
+  if (images.length === 0) {
     return (
-      <div className="flex aspect-video w-full items-center justify-center rounded-2xl bg-linear-to-br from-navy-800 to-slate">
+      <div className="flex aspect-video w-full items-center justify-center rounded-md bg-linear-to-br from-navy-800 to-slate">
         <Home className="h-16 w-16 text-cream/20" aria-hidden="true" />
       </div>
     );
   }
 
-  const [main, ...thumbs] = images;
+  const [main, ...extras] = images;
+  const thumbs = extras.slice(0, 4);
 
   return (
     <>
-      {/* Gallery grid */}
-      <div className="grid gap-2 sm:grid-cols-[2fr_1fr]">
-        {/* Main image */}
+      {/*
+        Gallery: 4-col × 2-row grid.
+        Main image: col-span-2 row-span-2 (fills top-left 2×2).
+        Up to 4 thumbnail slots fill the remaining 4 cells.
+        All cells are square. Gap: 15px.
+      */}
+      <div
+        className="grid grid-cols-4 grid-rows-2"
+        style={{ gap: "15px" }}
+      >
+        {/* Main image — 2×2 */}
         <button
           type="button"
           onClick={() => open(0)}
-          className="group relative aspect-video overflow-hidden rounded-2xl bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
+          className="group relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-md bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
           aria-label={altFor(0)}
         >
           <Image
@@ -67,44 +74,52 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
             alt={altFor(0)}
             fill
             priority
-            sizes="(min-width: 768px) 60vw, 100vw"
+            sizes="(min-width: 1024px) 45vw, 50vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+          <div className="absolute inset-0 flex items-center justify-center bg-navy-950/0 opacity-0 transition-all group-hover:bg-navy-950/20 group-hover:opacity-100">
             <ZoomIn className="h-8 w-8 text-white drop-shadow" aria-hidden="true" />
           </div>
         </button>
 
-        {/* Thumbnails column */}
-        {thumbs.length > 0 && (
-          <div className="grid grid-rows-2 gap-2">
-            {thumbs.slice(0, 2).map((src, idx) => {
-              const isLast = idx === 1 && images.length > 3;
-              return (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => open(idx + 1)}
-                  className="group relative overflow-hidden rounded-2xl bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
-                  aria-label={isLast ? `View all ${images.length} photos` : altFor(idx + 1)}
-                >
-                  <Image
-                    src={src}
-                    alt={altFor(idx + 1)}
-                    fill
-                    sizes="(min-width: 768px) 28vw, 50vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  {isLast && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-navy-950/60">
-                      <span className="font-semibold text-cream text-lg">+{images.length - 3}</span>
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
+        {/* Thumbnail slots (up to 4) */}
+        {Array.from({ length: 4 }).map((_, idx) => {
+          const src = thumbs[idx];
+          const isLast = idx === 3 && images.length > 5;
+          if (!src) {
+            return (
+              <div
+                key={`empty-${idx}`}
+                className="aspect-square rounded-md bg-navy-100"
+                aria-hidden="true"
+              />
+            );
+          }
+          return (
+            <button
+              key={src}
+              type="button"
+              onClick={() => open(idx + 1)}
+              className="group relative aspect-square overflow-hidden rounded-md bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
+              aria-label={isLast ? `View all ${images.length} photos` : altFor(idx + 1)}
+            >
+              <Image
+                src={src}
+                alt={altFor(idx + 1)}
+                fill
+                sizes="(min-width: 1024px) 22vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {isLast && (
+                <div className="absolute inset-0 flex items-center justify-center bg-navy-950/65">
+                  <span className="font-display text-2xl font-semibold text-cream">
+                    +{images.length - 5}
+                  </span>
+                </div>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* Lightbox */}
@@ -128,7 +143,7 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-4 rounded-full bg-navy-800/80 p-3 text-cream hover:bg-navy-700 disabled:opacity-30"
+            className="absolute left-4 rounded-full bg-navy-800/80 p-3 text-cream hover:bg-navy-700"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -158,7 +173,6 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
             <ChevronRight className="h-6 w-6" />
           </button>
 
-          {/* Counter */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-navy-800/80 px-4 py-1.5 text-sm text-cream">
             {lightbox + 1} / {images.length}
           </div>

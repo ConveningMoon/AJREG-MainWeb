@@ -118,7 +118,14 @@ export async function Footer() {
           <p>
             © {year} A&amp;J Real Estate Group. {t("footer.rights")}
           </p>
-          <p>{t("footer.designedBy")}</p>
+          <a
+              href="https://itmano.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-gold"
+            >
+              {t("footer.designedBy")}
+            </a>
         </div>
       </div>
     </footer>

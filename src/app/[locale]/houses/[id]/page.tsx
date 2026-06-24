@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowLeft, Bed, Bath, Maximize2, Calendar, Car, Landmark, Phone, Check } from "lucide-react";
+import {
+  ArrowLeft, Bed, Bath, Maximize2, Calendar, Car, Landmark, Phone, Check, Download,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { getListing, getListings } from "@/lib/listings";
 import { PropertyGallery } from "@/components/houses/PropertyGallery";
+import { ShareButton } from "@/components/houses/ShareButton";
 import { brand } from "@/lib/brand";
 import { routing } from "@/i18n/routing";
 import { seedListings } from "@/data/listings";
@@ -54,7 +57,7 @@ export default async function PropertyDetailPage({
 
   if (!listing) notFound();
 
-  const t = await getTranslations({ locale, namespace: "houses" });
+  const t  = await getTranslations({ locale, namespace: "houses" });
   const tc = await getTranslations({ locale, namespace: "common" });
 
   const baths = listing.bathroomsFull + (listing.bathroomsHalf > 0 ? 0.5 : 0);
@@ -75,10 +78,20 @@ export default async function PropertyDetailPage({
     sold:      "bg-navy-100 text-navy-700",
   };
 
+  /* Quick-spec items (only defined when the value is present) */
+  const specs = [
+    { Icon: Bed,       value: listing.bedrooms,                      label: t("detail.beds",   { count: listing.bedrooms }) },
+    { Icon: Bath,      value: bathsLabel,                            label: t("detail.baths",  { count: bathsLabel }) },
+    { Icon: Maximize2, value: listing.sqft.toLocaleString("en-US"),  label: t("detail.sqft",   { count: listing.sqft.toLocaleString("en-US") }) },
+    ...(listing.yearBuilt ? [{ Icon: Calendar, value: listing.yearBuilt, label: `${t("detail.yearBuilt")}: ${listing.yearBuilt}` }] : []),
+    ...((listing.garageSpaces ?? 0) > 0 ? [{ Icon: Car,      value: listing.garageSpaces!, label: t("detail.garage", { count: listing.garageSpaces! }) }] : []),
+    ...(listing.lotSqft ? [{ Icon: Landmark,  value: listing.lotSqft,  label: t("detail.lot", { count: listing.lotSqft.toLocaleString("en-US") }) }] : []),
+  ];
+
   return (
     <main className="flex flex-1 flex-col bg-cream">
-      {/* Top breadcrumb */}
-      <div className="bg-cream border-b border-navy-100">
+      {/* Breadcrumb */}
+      <div className="border-b border-navy-100 bg-cream">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <Link
             href="/houses"
@@ -91,11 +104,12 @@ export default async function PropertyDetailPage({
       </div>
 
       <div className="mx-auto w-full max-w-7xl px-6 py-8 lg:py-12">
-        {/* Header */}
+
+        {/* Header — name + price + download */}
         <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${statusColors[statusKey]}`}>
+              <span className={`rounded-sm px-3 py-1 text-xs font-bold uppercase tracking-wider ${statusColors[statusKey]}`}>
                 {t(`detail.${statusKey}` as "detail.available")}
               </span>
               {listing.propertyType && (
@@ -107,58 +121,49 @@ export default async function PropertyDetailPage({
             </h1>
             <p className="mt-1 text-navy-600">{listing.address}, {listing.city}, {listing.state}</p>
           </div>
-          <p className="font-display text-4xl font-semibold text-gold lg:text-5xl">
-            {priceFmt.format(listing.priceUsd)}
-          </p>
+          <div className="flex flex-col items-end gap-3 self-center">
+            <p className="font-display text-4xl font-semibold text-gold lg:text-5xl">
+              {priceFmt.format(listing.priceUsd)}
+            </p>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-sm border border-navy-200 px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-gold hover:text-gold"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              {t("detail.download")}
+            </button>
+          </div>
         </div>
 
-        {/* Gallery */}
+        {/* Gallery — 4-col 2-row grid */}
         <PropertyGallery
           images={gallery}
           name={listing.name}
           imageAltPattern={t("detail.imageAlt")}
         />
 
-        {/* Quick specs bar */}
-        <div className="mt-6 flex flex-wrap gap-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-navy-900/5">
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-            <Bed className="h-5 w-5 text-gold" aria-hidden="true" />
-            {t("detail.beds", { count: listing.bedrooms })}
-          </span>
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-            <Bath className="h-5 w-5 text-gold" aria-hidden="true" />
-            {t("detail.baths", { count: bathsLabel })}
-          </span>
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-            <Maximize2 className="h-5 w-5 text-gold" aria-hidden="true" />
-            {t("detail.sqft", { count: listing.sqft.toLocaleString("en-US") })}
-          </span>
-          {listing.yearBuilt && (
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-              <Calendar className="h-5 w-5 text-gold" aria-hidden="true" />
-              {t("detail.yearBuilt")}: {listing.yearBuilt}
-            </span>
-          )}
-          {listing.garageSpaces != null && listing.garageSpaces > 0 && (
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-              <Car className="h-5 w-5 text-gold" aria-hidden="true" />
-              {t("detail.garage", { count: listing.garageSpaces })}
-            </span>
-          )}
-          {listing.lotSqft && (
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-navy-700">
-              <Landmark className="h-5 w-5 text-gold" aria-hidden="true" />
-              {t("detail.lot", { count: listing.lotSqft.toLocaleString("en-US") })}
-            </span>
-          )}
+        {/* Specs bar — centered columns */}
+        <div className="mt-6 rounded-xl bg-white shadow-sm ring-1 ring-navy-900/5">
+          <div className="flex flex-wrap items-stretch justify-center divide-y divide-navy-100 sm:divide-x sm:divide-y-0">
+            {specs.map((s, i) => (
+              <div
+                key={i}
+                className="flex min-w-[120px] flex-col items-center gap-1.5 px-6 py-5 text-center"
+              >
+                <s.Icon className="h-6 w-6 text-gold" aria-hidden="true" />
+                <span className="mt-0.5 text-sm font-medium text-navy-700">{s.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Content grid: main + sidebar */}
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
+        {/* Content grid */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
+
           {/* Left: description + features + floor plan */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {listing.description && (
-              <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
+              <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
                 <h2 className="font-display text-2xl font-semibold text-navy">
                   {t("detail.descriptionTitle")}
                 </h2>
@@ -167,11 +172,11 @@ export default async function PropertyDetailPage({
             )}
 
             {listing.features && listing.features.length > 0 && (
-              <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
+              <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
                 <h2 className="font-display text-2xl font-semibold text-navy">
                   {t("detail.featuresTitle")}
                 </h2>
-                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
                   {listing.features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm text-navy-700">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
@@ -183,7 +188,7 @@ export default async function PropertyDetailPage({
             )}
 
             {/* Floor plan */}
-            <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
+            <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
               <h2 className="font-display text-2xl font-semibold text-navy">
                 {t("detail.floorPlanTitle")}
               </h2>
@@ -191,10 +196,10 @@ export default async function PropertyDetailPage({
                 <img
                   src={listing.floorPlanUrl}
                   alt={`${listing.name} floor plan`}
-                  className="mt-4 w-full cursor-zoom-in rounded-xl"
+                  className="mt-4 w-full cursor-zoom-in rounded-md"
                 />
               ) : (
-                <div className="mt-4 flex h-40 items-center justify-center rounded-2xl bg-blush/40 text-sm text-navy-500">
+                <div className="mt-4 flex h-40 items-center justify-center rounded-md bg-blush/40 text-sm text-navy-500">
                   {t("detail.floorPlanPlaceholder")}
                 </div>
               )}
@@ -202,22 +207,22 @@ export default async function PropertyDetailPage({
           </div>
 
           {/* Sidebar: CTA */}
-          <aside className="space-y-4">
-            <div className="sticky top-24 rounded-2xl bg-navy-900 p-6 text-cream shadow-lg">
+          <aside>
+            <div className="sticky top-24 rounded-xl bg-navy-900 p-6 text-cream shadow-lg">
               <h2 className="font-display text-xl font-semibold">{t("detail.ctaTitle")}</h2>
               <p className="mt-2 text-sm leading-relaxed text-navy-200">
                 {t("detail.ctaSubtitle")}
               </p>
               <div className="mt-5 flex flex-col gap-3">
                 <Link
-                  href={`/contact-us`}
-                  className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85"
+                  href="/contact-us"
+                  className="inline-flex items-center justify-center rounded-sm bg-gold px-5 py-3 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85"
                 >
                   {t("detail.ctaButton")}
                 </Link>
                 <a
                   href={brand.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-navy-600 px-5 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy-600 px-5 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
                 >
                   <Phone className="h-4 w-4" aria-hidden="true" />
                   {tc("callUs")}
@@ -226,15 +231,15 @@ export default async function PropertyDetailPage({
                   href={brand.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-navy-600 px-5 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex items-center justify-center gap-2 rounded-sm border border-navy-600 px-5 py-3 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
                 >
                   {t("detail.whatsappButton")}
                 </a>
-              </div>
-              {/* Key facts recap */}
-              <div className="mt-6 border-t border-navy-700 pt-5 text-sm text-navy-300 space-y-2">
-                <p>{listing.address}, {listing.city}, {listing.state}</p>
-                <p className="font-semibold text-gold">{priceFmt.format(listing.priceUsd)}</p>
+
+                {/* Share — replaces address/price recap */}
+                <div className="border-t border-navy-700 pt-4">
+                  <ShareButton label={t("detail.share")} />
+                </div>
               </div>
             </div>
           </aside>
@@ -251,7 +256,7 @@ export default async function PropertyDetailPage({
                 <Link
                   key={r.id}
                   href={`/houses/${r.id}`}
-                  className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-900/5 transition-shadow hover:shadow-lg"
+                  className="group flex flex-col overflow-hidden rounded-sm bg-white shadow-sm ring-1 ring-navy-900/5 transition-shadow hover:shadow-lg"
                 >
                   <div className="relative aspect-4/3 overflow-hidden bg-linear-to-br from-navy-800 to-slate">
                     {r.imageUrl ? (

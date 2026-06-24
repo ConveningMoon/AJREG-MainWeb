@@ -37,14 +37,6 @@
       "familiesLabel": "Happy families",
       "yearsLabel": "Years of experience"
     },
-    "testimonials": {
-      "eyebrow": "Testimonials",
-      "title": "Families who found their home with us",
-      "familyLabel": "{name} Family",
-      "prev": "Previous testimonial",
-      "next": "Next testimonial",
-      "goTo": "Go to testimonial {n}"
-    },
     "salesStories": {
       "eyebrow": "Our Sales",
       "title": "Thousands of smiles, one home at a time",

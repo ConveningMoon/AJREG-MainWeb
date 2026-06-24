@@ -12,8 +12,8 @@
   "home": {
     "hero": {
       "eyebrow": "Virginia · Carolina del Norte",
-      "headline": "Acompañamos a las familias a su hogar con integridad y claridad",
-      "subheadline": "Un equipo inmobiliario bilingüe y centrado en la familia que te ayuda a construir estabilidad, seguridad y un lugar que tu familia pueda llamar hogar.",
+      "headline": "Acompañamos a tu familia a encontrar su hogar ideal",
+      "subheadline": "Un poderoso equipo inmobiliario trilingüe, listo para ayudarte en cada paso que necesites",
       "ctaPrimary": "Encuentra tu hogar",
       "ctaGuide": "Recibe la guía gratis",
       "portraitAlt": "El equipo de A&J Real Estate Group"
@@ -23,10 +23,10 @@
       "title": "Donde la experiencia, el servicio y la energía fresca se unen para tu éxito",
       "intro": "Somos A&J Real Estate — un equipo centrado en la familia y dedicado al servicio, comprometido a acompañarte a tu hogar con integridad y claridad. Combinamos conocimiento del mercado, estrategia y cariño genuino para ayudarte a construir estabilidad, seguridad y un lugar que tu familia pueda llamar hogar de verdad.",
       "members": {
-        "adriana": "Experta de confianza en Virginia y Carolina del Norte y mamá de tres, que arraiga a nuestro equipo en el servicio y las relaciones a largo plazo.",
-        "john": "Militar en servicio activo de la Marina que aporta disciplina y precisión estratégica.",
+        "adriana": "Experta de confianza en Virginia y Carolina del Norte. Mamá de tres pequeños, que arraiga a nuestro equipo liderazgo y relaciones solidas.",
+        "john": "Militar en servicio activo de la Marina de Estados Unidos, que aporta disciplina y precisión estratégica. Listo para encontrar lo que necesiten.",
         "viviane": "Ingeniera civil y mamá multicultural que ofrece análisis experto y servicio trilingüe en Hampton Roads.",
-        "melany": "Mamá primeriza y bilingüe que aporta energía fresca y una profunda comprensión de las familias que crecen."
+        "melany": "Mamá primeriza y bilingüe que sabe lo que una familia en crecimiento busca."
       },
       "badgeLanguages": "Español · English · Português",
       "badgeFamily": "Centrados en la familia",
@@ -37,18 +37,10 @@
       "familiesLabel": "Familias felices",
       "yearsLabel": "Años de experiencia"
     },
-    "testimonials": {
-      "eyebrow": "Testimonios",
-      "title": "Familias que encontraron su hogar con nosotros",
-      "familyLabel": "Familia {name}",
-      "prev": "Testimonio anterior",
-      "next": "Testimonio siguiente",
-      "goTo": "Ir al testimonio {n}"
-    },
     "salesStories": {
       "eyebrow": "Nuestras Ventas",
       "title": "Miles de sonrisas, un hogar a la vez",
-      "intro": "A lo largo de mi carrera he tenido la fortuna de ver miles de sonrisas y abrazos. Por eso decidí ser agente de bienes raíces — porque conozco la alegría de una familia abriendo las puertas de la casa de sus sueños.",
+      "intro": "A lo largo de nuestra carrera hemos tenido la fortuna de ver miles de sonrisas y abrazos. Por eso empezamos este equipo — porque conocemos el brillo de la alegría de una familia abriendo las puertas de la casa de sus sueños.",
       "familyLabel": "Familia {name}",
       "cta": "Encuentra tu hogar",
       "playLabel": "Reproducir la historia de la familia {name}",
@@ -80,8 +72,8 @@
   "houses": {
     "hero": {
       "eyebrow": "Casas destacadas",
-      "title": "Encuentra un lugar que tu familia pueda llamar hogar",
-      "subtitle": "Una selección de casas en Hampton Roads. Cuéntanos qué buscas y te ayudamos a encontrar el resto."
+      "title": "La historia de tu familia empieza bajo el techo de sus sueños",
+      "subtitle": "Una selección de casas en Hampton Roads. Cuéntanos qué buscas y nosotros lo encontramos."
     },
     "card": {
       "forSale": "En venta",
@@ -120,7 +112,7 @@
   "contact": {
     "hero": {
       "eyebrow": "Contáctanos",
-      "title": "Encontremos el próximo hogar de tu familia",
+      "title": "Encontremos juntos el hogar de tus sueños",
       "subtitle": "Cuéntanos qué buscas y nos pondremos en contacto. Ya sea que quieras comprar, vender o invertir, estamos aquí para ayudarte — en español, English o Português."
     },
     "form": {
@@ -304,14 +296,14 @@
     },
     "members": {
       "adriana": {
-        "tagline": "Agente líder, de confianza en Virginia y Carolina del Norte — y orgullosa mamá de tres.",
+        "tagline": "Agente líder de confianza en Virginia y Carolina del Norte — y orgullosa mamá de tres hermosos hijos.",
         "bio": [
-          "Adriana Meléndez lidera A&J Real Estate Group con un profundo compromiso con las familias y las relaciones a largo plazo. Con años de experiencia en Virginia y Carolina del Norte, acompaña a compradores y vendedores en cada paso con honestidad, paciencia y un cariño genuino.",
-          "Como mamá de tres, Adriana sabe lo que significa encontrar un lugar que una familia pueda llamar hogar de verdad. Combina un sólido conocimiento del mercado con un trato cálido y cercano para que cada cliente se sienta acompañado desde la primera conversación hasta el cierre."
+          "Adriana Meléndez es la líder y fundadora de A&J Real Estate Group con un profundo compromiso con las necesidades de una familia. Con años de experiencia en Virginia y Carolina del Norte, acompaña a compradores y vendedores en cada paso con honestidad, paciencia y cariño.",
+          "Como madre, Adriana sabe lo que una familia busca más allá de una casa bonita. Combina un sólido conocimiento del mercado con un trato cálido y cercano para que cada familia desde la primera conversación hasta el cierre."
         ]
       },
       "john": {
-        "tagline": "Agente y militar en servicio activo de la Marina que aporta disciplina y estrategia a cada negociación.",
+        "tagline": "Agente y militar en servicio activo de la Marina de los Estados Unidos de América que aporta disciplina y estrategia calculada a cada negociación.",
         "bio": [
           "John Leonard aporta el enfoque y la disciplina del servicio activo en la Marina al mundo inmobiliario. Encara cada transacción con precisión estratégica, comunicación clara y una serenidad que tranquiliza a sus clientes.",
           "Habiendo vivido de primera mano la realidad de las mudanzas y la vida militar, John entiende especialmente las necesidades de los militares y las familias que se reubican en Hampton Roads."
@@ -325,10 +317,10 @@
         ]
       },
       "melany": {
-        "tagline": "Agente bilingüe y mamá primeriza que aporta energía fresca y corazón a las familias que crecen.",
+        "tagline": "Agente bilingüe y mamá primeriza que sale lo que una familia en crecimiento necesita.",
         "bio": [
           "Melany Valencia aporta energía fresca, entusiasmo y un amor genuino por ayudar a las familias a encontrar su lugar. Como agente bilingüe, hace que el proceso sea claro y acogedor tanto para clientes hispanohablantes como angloparlantes.",
-          "Mamá primeriza ella misma, Melany comprende profundamente las ilusiones y necesidades de las familias que crecen, y se dedica a que cada cliente se sienta escuchado, acompañado y entusiasmado con el camino por delante."
+          "Mamá primeriza ella misma, Melany comprende profundamente las ilusiones y necesidades de las familias jóvenes, y se dedica a que cada cliente se sienta escuchado, acompañado y entusiasmado con el camino por delante."
         ]
       }
     }

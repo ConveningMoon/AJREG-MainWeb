@@ -19,6 +19,13 @@ const memberAccent: Record<string, string> = {
   "melany-valencia":  "border-t-[3px] border-gold/60",
 };
 
+const memberAvatarAccent: Record<string, { bg: string; text: string }> = {
+  "adriana-melendez": { bg: "bg-gold",     text: "text-navy-950" },
+  "john-leonard":     { bg: "bg-slate",    text: "text-cream" },
+  "viviane-chiu":     { bg: "bg-blush",    text: "text-navy-900" },
+  "melany-valencia":  { bg: "bg-gold/70",  text: "text-navy-950" },
+};
+
 export async function TeamMemberProfile({ member }: { member: TeamMember }) {
   const t  = await getTranslations("team");
   const tc = await getTranslations("common");
@@ -33,7 +40,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
 
   return (
     <main className="flex flex-1 flex-col">
-      {/* ── SECTION 1: Dark hero — identity + video + primary CTAs ─────────── */}
+      {/* ── SECTION 1: Dark hero — identity + video + primary CTAs ── */}
       <section className="bg-navy-950 pb-14 pt-8">
         <div className="mx-auto max-w-5xl px-6">
 
@@ -46,10 +53,10 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
             {t("profile.back")}
           </Link>
 
-          {/* Identity header ─────────────────────────────────────────────── */}
+          {/* Identity header */}
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <span className="inline-block rounded-full bg-gold/15 px-3 py-0.5 text-xs font-semibold text-gold">
+              <span className="inline-block rounded-sm bg-gold/15 px-3 py-0.5 text-xs font-semibold text-gold">
                 {member.role}
               </span>
               <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-cream sm:text-5xl lg:text-6xl">
@@ -83,7 +90,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
             >
               &ldquo;
             </span>
-            <p className="font-display text-lg italic leading-relaxed text-navy-300 sm:text-xl">
+            <p className="font-display text-xl italic leading-relaxed text-navy-200 sm:text-2xl">
               {tagline}
             </p>
           </div>
@@ -103,7 +110,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
           {/* Gold divider */}
           <div className="mt-8 h-px w-full bg-gold/15" />
 
-          {/* VIDEO — the star of the show ──────────────────────────────────── */}
+          {/* VIDEO */}
           <div className="mt-8">
             <AgentVideoSection
               member={member}
@@ -112,8 +119,8 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
             />
           </div>
 
-          {/* Primary CTAs — right below the video while attention is warm ─── */}
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          {/* Primary CTAs */}
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href="/contact-us"
               className="group inline-flex flex-1 items-center justify-center gap-2 rounded-sm bg-gold px-7 py-4 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream sm:flex-none"
@@ -135,22 +142,51 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
         </div>
       </section>
 
-      {/* ── SECTION 2: Bio — light background, calm reading environment ─────── */}
+      {/* ── SECTION 2: Bio — light background, with photo placeholder ── */}
       <section className="bg-cream py-12 lg:py-16">
-        <div className="mx-auto max-w-3xl px-6">
-          <span className="mb-1 block h-0.5 w-10 bg-gold" aria-hidden="true" />
-          <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-taupe">
-            {member.name.split(" ")[0]}
-          </p>
-          <div className="mt-6 space-y-5 text-base leading-relaxed text-navy-800 sm:text-lg">
-            {bio.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-14">
+
+            {/* Bio text */}
+            <div>
+              <span className="mb-1 block h-0.5 w-10 bg-gold" aria-hidden="true" />
+              <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-taupe">
+                {member.name.split(" ")[0]}
+              </p>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-navy-800 sm:text-lg">
+                {bio.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* Photo placeholder (hidden on mobile) */}
+            <div className="hidden lg:block">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-linear-to-br from-navy-800 to-slate">
+                {member.photoUrl ? (
+                  <Image
+                    src={member.photoUrl}
+                    alt={member.name}
+                    fill
+                    sizes="300px"
+                    className="object-cover object-top"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="font-display text-[7rem] font-semibold leading-none text-cream/10">
+                      {initial}
+                    </span>
+                  </div>
+                )}
+                {/* Subtle gradient overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-navy-950/40 to-transparent" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 3: Free resource — secondary lead capture ───────────────── */}
+      {/* ── SECTION 3: Free resource ── */}
       {resource && (
         <section className="border-y border-navy-100 bg-white py-10 lg:py-14">
           <div className="mx-auto max-w-5xl px-6">
@@ -166,34 +202,46 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
         </section>
       )}
 
-      {/* ── SECTION 4: Meet the rest ─────────────────────────────────────────── */}
+      {/* ── SECTION 4: Meet the rest ── */}
       <section className="bg-cream py-12 lg:py-16">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="font-display text-2xl font-semibold text-navy">
             {t("profile.otherTitle")}
           </h2>
           <ul className="mt-6 grid gap-4 sm:grid-cols-3">
-            {others.map((m) => (
-              <li key={m.slug}>
-                <Link
-                  href={`/team/${m.slug}`}
-                  className={`group flex items-center justify-between gap-3 rounded-sm bg-navy-950 p-5 transition-opacity hover:opacity-90 ${memberAccent[m.slug] ?? "border-t-[3px] border-gold"}`}
-                >
-                  <span>
-                    <span className="block font-display text-lg font-medium text-cream">
-                      {m.name}
+            {others.map((m) => {
+              const avatarAccent = memberAvatarAccent[m.slug] ?? { bg: "bg-gold", text: "text-navy-950" };
+              return (
+                <li key={m.slug}>
+                  <Link
+                    href={`/team/${m.slug}`}
+                    className={`group flex items-center gap-4 rounded-sm bg-navy-950 p-4 transition-opacity hover:opacity-90 ${memberAccent[m.slug] ?? "border-t-[3px] border-gold"}`}
+                  >
+                    {/* Avatar */}
+                    <div
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${avatarAccent.bg}`}
+                    >
+                      <span className={`font-display text-lg font-semibold ${avatarAccent.text}`}>
+                        {m.name.charAt(0)}
+                      </span>
+                    </div>
+                    {/* Info */}
+                    <span className="flex-1 min-w-0">
+                      <span className="block font-display text-base font-medium leading-snug text-cream truncate">
+                        {m.name}
+                      </span>
+                      <span className="mt-0.5 inline-block rounded-full bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold">
+                        {m.role}
+                      </span>
                     </span>
-                    <span className="mt-1 inline-block rounded-full bg-gold/15 px-2 py-0.5 text-xs font-semibold text-gold">
-                      {m.role}
-                    </span>
-                  </span>
-                  <ArrowRight
-                    className="h-4 w-4 shrink-0 text-navy-400 transition-transform group-hover:translate-x-0.5 group-hover:text-gold"
-                    aria-hidden="true"
-                  />
-                </Link>
-              </li>
-            ))}
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 text-navy-400 transition-transform group-hover:translate-x-0.5 group-hover:text-gold"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
