@@ -1,8 +1,3 @@
-/**
- * "Our Sales" success stories from the current site. Quotes stay in Spanish for
- * every locale (real client words). Thumbnails/videos are not available yet, so
- * the UI uses a branded placeholder until the real media is provided.
- */
 export type SalesStory = {
   id: string;
   family: string;
@@ -33,5 +28,17 @@ export const salesStories: SalesStory[] = [
     family: "Maduro",
     quote:
       "Como padres primerizos con presupuesto ajustado, nos sentíamos abrumados. Adriana nos tranquilizó y encontró programas de asistencia. En dos meses teníamos nuestro hogar con nursery perfecta. Fue como tener una hermana mayor guiándonos.",
+  },
+  {
+    id: "vazquez-1",
+    family: "Vázquez",
+    quote:
+      "Adriana nos guió paso a paso siendo compradores primerizos. Su paciencia y su conocimiento del mercado hicieron que todo fuera mucho más sencillo de lo que imaginábamos. ¡Hoy tenemos nuestra primera casa!",
+  },
+  {
+    id: "ramirez-1",
+    family: "Ramírez",
+    quote:
+      "Teníamos miedo de dar el primer paso, pero Adriana nos acompañó en cada decisión. Su dedicación y su calidez son incomparables. Gracias a ella, encontramos nuestro hogar perfecto en tiempo récord.",
   },
 ];

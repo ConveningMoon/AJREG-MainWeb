@@ -26,6 +26,7 @@ export function SalesStories() {
   const t = useTranslations("home.salesStories");
   const cardsPerSlide = useCardsPerSlide();
   const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const totalSlides = Math.ceil(salesStories.length / cardsPerSlide);
 
@@ -33,6 +34,14 @@ export function SalesStories() {
   useEffect(() => {
     setSlide((s) => Math.min(s, Math.ceil(salesStories.length / cardsPerSlide) - 1));
   }, [cardsPerSlide]);
+
+  // Auto-advance every 5 s; pause on hover or focus
+  useEffect(() => {
+    if (paused || totalSlides <= 1) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setSlide((s) => (s + 1) % totalSlides), 5000);
+    return () => clearInterval(id);
+  }, [paused, totalSlides]);
 
   const go = useCallback(
     (dir: number) => setSlide((s) => Math.max(0, Math.min(totalSlides - 1, s + dir))),
@@ -89,14 +98,18 @@ export function SalesStories() {
           key={slide}
           className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 motion-safe:animate-[fadeIn_300ms_ease-out]"
           aria-roledescription="carousel"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
         >
           {visible.map((story) => (
             <article
               key={story.id}
-              className="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm ring-1 ring-navy-900/8"
+              className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-navy-900/8"
             >
               {/* Vertical video placeholder — 9:16 */}
-              <div className="relative flex items-center justify-center bg-linear-to-br from-navy-800 to-slate"
+              <div className="relative flex items-center justify-center overflow-hidden rounded-t-3xl bg-linear-to-br from-navy-800 to-slate"
                    style={{ aspectRatio: "9 / 16" }}>
                 {/* Dot pattern for depth */}
                 <div
