@@ -36,6 +36,8 @@ export function Hero() {
 
       {/* Layer 3: Gradient overlay — heavy at bottom for text legibility */}
       <div className="absolute inset-0 bg-linear-to-t from-navy-950 via-navy-950/55 to-navy-950/10" />
+      {/* <div className="absolute inset-0 bg-linear-to-t from-white to-transparent" /> */}
+
       {/* Side vignette for depth */}
       <div className="absolute inset-0 bg-linear-to-r from-navy-950/40 via-transparent to-navy-950/40" />
 
