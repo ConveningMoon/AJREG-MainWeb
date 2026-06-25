@@ -32,7 +32,7 @@ export const seedTeam: TeamMember[] = [
     shortBio:
       "Trusted Virginia/North Carolina real estate expert and mother of three.",
     photoUrl:    "/images/avatars/adriana_avatar.webp",
-    bioPhotoUrl: "/images/team/adriana_bio.png",
+    bioPhotoUrl: "/images/team/adriana_bio.webp",
   },
   {
     slug: "john-leonard",
@@ -42,7 +42,7 @@ export const seedTeam: TeamMember[] = [
     shortBio:
       "Active duty Navy serviceman who brings discipline and strategic precision.",
     photoUrl:    "/images/avatars/jhon_avatar.webp",
-    bioPhotoUrl: "/images/team/jhon_bio.png",
+    bioPhotoUrl: "/images/team/john_bio.webp",
   },
   {
     slug: "viviane-chiu",
@@ -52,7 +52,7 @@ export const seedTeam: TeamMember[] = [
     shortBio:
       "Civil engineer and multicultural mom offering analytical, trilingual service.",
     photoUrl:    "/images/avatars/viviane_avatar.webp",
-    bioPhotoUrl: "/images/team/viviane_bio.png",
+    bioPhotoUrl: "/images/team/viviane_bio.webp",
   },
   {
     slug: "melany-valencia",
@@ -62,6 +62,6 @@ export const seedTeam: TeamMember[] = [
     shortBio:
       "Bilingual new mom bringing fresh energy and understanding of growing families.",
     photoUrl:    "/images/avatars/melany_avatar.webp",
-    bioPhotoUrl: "/images/team/melany_bio.png",
+    bioPhotoUrl: "/images/team/melany_bio.webp",
   },
 ];
