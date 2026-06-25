@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, Gift } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { AgentResource } from "@/data/resources";
@@ -53,26 +54,16 @@ export function AgentResourceSection({
           </div>
         </div>
 
-        {/* Guide mockup placeholder */}
+        {/* Guide cover image */}
         <div className="hidden items-center justify-center bg-navy-950/30 p-8 sm:flex">
-          <div className="relative flex h-[200px] w-[140px] flex-col items-center justify-between overflow-hidden rounded-sm bg-navy-800 py-6 shadow-xl ring-1 ring-white/10">
-            {/* Spine accent */}
-            <div className="absolute left-0 top-0 h-full w-1 bg-gold/60" />
-            {/* Content */}
-            <div className="flex flex-col items-center gap-3 px-4 text-center">
-              <span className="block h-0.5 w-10 bg-gold/60" />
-              <span className="font-display text-3xl font-semibold text-gold/50">A&J</span>
-              <span className="block h-px w-6 bg-cream/10" />
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-cream/30">
-                Free Guide
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-1.5 px-4 text-center">
-              <span className="block h-px w-8 bg-cream/10" />
-              <span className="text-[8px] font-medium uppercase tracking-widest text-cream/20">
-                A&J Real Estate
-              </span>
-            </div>
+          <div className="relative h-[200px] w-[140px] overflow-hidden rounded-sm shadow-xl ring-1 ring-white/10">
+            <Image
+              src="/images/mockup/guide-cover.webp"
+              alt="Free Guide"
+              fill
+              sizes="140px"
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Globe, HeartHandshake, Users, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -85,7 +86,7 @@ export async function WhoWeAre() {
               <Link
                 key={m.slug}
                 href={`/team/${m.slug}`}
-                className="group flex flex-col overflow-hidden rounded-sm bg-navy-950 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 motion-safe:animate-[slideUp_450ms_ease-out_both]"
+                className="group flex flex-col overflow-hidden rounded-md bg-navy-950 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 motion-safe:animate-[slideUp_450ms_ease-out_both]"
                 style={{ animationDelay: `${i * 60}ms` }}
               >
                 {/* Gradient header with avatar */}
@@ -95,11 +96,21 @@ export async function WhoWeAre() {
                     aria-hidden="true"
                   />
                   <div
-                    className={`flex h-20 w-20 items-center justify-center rounded-full shadow-lg ring-4 ring-navy-950 ${accent.avatar}`}
+                    className={`relative h-20 w-20 overflow-hidden rounded-full shadow-lg ring-4 ring-navy-950 ${accent.avatar}`}
                   >
-                    <span className={`font-display text-3xl font-semibold ${accent.avatarText}`}>
-                      {m.name.charAt(0)}
-                    </span>
+                    {m.photoUrl ? (
+                      <Image
+                        src={m.photoUrl}
+                        alt={m.name}
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className={`flex h-full w-full items-center justify-center font-display text-3xl font-semibold ${accent.avatarText}`}>
+                        {m.name.charAt(0)}
+                      </span>
+                    )}
                   </div>
                   <h3 className="mt-4 text-center font-display text-xl font-semibold leading-tight text-cream">
                     {m.name}

@@ -160,12 +160,12 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
               </div>
             </div>
 
-            {/* Photo placeholder (hidden on mobile) */}
+            {/* Photo (hidden on mobile) — 4:5 portrait */}
             <div className="hidden lg:block">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-linear-to-br from-navy-800 to-slate">
-                {member.photoUrl ? (
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-linear-to-br from-navy-800 to-slate">
+                {member.bioPhotoUrl ? (
                   <Image
-                    src={member.photoUrl}
+                    src={member.bioPhotoUrl}
                     alt={member.name}
                     fill
                     sizes="300px"
@@ -178,8 +178,7 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
                     </span>
                   </div>
                 )}
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-navy-950/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-navy-950/30 to-transparent" />
               </div>
             </div>
           </div>
@@ -219,11 +218,21 @@ export async function TeamMemberProfile({ member }: { member: TeamMember }) {
                   >
                     {/* Avatar */}
                     <div
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${avatarAccent.bg}`}
+                      className={`relative h-11 w-11 shrink-0 overflow-hidden rounded-full ${avatarAccent.bg}`}
                     >
-                      <span className={`font-display text-lg font-semibold ${avatarAccent.text}`}>
-                        {m.name.charAt(0)}
-                      </span>
+                      {m.photoUrl ? (
+                        <Image
+                          src={m.photoUrl}
+                          alt={m.name}
+                          fill
+                          sizes="44px"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <span className={`flex h-full w-full items-center justify-center font-display text-lg font-semibold ${avatarAccent.text}`}>
+                          {m.name.charAt(0)}
+                        </span>
+                      )}
                     </div>
                     {/* Info */}
                     <span className="flex-1 min-w-0">
