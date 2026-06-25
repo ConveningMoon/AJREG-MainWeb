@@ -1,17 +1,16 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { VideoModal } from "@/components/ui/VideoModal";
 import { salesStories } from "@/data/salesStories";
-import { extractYouTubeId, youtubeThumbnail } from "@/lib/youtube";
+import { extractYouTubeId, youtubeInlineEmbedUrl } from "@/lib/youtube";
 
 function useCardsPerSlide(): number {
-  const [n, setN] = useState(3); // default for SSR
+  const [n, setN] = useState(3);
   useEffect(() => {
     const update = () => {
       if (window.innerWidth < 640) setN(1);
@@ -34,12 +33,11 @@ export function SalesStories() {
 
   const totalSlides = Math.ceil(salesStories.length / cardsPerSlide);
 
-  // Clamp to valid slide when screen resizes
   useEffect(() => {
     setSlide((s) => Math.min(s, Math.ceil(salesStories.length / cardsPerSlide) - 1));
   }, [cardsPerSlide]);
 
-  // Auto-advance every 5 s; pause on hover, focus, or open modal
+  // Pause auto-advance while modal is open or on hover/focus
   useEffect(() => {
     if (paused || openStory || totalSlides <= 1) return;
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -52,10 +50,7 @@ export function SalesStories() {
     [totalSlides]
   );
 
-  const visible = salesStories.slice(
-    slide * cardsPerSlide,
-    (slide + 1) * cardsPerSlide
-  );
+  const visible = salesStories.slice(slide * cardsPerSlide, (slide + 1) * cardsPerSlide);
 
   return (
     <section className="bg-taupe/15 py-16 lg:py-24">
@@ -72,7 +67,6 @@ export function SalesStories() {
             </p>
           </div>
 
-          {/* Prev / Next — top-right on desktop */}
           {totalSlides > 1 && (
             <div className="hidden items-center gap-2 sm:flex">
               <button
@@ -97,7 +91,7 @@ export function SalesStories() {
           )}
         </div>
 
-        {/* Cards grid */}
+        {/* Cards */}
         <div
           key={slide}
           className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 motion-safe:animate-[fadeIn_300ms_ease-out]"
@@ -116,54 +110,82 @@ export function SalesStories() {
                 key={story.id}
                 className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-navy-900/8"
               >
-                {/* Vertical video — 9:16 */}
-                <div
-                  className="relative flex items-center justify-center overflow-hidden rounded-t-3xl bg-linear-to-br from-navy-800 to-slate"
-                  style={{ aspectRatio: "9 / 16" }}
-                >
-                  {/* Real YouTube thumbnail when URL is set */}
-                  {videoId && (
-                    <Image
-                      src={youtubeThumbnail(videoId)}
-                      alt={familyLabel}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  )}
-
-                  {/* Dot pattern for depth */}
+                {/* Video section — 9:16 */}
+                {videoId ? (
+                  /* ── Real video: inline autoplay (muted) + click to open modal ── */
                   <div
-                    className="pointer-events-none absolute inset-0 opacity-[0.04]"
-                    style={{
-                      backgroundImage: "radial-gradient(circle, #fff7f5 1px, transparent 1px)",
-                      backgroundSize: "20px 20px",
-                    }}
-                    aria-hidden="true"
-                  />
-
-                  {/* Gradient overlay */}
-                  {videoId && (
-                    <div
-                      className="absolute inset-0 bg-linear-to-t from-navy-950/70 via-navy-950/20 to-transparent"
+                    className="relative overflow-hidden rounded-t-3xl"
+                    style={{ aspectRatio: "9 / 16" }}
+                  >
+                    {/* Inline YouTube embed (autoplay, muted, looped, no controls) */}
+                    <iframe
+                      src={youtubeInlineEmbedUrl(videoId)}
+                      title={familyLabel}
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full pointer-events-none"
+                      tabIndex={-1}
                       aria-hidden="true"
                     />
-                  )}
 
-                  <button
-                    type="button"
-                    onClick={videoId ? () => setOpenStory(story.id) : undefined}
-                    aria-label={`${familyLabel} story`}
-                    aria-disabled={!videoId || undefined}
-                    className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-gold text-navy-950 shadow-xl transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream ${!videoId ? "opacity-60 cursor-default" : "cursor-pointer"}`}
+                    {/* Gradient overlay */}
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-linear-to-t from-navy-950/65 via-transparent to-transparent"
+                      aria-hidden="true"
+                    />
+
+                    {/* Clickable layer → opens modal with sound */}
+                    <button
+                      type="button"
+                      onClick={() => setOpenStory(story.id)}
+                      aria-label={familyLabel}
+                      className="absolute inset-0 flex flex-col justify-end p-4"
+                    >
+                      <div className="flex items-end justify-between gap-3">
+                        <span className="font-display text-lg font-medium text-cream drop-shadow-sm">
+                          {familyLabel}
+                        </span>
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold text-navy-950 shadow-lg">
+                          <Play className="ml-0.5 h-4 w-4" fill="currentColor" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </button>
+
+                    {/* Modal with sound */}
+                    <VideoModal
+                      videoId={videoId}
+                      isOpen={openStory === story.id}
+                      onClose={() => setOpenStory(null)}
+                      title={familyLabel}
+                    />
+                  </div>
+                ) : (
+                  /* ── Placeholder: no video yet ── */
+                  <div
+                    className="relative flex items-center justify-center overflow-hidden rounded-t-3xl bg-linear-to-br from-navy-800 to-slate"
+                    style={{ aspectRatio: "9 / 16" }}
                   >
-                    <Play className="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true" />
-                  </button>
-
-                  <span className="absolute bottom-4 left-4 font-display text-lg font-medium text-cream drop-shadow-sm">
-                    {familyLabel}
-                  </span>
-                </div>
+                    <div
+                      className="pointer-events-none absolute inset-0 opacity-[0.04]"
+                      style={{
+                        backgroundImage: "radial-gradient(circle, #fff7f5 1px, transparent 1px)",
+                        backgroundSize: "20px 20px",
+                      }}
+                      aria-hidden="true"
+                    />
+                    <button
+                      type="button"
+                      aria-label={`${familyLabel} story`}
+                      aria-disabled="true"
+                      className="relative flex h-16 w-16 cursor-default items-center justify-center rounded-full bg-gold/60 text-navy-950 shadow-xl"
+                    >
+                      <Play className="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true" />
+                    </button>
+                    <span className="absolute bottom-4 left-4 font-display text-lg font-medium text-cream drop-shadow-sm">
+                      {familyLabel}
+                    </span>
+                  </div>
+                )}
 
                 {/* Quote + CTA */}
                 <div className="flex flex-1 flex-col p-5">
@@ -181,16 +203,6 @@ export function SalesStories() {
                     />
                   </Link>
                 </div>
-
-                {/* Modal for this story */}
-                {videoId && (
-                  <VideoModal
-                    videoId={videoId}
-                    isOpen={openStory === story.id}
-                    onClose={() => setOpenStory(null)}
-                    title={familyLabel}
-                  />
-                )}
               </article>
             );
           })}
