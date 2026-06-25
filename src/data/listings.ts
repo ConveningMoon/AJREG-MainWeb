@@ -25,7 +25,8 @@ export type Listing = {
   features?: string[];
   featuresEn?: string[];
   featuresEs?: string[];
-  floorPlanUrl?: string;
+  floorPlans?: string[];
+  detailPdfUrl?: string;
 };
 
 export const seedListings: Listing[] = [

@@ -32,7 +32,8 @@ create table if not exists public.listings (
   features        text[],
   features_en     text[],
   features_es     text[],
-  floor_plan_url  text,
+  floor_plans     text[],
+  detail_pdf_url  text,
   created_at      timestamptz not null default now()
 );
 
@@ -51,7 +52,8 @@ alter table public.listings
   add column if not exists features       text[],
   add column if not exists features_en    text[],
   add column if not exists features_es    text[],
-  add column if not exists floor_plan_url text;
+  add column if not exists floor_plans    text[],
+  add column if not exists detail_pdf_url text;
 
 alter table public.listings enable row level security;
 

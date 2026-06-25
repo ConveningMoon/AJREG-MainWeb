@@ -7,6 +7,7 @@ import {
 import { Link } from "@/i18n/navigation";
 import { getListing, getListings } from "@/lib/listings";
 import { PropertyGallery } from "@/components/houses/PropertyGallery";
+import { FloorPlanCarousel } from "@/components/houses/FloorPlanCarousel";
 import { ShareButton } from "@/components/houses/ShareButton";
 import { brand } from "@/lib/brand";
 import { routing } from "@/i18n/routing";
@@ -170,13 +171,23 @@ export default async function PropertyDetailPage({
                 </h2>
                 <p className="mt-4 leading-relaxed text-navy-700">{description}</p>
                 <div className="mt-6 border-t border-navy-100 pt-5">
-                  <button
-                    type="button"
-                    className="inline-flex items-center gap-2.5 rounded-xl border border-navy-200 bg-cream px-5 py-2.5 text-sm font-semibold text-navy-700 shadow-sm transition-all hover:border-gold hover:bg-gold/8 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-                  >
-                    <Download className="h-4 w-4" aria-hidden="true" />
-                    {t("detail.download")}
-                  </button>
+                  {listing.detailPdfUrl ? (
+                    <a
+                      href={listing.detailPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                      className="inline-flex items-center gap-2.5 rounded-xl border border-navy-200 bg-cream px-5 py-2.5 text-sm font-semibold text-navy-700 shadow-sm transition-all hover:border-gold hover:bg-gold/8 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    >
+                      <Download className="h-4 w-4" aria-hidden="true" />
+                      {t("detail.download")}
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-2.5 rounded-xl border border-navy-100 bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-400 cursor-not-allowed select-none">
+                      <Download className="h-4 w-4" aria-hidden="true" />
+                      {t("detail.downloadNotAvailable")}
+                    </span>
+                  )}
                 </div>
               </section>
             )}
@@ -197,22 +208,17 @@ export default async function PropertyDetailPage({
               </section>
             )}
 
-            {/* Floor plan */}
+            {/* Floor plan carousel */}
             <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
               <h2 className="font-display text-2xl font-semibold text-navy">
                 {t("detail.floorPlanTitle")}
               </h2>
-              {listing.floorPlanUrl ? (
-                <img
-                  src={listing.floorPlanUrl}
-                  alt={`${listing.name} floor plan`}
-                  className="mt-4 w-full cursor-zoom-in rounded-md"
-                />
-              ) : (
-                <div className="mt-4 flex h-40 items-center justify-center rounded-md bg-blush/40 text-sm text-navy-500">
-                  {t("detail.floorPlanPlaceholder")}
-                </div>
-              )}
+              <FloorPlanCarousel
+                images={listing.floorPlans ?? []}
+                name={listing.name}
+                altPattern={t("detail.floorPlanAlt")}
+                placeholder={t("detail.floorPlanPlaceholder")}
+              />
             </section>
           </div>
 

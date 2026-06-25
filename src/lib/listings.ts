@@ -37,7 +37,8 @@ function mapRow(r: Record<string, unknown>): Listing {
     features:       arr(r.features).length    ? arr(r.features)    : (seed?.features    ?? []),
     featuresEn:     arr(r.features_en).length ? arr(r.features_en) : (seed?.featuresEn  ?? []),
     featuresEs:     arr(r.features_es).length ? arr(r.features_es) : (seed?.featuresEs  ?? []),
-    floorPlanUrl:   ((r.floor_plan_url ?? r.floorPlanUrl ?? seed?.floorPlanUrl) ?? undefined) as string | undefined,
+    floorPlans:     arr(r.floor_plans).length  ? arr(r.floor_plans)  : (seed?.floorPlans  ?? []),
+    detailPdfUrl:   ((r.detail_pdf_url ?? r.detailPdfUrl ?? seed?.detailPdfUrl) ?? undefined) as string | undefined,
   };
 }
 

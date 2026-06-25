@@ -98,6 +98,7 @@
       "featuresTitle": "Características y amenidades",
       "floorPlanTitle": "Plano de planta",
       "floorPlanPlaceholder": "Plano disponible próximamente",
+      "floorPlanAlt": "{name} — plano {n}",
       "ctaTitle": "¿Te interesa esta casa?",
       "ctaSubtitle": "Nuestro equipo puede agendar una visita o responder todas tus preguntas.",
       "ctaButton": "Solicitar una visita",
@@ -106,6 +107,7 @@
       "backToListings": "Volver a listados",
       "share": "Compartir",
       "download": "Descargar detalles",
+      "downloadNotAvailable": "Detalles disponibles próximamente",
       "imageAlt": "{name} — foto {n}"
     }
   },

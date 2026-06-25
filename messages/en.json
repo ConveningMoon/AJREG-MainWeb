@@ -12,10 +12,10 @@
   "home": {
     "hero": {
       "eyebrow": "Virginia · North Carolina",
-      "headline": "Guiding families home with integrity and clarity",
-      "subheadline": "A family-centered, bilingual real estate team helping you build stability, security, and a place your family can truly call home.",
+      "headline": "We guide your family home, every step of the way",
+      "subheadline": "A powerful trilingual real estate team, ready to help you at every step of the journey.",
       "ctaPrimary": "Find your home",
-      "ctaGuide": "Get the free guide",
+      "ctaGuide": "Get your free guide",
       "portraitAlt": "The A&J Real Estate Group team"
     },
     "whoWeAre": {
@@ -23,14 +23,14 @@
       "title": "Where experience, service, and fresh energy unite for your success",
       "intro": "We are A&J Real Estate — a family-centered, service-driven team committed to guiding you home with integrity and clarity. We combine market knowledge, strategy, and genuine care to help you build stability, security, and a place your family can truly call home.",
       "members": {
-        "adriana": "Trusted Virginia/North Carolina expert and mother of three, rooting our team in service and long-term relationships.",
-        "john": "Active duty Navy serviceman who delivers discipline and strategic precision.",
-        "viviane": "Civil engineer and multicultural mom offering analytical expertise and trilingual service across Hampton Roads.",
-        "melany": "Bilingual new mom who brings fresh energy and a deep understanding of growing families."
+        "adriana": "Trusted expert in Virginia and North Carolina, and mother of three who grounds our team in leadership and lasting relationships.",
+        "john": "Active-duty U.S. Navy serviceman who brings discipline and strategic precision — ready to find exactly what you need.",
+        "viviane": "Civil engineer and multicultural mom offering expert analysis and trilingual service across Hampton Roads.",
+        "melany": "Bilingual new mom who knows exactly what a growing family is looking for."
       },
       "badgeLanguages": "Español · English · Português",
       "badgeFamily": "Family-centered",
-      "badgeAssist": "Personal assistance, anytime"
+      "badgeAssist": "Personal assistance, whenever you need it"
     },
     "stats": {
       "housesLabel": "Houses sold & bought",
@@ -40,7 +40,7 @@
     "salesStories": {
       "eyebrow": "Our Sales",
       "title": "Thousands of smiles, one home at a time",
-      "intro": "Throughout my career I've been fortunate to see thousands of smiles and hugs. That's why I became a real estate agent — because I know the joy of a family opening the doors to their dream home.",
+      "intro": "Throughout our journey we've been fortunate to witness thousands of smiles and hugs. That's why we started this team — because we know the joy of a family opening the doors to their dream home.",
       "familyLabel": "{name} Family",
       "cta": "Find your home",
       "playLabel": "Play the {name} family story",
@@ -51,8 +51,8 @@
     "contactCta": {
       "eyebrow": "Free consultation",
       "title": "Ready to find your dream home?",
-      "subtitle": "Let's find it together. Reach out — we're always happy to talk with you.",
-      "button": "Contact me now",
+      "subtitle": "Let's find it together. Reach out — we always love hearing from you.",
+      "button": "Contact us now",
       "callButton": "Call us",
       "whatsappButton": "WhatsApp"
     }
@@ -72,8 +72,8 @@
   "houses": {
     "hero": {
       "eyebrow": "Featured homes",
-      "title": "Find a place your family can call home",
-      "subtitle": "A selection of homes across Hampton Roads. Tell us what you're looking for and we'll help you find the rest."
+      "title": "Your family's story begins under the roof of their dreams",
+      "subtitle": "A selection of homes across Hampton Roads. Tell us what you're looking for and we'll take care of the rest."
     },
     "card": {
       "forSale": "For sale",
@@ -98,6 +98,7 @@
       "featuresTitle": "Features & amenities",
       "floorPlanTitle": "Floor plan",
       "floorPlanPlaceholder": "Floor plan coming soon",
+      "floorPlanAlt": "{name} — floor plan {n}",
       "ctaTitle": "Interested in this home?",
       "ctaSubtitle": "Our team is ready to schedule a showing or answer any questions.",
       "ctaButton": "Request a showing",
@@ -106,6 +107,7 @@
       "backToListings": "Back to listings",
       "share": "Share",
       "download": "Download details",
+      "downloadNotAvailable": "Details coming soon",
       "imageAlt": "{name} — photo {n}"
     }
   },
@@ -166,7 +168,7 @@
     "cta": "Get my free guide",
     "adriana": {
       "title": "Free Guide: Homeownership for Hispanic Families",
-      "description": "Everything you need to know to buy your first home in Virginia — explained in plain language, in Español. Adriana walks you through the process step by step."
+      "description": "Everything you need to know to buy your first home in Virginia — explained step by step. Adriana walks you through the entire process from start to finish."
     },
     "john": {
       "title": "Free Guide: Military PCS Relocation in Hampton Roads",
@@ -355,7 +357,7 @@
   "meta": {
     "siteName": "A&J Real Estate Group",
     "home": {
-      "title": "A&J Real Estate Group — Family Real Estate in Virginia & NC",
+      "title": "A&J Real Estate Group — Bilingual Real Estate Team in Virginia & North Carolina",
       "description": "A bilingual, family-centered real estate team helping buyers, sellers, and military families find their home across Virginia and North Carolina."
     },
     "houses": {
@@ -364,7 +366,7 @@
     },
     "contact": {
       "title": "Contact Us — Get a Free Consultation",
-      "description": "Reach A&J Real Estate Group for a free consultation. Bilingual agents serving Virginia and North Carolina — available in English, Español, and Português."
+      "description": "Reach A&J Real Estate Group for a free real estate consultation. Bilingual agents serving Virginia and North Carolina — available in English, Español, and Português."
     },
     "team": {
       "title": "{name} — Real Estate Agent",
