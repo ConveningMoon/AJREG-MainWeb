@@ -4,9 +4,11 @@ import { seedTeam, teamSlugs, type TeamMember } from "@/data/team";
 
 const slugOrder = teamSlugs as readonly string[];
 
-// Maps a Supabase `team` row (snake_case) to the UI `TeamMember` contract.
-// Tolerant of column-name variants so a minor schema mismatch degrades
-// gracefully instead of crashing.
+const seedBySlug = Object.fromEntries(seedTeam.map((m) => [m.slug, m]));
+
+// Maps a Supabase `team` row to the UI `TeamMember` contract.
+// Falls back to seed values for photo URLs when the DB row has none, so
+// locally hosted images always show while Supabase is being populated.
 function mapRow(r: Record<string, unknown>): TeamMember {
   const str = (v: unknown, d = "") => (v == null ? d : String(v));
   const langs = Array.isArray(r.languages)
@@ -14,14 +16,17 @@ function mapRow(r: Record<string, unknown>): TeamMember {
         l === "en" || l === "es" || l === "pt"
       )
     : [];
+  const slug = str(r.slug ?? r.id);
+  const seed = seedBySlug[slug];
   return {
-    slug: str(r.slug ?? r.id),
+    slug,
     name: str(r.name),
     role: str(r.role),
     languages: langs,
     shortBio: str(r.short_bio ?? r.shortBio),
     fullBio: (r.full_bio ?? r.fullBio ?? undefined) as string | undefined,
-    photoUrl: (r.photo_url ?? r.photoUrl ?? undefined) as string | undefined,
+    photoUrl:    (r.photo_url    ?? r.photoUrl    ?? seed?.photoUrl    ?? undefined) as string | undefined,
+    bioPhotoUrl: (r.bio_photo_url ?? r.bioPhotoUrl ?? seed?.bioPhotoUrl ?? undefined) as string | undefined,
   };
 }
 
