@@ -31,8 +31,12 @@ function mapRow(r: Record<string, unknown>): Listing {
     lotSqft:        r.lot_sqft ? num(r.lot_sqft)         : seed?.lotSqft,
     imageUrl:       (r.image_url ?? r.imageUrl ?? seed?.imageUrl ?? undefined) as string | undefined,
     gallery:        arr(r.gallery).length  ? arr(r.gallery)  : (seed?.gallery  ?? []),
-    description:    (r.description  ?? seed?.description  ?? undefined) as string | undefined,
-    features:       arr(r.features).length ? arr(r.features) : (seed?.features ?? []),
+    description:    (r.description     ?? seed?.description    ?? undefined) as string | undefined,
+    descriptionEn:  (r.description_en  ?? seed?.descriptionEn  ?? undefined) as string | undefined,
+    descriptionEs:  (r.description_es  ?? seed?.descriptionEs  ?? undefined) as string | undefined,
+    features:       arr(r.features).length    ? arr(r.features)    : (seed?.features    ?? []),
+    featuresEn:     arr(r.features_en).length ? arr(r.features_en) : (seed?.featuresEn  ?? []),
+    featuresEs:     arr(r.features_es).length ? arr(r.features_es) : (seed?.featuresEs  ?? []),
     floorPlanUrl:   ((r.floor_plan_url ?? r.floorPlanUrl ?? seed?.floorPlanUrl) ?? undefined) as string | undefined,
   };
 }

@@ -43,7 +43,7 @@ export function Hero() {
 
       {/* Layer 4: Text block — center bottom */}
       <div className="relative w-full">
-        <div className="mx-auto max-w-3xl px-6 pb-20 text-center">
+        <div className="mx-auto max-w-3xl px-1 pb-20 text-center">
           <div
             className="motion-safe:animate-[slideUp_500ms_ease-out_both]"
             style={{ animationDelay: "0ms" }}
@@ -79,7 +79,7 @@ export function Hero() {
           >
             <Link
               href="/houses"
-              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
             >
               {t("ctaPrimary")}
               <ArrowRight
@@ -90,7 +90,7 @@ export function Hero() {
             <button
               type="button"
               onClick={openNewsletter}
-              className="inline-flex items-center justify-center rounded-sm border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="inline-flex items-center justify-center rounded-md border border-gold/60 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-gold/10 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {t("ctaGuide")}
             </button>

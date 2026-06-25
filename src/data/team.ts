@@ -34,6 +34,7 @@ export const seedTeam: TeamMember[] = [
       "Trusted Virginia/North Carolina real estate expert and mother of three.",
     photoUrl:    "/images/avatars/adriana_avatar.webp",
     bioPhotoUrl: "/images/team/adriana_bio.webp",
+	videoUrl: "https://youtu.be/fO5rhnHGeno", 
   },
   {
     slug: "john-leonard",

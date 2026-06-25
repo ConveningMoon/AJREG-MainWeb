@@ -60,6 +60,14 @@ export default async function PropertyDetailPage({
   const t  = await getTranslations({ locale, namespace: "houses" });
   const tc = await getTranslations({ locale, namespace: "common" });
 
+  const isEs = locale === "es";
+  const description = isEs
+    ? (listing.descriptionEs ?? listing.descriptionEn ?? listing.description)
+    : (listing.descriptionEn ?? listing.description);
+  const features = isEs
+    ? ((listing.featuresEs?.length ? listing.featuresEs : null) ?? listing.featuresEn ?? listing.features)
+    : (listing.featuresEn ?? listing.features);
+
   const baths = listing.bathroomsFull + (listing.bathroomsHalf > 0 ? 0.5 : 0);
   const bathsLabel = Number.isInteger(baths) ? String(baths) : baths.toFixed(1);
 
@@ -121,17 +129,10 @@ export default async function PropertyDetailPage({
             </h1>
             <p className="mt-1 text-navy-600">{listing.address}, {listing.city}, {listing.state}</p>
           </div>
-          <div className="flex flex-col items-end gap-3 self-center">
+          <div className="self-center">
             <p className="font-display text-4xl font-semibold text-gold lg:text-5xl">
               {priceFmt.format(listing.priceUsd)}
             </p>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-sm border border-navy-200 px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:border-gold hover:text-gold"
-            >
-              <Download className="h-4 w-4" aria-hidden="true" />
-              {t("detail.download")}
-            </button>
           </div>
         </div>
 
@@ -162,22 +163,31 @@ export default async function PropertyDetailPage({
 
           {/* Left: description + features + floor plan */}
           <div className="space-y-6">
-            {listing.description && (
+            {description && (
               <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
                 <h2 className="font-display text-2xl font-semibold text-navy">
                   {t("detail.descriptionTitle")}
                 </h2>
-                <p className="mt-4 leading-relaxed text-navy-700">{listing.description}</p>
+                <p className="mt-4 leading-relaxed text-navy-700">{description}</p>
+                <div className="mt-6 border-t border-navy-100 pt-5">
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2.5 rounded-xl border border-navy-200 bg-cream px-5 py-2.5 text-sm font-semibold text-navy-700 shadow-sm transition-all hover:border-gold hover:bg-gold/8 hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  >
+                    <Download className="h-4 w-4" aria-hidden="true" />
+                    {t("detail.download")}
+                  </button>
+                </div>
               </section>
             )}
 
-            {listing.features && listing.features.length > 0 && (
+            {features && features.length > 0 && (
               <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
                 <h2 className="font-display text-2xl font-semibold text-navy">
                   {t("detail.featuresTitle")}
                 </h2>
                 <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-                  {listing.features.map((f) => (
+                  {features.map((f) => (
                     <li key={f} className="flex items-start gap-2 text-sm text-navy-700">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
                       {f}

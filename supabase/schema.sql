@@ -27,7 +27,11 @@ create table if not exists public.listings (
   image_url       text,
   gallery         text[],
   description     text,
+  description_en  text,
+  description_es  text,
   features        text[],
+  features_en     text[],
+  features_es     text[],
   floor_plan_url  text,
   created_at      timestamptz not null default now()
 );
@@ -42,7 +46,11 @@ alter table public.listings
   add column if not exists lot_sqft       integer,
   add column if not exists gallery        text[],
   add column if not exists description    text,
+  add column if not exists description_en text,
+  add column if not exists description_es text,
   add column if not exists features       text[],
+  add column if not exists features_en    text[],
+  add column if not exists features_es    text[],
   add column if not exists floor_plan_url text;
 
 alter table public.listings enable row level security;
@@ -59,7 +67,8 @@ insert into public.listings
    price_usd, address, city, state,
    sqft, bedrooms, bathrooms_full, bathrooms_half,
    year_built, garage_spaces,
-   description, features)
+   description_en, description_es,
+   features_en, features_es)
 values
   (
     'oakmont-manor',
@@ -72,6 +81,7 @@ values
     2092, 4, 2, 1,
     1998, 2,
     'Welcome to Oakmont Manor — a spacious four-bedroom home nestled in one of Norfolk''s most sought-after neighborhoods. This beautifully maintained property features an open-concept main floor with abundant natural light, an updated kitchen with granite countertops, and a generous primary suite with walk-in closet. The backyard offers a private retreat perfect for entertaining, while the two-car garage provides ample storage. Walking distance to top-rated schools, parks, and local dining.',
+    'Bienvenido a Oakmont Manor — una espaciosa residencia de cuatro habitaciones en uno de los vecindarios más codiciados de Norfolk. Esta propiedad impecablemente mantenida cuenta con una planta principal de concepto abierto con abundante luz natural, cocina renovada con encimeras de granito y una suite principal generosa con vestidor. El jardín trasero ofrece un retiro privado ideal para reuniones, mientras que el garaje para dos vehículos brinda almacenamiento amplio. A pocos pasos de escuelas destacadas, parques y restaurantes locales.',
     ARRAY[
       'Updated kitchen with granite countertops and stainless appliances',
       'Primary suite with walk-in closet and en-suite bath',
@@ -81,6 +91,16 @@ values
       'Two-car attached garage',
       'Central HVAC (2021)',
       'Zoned for top-rated Norfolk schools'
+    ],
+    ARRAY[
+      'Cocina renovada con encimeras de granito y electrodomésticos de acero inoxidable',
+      'Suite principal con vestidor y baño privado',
+      'Sala y comedor de concepto abierto',
+      'Pisos de madera en toda la planta principal',
+      'Jardín trasero privado cercado con patio',
+      'Garaje adjunto para dos vehículos',
+      'Sistema de climatización central (2021)',
+      'Asignado a escuelas de alto rendimiento de Norfolk'
     ]
   ),
   (
@@ -94,6 +114,7 @@ values
     1206, 4, 2, 0,
     1985, null,
     'A well-priced gem in a charming Norfolk neighborhood. This four-bedroom home offers a functional floor plan ideal for families or investors seeking strong rental potential in the Hampton Roads market. Recent updates include fresh interior paint, new flooring in the main living areas, and a refreshed kitchen. Conveniently located near major employers, military bases, and interstate access.',
+    'Una joya bien tasada en un encantador vecindario de Norfolk. Esta residencia de cuatro habitaciones ofrece una distribución funcional ideal para familias o inversionistas que buscan un sólido potencial de renta en el mercado de Hampton Roads. Las mejoras recientes incluyen pintura interior nueva, pisos renovados en las áreas principales y cocina refrescada. Ubicada convenientemente cerca de grandes empleadores, bases militares y acceso a la interestatal.',
     ARRAY[
       'Four bedrooms on one level',
       'Two full bathrooms',
@@ -102,6 +123,15 @@ values
       'Spacious backyard',
       'Close to military bases and employers',
       'Easy interstate access'
+    ],
+    ARRAY[
+      'Cuatro habitaciones en un solo nivel',
+      'Dos baños completos',
+      'Pisos actualizados en áreas de estar',
+      'Armarios y accesorios de cocina renovados',
+      'Amplio jardín trasero',
+      'Cerca de bases militares y empleadores',
+      'Fácil acceso a la interestatal'
     ]
   ),
   (
@@ -115,6 +145,7 @@ values
     840, 3, 1, 0,
     1972, null,
     'An affordable entry point into Suffolk''s growing real estate market. This cozy three-bedroom home is ideal for first-time buyers or investors looking to capitalize on the area''s rapid appreciation. The layout is efficient and livable, with a bright living space, eat-in kitchen, and a generous yard. Priced to move — don''t miss this opportunity.',
+    'Una entrada asequible al creciente mercado inmobiliario de Suffolk. Esta acogedora residencia de tres habitaciones es ideal para compradores por primera vez o inversionistas que buscan capitalizar la rápida valorización de la zona. La distribución es eficiente y habitable, con una sala luminosa, cocina con comedor y un generoso jardín. Con un precio pensado para venderse pronto — no pierda esta oportunidad.',
     ARRAY[
       'Three bedrooms',
       'Eat-in kitchen',
@@ -123,6 +154,15 @@ values
       'Low-maintenance exterior',
       'Priced below market for quick sale',
       'Near schools, shops, and transit'
+    ],
+    ARRAY[
+      'Tres habitaciones',
+      'Cocina con comedor',
+      'Sala luminosa con ventanas amplias',
+      'Amplio jardín trasero — ideal para vida al aire libre',
+      'Exterior de bajo mantenimiento',
+      'Precio por debajo del mercado para venta rápida',
+      'Cerca de escuelas, tiendas y transporte'
     ]
   )
 on conflict (id) do update set
@@ -131,8 +171,10 @@ on conflict (id) do update set
   status         = excluded.status,
   year_built     = excluded.year_built,
   garage_spaces  = excluded.garage_spaces,
-  description    = excluded.description,
-  features       = excluded.features;
+  description_en = excluded.description_en,
+  description_es = excluded.description_es,
+  features_en    = excluded.features_en,
+  features_es    = excluded.features_es;
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Team

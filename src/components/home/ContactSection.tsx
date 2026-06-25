@@ -56,7 +56,7 @@ export async function ContactSection() {
         <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/contact-us"
-            className="group inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+            className="group inline-flex items-center justify-center gap-2 rounded-md bg-gold px-7 py-3.5 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
           >
             {t("button")}
             <ArrowRight
@@ -66,7 +66,7 @@ export async function ContactSection() {
           </Link>
           <a
             href={brand.phoneHref}
-            className="inline-flex items-center justify-center gap-2 rounded-sm border border-cream/30 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-cream/30 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
             {t("callButton")}
@@ -75,7 +75,7 @@ export async function ContactSection() {
             href={brand.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-sm border border-cream/30 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-cream/30 px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold"
           >
             {t("whatsappButton")}
           </a>
