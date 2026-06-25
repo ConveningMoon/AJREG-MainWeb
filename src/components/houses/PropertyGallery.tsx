@@ -39,15 +39,8 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
   const altFor = (n: number) =>
     imageAltPattern.replace("{name}", name).replace("{n}", String(n + 1));
 
-  if (images.length === 0) {
-    return (
-      <div className="flex aspect-video w-full items-center justify-center rounded-md bg-linear-to-br from-navy-800 to-slate">
-        <Home className="h-16 w-16 text-cream/20" aria-hidden="true" />
-      </div>
-    );
-  }
-
-  const [main, ...extras] = images;
+  // Always render the grid. When there are no images use placeholder cells.
+  const [main, ...extras] = images.length > 0 ? images : [null];
   const thumbs = extras.slice(0, 4);
 
   return (
@@ -63,24 +56,33 @@ export function PropertyGallery({ images, name, imageAltPattern }: Props) {
         style={{ gap: "15px" }}
       >
         {/* Main image — 2×2 */}
-        <button
-          type="button"
-          onClick={() => open(0)}
-          className="group relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-md bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
-          aria-label={altFor(0)}
-        >
-          <Image
-            src={main}
-            alt={altFor(0)}
-            fill
-            priority
-            sizes="(min-width: 1024px) 45vw, 50vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 flex items-center justify-center bg-navy-950/0 opacity-0 transition-all group-hover:bg-navy-950/20 group-hover:opacity-100">
-            <ZoomIn className="h-8 w-8 text-white drop-shadow" aria-hidden="true" />
+        {main ? (
+          <button
+            type="button"
+            onClick={() => open(0)}
+            className="group relative col-span-2 row-span-2 aspect-square overflow-hidden rounded-md bg-navy-800 focus-visible:outline-2 focus-visible:outline-gold"
+            aria-label={altFor(0)}
+          >
+            <Image
+              src={main}
+              alt={altFor(0)}
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 50vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-navy-950/0 opacity-0 transition-all group-hover:bg-navy-950/20 group-hover:opacity-100">
+              <ZoomIn className="h-8 w-8 text-white drop-shadow" aria-hidden="true" />
+            </div>
+          </button>
+        ) : (
+          <div
+            className="col-span-2 row-span-2 aspect-square overflow-hidden rounded-md bg-linear-to-br from-navy-800 to-slate flex items-center justify-center"
+            aria-hidden="true"
+          >
+            <Home className="h-16 w-16 text-cream/20" />
           </div>
-        </button>
+        )}
 
         {/* Thumbnail slots (up to 4) */}
         {Array.from({ length: 4 }).map((_, idx) => {

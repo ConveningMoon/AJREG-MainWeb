@@ -9,6 +9,10 @@
 create table if not exists public.listings (
   id              text primary key,
   name            text not null,
+  neighborhood    text,
+  property_type   text,
+  status          text not null default 'available'
+                  check (status in ('available', 'pending', 'sold')),
   price_usd       numeric not null,
   address         text not null,
   city            text not null,
@@ -17,9 +21,29 @@ create table if not exists public.listings (
   bedrooms        integer not null default 0,
   bathrooms_full  integer not null default 0,
   bathrooms_half  integer not null default 0,
+  year_built      integer,
+  garage_spaces   integer,
+  lot_sqft        integer,
   image_url       text,
+  gallery         text[],
+  description     text,
+  features        text[],
+  floor_plan_url  text,
   created_at      timestamptz not null default now()
 );
+
+-- Migration: add columns that may be missing in existing installations
+alter table public.listings
+  add column if not exists neighborhood    text,
+  add column if not exists property_type  text,
+  add column if not exists status         text not null default 'available',
+  add column if not exists year_built     integer,
+  add column if not exists garage_spaces  integer,
+  add column if not exists lot_sqft       integer,
+  add column if not exists gallery        text[],
+  add column if not exists description    text,
+  add column if not exists features       text[],
+  add column if not exists floor_plan_url text;
 
 alter table public.listings enable row level security;
 
@@ -29,30 +53,109 @@ create policy "Public read listings"
   to anon, authenticated
   using (true);
 
--- Seed (the 3 properties from the current site — edit freely)
+-- Seed (full data matching src/data/listings.ts seedListings)
 insert into public.listings
-  (id, name, price_usd, address, city, state, sqft, bedrooms, bathrooms_full, bathrooms_half)
+  (id, name, neighborhood, property_type, status,
+   price_usd, address, city, state,
+   sqft, bedrooms, bathrooms_full, bathrooms_half,
+   year_built, garage_spaces,
+   description, features)
 values
-  ('oakmont-manor',           'Oakmont Manor',   370000, '3033 Somme Avenue',  'Norfolk', 'VA', 2092, 4, 2, 1),
-  ('westfield-house-locust',  'Westfield House', 299900, '3154 Locust Avenue', 'Norfolk', 'VA', 1206, 4, 2, 0),
-  ('westfield-house-central', 'Westfield House', 149900, '307 Central Avenue', 'Suffolk', 'VA',  840, 3, 1, 0)
-on conflict (id) do nothing;
+  (
+    'oakmont-manor',
+    'Oakmont Manor',
+    'Norfolk, Granby Street Corridor',
+    'Residential · Detached',
+    'available',
+    370000,
+    '3033 Somme Avenue', 'Norfolk', 'VA',
+    2092, 4, 2, 1,
+    1998, 2,
+    'Welcome to Oakmont Manor — a spacious four-bedroom home nestled in one of Norfolk''s most sought-after neighborhoods. This beautifully maintained property features an open-concept main floor with abundant natural light, an updated kitchen with granite countertops, and a generous primary suite with walk-in closet. The backyard offers a private retreat perfect for entertaining, while the two-car garage provides ample storage. Walking distance to top-rated schools, parks, and local dining.',
+    ARRAY[
+      'Updated kitchen with granite countertops and stainless appliances',
+      'Primary suite with walk-in closet and en-suite bath',
+      'Open-concept living and dining area',
+      'Hardwood floors throughout main level',
+      'Private fenced backyard with patio',
+      'Two-car attached garage',
+      'Central HVAC (2021)',
+      'Zoned for top-rated Norfolk schools'
+    ]
+  ),
+  (
+    'westfield-house-locust',
+    'Westfield House',
+    'Norfolk, Ghent / Park Place',
+    'Residential · Detached',
+    'available',
+    299900,
+    '3154 Locust Avenue', 'Norfolk', 'VA',
+    1206, 4, 2, 0,
+    1985, null,
+    'A well-priced gem in a charming Norfolk neighborhood. This four-bedroom home offers a functional floor plan ideal for families or investors seeking strong rental potential in the Hampton Roads market. Recent updates include fresh interior paint, new flooring in the main living areas, and a refreshed kitchen. Conveniently located near major employers, military bases, and interstate access.',
+    ARRAY[
+      'Four bedrooms on one level',
+      'Two full bathrooms',
+      'Updated flooring in living areas',
+      'Refreshed kitchen cabinetry and fixtures',
+      'Spacious backyard',
+      'Close to military bases and employers',
+      'Easy interstate access'
+    ]
+  ),
+  (
+    'westfield-house-central',
+    'Westfield House',
+    'Central Suffolk, Lloyd Place',
+    'Residential · Detached',
+    'available',
+    149900,
+    '307 Central Avenue', 'Suffolk', 'VA',
+    840, 3, 1, 0,
+    1972, null,
+    'An affordable entry point into Suffolk''s growing real estate market. This cozy three-bedroom home is ideal for first-time buyers or investors looking to capitalize on the area''s rapid appreciation. The layout is efficient and livable, with a bright living space, eat-in kitchen, and a generous yard. Priced to move — don''t miss this opportunity.',
+    ARRAY[
+      'Three bedrooms',
+      'Eat-in kitchen',
+      'Bright living area with large windows',
+      'Generous backyard — ideal for outdoor living',
+      'Low-maintenance exterior',
+      'Priced below market for quick sale',
+      'Near schools, shops, and transit'
+    ]
+  )
+on conflict (id) do update set
+  neighborhood   = excluded.neighborhood,
+  property_type  = excluded.property_type,
+  status         = excluded.status,
+  year_built     = excluded.year_built,
+  garage_spaces  = excluded.garage_spaces,
+  description    = excluded.description,
+  features       = excluded.features;
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Team
--- Column names match src/lib/team.ts -> mapRow(). Bios/taglines live in i18n
--- (messages/*.json, keyed by member first name), so they are NOT stored here;
--- this table only holds the structured, language-neutral fields.
+-- Column names match src/lib/team.ts -> mapRow().
+-- Bios/taglines live in i18n (messages/*.json, keyed by member first name),
+-- so they are NOT stored here; this table only holds structured fields.
 create table if not exists public.team (
-  slug        text primary key,
-  name        text not null,
-  role        text not null,
-  languages   text[] not null default '{}',  -- subset of {'en','es','pt'}
-  short_bio   text,
-  photo_url   text,
-  sort_order  integer not null default 0,
-  created_at  timestamptz not null default now()
+  slug          text primary key,
+  name          text not null,
+  role          text not null,
+  languages     text[] not null default '{}',
+  short_bio     text,
+  photo_url     text,
+  bio_photo_url text,
+  video_url     text,
+  sort_order    integer not null default 0,
+  created_at    timestamptz not null default now()
 );
+
+-- Migration: add columns that may be missing in existing installations
+alter table public.team
+  add column if not exists bio_photo_url text,
+  add column if not exists video_url     text;
 
 alter table public.team enable row level security;
 
@@ -62,12 +165,12 @@ create policy "Public read team"
   to anon, authenticated
   using (true);
 
--- Seed (the 4 current team members — edit freely)
+-- Seed (the 4 current team members)
 insert into public.team (slug, name, role, languages, short_bio, sort_order)
 values
   ('adriana-melendez', 'Adriana Meléndez', 'Lead Agent', '{es,en}',
    'Trusted Virginia/North Carolina real estate expert and mother of three.', 1),
-  ('john-leonard',     'John Leonard',     'Agent',      '{en,es}',
+  ('john-leonard',     'John Leonard',     'Agent',      '{en}',
    'Active duty Navy serviceman who brings discipline and strategic precision.', 2),
   ('viviane-chiu',     'Viviane Chiu',     'Agent',      '{en,es,pt}',
    'Civil engineer and multicultural mom offering analytical, trilingual service.', 3),

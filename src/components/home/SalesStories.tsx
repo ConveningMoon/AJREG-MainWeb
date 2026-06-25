@@ -28,7 +28,6 @@ export function SalesStories() {
   const t = useTranslations("home.salesStories");
   const cardsPerSlide = useCardsPerSlide();
   const [slide, setSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [openStory, setOpenStory] = useState<string | null>(null);
 
   const totalSlides = Math.ceil(salesStories.length / cardsPerSlide);
@@ -36,14 +35,6 @@ export function SalesStories() {
   useEffect(() => {
     setSlide((s) => Math.min(s, Math.ceil(salesStories.length / cardsPerSlide) - 1));
   }, [cardsPerSlide]);
-
-  // Pause auto-advance while modal is open or on hover/focus
-  useEffect(() => {
-    if (paused || openStory || totalSlides <= 1) return;
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => setSlide((s) => (s + 1) % totalSlides), 5000);
-    return () => clearInterval(id);
-  }, [paused, openStory, totalSlides]);
 
   const go = useCallback(
     (dir: number) => setSlide((s) => Math.max(0, Math.min(totalSlides - 1, s + dir))),
@@ -96,10 +87,6 @@ export function SalesStories() {
           key={slide}
           className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 motion-safe:animate-[fadeIn_300ms_ease-out]"
           aria-roledescription="carousel"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocusCapture={() => setPaused(true)}
-          onBlurCapture={() => setPaused(false)}
         >
           {visible.map((story) => {
             const videoId = story.videoUrl ? extractYouTubeId(story.videoUrl) : null;
