@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
       // migrate images; can be removed once assets are hosted locally).
       { protocol: "https", hostname: "cdn.prod.website-files.com" },
       { protocol: "https", hostname: "assets-global.website-files.com" },
+      // YouTube thumbnails for embedded video placeholders
+      { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
 };

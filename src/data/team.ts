@@ -14,6 +14,7 @@ export type TeamMember = {
   fullBio?: string;
   photoUrl?: string;     // square avatar (1:1) — hero circles + cards
   bioPhotoUrl?: string;  // portrait (4:5) — bio section
+  videoUrl?: string;     // YouTube URL (unlisted) — agent intro video
 };
 
 export const teamSlugs = [

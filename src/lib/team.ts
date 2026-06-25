@@ -25,8 +25,9 @@ function mapRow(r: Record<string, unknown>): TeamMember {
     languages: langs,
     shortBio: str(r.short_bio ?? r.shortBio),
     fullBio: (r.full_bio ?? r.fullBio ?? undefined) as string | undefined,
-    photoUrl:    (r.photo_url    ?? r.photoUrl    ?? seed?.photoUrl    ?? undefined) as string | undefined,
-    bioPhotoUrl: (r.bio_photo_url ?? r.bioPhotoUrl ?? seed?.bioPhotoUrl ?? undefined) as string | undefined,
+    photoUrl:    (r.photo_url     ?? r.photoUrl     ?? seed?.photoUrl     ?? undefined) as string | undefined,
+    bioPhotoUrl: (r.bio_photo_url ?? r.bioPhotoUrl  ?? seed?.bioPhotoUrl  ?? undefined) as string | undefined,
+    videoUrl:    (r.video_url     ?? r.videoUrl     ?? seed?.videoUrl     ?? undefined) as string | undefined,
   };
 }
 

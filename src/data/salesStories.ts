@@ -2,6 +2,7 @@ export type SalesStory = {
   id: string;
   family: string;
   quote: string;
+  videoUrl?: string;  // YouTube URL (unlisted) — family testimonial video
 };
 
 export const salesStories: SalesStory[] = [

@@ -344,7 +344,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "logoAlt": "A&J Real Estate Group",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "closeVideo": "Close video"
   },
   "notFound": {
     "title": "Page not found",

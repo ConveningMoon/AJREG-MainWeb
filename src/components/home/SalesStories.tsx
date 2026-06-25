@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowRight, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { VideoModal } from "@/components/ui/VideoModal";
 import { salesStories } from "@/data/salesStories";
+import { extractYouTubeId, youtubeThumbnail } from "@/lib/youtube";
 
 function useCardsPerSlide(): number {
   const [n, setN] = useState(3); // default for SSR
@@ -27,6 +30,7 @@ export function SalesStories() {
   const cardsPerSlide = useCardsPerSlide();
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [openStory, setOpenStory] = useState<string | null>(null);
 
   const totalSlides = Math.ceil(salesStories.length / cardsPerSlide);
 
@@ -35,13 +39,13 @@ export function SalesStories() {
     setSlide((s) => Math.min(s, Math.ceil(salesStories.length / cardsPerSlide) - 1));
   }, [cardsPerSlide]);
 
-  // Auto-advance every 5 s; pause on hover or focus
+  // Auto-advance every 5 s; pause on hover, focus, or open modal
   useEffect(() => {
-    if (paused || totalSlides <= 1) return;
+    if (paused || openStory || totalSlides <= 1) return;
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => setSlide((s) => (s + 1) % totalSlides), 5000);
     return () => clearInterval(id);
-  }, [paused, totalSlides]);
+  }, [paused, openStory, totalSlides]);
 
   const go = useCallback(
     (dir: number) => setSlide((s) => Math.max(0, Math.min(totalSlides - 1, s + dir))),
@@ -93,7 +97,7 @@ export function SalesStories() {
           )}
         </div>
 
-        {/* Cards grid — key forces remount + fade animation on slide change */}
+        {/* Cards grid */}
         <div
           key={slide}
           className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 motion-safe:animate-[fadeIn_300ms_ease-out]"
@@ -103,55 +107,93 @@ export function SalesStories() {
           onFocusCapture={() => setPaused(true)}
           onBlurCapture={() => setPaused(false)}
         >
-          {visible.map((story) => (
-            <article
-              key={story.id}
-              className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-navy-900/8"
-            >
-              {/* Vertical video placeholder — 9:16 */}
-              <div className="relative flex items-center justify-center overflow-hidden rounded-t-3xl bg-linear-to-br from-navy-800 to-slate"
-                   style={{ aspectRatio: "9 / 16" }}>
-                {/* Dot pattern for depth */}
+          {visible.map((story) => {
+            const videoId = story.videoUrl ? extractYouTubeId(story.videoUrl) : null;
+            const familyLabel = t("familyLabel", { name: story.family });
+
+            return (
+              <article
+                key={story.id}
+                className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-navy-900/8"
+              >
+                {/* Vertical video — 9:16 */}
                 <div
-                  className="pointer-events-none absolute inset-0 opacity-[0.04]"
-                  style={{
-                    backgroundImage: "radial-gradient(circle, #fff7f5 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
-                  }}
-                  aria-hidden="true"
-                />
-
-                <button
-                  type="button"
-                  aria-label={`${t("familyLabel", { name: story.family })} story`}
-                  className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gold text-navy-950 shadow-xl transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
+                  className="relative flex items-center justify-center overflow-hidden rounded-t-3xl bg-linear-to-br from-navy-800 to-slate"
+                  style={{ aspectRatio: "9 / 16" }}
                 >
-                  <Play className="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true" />
-                </button>
+                  {/* Real YouTube thumbnail when URL is set */}
+                  {videoId && (
+                    <Image
+                      src={youtubeThumbnail(videoId)}
+                      alt={familyLabel}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  )}
 
-                <span className="absolute bottom-4 left-4 font-display text-lg font-medium text-cream drop-shadow-sm">
-                  {t("familyLabel", { name: story.family })}
-                </span>
-              </div>
-
-              {/* Quote + CTA */}
-              <div className="flex flex-1 flex-col p-5">
-                <p className="flex-1 text-sm leading-relaxed text-navy-700">
-                  &ldquo;{story.quote}&rdquo;
-                </p>
-                <Link
-                  href="/houses"
-                  className="group mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-navy transition-colors hover:text-gold"
-                >
-                  {t("cta")}
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  {/* Dot pattern for depth */}
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-[0.04]"
+                    style={{
+                      backgroundImage: "radial-gradient(circle, #fff7f5 1px, transparent 1px)",
+                      backgroundSize: "20px 20px",
+                    }}
                     aria-hidden="true"
                   />
-                </Link>
-              </div>
-            </article>
-          ))}
+
+                  {/* Gradient overlay */}
+                  {videoId && (
+                    <div
+                      className="absolute inset-0 bg-linear-to-t from-navy-950/70 via-navy-950/20 to-transparent"
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={videoId ? () => setOpenStory(story.id) : undefined}
+                    aria-label={`${familyLabel} story`}
+                    aria-disabled={!videoId || undefined}
+                    className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-gold text-navy-950 shadow-xl transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream ${!videoId ? "opacity-60 cursor-default" : "cursor-pointer"}`}
+                  >
+                    <Play className="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true" />
+                  </button>
+
+                  <span className="absolute bottom-4 left-4 font-display text-lg font-medium text-cream drop-shadow-sm">
+                    {familyLabel}
+                  </span>
+                </div>
+
+                {/* Quote + CTA */}
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="flex-1 text-sm leading-relaxed text-navy-700">
+                    &ldquo;{story.quote}&rdquo;
+                  </p>
+                  <Link
+                    href="/houses"
+                    className="group mt-5 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-navy transition-colors hover:text-gold"
+                  >
+                    {t("cta")}
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
+
+                {/* Modal for this story */}
+                {videoId && (
+                  <VideoModal
+                    videoId={videoId}
+                    isOpen={openStory === story.id}
+                    onClose={() => setOpenStory(null)}
+                    title={familyLabel}
+                  />
+                )}
+              </article>
+            );
+          })}
         </div>
 
         {/* Dots + mobile nav */}
