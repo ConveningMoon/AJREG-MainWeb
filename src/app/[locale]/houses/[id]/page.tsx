@@ -141,7 +141,7 @@ export default async function PropertyDetailPage({
         <PropertyGallery
           images={gallery}
           name={listing.name}
-          imageAltPattern={t("detail.imageAlt")}
+          imageAltPattern={t.raw("detail.imageAlt") as string}
         />
 
         {/* Specs bar — centered columns */}

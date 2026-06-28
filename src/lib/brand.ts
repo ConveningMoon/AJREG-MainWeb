@@ -12,4 +12,5 @@ export const brand = {
   instagramHandle: "@adrysofi_realestate",
   instagramHref: "https://instagram.com/adrysofi_realestate",
   facebookHref: "https://facebook.com/adryrealestate",
+  googleMapsUrl: "https://share.google/nIJD0LiznYYfeFsVb",
 } as const;

@@ -331,6 +331,25 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-06-28** — **Sección Google Reviews en home page + bilingual description/features en DB.**
+  **(A) Google Reviews:** nueva sección entre `<Stats />` y `<SalesStories />` en la home page.
+  Datos estáticos en `src/data/googleReviews.ts` (5 reseñas representativas en ES/EN, tipo
+  `GoogleReview` + `PlaceReviewData`). Componente `src/components/home/GoogleReviews.tsx`
+  (`"use client"`) con: carousel responsive `useCardsPerSlide` (1/2/3 según viewport),
+  animaciones via librería `motion` v12 (`AnimatePresence mode="wait"` + stagger de tarjetas),
+  avatar por inicial, íconos de estrellas gold, ícono "G" de Google (SVG inline), badge de rating
+  agregado, auto-rotate 7s con `prefers-reduced-motion`, prev/next + dots. i18n `home.googleReviews.*`
+  (EN/ES). `brand.googleMapsUrl` añadido a `src/lib/brand.ts` (placeholder — actualizar con URL real).
+  Instalado: `motion@^12.42.0`. **(B) Bilingual description/features en listados:**
+  columnas `description_en`, `description_es`, `features_en`, `features_es`, `floor_plans`,
+  `detail_pdf_url` añadidas a Supabase + seed. Tipo `Listing` extendido. `mapRow()` en
+  `lib/listings.ts` mapea nuevas columnas con fallback al seed. Página de detalle (`houses/[id]`)
+  usa `isEs` para servir contenido en el idioma correcto. Botón "Descargar Detalles" movido bajo
+  descripción; condicional: link real si `detailPdfUrl`, sino pill "coming soon". **(C)
+  `FloorPlanCarousel`:** nuevo componente cliente con prev/next, dots, contador y lightbox.
+  **(D) en.json:** retradución completa (todo el contenido alineado con es.json actualizado).
+  Pendiente: URL real de Google Maps → reemplazar `brand.googleMapsUrl`.
+
 - **2026-06-22** — **Elevación de diseño "Moderno y Atrevido — Exaggerated Minimalism" completada.**
   10 tareas ejecutadas vía Subagent-Driven Development (SDD). Cambios en 12 archivos.
   **(1) globals.css:** keyframes `slideUp` / `slideUpFast`; `@source not "../../docs/**"` para excluir

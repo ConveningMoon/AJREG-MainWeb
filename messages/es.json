@@ -37,6 +37,13 @@
       "familiesLabel": "Familias felices",
       "yearsLabel": "Años de experiencia"
     },
+    "googleReviews": {
+      "eyebrow": "Reseñas de Google",
+      "title": "Lo que dicen nuestros clientes",
+      "subtitle": "Reseñas reales de familias reales a las que hemos ayudado a encontrar su hogar.",
+      "viewAll": "Ver todas las reseñas en Google",
+      "verifiedLabel": "Reseña de Google"
+    },
     "salesStories": {
       "eyebrow": "Nuestras Ventas",
       "title": "Miles de sonrisas, un hogar a la vez",
