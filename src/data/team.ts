@@ -14,7 +14,8 @@ export type TeamMember = {
   fullBio?: string;
   photoUrl?: string;     // square avatar (1:1) — hero circles + cards
   bioPhotoUrl?: string;  // portrait (4:5) — bio section
-  videoUrl?: string;     // YouTube URL (unlisted) — agent intro video
+  videoUrl?: string;     // YouTube URL — default / ES video
+  videoUrlEn?: string;   // YouTube URL — EN-specific override
 };
 
 export const teamSlugs = [
@@ -34,7 +35,8 @@ export const seedTeam: TeamMember[] = [
       "Trusted Virginia/North Carolina real estate expert and mother of three.",
     photoUrl:    "/images/avatars/adriana_avatar.webp",
     bioPhotoUrl: "/images/team/adriana_bio.webp",
-	videoUrl: "https://youtu.be/fO5rhnHGeno", 
+    videoUrl:    "https://youtu.be/fO5rhnHGeno",
+    videoUrlEn:  "https://youtu.be/fMvN5jw4_sI",
   },
   {
     slug: "john-leonard",

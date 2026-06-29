@@ -301,7 +301,14 @@
       "contactCta": "Trabaja con {name}",
       "callCta": "Llámanos",
       "videoLabel": "Ver la presentación de {name}",
-      "otherTitle": "Conoce al resto del equipo"
+      "otherTitle": "Conoce al resto del equipo",
+      "meetAgent": "Conoce a {name}",
+      "heroLine1": "Tu Asesor de Confianza",
+      "heroLine2": "Tu Socio Estratégico",
+      "heroLine3": "Tu Agente Inmobiliario",
+      "heroSubtitle": "Construyendo para Familias, Asegurando Futuros con Propósito",
+      "heroCta": "Comienza Tu Camino a Casa",
+      "heroCtaBold": "¡Ahora!"
     },
     "members": {
       "adriana": {

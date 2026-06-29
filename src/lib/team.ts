@@ -28,6 +28,7 @@ function mapRow(r: Record<string, unknown>): TeamMember {
     photoUrl:    (r.photo_url     ?? r.photoUrl     ?? seed?.photoUrl     ?? undefined) as string | undefined,
     bioPhotoUrl: (r.bio_photo_url ?? r.bioPhotoUrl  ?? seed?.bioPhotoUrl  ?? undefined) as string | undefined,
     videoUrl:    (r.video_url     ?? r.videoUrl     ?? seed?.videoUrl     ?? undefined) as string | undefined,
+    videoUrlEn:  (r.video_url_en  ?? r.videoUrlEn   ?? seed?.videoUrlEn   ?? undefined) as string | undefined,
   };
 }
 
