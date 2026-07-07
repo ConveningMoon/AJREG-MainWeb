@@ -13,7 +13,6 @@ import {
   type ContactIntent,
   type ContactLanguage,
 } from "@/lib/contact-schema";
-import { submitContactAction } from "@/app/[locale]/contact-us/actions";
 
 type Status = "idle" | "success" | "duplicate" | "error";
 
@@ -57,9 +56,32 @@ export function ContactForm({ locale }: { locale: string }) {
 
   const onSubmit = async (values: ContactFormValues) => {
     setStatus("idle");
-    const res = await submitContactAction(values);
-    setStatus(res.status);
-    if (res.status === "success") reset();
+    // Submit through the site's own API route — the CRM webhook is
+    // server-to-server (shared secret), never called from the browser.
+    // No automatic retries: on failure the user retries manually.
+    try {
+      const res = await fetch("/api/contact-us", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; duplicate?: boolean }
+        | null;
+
+      if (res.ok && data?.ok) {
+        if (data.duplicate) {
+          setStatus("duplicate");
+        } else {
+          setStatus("success");
+          reset();
+        }
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   // Field error: message is an i18n key relative to the `contact` namespace.
@@ -235,6 +257,7 @@ export function ContactForm({ locale }: { locale: string }) {
         <textarea
           id="message"
           rows={4}
+          maxLength={2000}
           className={`mt-1.5 ${inputClass} resize-y`}
           placeholder={t("form.messagePlaceholder")}
           {...register("message")}

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { ArrowRight, Gift } from "lucide-react";
 import { motion } from "motion/react";
-import { Link } from "@/i18n/navigation";
 import type { AgentResource } from "@/data/resources";
 
 type Props = {
@@ -39,8 +38,10 @@ export function AgentResourceSection({
           {descriptionText}
         </p>
         <div className="mt-6">
-          <Link
-            href={`/resources/${resource.slug}`}
+          <a
+            href={resource.lpUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-sm bg-gold px-6 py-3 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
           >
             {ctaText}
@@ -48,7 +49,7 @@ export function AgentResourceSection({
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
               aria-hidden="true"
             />
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -61,11 +62,11 @@ export function AgentResourceSection({
         className="hidden sm:block"
       >
         <Image
-          src="/images/mockup/guide-cover.webp"
-          alt="Free Guide"
-          width={130}
-          height={182}
-          className="drop-shadow-2xl"
+          src={resource.mockupImage}
+          alt={titleText}
+          width={200}
+          height={280}
+          className="h-auto w-[180px] drop-shadow-2xl lg:w-[200px]"
         />
       </motion.div>
     </motion.div>

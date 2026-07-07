@@ -65,7 +65,7 @@ primerizos, clientes de reubicación.
 | Iconos | **lucide-react** | Consistencia visual |
 | Imágenes | **next/image** | Optimización automática |
 | Formularios | **React Hook Form + Zod** | Validación tipada |
-| Envío de forms | **ITMANO CRM** (solo `/contact-us`) | `POST https://app.itmano.com/api/intake/chn_qv8uhxg9qizl/submit`. Newsletter y ContactSection NO se cablean — muestran aviso + link a /contact-us. |
+| Envío de forms | **ITMANO CRM** (solo `/contact-us`) | Webhook server-to-server: `POST https://app.itmano.com/api/contact/chn_qv8uhxg9qizl/submit` con header `x-contact-secret` (env `CONTACT_WEBHOOK_SECRET`). El cliente llama a `/api/contact-us` (route handler interno) — nunca al CRM directo. Newsletter y ContactSection NO se cablean. |
 | Base de datos | **Supabase** | Anon key + RLS para listados y equipo. Forms NO van a Supabase. |
 | MCP | **Vercel** (HTTP) + **Supabase** (npx) | `.mcp.json`. Token Supabase: `AJREG_SUPABASE_ACCESS_TOKEN` (User env). MCP sin `--read-only` — puede aplicar migraciones. |
 | Deploy | **Vercel** | Preview por rama + producción. Team: "James Dylan's projects". |
@@ -330,6 +330,33 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-07-07** — **Perfiles de agente: video bilingüe, hero sin video, lead magnets reales + Contact Us → webhook ITMANO.**
+  **(A) Video bilingüe:** `TeamMember.videoUrlEn` nuevo (override para locale EN; `videoUrl` = ES/default).
+  Adriana: ES `fO5rhnHGeno`, EN `fMvN5jw4_sI`. `TeamMemberProfile` resuelve con `getLocale()`.
+  `lib/team.ts#mapRow` mapea `video_url_en` con fallback al seed. **(B) Hero para agentes sin video:**
+  `AgentHeroSection` (cliente, motion) reemplaza TODA la sección 1 del perfil cuando el agente no tiene
+  video (John, Viviane, Melany): fondo navy-950 con glow radial gold, retrato full-column sin caja
+  (`/images/hero-team/*_Portrait.webp`, mapeados por slug en el componente), nombre display 7xl, barra
+  gold animada (scaleX), tagline, idiomas y CTAs con stagger. Adriana (con video) mantiene el layout
+  anterior. **(C) Animaciones motion:** `ui/FadeInSection` (wrapper `whileInView` reutilizable) aplicado
+  en bio, resource y "meet the rest" (stagger 70ms); `AgentVideoSection` con fade+scale y spring en play.
+  **(D) Lead magnets:** `AgentResource.lpUrl` + `mockupImage` nuevos. CTA del resource section ahora es
+  `<a target="_blank">` a la LP del funnel (`lm.ajrealestateva.com/...` por agente) — ya NO va al form
+  interno `/resources/[slug]` (las rutas siguen existiendo). Mockups por agente en
+  `/images/mockup/<nombre>-guide-cover.webp` (libres, sin caja, con drop-shadow y rotación animada;
+  sección con fondo claro). i18n retitulado para coincidir con los funnels reales: john = "PCS Homebuyers
+  Playbook", melany = "Your First Home in Hampton Roads", viviane = guía para familias brasileñas (título
+  en portugués en ambos locales, coincide con el LM que está en portugués). **(E) Contact Us → webhook
+  ITMANO nuevo:** `POST https://app.itmano.com/api/contact/chn_qv8uhxg9qizl/submit` con header
+  `x-contact-secret` (env `CONTACT_WEBHOOK_SECRET`, en `.env.local` y Vercel — NUNCA en el repo).
+  Body: `first_name`, `last_name?`, `email`, `phone?`, `reason` (buy|sell|invest ← mapeado de
+  compra|vende|invierte), `message?` (≤2000), `language?` (es|en|pt). Nueva route
+  `src/app/api/contact-us/route.ts` (valida con `contactSchema`, respuesta genérica al cliente sin
+  exponer "issues"); `lib/itmano.ts` reescrito para el webhook; `ContactForm` ahora hace fetch a la
+  route interna (sin reintentos automáticos; loading/éxito/duplicado/error; reset en éxito). El server
+  action `contact-us/actions.ts` fue eliminado. Pendiente: pegar el valor real de
+  `CONTACT_WEBHOOK_SECRET` en `.env.local` y configurarlo en Vercel.
 
 - **2026-06-28** — **Sección Google Reviews en home page + bilingual description/features en DB.**
   **(A) Google Reviews:** nueva sección entre `<Stats />` y `<SalesStories />` en la home page.

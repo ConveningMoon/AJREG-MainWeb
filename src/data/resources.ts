@@ -11,6 +11,10 @@ export type AgentResource = {
   descriptionKey: string;
   questions: ResourceQuestion[];
   itmanoChannelEnv: string;
+  /** External landing page of the lead-magnet funnel (CTA target). */
+  lpUrl: string;
+  /** Guide cover mockup shown in the profile's resource section. */
+  mockupImage: string;
 };
 
 export const agentResources: AgentResource[] = [
@@ -20,6 +24,8 @@ export const agentResources: AgentResource[] = [
     titleKey: "resources.adriana.title",
     descriptionKey: "resources.adriana.description",
     itmanoChannelEnv: "ITMANO_ADRIANA_RESOURCE_CHANNEL_ID",
+    lpUrl: "https://lm.ajrealestateva.com/guia-para-familias-hispanas",
+    mockupImage: "/images/mockup/adriana-guide-cover.webp",
     questions: [
       { key: "barrier",  type: "radio",  options: ["creditScore", "downPayment", "language", "process"] },
       { key: "timeline", type: "radio",  options: ["immediately", "3months", "6months", "1year"] },
@@ -32,6 +38,8 @@ export const agentResources: AgentResource[] = [
     titleKey: "resources.john.title",
     descriptionKey: "resources.john.description",
     itmanoChannelEnv: "ITMANO_JOHN_RESOURCE_CHANNEL_ID",
+    lpUrl: "https://lm.ajrealestateva.com/pcs-homebuyers-playbook",
+    mockupImage: "/images/mockup/john-guide-cover.webp",
     questions: [
       { key: "status",   type: "radio", options: ["activeDuty", "veteran", "dependent", "civilian"] },
       { key: "pcsDate",  type: "radio", options: ["within3months", "3to6months", "6to12months", "over1year"] },
@@ -44,6 +52,8 @@ export const agentResources: AgentResource[] = [
     titleKey: "resources.viviane.title",
     descriptionKey: "resources.viviane.description",
     itmanoChannelEnv: "ITMANO_VIVIANE_RESOURCE_CHANNEL_ID",
+    lpUrl: "https://lm.ajrealestateva.com/guia-para-familias-brasileiras",
+    mockupImage: "/images/mockup/viviane-guide-cover.webp",
     questions: [
       { key: "purpose",  type: "radio", options: ["invest", "primaryHome", "both"] },
       { key: "budget",   type: "radio", options: ["under200k", "200to350k", "350to500k", "over500k"] },
@@ -56,6 +66,8 @@ export const agentResources: AgentResource[] = [
     titleKey: "resources.melany.title",
     descriptionKey: "resources.melany.description",
     itmanoChannelEnv: "ITMANO_MELANY_RESOURCE_CHANNEL_ID",
+    lpUrl: "https://lm.ajrealestateva.com/your-first-home-hampton-roads",
+    mockupImage: "/images/mockup/melany-guide-cover.webp",
     questions: [
       { key: "firstTime",  type: "radio", options: ["yes", "no"] },
       { key: "familySize", type: "radio", options: ["1to2", "3to4", "5plus"] },
