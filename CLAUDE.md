@@ -331,6 +331,28 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-07-08** — **Listados servidos desde el CRM de ITMANO (jubilando el proyecto AJREG).**
+  Los listados ahora son la única fuente de verdad en la base del **CRM de ITMANO**
+  (`kvmjlrvlnhiarrqxulkr`, tenant `tenant-aj`), no en el proyecto Supabase propio.
+  **(A) `lib/listings.ts`:** `getListings()` consulta `properties` con
+  `.eq('tenant_id','tenant-aj').eq('published_to_web', true)` y **lista explícita de
+  columnas** (el CRM restringe `anon` a columnas públicas vía grants por columna —
+  migración 047 del CRM — así que `select('*')` da 401). `mapRow()` ajustado al
+  contrato: `slug`→`id` (URL `/houses/<slug>`), `list_price`→`priceUsd`, `status`
+  `in_process`→`pending`, `property_type` (enum) → etiqueta (los 3 seed conservan su
+  etiqueta rica). Se mantiene el **fallback al seed estático**. **(B) `lib/team.ts`:**
+  ahora **100% estático** desde `@/data/team` (el CRM modela el equipo como `agents`,
+  no expuestos a `anon`); se eliminó la lectura de Supabase. **(C) Entorno/limpieza:**
+  `.env.local` y `.env.example` apuntan al proyecto del CRM (solo anon key; se quitaron
+  service-role y JWT del proyecto viejo — la web nunca usa service role); se eliminó el
+  server **Supabase del `.mcp.json`** (la web ya no gestiona esquema) y el
+  `supabase/schema.sql` obsoleto. **Verificado:** query REST con la anon key del CRM
+  (200, 3 propiedades publicadas) + `next build` SSG (`/en/houses`, `/es/houses` y las
+  3 páginas de detalle en ambos locales). **Pendiente (manual, del usuario):** (1)
+  actualizar las env vars `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  en **Vercel** al proyecto del CRM; (2) pausar/borrar el proyecto AJREG
+  `qpthzbtltpzzgiqfjuuq` cuando producción ya lea del CRM sin incidencias.
+
 - **2026-07-07** — **Perfiles de agente: video bilingüe, hero sin video, lead magnets reales + Contact Us → webhook ITMANO.**
   **(A) Video bilingüe:** `TeamMember.videoUrlEn` nuevo (override para locale EN; `videoUrl` = ES/default).
   Adriana: ES `fO5rhnHGeno`, EN `fMvN5jw4_sI`. `TeamMemberProfile` resuelve con `getLocale()`.

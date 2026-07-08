@@ -3,19 +3,6 @@
     "vercel": {
       "type": "http",
       "url": "https://mcp.vercel.com"
-    },
-    "supabase": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "-y",
-        "@supabase/mcp-server-supabase@latest",
-        "--project-ref=qpthzbtltpzzgiqfjuuq"
-      ],
-      "env": {
-        "SUPABASE_ACCESS_TOKEN": "${AJREG_SUPABASE_ACCESS_TOKEN}"
-      }
     }
   }
 }
