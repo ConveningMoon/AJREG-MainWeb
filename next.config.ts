@@ -12,8 +12,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "assets-global.website-files.com" },
       // YouTube thumbnails for embedded video placeholders
       { protocol: "https", hostname: "img.youtube.com" },
-      // Supabase Storage (property images, team photos)
-      { protocol: "https", hostname: "qpthzbtltpzzgiqfjuuq.supabase.co" },
+      // Supabase Storage — ITMANO CRM project (property images live here now).
+      { protocol: "https", hostname: "kvmjlrvlnhiarrqxulkr.supabase.co" },
     ],
   },
 };
