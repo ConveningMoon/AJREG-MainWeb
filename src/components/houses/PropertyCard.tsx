@@ -10,10 +10,21 @@ const priceFmt = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
+// Same status → color mapping used on the detail page, so the badge is
+// consistent wherever a listing appears.
+const STATUS_BADGE_COLORS: Record<string, string> = {
+  available: "bg-gold text-navy-950",
+  pending:   "bg-amber-100 text-amber-800",
+  sold:      "bg-navy-100 text-navy-700",
+};
+
 export async function PropertyCard({ listing }: { listing: Listing }) {
   const t = await getTranslations("houses.card");
+  const tDetail = await getTranslations("houses.detail");
   const baths = listing.bathroomsFull + (listing.bathroomsHalf > 0 ? 0.5 : 0);
   const bathsLabel = Number.isInteger(baths) ? String(baths) : baths.toFixed(1);
+  const statusKey = listing.status ?? "available";
+  const statusLabel = statusKey === "available" ? t("forSale") : tDetail(statusKey as "pending" | "sold");
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-900/8 transition-shadow hover:shadow-xl">
@@ -35,8 +46,8 @@ export async function PropertyCard({ listing }: { listing: Listing }) {
             </svg>
           </div>
         )}
-        <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-950">
-          {t("forSale")}
+        <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${STATUS_BADGE_COLORS[statusKey]}`}>
+          {statusLabel}
         </span>
       </Link>
 
