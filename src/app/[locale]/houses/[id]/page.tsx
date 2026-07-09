@@ -26,6 +26,11 @@ export async function generateStaticParams() {
   );
 }
 
+// Listing detail comes straight from the CRM; re-fetch on every request so an
+// edit (status, photos, description, price) shows up immediately instead of
+// waiting for the next deploy.
+export const revalidate = 0;
+
 export async function generateMetadata({
   params,
 }: {
