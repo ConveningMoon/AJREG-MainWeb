@@ -4,7 +4,10 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ListingsGrid } from "@/components/houses/ListingsGrid";
 import { getListings } from "@/lib/listings";
 
-export const revalidate = 3600;
+// Listings come straight from the CRM (the tenant's live inventory) — cache
+// them for as long as we'd tolerate a stale "sold"/"pending" badge or a
+// just-published property being invisible, not for build-time performance.
+export const revalidate = 0;
 
 export async function generateMetadata({
   params,
