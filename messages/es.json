@@ -4,7 +4,7 @@
     "houses": "Casas",
     "ourTeam": "Nuestro Equipo",
     "contact": "Contáctanos",
-    "freeGuide": "Guía gratis"
+    "callUs": "Llámanos al"
   },
   "topbar": {
     "coverage": "Virginia · Carolina del Norte, EE. UU."
@@ -88,7 +88,27 @@
       "baths": "{count} baños",
       "sqft": "{count} ft²",
       "inquire": "Pregunta por esta casa",
-      "viewDetails": "Ver detalles"
+      "viewDetails": "Ver detalles",
+      "viewLabel": "Ver"
+    },
+    "filters": {
+      "title": "Filtros",
+      "statusLabel": "Estado",
+      "all": "Todas",
+      "cityLabel": "Ciudad",
+      "allCities": "Todas las ciudades",
+      "bedsLabel": "Recámaras",
+      "anyBeds": "Cualquier recámara",
+      "bedsPlus": "{count}+ recámaras",
+      "priceLabel": "Precio",
+      "anyPrice": "Cualquier precio",
+      "priceUnder200": "Menos de $200K",
+      "price200to300": "$200K – $300K",
+      "price300to400": "$300K – $400K",
+      "priceOver400": "Más de $400K",
+      "clear": "Limpiar filtros",
+      "results": "{count, plural, =1 {1 casa} other {# casas}}",
+      "noResults": "Ninguna casa coincide con tus filtros. Ajústalos o límpialos para ver más."
     },
     "empty": "No hay casas disponibles en este momento. Escríbenos y encontraremos el hogar ideal para ti.",
     "detail": {

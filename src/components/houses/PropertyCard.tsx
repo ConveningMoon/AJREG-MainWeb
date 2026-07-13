@@ -1,6 +1,9 @@
+"use client";
+
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
-import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Bed, Bath, Maximize2, MapPin, ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Listing } from "@/data/listings";
 
@@ -18,18 +21,36 @@ const STATUS_BADGE_COLORS: Record<string, string> = {
   sold:      "bg-navy-100 text-navy-700",
 };
 
-export async function PropertyCard({ listing }: { listing: Listing }) {
-  const t = await getTranslations("houses.card");
-  const tDetail = await getTranslations("houses.detail");
+export function PropertyCard({ listing }: { listing: Listing }) {
+  const t = useTranslations("houses.card");
+  const tDetail = useTranslations("houses.detail");
+  const cursorRef = useRef<HTMLSpanElement>(null);
+  const [cursorVisible, setCursorVisible] = useState(false);
   const baths = listing.bathroomsFull + (listing.bathroomsHalf > 0 ? 0.5 : 0);
   const bathsLabel = Number.isInteger(baths) ? String(baths) : baths.toFixed(1);
   const statusKey = listing.status ?? "available";
   const statusLabel = statusKey === "available" ? t("forSale") : tDetail(statusKey as "pending" | "sold");
 
+  // Custom cursor bubble: positioned directly via the DOM on mousemove so the
+  // card doesn't re-render on every pixel of movement.
+  const onMediaMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    cursor.style.left = `${e.clientX - rect.left}px`;
+    cursor.style.top = `${e.clientY - rect.top}px`;
+  };
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-900/8 transition-shadow hover:shadow-xl">
       {/* Media — clicking goes to detail page */}
-      <Link href={`/houses/${listing.id}`} className="relative block aspect-4/3 overflow-hidden bg-linear-to-br from-navy-800 to-slate">
+      <Link
+        href={`/houses/${listing.id}`}
+        onMouseMove={onMediaMouseMove}
+        onMouseEnter={() => setCursorVisible(true)}
+        onMouseLeave={() => setCursorVisible(false)}
+        className="relative block aspect-4/3 overflow-hidden bg-linear-to-br from-navy-800 to-slate lg:cursor-none"
+      >
         {listing.imageUrl ? (
           <Image
             src={listing.imageUrl}
@@ -48,6 +69,17 @@ export async function PropertyCard({ listing }: { listing: Listing }) {
         )}
         <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${STATUS_BADGE_COLORS[statusKey]}`}>
           {statusLabel}
+        </span>
+        {/* Cursor-follow "view" bubble (desktop hover only) */}
+        <span
+          ref={cursorRef}
+          aria-hidden="true"
+          className={`pointer-events-none absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-gold/95 text-navy-950 shadow-lg shadow-navy-950/30 backdrop-blur-sm transition-[opacity,scale] duration-200 lg:flex h-16 w-16 ${
+            cursorVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"
+          }`}
+        >
+          <ArrowUpRight className="h-5 w-5" />
+          <span className="text-[9px] font-bold uppercase tracking-wider">{t("viewLabel")}</span>
         </span>
       </Link>
 

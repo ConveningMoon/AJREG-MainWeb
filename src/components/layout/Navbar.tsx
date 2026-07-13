@@ -8,12 +8,10 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { seedTeam } from "@/data/team";
 import { brand } from "@/lib/brand";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { useNewsletter } from "./NewsletterProvider";
 
 export function Navbar() {
   const t = useTranslations();
   const pathname = usePathname();
-  const openNewsletter = useNewsletter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [teamOpen, setTeamOpen] = useState(false);
   const teamRef = useRef<HTMLLIElement>(null);
@@ -139,18 +137,16 @@ export function Navbar() {
         <div className="hidden items-center gap-5 lg:flex">
           <a
             href={brand.phoneHref}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-cream transition-colors hover:text-gold"
+            aria-label={`${t("nav.callUs")} ${brand.phoneDisplay}`}
+            className="group inline-flex items-center gap-2.5 rounded-sm bg-gold px-5 py-2 text-sm font-bold text-navy-950 shadow-md shadow-gold/20 transition-all hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-lg hover:shadow-gold/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
           >
-            <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
+            <span className="relative flex" aria-hidden="true">
+              <Phone className="h-4 w-4" />
+              <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-navy-950/80 motion-safe:animate-ping" />
+              <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-navy-950" />
+            </span>
             {brand.phoneDisplay}
           </a>
-          <button
-            type="button"
-            onClick={openNewsletter}
-            className="rounded-sm bg-gold px-5 py-2 text-sm font-semibold text-navy-950 transition-colors hover:bg-gold/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
-          >
-            {t("nav.freeGuide")}
-          </button>
           <LocaleSwitcher />
         </div>
 
@@ -214,21 +210,12 @@ export function Navbar() {
           <div className="space-y-4 border-t border-navy-800 px-6 py-4">
             <a
               href={brand.phoneHref}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-cream"
+              aria-label={`${t("nav.callUs")} ${brand.phoneDisplay}`}
+              className="flex w-full items-center justify-center gap-2.5 rounded-sm bg-gold px-5 py-2.5 text-sm font-bold text-navy-950 shadow-md shadow-gold/20"
             >
-              <Phone className="h-4 w-4 text-gold" aria-hidden="true" />
+              <Phone className="h-4 w-4" aria-hidden="true" />
               {brand.phoneDisplay}
             </a>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileOpen(false);
-                openNewsletter();
-              }}
-              className="block w-full rounded-sm bg-gold px-5 py-2.5 text-center text-sm font-semibold text-navy-950"
-            >
-              {t("nav.freeGuide")}
-            </button>
             <LocaleSwitcher className="pt-1" />
           </div>
         </div>

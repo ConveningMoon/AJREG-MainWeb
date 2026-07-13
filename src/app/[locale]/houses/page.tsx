@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { ListingsGrid } from "@/components/houses/ListingsGrid";
+import { HousesExplorer } from "@/components/houses/HousesExplorer";
 import { getListings } from "@/lib/listings";
 
 // Listings come straight from the CRM (the tenant's live inventory) — cache
@@ -49,7 +49,7 @@ export default async function HousesPage({
 
       <section className="bg-cream py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <ListingsGrid listings={listings} />
+          <HousesExplorer listings={listings} />
         </div>
       </section>
     </main>

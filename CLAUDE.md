@@ -331,6 +331,22 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-07-13** — **Navbar con CTA de llamada, favicon real, hover cursor en cards y filtros en /houses.**
+  **(A) Navbar:** eliminado el botón "Free Guide" (desktop y móvil) — el navbar ya no abre el
+  NewsletterModal (el modal y su trigger en el Hero de la home siguen intactos). El teléfono ahora
+  es el CTA principal: botón gold (`tel:`) con ícono y dot con `animate-ping`; en móvil es botón
+  full-width. i18n: `nav.freeGuide` → `nav.callUs` (aria-label). **(B) Favicon:** `icons.icon`/
+  `icons.apple` en `[locale]/layout.tsx` ahora apuntan a `/Favicon.png` (antes `/images/Logo.PNG`).
+  **(C) Cursor effect:** `PropertyCard` convertido a client component (`useTranslations`); la imagen
+  muestra una burbuja gold que sigue al cursor (flecha + "View/Ver", `lg:cursor-none`, posición vía
+  DOM en `onMouseMove` sin re-renders; solo desktop). **(D) Filtros en /houses:** nuevo
+  `components/houses/HousesExplorer.tsx` (client) reemplaza a `ListingsGrid` (eliminado): pills de
+  estado (Todas/Disponible/En proceso/Vendida), selects de ciudad (derivada de los listados),
+  recámaras mínimas (1–4+) y rango de precio (<$200K…$400K+), contador de resultados (`aria-live`),
+  botón limpiar y estado vacío con reset. i18n `houses.filters.*` + `houses.card.viewLabel` (EN/ES).
+  Verificado: `next build` (35 páginas) + runtime en `next start` (`/en/houses` 200 con filtros,
+  navbar sin Free Guide, favicon presente).
+
 - **2026-07-08** — **Listados servidos desde el CRM de ITMANO (jubilando el proyecto AJREG).**
   Los listados ahora son la única fuente de verdad en la base del **CRM de ITMANO**
   (`kvmjlrvlnhiarrqxulkr`, tenant `tenant-aj`), no en el proyecto Supabase propio.

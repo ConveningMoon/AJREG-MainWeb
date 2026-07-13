@@ -54,8 +54,8 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: "/images/Logo.PNG",
-      apple: "/images/Logo.PNG",
+      icon: "/Favicon.png",
+      apple: "/Favicon.png",
     },
   };
 }

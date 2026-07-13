@@ -4,7 +4,7 @@
     "houses": "Houses",
     "ourTeam": "Our Team",
     "contact": "Contact Us",
-    "freeGuide": "Free Guide"
+    "callUs": "Call us"
   },
   "topbar": {
     "coverage": "Virginia · North Carolina, USA"
@@ -88,7 +88,27 @@
       "baths": "{count} ba",
       "sqft": "{count} sqft",
       "inquire": "Ask about this home",
-      "viewDetails": "View details"
+      "viewDetails": "View details",
+      "viewLabel": "View"
+    },
+    "filters": {
+      "title": "Filters",
+      "statusLabel": "Status",
+      "all": "All",
+      "cityLabel": "City",
+      "allCities": "All cities",
+      "bedsLabel": "Bedrooms",
+      "anyBeds": "Any bedrooms",
+      "bedsPlus": "{count}+ bedrooms",
+      "priceLabel": "Price",
+      "anyPrice": "Any price",
+      "priceUnder200": "Under $200K",
+      "price200to300": "$200K – $300K",
+      "price300to400": "$300K – $400K",
+      "priceOver400": "$400K+",
+      "clear": "Clear filters",
+      "results": "{count, plural, =1 {1 home} other {# homes}}",
+      "noResults": "No homes match your filters. Try adjusting or clearing them."
     },
     "empty": "No listings available right now. Reach out and we'll find the right home for you.",
     "detail": {
