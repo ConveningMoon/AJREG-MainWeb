@@ -287,6 +287,40 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - i18n `resources.*` en EN/ES.
 **→ commit:** `feat: agent video + free resource form pages`
 
+**Mini-Fase 6d — Client check-in / lead status-update form**
+- Nueva ruta `/[locale]/check-in`: formulario multi-paso tipo Typeform para
+  clientes que ya están en contacto con el equipo, para que actualicen su estado
+  (no está enlazada desde el nav — se comparte directo por los agentes, igual que
+  `/resources/[slug]`). Layout centrado (sin banda hero navy), card blanca sobre
+  fondo crema.
+- Flujo: 1 pregunta a la vez con barra de progreso animada (`motion/react`,
+  slide+fade entre pasos, dirección según avance/retroceso) — paso 0 = elegir
+  Comprar/Vender (auto-avanza al elegir), pasos 1–5 = preguntas de calificación
+  según la rama elegida (auto-avanzan al seleccionar opción), paso 6 = datos de
+  contacto. Botón "Atrás" siempre disponible; cambiar de rama en el paso 0 borra
+  las respuestas de la rama anterior.
+- Preguntas de calificación (`data/checkIn.ts`) — **Comprar:** presupuesto,
+  tiempo estimado de compra, tipo de propiedad, si ya trabaja con un agente,
+  zona (VA/NC). **Vender:** tipo de propiedad, tiempo estimado de venta, valor
+  estimado, si ya tiene un agente listando, ubicación de la propiedad.
+- Paso final: nombre, apellido, correo y teléfono **obligatorios** (mensaje
+  opcional); el input de teléfono muestra un prefijo fijo "+1" (extensión de
+  EE. UU.) que se antepone al enviar. Validación con Zod (`lib/checkin-schema.ts`).
+- CRM: nuevo canal ITMANO `chn_x5yxx15jt7wf` (mismo tipo "contact" + secreto
+  compartido `CONTACT_WEBHOOK_SECRET` que ya usa Contáctanos — no uno nuevo).
+  `lib/itmano.ts` ganó `submitCheckIn()` (+ helper interno `postContactWebhook`
+  compartido con `submitContact()`) y `POST /api/check-in` reenvía con
+  `form_answers[]` ({key, question, value, label}). Env var
+  `ITMANO_CHECKIN_CHANNEL_ID` (default hardcodeado al canal de arriba) en
+  `.env.example`. **Nota/asunción:** el CRM ofrece 3 formas de conectar este
+  formulario (webhook Webflow, endpoint con secret, o intake público sin
+  secret) — se eligió el endpoint con secret por reusar la arquitectura ya
+  probada de Contáctanos; si los leads no llegan, verificar en el CRM si el
+  canal espera el endpoint de intake público en su lugar.
+- i18n `checkIn.*` + `meta.checkIn` en EN/ES. Agregada a `sitemap.ts`
+  (prioridad baja, no es una página de descubrimiento).
+**→ commit:** `feat: client check-in lead status-update form`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -330,6 +364,21 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-07-30** — **Nuevo formulario `/check-in`: actualización de estado para clientes existentes.**
+  Ver **Mini-Fase 6d** arriba para el detalle completo. En resumen: wizard multi-paso
+  (una pregunta a la vez, barra de progreso animada con `motion/react`, back/forward),
+  rama Comprar/Vender con 5 preguntas de calificación cada una, paso final de contacto
+  (nombre, apellido, correo y teléfono obligatorios; prefijo `+1` fijo en el input de
+  teléfono; mensaje opcional). Envía a un canal ITMANO nuevo (`chn_x5yxx15jt7wf`) vía
+  el mismo endpoint "contact" con secret que ya usa Contáctanos (`submitCheckIn()` en
+  `lib/itmano.ts`, ruta `POST /api/check-in`). Bilingüe EN/ES vía `next-intl` como el
+  resto del sitio. **Verificado:** `next build` sin errores + smoke test en `next start`
+  (carga de `/en/check-in` y `/es/check-in`, navegación de pasos, envío real contra el
+  canal del CRM). **Pendiente/a verificar por el usuario:** confirmar en el dashboard de
+  ITMANO que el canal `chn_x5yxx15jt7wf` efectivamente recibe los leads por el endpoint
+  con secret elegido (ver nota en Mini-Fase 6d) — si no llegan, es cuestión de cambiar
+  `lib/itmano.ts` para usar el endpoint de intake público en su lugar.
 
 - **2026-07-13** — **Navbar con CTA de llamada, favicon real, hover cursor en cards y filtros en /houses.**
   **(A) Navbar:** eliminado el botón "Free Guide" (desktop y móvil) — el navbar ya no abre el
@@ -544,3 +593,13 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   Next.js 15 + TS + Tailwind + next-intl (EN/ES), listados estáticos preparados
   para futura conexión a CRM/CMS, réplica fiel + pulido del sitio Webflow actual.
   Plan en 6 fases sobre ~3 sesiones de 5 h.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).

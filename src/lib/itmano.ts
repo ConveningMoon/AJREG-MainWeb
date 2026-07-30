@@ -8,6 +8,13 @@ const CONTACT_CHANNEL_ID =
   process.env.ITMANO_CONTACT_CHANNEL_ID ?? "chn_qv8uhxg9qizl";
 const WEBHOOK_URL = `https://app.itmano.com/api/contact/${CONTACT_CHANNEL_ID}/submit`;
 
+// Client check-in / lead status-update form — its own channel in the CRM,
+// same "contact" webhook type + shared secret, submitted from
+// /api/check-in/route.ts.
+const CHECKIN_CHANNEL_ID =
+  process.env.ITMANO_CHECKIN_CHANNEL_ID ?? "chn_x5yxx15jt7wf";
+const CHECKIN_WEBHOOK_URL = `https://app.itmano.com/api/contact/${CHECKIN_CHANNEL_ID}/submit`;
+
 export type ItmanoResult = "success" | "duplicate" | "error";
 
 export type ContactWebhookPayload = {
@@ -20,27 +27,42 @@ export type ContactWebhookPayload = {
   language?: "es" | "en" | "pt";
 };
 
+export type CheckInWebhookPayload = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  reason: "buy" | "sell";
+  message?: string; // max 2000 chars
+  language?: "es" | "en" | "pt";
+  form_answers: { key: string; question: string; value: string; label: string }[];
+};
+
 /**
- * Sends a contact lead to the ITMANO contact webhook.
+ * POSTs a lead payload to an ITMANO "contact" webhook URL, authenticated
+ * with the shared CONTACT_WEBHOOK_SECRET header. Shared by every channel of
+ * this webhook type (Contact Us, client check-in, …).
  *
  * Expected responses:
  * - 200 `{ ok: true }`                    → success
  * - 200 `{ ok: true, duplicate: true }`   → duplicate (email already a lead)
  * - 400 validation / 401 bad secret / 500 → error
  */
-export async function submitContact(
-  payload: ContactWebhookPayload
+async function postContactWebhook(
+  url: string,
+  payload: ContactWebhookPayload | CheckInWebhookPayload,
+  logTag: string
 ): Promise<ItmanoResult> {
   const secret = process.env.CONTACT_WEBHOOK_SECRET;
   if (!secret) {
     console.error(
-      "[contact] CONTACT_WEBHOOK_SECRET is not set — cannot submit lead to CRM."
+      `[${logTag}] CONTACT_WEBHOOK_SECRET is not set — cannot submit lead to CRM.`
     );
     return "error";
   }
 
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,10 +83,24 @@ export async function submitContact(
 
     // 400 (validation), 401 (secret), 500 — log server-side, generic to UI.
     const text = await res.text().catch(() => "");
-    console.error(`[contact] CRM webhook failed (${res.status}): ${text}`);
+    console.error(`[${logTag}] CRM webhook failed (${res.status}): ${text}`);
     return "error";
   } catch (err) {
-    console.error("[contact] CRM webhook network error:", err);
+    console.error(`[${logTag}] CRM webhook network error:`, err);
     return "error";
   }
+}
+
+/** Sends a "Contact Us" lead to the ITMANO contact webhook. */
+export async function submitContact(
+  payload: ContactWebhookPayload
+): Promise<ItmanoResult> {
+  return postContactWebhook(WEBHOOK_URL, payload, "contact");
+}
+
+/** Sends a client check-in / lead status-update to its ITMANO channel. */
+export async function submitCheckIn(
+  payload: CheckInWebhookPayload
+): Promise<ItmanoResult> {
+  return postContactWebhook(CHECKIN_WEBHOOK_URL, payload, "check-in");
 }

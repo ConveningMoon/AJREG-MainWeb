@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedEntries("",           { changeFrequency: "weekly",   priority: 1 }),
     ...localizedEntries("/houses",    { changeFrequency: "weekly",   priority: 0.9 }),
     ...localizedEntries("/contact-us",{ changeFrequency: "monthly",  priority: 0.8 }),
+    ...localizedEntries("/check-in",  { changeFrequency: "yearly",   priority: 0.3 }),
   ];
 
   const listingRoutes = seedListings.flatMap((l) =>

@@ -314,6 +314,142 @@
       }
     }
   },
+  "checkIn": {
+    "eyebrow": "Client check-in",
+    "title": "Let's catch up on where things stand",
+    "subtitle": "A few quick questions so our team can follow up with exactly the right next step for you.",
+    "progressLabel": "Step {current} of {total}",
+    "back": "Back",
+    "intent": {
+      "question": "What brings you back to us today?",
+      "buy": "I'm looking to buy",
+      "sell": "I'm looking to sell",
+      "hint": "Your answers go straight to your agent — no need to repeat yourself on your next call."
+    },
+    "questions": {
+      "buy": {
+        "budget": {
+          "question": "What's your approximate budget?",
+          "options": {
+            "under200k": "Under $200K",
+            "200to300k": "$200K – $300K",
+            "300to400k": "$300K – $400K",
+            "400to500k": "$400K – $500K",
+            "over500k": "$500K+"
+          }
+        },
+        "timeline": {
+          "question": "When are you hoping to buy?",
+          "options": {
+            "immediately": "Right away",
+            "1to3months": "In 1–3 months",
+            "3to6months": "In 3–6 months",
+            "6to12months": "In 6–12 months"
+          }
+        },
+        "propertyType": {
+          "question": "What type of property are you looking for?",
+          "options": {
+            "singleFamily": "Single-family home",
+            "townhouseCondo": "Townhouse / condo",
+            "multiFamily": "Multi-family / investment",
+            "land": "Land"
+          }
+        },
+        "hasAgent": {
+          "question": "Are you already working with an agent?",
+          "options": {
+            "yesExclusive": "Yes, under contract",
+            "yesOpen": "Yes, but open to a change",
+            "no": "No, not yet"
+          }
+        },
+        "area": {
+          "question": "Where are you looking?",
+          "options": {
+            "virginia": "Virginia (Hampton Roads)",
+            "northCarolina": "North Carolina",
+            "notSure": "Either / not sure yet"
+          }
+        }
+      },
+      "sell": {
+        "propertyType": {
+          "question": "What type of property are you selling?",
+          "options": {
+            "singleFamily": "Single-family home",
+            "townhouseCondo": "Townhouse / condo",
+            "multiFamily": "Multi-family / investment",
+            "land": "Land"
+          }
+        },
+        "timeline": {
+          "question": "When are you hoping to sell?",
+          "options": {
+            "immediately": "Right away",
+            "1to3months": "In 1–3 months",
+            "3to6months": "In 3–6 months",
+            "6to12months": "In 6–12 months",
+            "exploring": "Just exploring the value"
+          }
+        },
+        "value": {
+          "question": "What do you estimate your property is worth?",
+          "options": {
+            "under200k": "Under $200K",
+            "200to300k": "$200K – $300K",
+            "300to400k": "$300K – $400K",
+            "400to500k": "$400K – $500K",
+            "over500k": "$500K+"
+          }
+        },
+        "hasAgent": {
+          "question": "Do you already have an agent listing your property?",
+          "options": {
+            "yesExclusive": "Yes, active listing",
+            "yesOpen": "Yes, but open to a change",
+            "no": "No, not yet"
+          }
+        },
+        "area": {
+          "question": "Where is your property located?",
+          "options": {
+            "virginia": "Virginia (Hampton Roads)",
+            "northCarolina": "North Carolina",
+            "other": "Somewhere else"
+          }
+        }
+      }
+    },
+    "fields": {
+      "title": "Almost done — how can we reach you?",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "phonePrefix": "+1",
+      "message": "Anything else we should know?",
+      "optional": "optional"
+    },
+    "submit": "Send my update",
+    "submitting": "Sending…",
+    "result": {
+      "successTitle": "Thanks for the update!",
+      "successBody": "Your answers were sent straight to your agent — they'll follow up with next steps shortly.",
+      "duplicateTitle": "You're already on our radar",
+      "duplicateBody": "We already have your info on file — your agent will reach out with your update shortly.",
+      "errorTitle": "Something went wrong",
+      "errorBody": "We couldn't send your update. Please try again or reach us directly.",
+      "startOver": "Start over"
+    },
+    "validation": {
+      "firstName": "Please enter your first name.",
+      "lastName": "Please enter your last name.",
+      "emailRequired": "Please enter your email.",
+      "emailInvalid": "Please enter a valid email.",
+      "phoneRequired": "Please enter a valid phone number."
+    }
+  },
   "team": {
     "profile": {
       "back": "Back to home",
@@ -405,6 +541,10 @@
     "team": {
       "title": "{name} — Real Estate Agent",
       "description": "{name} is a {role} at A&J Real Estate Group, guiding families home across Virginia and North Carolina."
+    },
+    "checkIn": {
+      "title": "Client Check-In",
+      "description": "A quick check-in for A&J Real Estate Group clients to update our team on where things stand with your home search or sale."
     }
   }
 }

@@ -314,6 +314,142 @@
       }
     }
   },
+  "checkIn": {
+    "eyebrow": "Actualización de cliente",
+    "title": "Cuéntanos cómo va todo",
+    "subtitle": "Unas cuantas preguntas rápidas para que nuestro equipo te dé seguimiento con el siguiente paso ideal para ti.",
+    "progressLabel": "Paso {current} de {total}",
+    "back": "Atrás",
+    "intent": {
+      "question": "¿Qué te trae de vuelta hoy?",
+      "buy": "Quiero comprar",
+      "sell": "Quiero vender",
+      "hint": "Tus respuestas llegan directo a tu agente — no tendrás que repetir nada en tu próxima llamada."
+    },
+    "questions": {
+      "buy": {
+        "budget": {
+          "question": "¿Cuál es tu presupuesto aproximado?",
+          "options": {
+            "under200k": "Menos de $200K",
+            "200to300k": "$200K – $300K",
+            "300to400k": "$300K – $400K",
+            "400to500k": "$400K – $500K",
+            "over500k": "$500K o más"
+          }
+        },
+        "timeline": {
+          "question": "¿Cuándo planeas comprar?",
+          "options": {
+            "immediately": "Ahora mismo",
+            "1to3months": "En 1–3 meses",
+            "3to6months": "En 3–6 meses",
+            "6to12months": "En 6–12 meses"
+          }
+        },
+        "propertyType": {
+          "question": "¿Qué tipo de propiedad buscas?",
+          "options": {
+            "singleFamily": "Casa unifamiliar",
+            "townhouseCondo": "Townhouse / condominio",
+            "multiFamily": "Multifamiliar / inversión",
+            "land": "Terreno"
+          }
+        },
+        "hasAgent": {
+          "question": "¿Ya trabajas con un agente?",
+          "options": {
+            "yesExclusive": "Sí, con contrato",
+            "yesOpen": "Sí, pero abierto/a a un cambio",
+            "no": "No, todavía no"
+          }
+        },
+        "area": {
+          "question": "¿En qué zona estás buscando?",
+          "options": {
+            "virginia": "Virginia (Hampton Roads)",
+            "northCarolina": "Carolina del Norte",
+            "notSure": "Cualquiera / aún no lo sé"
+          }
+        }
+      },
+      "sell": {
+        "propertyType": {
+          "question": "¿Qué tipo de propiedad estás vendiendo?",
+          "options": {
+            "singleFamily": "Casa unifamiliar",
+            "townhouseCondo": "Townhouse / condominio",
+            "multiFamily": "Multifamiliar / inversión",
+            "land": "Terreno"
+          }
+        },
+        "timeline": {
+          "question": "¿Cuándo planeas vender?",
+          "options": {
+            "immediately": "Ahora mismo",
+            "1to3months": "En 1–3 meses",
+            "3to6months": "En 3–6 meses",
+            "6to12months": "En 6–12 meses",
+            "exploring": "Solo explorando el valor"
+          }
+        },
+        "value": {
+          "question": "¿Cuál crees que es el valor de tu propiedad?",
+          "options": {
+            "under200k": "Menos de $200K",
+            "200to300k": "$200K – $300K",
+            "300to400k": "$300K – $400K",
+            "400to500k": "$400K – $500K",
+            "over500k": "$500K o más"
+          }
+        },
+        "hasAgent": {
+          "question": "¿Ya tienes un agente listando tu propiedad?",
+          "options": {
+            "yesExclusive": "Sí, en listado activo",
+            "yesOpen": "Sí, pero abierto/a a un cambio",
+            "no": "No, todavía no"
+          }
+        },
+        "area": {
+          "question": "¿Dónde está ubicada tu propiedad?",
+          "options": {
+            "virginia": "Virginia (Hampton Roads)",
+            "northCarolina": "Carolina del Norte",
+            "other": "En otro lugar"
+          }
+        }
+      }
+    },
+    "fields": {
+      "title": "Ya casi — ¿cómo te contactamos?",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "phonePrefix": "+1",
+      "message": "¿Algo más que debamos saber?",
+      "optional": "opcional"
+    },
+    "submit": "Enviar mi actualización",
+    "submitting": "Enviando…",
+    "result": {
+      "successTitle": "¡Gracias por la actualización!",
+      "successBody": "Tus respuestas fueron enviadas directamente a tu agente — te contactará pronto con los siguientes pasos.",
+      "duplicateTitle": "Ya te tenemos en nuestro radar",
+      "duplicateBody": "Ya contamos con tu información — tu agente se pondrá en contacto pronto con tu actualización.",
+      "errorTitle": "Algo salió mal",
+      "errorBody": "No pudimos enviar tu actualización. Intenta de nuevo o escríbenos directamente.",
+      "startOver": "Empezar de nuevo"
+    },
+    "validation": {
+      "firstName": "Por favor ingresa tu nombre.",
+      "lastName": "Por favor ingresa tu apellido.",
+      "emailRequired": "Por favor ingresa tu correo electrónico.",
+      "emailInvalid": "Por favor ingresa un correo válido.",
+      "phoneRequired": "Por favor ingresa un número de teléfono válido."
+    }
+  },
   "team": {
     "profile": {
       "back": "Volver al inicio",
@@ -405,6 +541,10 @@
     "team": {
       "title": "{name} — Agente Inmobiliario",
       "description": "{name} es {role} en A&J Real Estate Group, acompañando a familias en Virginia y Carolina del Norte."
+    },
+    "checkIn": {
+      "title": "Actualización de Cliente",
+      "description": "Una actualización rápida para que los clientes de A&J Real Estate Group nos cuenten cómo va su búsqueda o venta de propiedad."
     }
   }
 }
