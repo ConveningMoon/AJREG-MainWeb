@@ -347,6 +347,15 @@
             "6to12months": "En 6–12 meses"
           }
         },
+        "financing": {
+          "question": "¿En qué etapa estás con el financiamiento?",
+          "options": {
+            "cash": "Pago al contado",
+            "preapproved": "Ya tengo carta de pre-aprobación",
+            "inProcess": "En trámite con un prestamista",
+            "notStarted": "Aún no he empezado"
+          }
+        },
         "propertyType": {
           "question": "¿Qué tipo de propiedad buscas?",
           "options": {
@@ -367,7 +376,7 @@
         "area": {
           "question": "¿En qué zona estás buscando?",
           "options": {
-            "virginia": "Virginia (Hampton Roads)",
+            "virginiaBeach": "Virginia Beach",
             "northCarolina": "Carolina del Norte",
             "notSure": "Cualquiera / aún no lo sé"
           }
@@ -414,7 +423,7 @@
         "area": {
           "question": "¿Dónde está ubicada tu propiedad?",
           "options": {
-            "virginia": "Virginia (Hampton Roads)",
+            "virginiaBeach": "Virginia Beach",
             "northCarolina": "Carolina del Norte",
             "other": "En otro lugar"
           }

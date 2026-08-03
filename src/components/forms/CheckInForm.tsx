@@ -15,6 +15,7 @@ import {
   Tag,
 } from "lucide-react";
 import { checkInQuestions, type CheckInIntent } from "@/data/checkIn";
+import { toCrmAnswers } from "@/lib/crm-contract";
 import { checkInContactSchema, type CheckInContactValues } from "@/lib/checkin-schema";
 
 type Status = "idle" | "loading" | "success" | "duplicate" | "error";
@@ -98,18 +99,23 @@ export function CheckInForm() {
     if (!intent) return;
     setStatus("loading");
     try {
+      // Las respuestas viajan con el vocabulario del CRM, no con el de este
+      // sitio: la etiqueta que ve el visitante se conserva, el valor se traduce
+      // (ver lib/crm-contract.ts). Sin esto el CRM las guardaba pero no puntuaban.
       const questions = checkInQuestions[intent];
-      const form_answers = questions.map((q) => {
-        const value = answers[q.key] ?? "";
-        return {
-          key: q.key,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          question: t(`questions.${intent}.${q.key}.question` as any),
-          value,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          label: value ? t(`questions.${intent}.${q.key}.options.${value}` as any) : "",
-        };
-      });
+      const respuestas: Record<string, string> = {};
+      for (const q of questions) {
+        const v = answers[q.key];
+        if (v) respuestas[q.key] = v;
+      }
+      const form_answers = toCrmAnswers(
+        intent,
+        respuestas,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (key) => t(`questions.${intent}.${key}.question` as any),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (key, value) => t(`questions.${intent}.${key}.options.${value}` as any),
+      );
 
       const res = await fetch("/api/check-in", {
         method: "POST",
