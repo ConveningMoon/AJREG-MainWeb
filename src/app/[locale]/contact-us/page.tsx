@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ItmanoBeacon } from "@/components/ItmanoBeacon";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -19,6 +20,9 @@ export async function generateMetadata({
     openGraph: { title: t("title"), description: t("description") },
   };
 }
+
+// Canal del CRM al que pertenece esta pagina — el beacon reporta la visita.
+const CHANNEL_ID = process.env.NEXT_PUBLIC_ITMANO_CONTACT_CHANNEL_ID ?? "chn_qv8uhxg9qizl";
 
 export default async function ContactPage({
   params,
@@ -45,6 +49,8 @@ export default async function ContactPage({
   ];
 
   return (
+    <>
+      <ItmanoBeacon channelPublicId={CHANNEL_ID} />
     <main className="flex flex-1 flex-col bg-cream">
       <section className="pt-12 lg:pt-16">
         <div className="mx-auto max-w-7xl px-6">
@@ -126,5 +132,6 @@ export default async function ContactPage({
         </div>
       </section>
     </main>
+    </>
   );
 }

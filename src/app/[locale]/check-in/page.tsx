@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ItmanoBeacon } from "@/components/ItmanoBeacon";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { CheckInForm } from "@/components/forms/CheckInForm";
@@ -17,6 +18,9 @@ export async function generateMetadata({
   };
 }
 
+// Canal del CRM al que pertenece esta pagina — el beacon reporta la visita.
+const CHANNEL_ID = process.env.NEXT_PUBLIC_ITMANO_CHECKIN_CHANNEL_ID ?? "chn_x5yxx15jt7wf";
+
 export default async function CheckInPage({
   params,
 }: {
@@ -27,6 +31,8 @@ export default async function CheckInPage({
   const t = await getTranslations("checkIn");
 
   return (
+    <>
+      <ItmanoBeacon channelPublicId={CHANNEL_ID} />
     <main className="flex flex-1 flex-col bg-cream">
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-16 lg:py-20">
         <div className="text-center">
@@ -44,5 +50,6 @@ export default async function CheckInPage({
         </div>
       </div>
     </main>
+    </>
   );
 }
