@@ -69,7 +69,7 @@ export default async function NewsletterEditionPage({
     <>
       <EditionViewBeacon editionId={edition.id} />
       <main className="flex flex-1 flex-col bg-cream">
-        <article className="mx-auto w-full max-w-3xl px-6 py-12 lg:py-16">
+        <div className="mx-auto w-full max-w-6xl px-6 py-10 lg:py-14">
           <Link
             href="/newsletter"
             className="inline-flex items-center gap-2 text-sm font-semibold text-navy-500 transition-colors hover:text-gold"
@@ -78,62 +78,92 @@ export default async function NewsletterEditionPage({
             {t("edition.back")}
           </Link>
 
+          {/* The headline runs the full width; the reading column narrows
+              further down, once the sidebar joins it. */}
+          <header className="mt-8 max-w-4xl">
+            <h1 className="font-display text-4xl font-semibold leading-[1.08] text-navy sm:text-5xl lg:text-[3.5rem]">
+              {edition.title}
+            </h1>
+            {edition.dek && (
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-700">
+                {edition.dek}
+              </p>
+            )}
+          </header>
+
+          {/* Provenance row — the dates and the source count are this
+              newsletter's whole argument, so they sit above the fold rather
+              than in a footnote. */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-navy-200 py-4 text-sm text-navy-500">
+            {publishedLabel && (
+              <time dateTime={edition.publishedAt ?? undefined}>
+                {t("edition.published", { date: publishedLabel })}
+              </time>
+            )}
+            {dataAsOfLabel && (
+              <>
+                <span className="text-gold" aria-hidden="true">
+                  ·
+                </span>
+                <span>{t("edition.dataAsOf", { date: dataAsOfLabel })}</span>
+              </>
+            )}
+            {edition.sources.length > 0 && (
+              <>
+                <span className="text-gold" aria-hidden="true">
+                  ·
+                </span>
+                <span>
+                  {t("edition.sourceCount", { count: edition.sources.length })}
+                </span>
+              </>
+            )}
+          </div>
+
           {edition.coverImageUrl && (
-            <div className="relative mt-7 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-blush/50">
+            <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-blush/50 lg:aspect-[21/9]">
               <Image
                 src={edition.coverImageUrl}
                 alt=""
                 fill
-                sizes="(max-width: 768px) 100vw, 768px"
+                sizes="(max-width: 1152px) 100vw, 1104px"
                 className="object-cover"
                 priority
               />
             </div>
           )}
 
-          <header className="mt-9">
-            <h1 className="font-display text-4xl font-semibold leading-[1.12] text-navy sm:text-5xl">
-              {edition.title}
-            </h1>
-            {edition.dek && (
-              <p className="mt-5 text-lg leading-relaxed text-navy-700">
-                {edition.dek}
-              </p>
-            )}
-            <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-navy-200 pb-7 text-sm text-navy-500">
-              {publishedLabel && (
-                <time dateTime={edition.publishedAt ?? undefined}>
-                  {t("edition.published", { date: publishedLabel })}
-                </time>
-              )}
-              {dataAsOfLabel && (
-                <span>{t("edition.dataAsOf", { date: dataAsOfLabel })}</span>
-              )}
+          <div className="mt-12 lg:grid lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start lg:gap-16">
+            <div>
+              <EditionContent
+                blocks={edition.content.blocks}
+                sources={edition.sources}
+                sourcesTitle={t("edition.sources")}
+              />
             </div>
-          </header>
 
-          <div className="mt-9">
-            <EditionContent
-              blocks={edition.content.blocks}
-              sources={edition.sources}
-              sourcesTitle={t("edition.sources")}
-            />
+            {/* The form rides along the whole read instead of waiting at the
+                bottom: most readers arrive straight at an edition from a
+                shared link, and the moment they are convinced is somewhere in
+                the middle of the article, not after the sources. */}
+            <aside className="mt-14 lg:sticky lg:top-24 lg:mt-0">
+              <div className="rounded-2xl bg-navy-900 p-7">
+                <span className="block h-0.5 w-10 bg-gold" aria-hidden="true" />
+                <h2 className="mt-5 font-display text-2xl font-semibold leading-tight text-cream">
+                  {t("edition.ctaTitle")}
+                </h2>
+                <p className="mt-3 mb-6 text-sm leading-relaxed text-cream/70">
+                  {t("edition.ctaSubtitle")}
+                </p>
+                <NewsletterSubscribeForm
+                  tone="dark"
+                  stacked
+                  editionId={edition.id}
+                />
+              </div>
+            </aside>
           </div>
-
-          {/* The form lives here too, not only on the archive: most readers
-              arrive straight at an edition from a shared link, and without
-              this they never see where to subscribe — and `edition_id` never
-              gets written, so the CRM cannot tell which edition won them. */}
-          <section className="mt-14 rounded-2xl bg-navy-900 p-7 sm:p-9">
-            <h2 className="font-display text-2xl font-semibold text-cream">
-              {t("edition.ctaTitle")}
-            </h2>
-            <p className="mt-2 mb-6 text-sm leading-relaxed text-cream/70">
-              {t("edition.ctaSubtitle")}
-            </p>
-            <NewsletterSubscribeForm tone="dark" editionId={edition.id} />
-          </section>
-        </article>
+        </div>
       </main>
     </>
   );

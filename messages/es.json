@@ -92,10 +92,10 @@
     },
     "page": {
       "eyebrow": "Newsletter",
-      "title": "El mercado de Hampton Roads, explicado.",
-      "subtitle": "Qué está pasando de verdad con los precios, la oferta y los tiempos en Virginia y Carolina del Norte — en lenguaje claro y con cada dato citado.",
+      "title": "Todo lo que necesitas saber sobre bienes raíces en Virginia y North Carolina",
+      "subtitle": "Descubre y mantente al tanto de todo el mercado inmobiliario: noticias, tips y curiosidades en un solo lugar.",
       "formTitle": "Suscríbete",
-      "formSubtitle": "Tu nombre y tu correo. Nada más."
+      "formSubtitle": "Déjanos tu nombre y correo, y no te pierdas de ninguna oportunidad del mercado."
     },
     "archive": {
       "eyebrow": "Archivo",
@@ -109,7 +109,8 @@
       "dataAsOf": "Datos al {date}",
       "sources": "Fuentes",
       "ctaTitle": "Recibe la próxima.",
-      "ctaSubtitle": "Suscríbete para recibir nuestro análisis del mercado."
+      "ctaSubtitle": "Suscríbete para recibir nuestro análisis del mercado.",
+      "sourceCount": "{count, plural, =1 {1 fuente} other {# fuentes}}"
     }
   },
   "houses": {
