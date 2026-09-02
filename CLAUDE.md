@@ -321,6 +321,53 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   (prioridad baja, no es una página de descubrimiento).
 **→ commit:** `feat: client check-in lead status-update form`
 
+**Mini-Fase 6e — Newsletter (suscripción + archivo de ediciones)**
+- Nueva ruta `/[locale]/newsletter`: banda navy con el formulario de suscripción
+  (captación primero) + archivo de ediciones publicadas (la más reciente destacada,
+  el resto en grilla de 3). Nueva ruta `/[locale]/newsletter/[slug]`: lectura de
+  la edición (portada, título, dek, fecha de publicación y de los datos, cuerpo,
+  fuentes numeradas) + formulario al final con `edition_id` para la atribución.
+- **Suscripción → intake PÚBLICO de ITMANO** (canal `chn_aoad7icta5o2`):
+  `POST /api/intake/<canal>/submit` **desde el navegador**. No lleva secreto — lo
+  protegen el id no adivinable + honeypot + validación de schema — y `next.config.ts`
+  ya reescribe `/api/intake/*` al CRM, así que la llamada sale **first-party** (sin
+  CORS, sin bloqueadores). Es el mismo camino que usa el archivo alojado del propio
+  CRM; **no** se creó una route handler interna (eso es para el webhook con secreto
+  de Contáctanos y /check-in, que sí necesita servidor).
+  Campos: `first_name`, `email`, `language`, `consent_text`, `source_url`,
+  `visitor_id`, `edition_id?`, `website` (honeypot vacío).
+- **`consent_text` es obligatorio** en un canal de tipo newsletter: sin él el CRM
+  responde 400 `"Falta el consentimiento"` (RGPD art. 7.1 — hay que poder demostrar
+  el consentimiento, y eso no se añade a posteriori). Se manda **la frase exacta que
+  se ve junto a la casilla** (`newsletter.form.consent` en EN/ES), nunca un texto
+  genérico escrito en el código: si se cambia el copy, cambia la prueba.
+- **Ediciones ← Supabase del CRM** (`lib/newsletter.ts`, anon key, misma base que
+  los listados): `tenant_id = tenant-aj`, `status = published`, **lista de columnas
+  explícita** (`select("*")` da 401: el acceso anon está acotado por columna). Los
+  borradores y lo degradado por facturación no existen para `anon`, no hay que
+  filtrarlos. `category` **no** está concedida a anon — no se puede mostrar ni
+  filtrar desde la web (cambio de grant del lado del CRM).
+- El cuerpo se guarda como **bloques** (`heading`, `paragraph`, `list`, `image`,
+  `quote`, `callout`, `stat`), nunca HTML: `EditionContent.tsx` los renderiza como
+  React — **cero `dangerouslySetInnerHTML`** — y los `sourceIds` se pintan como
+  marcas `[1]` enlazadas a la lista de fuentes.
+- Idiomas: una edición puede tener variantes que comparten `translation_group_id`.
+  `editionsForLocale()` muestra **una por grupo**, prefiriendo la del idioma del
+  visitante y cayendo a la más reciente — una edición sólo en español se le sigue
+  mostrando a un lector en inglés (un archivo vacío no sirve a nadie).
+- **Medición:** `<ItmanoBeacon>` con el canal de newsletter en el archivo, y
+  `EditionViewBeacon` en cada edición (`POST /api/newsletters/view`, `text/plain` +
+  `keepalive`). Nuevo rewrite `/api/newsletters/*` → CRM en `next.config.ts`, por
+  la misma razón first-party.
+- **NewsletterModal cableado de verdad**: era un formulario falso ("sign-up isn't
+  live yet"); ahora usa el mismo `NewsletterSubscribeForm` y enlaza al archivo.
+  Se retiró la promesa de la "guía gratis" del copy (el canal da de alta a un
+  suscriptor, no envía esa guía).
+- Enlaces en **Navbar** (desktop + móvil) y **Footer**; `/newsletter` y cada
+  edición publicada en `sitemap.ts`. ISR de 5 min en ambas rutas (el CRM no puede
+  purgar la caché de este sitio). Env `NEXT_PUBLIC_ITMANO_NEWSLETTER_CHANNEL_ID`.
+**→ commit:** `feat: newsletter page + edition archive from the CRM`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -364,6 +411,27 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-09-02** — **Newsletter: página de suscripción + archivo de ediciones servido desde el CRM.**
+  Ver **Mini-Fase 6e** arriba para el detalle. En resumen: `/newsletter` (captación +
+  archivo) y `/newsletter/[slug]` (lectura de la edición con fuentes citadas), ambas
+  bilingües y con el diseño del sitio. La **suscripción** va al intake PÚBLICO de
+  ITMANO (canal `chn_aoad7icta5o2`) directo desde el navegador a través del rewrite
+  first-party que ya existía; manda `consent_text` con la frase exacta de la casilla,
+  que el canal exige. Las **ediciones** se leen de la base del CRM con la anon key y
+  lista de columnas explícita. El `NewsletterModal` (que era un formulario falso) ya
+  envía de verdad. **Verificado:** `next build` (42 páginas; `/newsletter` y la
+  edición publicada prerenderizadas en EN y ES con ISR de 5 min) + smoke test en
+  `next start`: 200 en las cuatro URLs, 404 en un slug inexistente, sitemap con las
+  entradas nuevas, y contra el CRM — envío sin `consent_text` → 400 "Falta el
+  consentimiento" (confirma que el canal es de tipo newsletter) y envío con el
+  honeypot relleno → 200 descartado en silencio. **Pendiente/a verificar por el
+  usuario:** (1) una suscripción real de punta a punta (no se hizo para no crear un
+  suscriptor de prueba en el CRM); (2) el copy no promete que las ediciones lleguen
+  por correo — el CRM da de alta al suscriptor en la secuencia del canal, pero
+  todavía no envía las ediciones por email; (3) si en el CRM se publican ediciones en
+  inglés, deben compartir `translation_group_id` con su versión en español para que
+  la web muestre una sola por idioma.
 
 - **2026-07-30** — **Nuevo formulario `/check-in`: actualización de estado para clientes existentes.**
   Ver **Mini-Fase 6d** arriba para el detalle completo. En resumen: wizard multi-paso

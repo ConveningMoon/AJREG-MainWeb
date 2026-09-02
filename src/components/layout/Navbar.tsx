@@ -36,6 +36,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: t("nav.home") },
     { href: "/houses", label: t("nav.houses") },
+    { href: "/newsletter", label: t("nav.newsletter") },
     { href: "/contact-us", label: t("nav.contact") },
   ] as const;
 
@@ -121,6 +122,15 @@ export function Navbar() {
                 ))}
               </ul>
             )}
+          </li>
+
+          <li>
+            <Link
+              href="/newsletter"
+              className={linkClass(isActive("/newsletter"))}
+            >
+              {t("nav.newsletter")}
+            </Link>
           </li>
 
           <li>

@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
     return [
       { source: "/intake.js",         destination: "https://app.itmano.com/intake.js" },
       { source: "/api/intake/:path*", destination: "https://app.itmano.com/api/intake/:path*" },
+      // Newsletter: subscriptions go through /api/intake above; this one is
+      // the read counter for an edition rendered on THIS domain (/newsletter/
+      // <slug>). Same first-party reasoning.
+      { source: "/api/newsletters/:path*", destination: "https://app.itmano.com/api/newsletters/:path*" },
     ];
   },
   images: {

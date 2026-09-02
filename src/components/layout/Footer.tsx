@@ -52,6 +52,14 @@ export async function Footer() {
             </li>
             <li>
               <Link
+                href="/newsletter"
+                className="transition-colors hover:text-gold"
+              >
+                {t("nav.newsletter")}
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/contact-us"
                 className="transition-colors hover:text-gold"
               >

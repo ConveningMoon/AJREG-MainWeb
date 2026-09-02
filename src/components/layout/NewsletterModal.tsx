@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { X } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { NewsletterSubscribeForm } from "@/components/forms/NewsletterSubscribeForm";
 
 export function NewsletterModal({
   open,
@@ -13,7 +14,6 @@ export function NewsletterModal({
   onClose: () => void;
 }) {
   const t = useTranslations("newsletter");
-  const [submitted, setSubmitted] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   // Close on Escape and lock body scroll while open; focus the close button.
@@ -71,49 +71,18 @@ export function NewsletterModal({
           <p className="mt-3 text-sm leading-relaxed text-navy-700">
             {t("subtitle")}
           </p>
-          <p className="mt-2 text-sm font-medium text-taupe">{t("offer")}</p>
 
-          {submitted ? (
-            <div className="mt-6 rounded-lg bg-blush/60 p-4 text-sm text-navy-800">
-              <p>{t("notActive")}</p>
-              <Link
-                href="/contact-us"
-                onClick={onClose}
-                className="mt-2 inline-block font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 hover:text-gold"
-              >
-                {t("contactLink")} →
-              </Link>
-            </div>
-          ) : (
-            <form
-              className="mt-6 space-y-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-            >
-              <input
-                type="text"
-                required
-                placeholder={t("firstName")}
-                aria-label={t("firstName")}
-                className="w-full rounded-lg border border-navy-200 bg-white px-4 py-2.5 text-sm text-navy outline-none placeholder:text-navy-400 focus:border-gold focus:ring-2 focus:ring-gold/30"
-              />
-              <input
-                type="email"
-                required
-                placeholder={t("email")}
-                aria-label={t("email")}
-                className="w-full rounded-lg border border-navy-200 bg-white px-4 py-2.5 text-sm text-navy outline-none placeholder:text-navy-400 focus:border-gold focus:ring-2 focus:ring-gold/30"
-              />
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-navy-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-              >
-                {t("submit")}
-              </button>
-            </form>
-          )}
+          <div className="mt-6">
+            <NewsletterSubscribeForm />
+          </div>
+
+          <Link
+            href="/newsletter"
+            onClick={onClose}
+            className="mt-5 inline-block text-sm font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4 transition-colors hover:text-gold"
+          >
+            {t("seeArchive")} →
+          </Link>
         </div>
       </div>
     </div>
