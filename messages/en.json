@@ -92,10 +92,10 @@
     },
     "page": {
       "eyebrow": "Newsletter",
-      "title": "The Hampton Roads market, explained.",
-      "subtitle": "What is actually happening with prices, inventory and timing across Virginia and North Carolina — in plain language, with every number sourced.",
+      "title": "Everything you need to know about real estate in Virginia and North Carolina",
+      "subtitle": "Discover and keep up with the whole housing market: news, tips and things worth knowing, all in one place.",
       "formTitle": "Subscribe",
-      "formSubtitle": "Your first name and email. Nothing else."
+      "formSubtitle": "Leave us your name and email, and never miss an opportunity in the market."
     },
     "archive": {
       "eyebrow": "Archive",
@@ -109,7 +109,8 @@
       "dataAsOf": "Data as of {date}",
       "sources": "Sources",
       "ctaTitle": "Get the next one.",
-      "ctaSubtitle": "Subscribe to receive our market analysis."
+      "ctaSubtitle": "Subscribe to receive our market analysis.",
+      "sourceCount": "{count, plural, =1 {1 source} other {# sources}}"
     }
   },
   "houses": {

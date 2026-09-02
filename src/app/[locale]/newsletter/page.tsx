@@ -42,7 +42,6 @@ export default async function NewsletterPage({
   const t = await getTranslations("newsletter");
 
   const editions = editionsForLocale(await getEditions(), locale);
-  const [featured, ...rest] = editions;
 
   return (
     <>
@@ -100,29 +99,18 @@ export default async function NewsletterPage({
                 <p className="mt-4 text-navy-600">{t("archive.empty")}</p>
               </div>
             ) : (
-              <>
-                <div className="mt-10 lg:mx-auto lg:max-w-4xl">
+              // Two columns until xl: with a handful of editions, three
+              // narrow cards read as an empty shelf rather than a grid.
+              <div className="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+                {editions.map((edition) => (
                   <EditionCard
-                    edition={featured}
-                    dateLabel={formatEditionDate(featured.publishedAt, locale)}
+                    key={edition.id}
+                    edition={edition}
+                    dateLabel={formatEditionDate(edition.publishedAt, locale)}
                     readLabel={t("archive.read")}
-                    featured
                   />
-                </div>
-
-                {rest.length > 0 && (
-                  <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {rest.map((edition) => (
-                      <EditionCard
-                        key={edition.id}
-                        edition={edition}
-                        dateLabel={formatEditionDate(edition.publishedAt, locale)}
-                        readLabel={t("archive.read")}
-                      />
-                    ))}
-                  </div>
-                )}
-              </>
+                ))}
+              </div>
             )}
           </div>
         </section>

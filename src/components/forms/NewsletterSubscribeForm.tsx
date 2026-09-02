@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
@@ -43,17 +43,24 @@ type Status = "idle" | "success" | "duplicate" | "error";
 export function NewsletterSubscribeForm({
   editionId,
   tone = "light",
+  stacked = false,
   onSuccess,
 }: {
   /** Set on an edition page so the CRM knows which edition won the reader. */
   editionId?: string;
   /** `dark` places the form on a navy surface. */
   tone?: "light" | "dark";
+  /** One field per row — for narrow columns like the article sidebar, where
+   *  the viewport is wide but the form is not. */
+  stacked?: boolean;
   onSuccess?: () => void;
 }) {
   const t = useTranslations("newsletter");
   const locale = useLocale();
   const [status, setStatus] = useState<Status>("idle");
+  // The page and the modal can both hold a form at once — unique ids keep
+  // each label bound to its own input.
+  const fieldId = useId();
 
   const {
     register,
@@ -159,13 +166,13 @@ export function NewsletterSubscribeForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={`grid gap-4 ${stacked ? "" : "sm:grid-cols-2"}`}>
         <div>
-          <label htmlFor="nl-first-name" className="sr-only">
+          <label htmlFor={`${fieldId}-first-name`} className="sr-only">
             {t("form.firstName")}
           </label>
           <input
-            id="nl-first-name"
+            id={`${fieldId}-first-name`}
             type="text"
             autoComplete="given-name"
             placeholder={t("form.firstName")}
@@ -176,11 +183,11 @@ export function NewsletterSubscribeForm({
           {errorText(errors.firstName?.message)}
         </div>
         <div>
-          <label htmlFor="nl-email" className="sr-only">
+          <label htmlFor={`${fieldId}-email`} className="sr-only">
             {t("form.email")}
           </label>
           <input
-            id="nl-email"
+            id={`${fieldId}-email`}
             type="email"
             autoComplete="email"
             placeholder={t("form.email")}
