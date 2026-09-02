@@ -43,3 +43,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# graphify (graph.json, GRAPH_REPORT.md, manifest.json are committed and shared;
+# the rest is machine-local or regenerable — see CLAUDE.md "## graphify")
+graphify-out/graph.html
+graphify-out/cache/
+graphify-out/cost.json
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+graphify-out/.graphify_labels.json
+
+graphify-out/
+.claude/

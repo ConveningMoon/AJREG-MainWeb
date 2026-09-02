@@ -4,7 +4,8 @@
     "houses": "Casas",
     "ourTeam": "Nuestro Equipo",
     "contact": "Contáctanos",
-    "callUs": "Llámanos al"
+    "callUs": "Llámanos al",
+    "newsletter": "Newsletter"
   },
   "topbar": {
     "coverage": "Virginia · Carolina del Norte, EE. UU."
@@ -65,16 +66,51 @@
     }
   },
   "newsletter": {
-    "eyebrow": "Guía gratis",
+    "eyebrow": "Newsletter",
     "title": "¡Mantente al día en el mercado inmobiliario!",
-    "subtitle": "Sé el primero en recibir información exclusiva, novedades del mercado y consejos de expertos.",
-    "offer": "Regístrate y recibe nuestra guía gratuita: 10 secretos para maximizar el valor de tu propiedad.",
-    "firstName": "Nombre",
-    "email": "Correo electrónico",
-    "submit": "Envíenme la guía",
+    "subtitle": "Novedades del mercado, datos por zona y consejos de compra en Virginia y Carolina del Norte — escritos por nuestro equipo, con fuentes y fecha.",
     "close": "Cerrar",
-    "notActive": "El registro aún no está activo. Mientras tanto, escríbenos directamente:",
-    "contactLink": "Contactar al equipo"
+    "seeArchive": "Ver ediciones anteriores",
+    "form": {
+      "firstName": "Nombre",
+      "email": "Correo electrónico",
+      "consent": "Acepto recibir la newsletter de A&J Real Estate Group y entiendo que puedo darme de baja cuando quiera.",
+      "submit": "Suscribirme"
+    },
+    "validation": {
+      "firstName": "Cuéntanos tu nombre.",
+      "emailRequired": "Escribe tu correo electrónico.",
+      "emailInvalid": "Ese correo no parece válido.",
+      "consent": "Marca la casilla para confirmar que aceptas."
+    },
+    "result": {
+      "successTitle": "¡Listo!",
+      "successBody": "Gracias por suscribirte — pronto tendrás noticias nuestras.",
+      "duplicateTitle": "Ya estabas suscrito.",
+      "duplicateBody": "Este correo ya está en la lista. No hace falta nada más.",
+      "errorBody": "No pudimos completar tu suscripción. Inténtalo de nuevo."
+    },
+    "page": {
+      "eyebrow": "Newsletter",
+      "title": "El mercado de Hampton Roads, explicado.",
+      "subtitle": "Qué está pasando de verdad con los precios, la oferta y los tiempos en Virginia y Carolina del Norte — en lenguaje claro y con cada dato citado.",
+      "formTitle": "Suscríbete",
+      "formSubtitle": "Tu nombre y tu correo. Nada más."
+    },
+    "archive": {
+      "eyebrow": "Archivo",
+      "title": "Ediciones anteriores",
+      "empty": "Todavía no hay ediciones publicadas. Suscríbete y recibirás la primera.",
+      "read": "Leer edición"
+    },
+    "edition": {
+      "back": "Todas las ediciones",
+      "published": "Publicado el {date}",
+      "dataAsOf": "Datos al {date}",
+      "sources": "Fuentes",
+      "ctaTitle": "Recibe la próxima.",
+      "ctaSubtitle": "Suscríbete para recibir nuestro análisis del mercado."
+    }
   },
   "houses": {
     "hero": {
@@ -554,6 +590,10 @@
     "checkIn": {
       "title": "Actualización de Cliente",
       "description": "Una actualización rápida para que los clientes de A&J Real Estate Group nos cuenten cómo va su búsqueda o venta de propiedad."
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Novedades del mercado y datos por zona en Virginia y Carolina del Norte, por el equipo de A&J Real Estate Group — con fuentes, fecha y en lenguaje claro."
     }
   }
 }

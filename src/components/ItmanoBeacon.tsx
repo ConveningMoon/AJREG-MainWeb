@@ -6,16 +6,14 @@ import Script from "next/script";
 // el CRM ve los envíos pero no cuánta gente llegó a la página y no la llenó, que
 // es justo lo que dice si el problema está en el tráfico o en el formulario.
 //
-// `intake.js` lo sirve el propio CRM y se encarga del resto (huella del
-// visitante, UTMs y el POST a /api/intake/<canal>/view). Sólo hay que decirle
-// de qué canal es esta página.
-const CRM_BASE = process.env.NEXT_PUBLIC_ITMANO_URL ?? "https://app.itmano.com";
-
+// Se carga desde una ruta LOCAL, que next.config.ts reescribe al CRM: así la
+// medición es first-party y no la tocan los bloqueadores de rastreo ni el
+// bot-check del otro dominio. intake.js deriva su base de su propio `src`.
 export function ItmanoBeacon({ channelPublicId }: { channelPublicId: string }) {
   if (!channelPublicId) return null;
   return (
     <Script
-      src={`${CRM_BASE}/intake.js`}
+      src={"/intake.js"}
       data-channel={channelPublicId}
       strategy="afterInteractive"
     />

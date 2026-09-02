@@ -4,7 +4,8 @@
     "houses": "Houses",
     "ourTeam": "Our Team",
     "contact": "Contact Us",
-    "callUs": "Call us"
+    "callUs": "Call us",
+    "newsletter": "Newsletter"
   },
   "topbar": {
     "coverage": "Virginia · North Carolina, USA"
@@ -65,16 +66,51 @@
     }
   },
   "newsletter": {
-    "eyebrow": "Free guide",
-    "title": "Stay Ahead in Real Estate Trends!",
-    "subtitle": "Be the first to get exclusive real estate insights, market updates, and expert tips.",
-    "offer": "Sign up and receive our free guide: 10 Secrets to Maximizing Your Property Value.",
-    "firstName": "First name",
-    "email": "Email address",
-    "submit": "Send me the guide",
+    "eyebrow": "Newsletter",
+    "title": "Stay ahead in real estate trends!",
+    "subtitle": "Market updates, neighborhood data and buying tips for Virginia and North Carolina — written by our team, sourced and dated.",
     "close": "Close",
-    "notActive": "Sign-up isn't live yet. In the meantime, reach us directly:",
-    "contactLink": "Contact the team"
+    "seeArchive": "Read past editions",
+    "form": {
+      "firstName": "First name",
+      "email": "Email address",
+      "consent": "I agree to receive the A&J Real Estate Group newsletter and understand I can unsubscribe at any time.",
+      "submit": "Subscribe"
+    },
+    "validation": {
+      "firstName": "Please tell us your first name.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "That email address doesn't look right.",
+      "consent": "Please tick the box to confirm you agree."
+    },
+    "result": {
+      "successTitle": "You're in.",
+      "successBody": "Thanks for subscribing — we'll be in touch soon.",
+      "duplicateTitle": "You're already subscribed.",
+      "duplicateBody": "This email is already on the list. Nothing else to do.",
+      "errorBody": "We couldn't complete your subscription. Please try again."
+    },
+    "page": {
+      "eyebrow": "Newsletter",
+      "title": "The Hampton Roads market, explained.",
+      "subtitle": "What is actually happening with prices, inventory and timing across Virginia and North Carolina — in plain language, with every number sourced.",
+      "formTitle": "Subscribe",
+      "formSubtitle": "Your first name and email. Nothing else."
+    },
+    "archive": {
+      "eyebrow": "Archive",
+      "title": "Past editions",
+      "empty": "No editions published yet. Subscribe and you'll get the first one.",
+      "read": "Read edition"
+    },
+    "edition": {
+      "back": "All editions",
+      "published": "Published {date}",
+      "dataAsOf": "Data as of {date}",
+      "sources": "Sources",
+      "ctaTitle": "Get the next one.",
+      "ctaSubtitle": "Subscribe to receive our market analysis."
+    }
   },
   "houses": {
     "hero": {
@@ -554,6 +590,10 @@
     "checkIn": {
       "title": "Client Check-In",
       "description": "A quick check-in for A&J Real Estate Group clients to update our team on where things stand with your home search or sale."
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Market updates and neighborhood data for Virginia and North Carolina from the A&J Real Estate Group team — sourced, dated and in plain language."
     }
   }
 }
