@@ -323,10 +323,25 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 **Mini-Fase 6e — Newsletter (suscripción + archivo de ediciones)**
 - Nueva ruta `/[locale]/newsletter`: banda navy con el formulario de suscripción
-  (captación primero) + archivo de ediciones publicadas (la más reciente destacada,
-  el resto en grilla de 3). Nueva ruta `/[locale]/newsletter/[slug]`: lectura de
-  la edición (portada, título, dek, fecha de publicación y de los datos, cuerpo,
-  fuentes numeradas) + formulario al final con `edition_id` para la atribución.
+  (captación primero) + archivo de ediciones publicadas en **grilla uniforme**
+  (2 columnas hasta `xl`, 3 desde ahí — con pocas ediciones, tres tarjetas
+  estrechas parecen un estante vacío). Sin tarjeta destacada: un archivo es un
+  estante de números, no una portada con nota principal.
+- Nueva ruta `/[locale]/newsletter/[slug]`: `max-w-6xl` partido en **columna de
+  artículo + aside pegajoso** (`lg:sticky`) con el formulario, que acompaña toda
+  la lectura en vez de esperar después de las fuentes. La prosa mantiene una
+  medida de 38rem y las **figuras** (placas de datos, imágenes, citas, avisos)
+  ocupan el ancho completo de la columna y se salen del borde del texto: el
+  espacio horizontal se lo quedan los números. Encabezado a ancho completo y
+  fila de procedencia (publicado · datos al · nº de fuentes) bajo el dek.
+- **Placas de datos:** en una edición real la mitad de los bloques son `stat` y
+  llegan en rachas de 2 y 3, así que las consecutivas se agrupan en un solo panel
+  (`sm:grid-cols-2`). Cada placa va: qué mide (versalitas) → el número (EB
+  Garamond) → la variación, con la cita en la esquina. El paréntesis final del
+  valor (`$415,000 (+5.1% interanual)`) se separa como segunda línea en vez de
+  partir el titular a media frase; un valor largo baja de tamaño solo.
+- El formulario tiene variante `stacked` (un campo por fila) para el aside, e
+  ids por instancia (`useId`) porque la página y el modal pueden coexistir.
 - **Suscripción → intake PÚBLICO de ITMANO** (canal `chn_aoad7icta5o2`):
   `POST /api/intake/<canal>/submit` **desde el navegador**. No lleva secreto — lo
   protegen el id no adivinable + honeypot + validación de schema — y `next.config.ts`
