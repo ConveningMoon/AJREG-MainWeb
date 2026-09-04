@@ -12,13 +12,17 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 //   · drafts / archived editions simply do not exist for this site, there is
 //     nothing for us to filter out;
 //   · `category` is NOT granted to anon today, so the site can neither filter
-//     nor display it (that is a grant change on the CRM side).
+//     nor display it (that is a grant change on the CRM side);
+//   · `author_name` / `author_title` ARE granted (migration 111) — the byline
+//     is a denormalized snapshot taken at publish time, safe to show even if
+//     the agent who wrote it later leaves.
 const CRM_TENANT_ID = "tenant-aj";
 
 const EDITION_COLUMNS = [
   "id", "tenant_id", "channel_id", "slug", "title", "dek", "language",
   "translation_group_id", "cover_image_url", "content", "sources",
   "data_as_of", "status", "published_at", "created_at",
+  "author_name", "author_title",
 ].join(",");
 
 // ── Content blocks ───────────────────────────────────────────────────────────
@@ -66,6 +70,10 @@ export type NewsletterEdition = {
   language: string;
   /** Groups the language variants of the same edition together. */
   translationGroupId: string | null;
+  /** Denormalized snapshot of who signs the edition — never null once backfilled. */
+  authorName: string | null;
+  /** Self-reported by the agent; NULL until that field exists in the CRM. */
+  authorTitle: string | null;
   coverImageUrl: string;
   content: NewsletterContent | null;
   sources: NewsletterSource[];
@@ -96,6 +104,8 @@ function mapRow(r: Record<string, unknown>): NewsletterEdition {
     dek:                (r.dek as string | null) ?? null,
     language:           String(r.language ?? "es"),
     translationGroupId: (r.translation_group_id as string | null) ?? null,
+    authorName:         (r.author_name as string | null) ?? null,
+    authorTitle:        (r.author_title as string | null) ?? null,
     coverImageUrl:      String(r.cover_image_url ?? ""),
     content:            parseContent(r.content),
     sources:            parseSources(r.sources),

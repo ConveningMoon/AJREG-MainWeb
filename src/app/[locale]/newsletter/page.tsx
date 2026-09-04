@@ -6,7 +6,7 @@ import { ItmanoBeacon } from "@/components/ItmanoBeacon";
 import { NewsletterSubscribeForm } from "@/components/forms/NewsletterSubscribeForm";
 import { EditionCard } from "@/components/newsletter/EditionCard";
 import { getEditions, editionsForLocale } from "@/lib/newsletter";
-import { formatEditionDate } from "@/lib/newsletter-format";
+import { formatEditionDate, languageLabel } from "@/lib/newsletter-format";
 
 // Editions are published from the CRM, which has no way to purge this site's
 // cache — so the archive refreshes on its own. Five minutes is the same window
@@ -108,6 +108,14 @@ export default async function NewsletterPage({
                     edition={edition}
                     dateLabel={formatEditionDate(edition.publishedAt, locale)}
                     readLabel={t("archive.read")}
+                    languageLabel={languageLabel(edition.language, locale)}
+                    byline={
+                      edition.authorName
+                        ? edition.authorTitle
+                          ? t("bylineWithTitle", { name: edition.authorName, title: edition.authorTitle })
+                          : t("byline", { name: edition.authorName })
+                        : null
+                    }
                   />
                 ))}
               </div>

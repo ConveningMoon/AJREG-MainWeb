@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,7 +10,7 @@ import { EditionContent } from "@/components/newsletter/EditionContent";
 import { EditionViewBeacon } from "@/components/newsletter/EditionViewBeacon";
 import { NewsletterSubscribeForm } from "@/components/forms/NewsletterSubscribeForm";
 import { getEdition, getEditions } from "@/lib/newsletter";
-import { formatDataAsOf, formatEditionDate } from "@/lib/newsletter-format";
+import { formatDataAsOf, formatEditionDate, languageLabel } from "@/lib/newsletter-format";
 
 // Same window as the archive. A dynamic segment only honours `revalidate` once
 // it is in the prerender manifest, which is what generateStaticParams below is
@@ -64,6 +65,44 @@ export default async function NewsletterEditionPage({
 
   const publishedLabel = formatEditionDate(edition.publishedAt, locale);
   const dataAsOfLabel = formatDataAsOf(edition.dataAsOf, locale);
+  const langLabel = languageLabel(edition.language, locale);
+  const byline = edition.authorName
+    ? edition.authorTitle
+      ? t("bylineWithTitle", { name: edition.authorName, title: edition.authorTitle })
+      : t("byline", { name: edition.authorName })
+    : null;
+
+  // Interleaved with "·" separators below — built as a list because whether a
+  // leading dot is needed depends on what (if anything) rendered before it.
+  const provenance: { key: string; node: React.ReactNode }[] = [];
+  if (byline) {
+    provenance.push({
+      key: "byline",
+      node: <span className="font-medium text-navy-700">{byline}</span>,
+    });
+  }
+  if (publishedLabel) {
+    provenance.push({
+      key: "published",
+      node: (
+        <time dateTime={edition.publishedAt ?? undefined}>
+          {t("edition.published", { date: publishedLabel })}
+        </time>
+      ),
+    });
+  }
+  if (dataAsOfLabel) {
+    provenance.push({
+      key: "dataAsOf",
+      node: <span>{t("edition.dataAsOf", { date: dataAsOfLabel })}</span>,
+    });
+  }
+  if (edition.sources.length > 0) {
+    provenance.push({
+      key: "sources",
+      node: <span>{t("edition.sourceCount", { count: edition.sources.length })}</span>,
+    });
+  }
 
   return (
     <>
@@ -81,7 +120,10 @@ export default async function NewsletterEditionPage({
           {/* The headline runs the full width; the reading column narrows
               further down, once the sidebar joins it. */}
           <header className="mt-8 max-w-4xl">
-            <h1 className="font-display text-4xl font-semibold leading-[1.08] text-navy sm:text-5xl lg:text-[3.5rem]">
+            <span className="inline-flex items-center rounded-full bg-navy-100 px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-wider text-navy-600">
+              {langLabel}
+            </span>
+            <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.08] text-navy sm:text-5xl lg:text-[3.5rem]">
               {edition.title}
             </h1>
             {edition.dek && (
@@ -91,33 +133,20 @@ export default async function NewsletterEditionPage({
             )}
           </header>
 
-          {/* Provenance row — the dates and the source count are this
+          {/* Provenance row — the byline, dates and source count are this
               newsletter's whole argument, so they sit above the fold rather
               than in a footnote. */}
           <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-navy-200 py-4 text-sm text-navy-500">
-            {publishedLabel && (
-              <time dateTime={edition.publishedAt ?? undefined}>
-                {t("edition.published", { date: publishedLabel })}
-              </time>
-            )}
-            {dataAsOfLabel && (
-              <>
-                <span className="text-gold" aria-hidden="true">
-                  ·
-                </span>
-                <span>{t("edition.dataAsOf", { date: dataAsOfLabel })}</span>
-              </>
-            )}
-            {edition.sources.length > 0 && (
-              <>
-                <span className="text-gold" aria-hidden="true">
-                  ·
-                </span>
-                <span>
-                  {t("edition.sourceCount", { count: edition.sources.length })}
-                </span>
-              </>
-            )}
+            {provenance.map((item, i) => (
+              <Fragment key={item.key}>
+                {i > 0 && (
+                  <span className="text-gold" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+                {item.node}
+              </Fragment>
+            ))}
           </div>
 
           {edition.coverImageUrl && (

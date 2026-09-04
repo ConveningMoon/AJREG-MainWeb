@@ -70,6 +70,8 @@
     "title": "¡Mantente al día en el mercado inmobiliario!",
     "subtitle": "Novedades del mercado, datos por zona y consejos de compra en Virginia y Carolina del Norte — escritos por nuestro equipo, con fuentes y fecha.",
     "close": "Cerrar",
+    "byline": "Por {name}",
+    "bylineWithTitle": "Por {name}, {title}",
     "seeArchive": "Ver ediciones anteriores",
     "form": {
       "firstName": "Nombre",

@@ -12,11 +12,17 @@ export function EditionCard({
   edition,
   dateLabel,
   readLabel,
+  languageLabel,
+  byline,
 }: {
   edition: NewsletterEdition;
   /** Pre-formatted publication date — formatting needs the request locale. */
   dateLabel: string;
   readLabel: string;
+  /** Pre-formatted display name for `edition.language` — also locale-dependent. */
+  languageLabel: string;
+  /** Pre-formatted "By {name}" (or null when the CRM hasn't backfilled a signer). */
+  byline: string | null;
 }) {
   return (
     <Link
@@ -33,6 +39,9 @@ export function EditionCard({
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         )}
+        <span className="absolute left-4 top-4 rounded-full bg-cream/95 px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-wider text-navy-700 shadow-sm">
+          {languageLabel}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
@@ -42,6 +51,9 @@ export function EditionCard({
         <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-navy">
           {edition.title}
         </h3>
+        {byline && (
+          <p className="mt-1.5 text-xs font-medium text-navy-500">{byline}</p>
+        )}
         {edition.dek && (
           <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-navy-700">
             {edition.dek}

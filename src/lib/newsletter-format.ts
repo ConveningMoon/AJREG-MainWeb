@@ -23,3 +23,17 @@ export function formatDataAsOf(iso: string | null, locale: string): string {
     year: "numeric",
   });
 }
+
+/**
+ * Display name for an edition's ISO 639-1 `language` code, localized to the
+ * visitor's own locale (e.g. "es" reads as "Español" for a Spanish visitor,
+ * "Spanish" for an English one). Falls back to the raw code if the runtime
+ * doesn't recognize it rather than showing nothing.
+ */
+export function languageLabel(code: string, locale: string): string {
+  try {
+    return new Intl.DisplayNames([locale], { type: "language" }).of(code) ?? code.toUpperCase();
+  } catch {
+    return code.toUpperCase();
+  }
+}
