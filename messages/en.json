@@ -70,8 +70,7 @@
     "title": "Stay ahead in real estate trends!",
     "subtitle": "Market updates, neighborhood data and buying tips for Virginia and North Carolina — written by our team, sourced and dated.",
     "close": "Close",
-    "byline": "By {name}",
-    "bylineWithTitle": "By {name}, {title}",
+    "bylinePrefix": "By",
     "seeArchive": "Read past editions",
     "form": {
       "firstName": "First name",

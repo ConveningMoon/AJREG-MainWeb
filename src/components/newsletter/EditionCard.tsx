@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { NewsletterEdition } from "@/lib/newsletter";
+import { EditionByline } from "./EditionByline";
 
 /**
  * One edition in the archive grid. Every edition gets the same card: the
@@ -13,7 +14,7 @@ export function EditionCard({
   dateLabel,
   readLabel,
   languageLabel,
-  byline,
+  bylinePrefix,
 }: {
   edition: NewsletterEdition;
   /** Pre-formatted publication date — formatting needs the request locale. */
@@ -21,8 +22,8 @@ export function EditionCard({
   readLabel: string;
   /** Pre-formatted display name for `edition.language` — also locale-dependent. */
   languageLabel: string;
-  /** Pre-formatted "By {name}" (or null when the CRM hasn't backfilled a signer). */
-  byline: string | null;
+  /** Localized "By" — the names themselves come off the edition. */
+  bylinePrefix: string;
 }) {
   return (
     <Link
@@ -51,9 +52,12 @@ export function EditionCard({
         <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-navy">
           {edition.title}
         </h3>
-        {byline && (
-          <p className="mt-1.5 text-xs font-medium text-navy-500">{byline}</p>
-        )}
+        <EditionByline
+          edition={edition}
+          prefix={bylinePrefix}
+          size={22}
+          className="mt-2.5 text-xs"
+        />
         {edition.dek && (
           <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-navy-700">
             {edition.dek}

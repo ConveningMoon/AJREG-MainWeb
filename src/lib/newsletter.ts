@@ -13,16 +13,17 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 //     nothing for us to filter out;
 //   · `category` is NOT granted to anon today, so the site can neither filter
 //     nor display it (that is a grant change on the CRM side);
-//   · `author_name` / `author_title` ARE granted (migration 111) — the byline
-//     is a denormalized snapshot taken at publish time, safe to show even if
-//     the agent who wrote it later leaves.
+//   · the byline columns ARE granted: `author_name` / `author_title` (111) and
+//     `author_org_name` / `author_avatar_url` (113). All four are denormalized
+//     snapshots taken when the signature was chosen, safe to show even if the
+//     agent who wrote it later leaves the agency.
 const CRM_TENANT_ID = "tenant-aj";
 
 const EDITION_COLUMNS = [
   "id", "tenant_id", "channel_id", "slug", "title", "dek", "language",
   "translation_group_id", "cover_image_url", "content", "sources",
   "data_as_of", "status", "published_at", "created_at",
-  "author_name", "author_title",
+  "author_name", "author_title", "author_org_name", "author_avatar_url",
 ].join(",");
 
 // ── Content blocks ───────────────────────────────────────────────────────────
@@ -70,10 +71,18 @@ export type NewsletterEdition = {
   language: string;
   /** Groups the language variants of the same edition together. */
   translationGroupId: string | null;
-  /** Denormalized snapshot of who signs the edition — never null once backfilled. */
+  /**
+   * The PERSON who signs. Null when the edition carries no personal byline —
+   * the CRM treats the person and the agency as two independent, optional
+   * signatures, so this being null says nothing about `authorOrgName`.
+   */
   authorName: string | null;
   /** Self-reported by the agent; NULL until that field exists in the CRM. */
   authorTitle: string | null;
+  /** The AGENCY that signs. Null when it chose not to sign this edition. */
+  authorOrgName: string | null;
+  /** Photo of the signing person. Null when they have none uploaded yet. */
+  authorAvatarUrl: string | null;
   coverImageUrl: string;
   content: NewsletterContent | null;
   sources: NewsletterSource[];
@@ -106,6 +115,8 @@ function mapRow(r: Record<string, unknown>): NewsletterEdition {
     translationGroupId: (r.translation_group_id as string | null) ?? null,
     authorName:         (r.author_name as string | null) ?? null,
     authorTitle:        (r.author_title as string | null) ?? null,
+    authorOrgName:      (r.author_org_name as string | null) ?? null,
+    authorAvatarUrl:    (r.author_avatar_url as string | null) ?? null,
     coverImageUrl:      String(r.cover_image_url ?? ""),
     content:            parseContent(r.content),
     sources:            parseSources(r.sources),

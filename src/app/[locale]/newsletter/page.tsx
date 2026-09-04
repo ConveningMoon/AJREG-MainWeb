@@ -109,13 +109,7 @@ export default async function NewsletterPage({
                     dateLabel={formatEditionDate(edition.publishedAt, locale)}
                     readLabel={t("archive.read")}
                     languageLabel={languageLabel(edition.language, locale)}
-                    byline={
-                      edition.authorName
-                        ? edition.authorTitle
-                          ? t("bylineWithTitle", { name: edition.authorName, title: edition.authorTitle })
-                          : t("byline", { name: edition.authorName })
-                        : null
-                    }
+                    bylinePrefix={t("bylinePrefix")}
                   />
                 ))}
               </div>

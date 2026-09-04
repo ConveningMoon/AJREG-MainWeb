@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { EditionContent } from "@/components/newsletter/EditionContent";
 import { EditionViewBeacon } from "@/components/newsletter/EditionViewBeacon";
+import { EditionByline } from "@/components/newsletter/EditionByline";
 import { NewsletterSubscribeForm } from "@/components/forms/NewsletterSubscribeForm";
 import { getEdition, getEditions } from "@/lib/newsletter";
 import { formatDataAsOf, formatEditionDate, languageLabel } from "@/lib/newsletter-format";
@@ -66,21 +67,12 @@ export default async function NewsletterEditionPage({
   const publishedLabel = formatEditionDate(edition.publishedAt, locale);
   const dataAsOfLabel = formatDataAsOf(edition.dataAsOf, locale);
   const langLabel = languageLabel(edition.language, locale);
-  const byline = edition.authorName
-    ? edition.authorTitle
-      ? t("bylineWithTitle", { name: edition.authorName, title: edition.authorTitle })
-      : t("byline", { name: edition.authorName })
-    : null;
 
   // Interleaved with "·" separators below — built as a list because whether a
   // leading dot is needed depends on what (if anything) rendered before it.
+  // The byline is NOT in here: it carries a photo and its own markup, so it
+  // sits on its own line above the dates instead of inside a run of text.
   const provenance: { key: string; node: React.ReactNode }[] = [];
-  if (byline) {
-    provenance.push({
-      key: "byline",
-      node: <span className="font-medium text-navy-700">{byline}</span>,
-    });
-  }
   if (publishedLabel) {
     provenance.push({
       key: "published",
@@ -131,6 +123,12 @@ export default async function NewsletterEditionPage({
                 {edition.dek}
               </p>
             )}
+            <EditionByline
+              edition={edition}
+              prefix={t("bylinePrefix")}
+              size={34}
+              className="mt-6 text-sm"
+            />
           </header>
 
           {/* Provenance row — the byline, dates and source count are this
