@@ -128,6 +128,7 @@ export default async function NewsletterEditionPage({
               prefix={t("bylinePrefix")}
               size={34}
               className="mt-6 text-sm"
+              linkAuthor
             />
           </header>
 

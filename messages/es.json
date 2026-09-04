@@ -109,8 +109,8 @@
       "published": "Publicado el {date}",
       "dataAsOf": "Datos al {date}",
       "sources": "Fuentes",
-      "ctaTitle": "Recibe la próxima.",
-      "ctaSubtitle": "Suscríbete para recibir nuestro análisis del mercado.",
+      "ctaTitle": "¿No sabes por dónde empezar?",
+      "ctaSubtitle": "Suscríbete para recibir una GUÍA COMPLETA de cómo entrar en el mercado y no te pierdas de ninguna noticia sobre bienes raíces",
       "sourceCount": "{count, plural, =1 {1 fuente} other {# fuentes}}"
     }
   },

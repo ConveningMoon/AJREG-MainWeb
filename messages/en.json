@@ -109,8 +109,8 @@
       "published": "Published {date}",
       "dataAsOf": "Data as of {date}",
       "sources": "Sources",
-      "ctaTitle": "Get the next one.",
-      "ctaSubtitle": "Subscribe to receive our market analysis.",
+      "ctaTitle": "Not sure where to start?",
+      "ctaSubtitle": "Subscribe to get a COMPLETE GUIDE on how to enter the market, and never miss a piece of real estate news",
       "sourceCount": "{count, plural, =1 {1 source} other {# sources}}"
     }
   },

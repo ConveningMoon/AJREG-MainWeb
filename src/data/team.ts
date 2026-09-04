@@ -69,3 +69,34 @@ export const seedTeam: TeamMember[] = [
     bioPhotoUrl: "/images/team/melany_bio.webp",
   },
 ];
+
+/**
+ * Finds the team member a newsletter byline refers to, or null.
+ *
+ * The CRM stores the signature as a plain denormalized string (a snapshot of
+ * `agents.name` taken when the edition was signed), not as a slug or an id —
+ * `author_agent_id` is deliberately internal and never exposed to `anon`. So
+ * the only way back to a profile page is the name, matched against this seed.
+ *
+ * The comparison strips accents and case on purpose: the CRM row for Adriana
+ * reads "Adriana Melendez" while this seed spells it "Adriana Meléndez", and a
+ * literal match would silently drop the link for the agent who signs the most.
+ *
+ * Returns null for anyone not on the public team — an agent who left, or one
+ * the site never listed. A byline with no profile is still a valid byline; it
+ * just is not a link.
+ */
+export function teamMemberByName(name: string | null | undefined): TeamMember | null {
+  const wanted = normalizeName(name);
+  if (!wanted) return null;
+  return seedTeam.find((m) => normalizeName(m.name) === wanted) ?? null;
+}
+
+function normalizeName(value: string | null | undefined): string {
+  return (value ?? "")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
