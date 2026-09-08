@@ -456,6 +456,19 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-09-08** — **La ficha no muestra "Plano de planta" si la propiedad no tiene planos.**
+  Antes la sección salía siempre y, sin imágenes, pintaba una tarjeta "Plano disponible
+  próximamente" que ocupaba lo mismo que un plano real sin darle nada al visitante. Ahora
+  la `<section>` entera va tras `floorPlans.length > 0` — mismo criterio que ya usan la
+  descripción, las características y los embeds. `FloorPlanCarousel` perdió la prop
+  `placeholder` y su rama vacía (queda un `return null` defensivo por si un llamador
+  futuro lo monta sin imágenes); se borró la clave i18n `houses.detail.floorPlanPlaceholder`
+  en EN y ES. De paso, `altPattern` se pasa con `t.raw()` como el resto de patrones con
+  `{placeholders}`: con `t()` next-intl lanzaba `FORMATTING_ERROR` en cada render de la
+  sección porque el mensaje lleva `{name}` y `{n}` y no se le daban valores.
+  **Verificado:** `next build` + runtime en `next start` contra el CRM real — en las fichas
+  sin planos la sección ya no aparece (EN y ES) y el "Recorrido virtual" sigue en su sitio.
+
 - **2026-09-08** — **Tours 3D y multimedia en la ficha de propiedad.**
   Ver **Mini-Fase 6f** arriba. En resumen: se lee la columna `web_embeds` del CRM y
   la ficha construye su propio `<iframe>` a partir de la url ya validada contra una
