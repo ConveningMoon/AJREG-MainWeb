@@ -1,3 +1,5 @@
+import type { PropertyEmbed } from "@/lib/property-embeds";
+
 export type ListingStatus = "available" | "pending" | "sold";
 
 export type Listing = {
@@ -27,6 +29,8 @@ export type Listing = {
   featuresEs?: string[];
   floorPlans?: string[];
   detailPdfUrl?: string;
+  /** Tours 3D, videos y mapas de terceros (columna `web_embeds` del CRM). */
+  embeds?: PropertyEmbed[];
 };
 
 export const seedListings: Listing[] = [

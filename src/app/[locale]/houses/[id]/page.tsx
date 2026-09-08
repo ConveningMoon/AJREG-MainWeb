@@ -9,6 +9,7 @@ import { getListing, getListings } from "@/lib/listings";
 import { PropertyGallery } from "@/components/houses/PropertyGallery";
 import { FloorPlanCarousel } from "@/components/houses/FloorPlanCarousel";
 import { ShareButton } from "@/components/houses/ShareButton";
+import { PropertyEmbeds } from "@/components/houses/PropertyEmbeds";
 import { brand } from "@/lib/brand";
 import { routing } from "@/i18n/routing";
 import { seedListings } from "@/data/listings";
@@ -84,6 +85,12 @@ export default async function PropertyDetailPage({
     : [];
 
   const related = allListings.filter((l) => l.id !== listing.id).slice(0, 3);
+
+  /* Embeds de terceros. El agente elige en el CRM dónde va cada uno: el tour
+     3D acompaña a la descripción; el video o el mapa van junto a los planos. */
+  const embeds = listing.embeds ?? [];
+  const tourEmbeds  = embeds.filter((e) => e.placement === "tour");
+  const extraEmbeds = embeds.filter((e) => e.placement === "extra");
 
   const statusKey = listing.status ?? "available";
   const statusColors: Record<string, string> = {
@@ -197,6 +204,13 @@ export default async function PropertyDetailPage({
               </section>
             )}
 
+            <PropertyEmbeds
+              embeds={tourEmbeds}
+              title={t("detail.tourTitle")}
+              openLabel={t.raw("detail.embedOpen") as string}
+              name={listing.name}
+            />
+
             {features && features.length > 0 && (
               <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
                 <h2 className="font-display text-2xl font-semibold text-navy">
@@ -212,6 +226,13 @@ export default async function PropertyDetailPage({
                 </ul>
               </section>
             )}
+
+            <PropertyEmbeds
+              embeds={extraEmbeds}
+              title={t("detail.mediaTitle")}
+              openLabel={t.raw("detail.embedOpen") as string}
+              name={listing.name}
+            />
 
             {/* Floor plan carousel */}
             <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
