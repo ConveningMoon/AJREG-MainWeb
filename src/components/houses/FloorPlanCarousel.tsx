@@ -8,10 +8,9 @@ type Props = {
   images: string[];
   name: string;
   altPattern: string;
-  placeholder: string;
 };
 
-export function FloorPlanCarousel({ images, name, altPattern, placeholder }: Props) {
+export function FloorPlanCarousel({ images, name, altPattern }: Props) {
   const [current, setCurrent] = useState(0);
   const [lightbox, setLightbox] = useState(false);
 
@@ -41,13 +40,9 @@ export function FloorPlanCarousel({ images, name, altPattern, placeholder }: Pro
   const altFor = (n: number) =>
     altPattern.replace("{name}", name).replace("{n}", String(n + 1));
 
-  if (total === 0) {
-    return (
-      <div className="mt-4 flex h-40 items-center justify-center rounded-xl bg-blush/40 text-sm text-navy-500">
-        {placeholder}
-      </div>
-    );
-  }
+  // La ficha ya no monta el carrusel sin planos; esto sólo evita que un
+  // llamador futuro reviente al indexar images[current].
+  if (total === 0) return null;
 
   return (
     <>

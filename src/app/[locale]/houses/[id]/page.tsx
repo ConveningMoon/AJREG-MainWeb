@@ -86,6 +86,8 @@ export default async function PropertyDetailPage({
 
   const related = allListings.filter((l) => l.id !== listing.id).slice(0, 3);
 
+  const floorPlans = listing.floorPlans ?? [];
+
   /* Embeds de terceros. El agente elige en el CRM dónde va cada uno: el tour
      3D acompaña a la descripción; el video o el mapa van junto a los planos. */
   const embeds = listing.embeds ?? [];
@@ -234,18 +236,21 @@ export default async function PropertyDetailPage({
               name={listing.name}
             />
 
-            {/* Floor plan carousel */}
-            <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
-              <h2 className="font-display text-2xl font-semibold text-navy">
-                {t("detail.floorPlanTitle")}
-              </h2>
-              <FloorPlanCarousel
-                images={listing.floorPlans ?? []}
-                name={listing.name}
-                altPattern={t("detail.floorPlanAlt")}
-                placeholder={t("detail.floorPlanPlaceholder")}
-              />
-            </section>
+            {/* Floor plan carousel — sin planos no hay sección: una tarjeta que
+                sólo dice "próximamente" ocupa el mismo espacio que un plano y no
+                le da nada al visitante. */}
+            {floorPlans.length > 0 && (
+              <section className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-navy-900/5">
+                <h2 className="font-display text-2xl font-semibold text-navy">
+                  {t("detail.floorPlanTitle")}
+                </h2>
+                <FloorPlanCarousel
+                  images={floorPlans}
+                  name={listing.name}
+                  altPattern={t.raw("detail.floorPlanAlt") as string}
+                />
+              </section>
+            )}
           </div>
 
           {/* Sidebar: CTA */}
