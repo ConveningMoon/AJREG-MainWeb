@@ -184,8 +184,10 @@ export default async function PropertyDetailPage({
                   {t("detail.descriptionTitle")}
                 </h2>
                 <p className="mt-4 leading-relaxed text-navy-700">{description}</p>
-                <div className="mt-6 border-t border-navy-100 pt-5">
-                  {listing.detailPdfUrl ? (
+                {/* Sin PDF no hay botón ni separador: una píldora apagada que
+                    dice "próximamente" ofrece algo que no se puede hacer. */}
+                {listing.detailPdfUrl && (
+                  <div className="mt-6 border-t border-navy-100 pt-5">
                     <a
                       href={listing.detailPdfUrl}
                       target="_blank"
@@ -196,13 +198,8 @@ export default async function PropertyDetailPage({
                       <Download className="h-4 w-4" aria-hidden="true" />
                       {t("detail.download")}
                     </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-2.5 rounded-xl border border-navy-100 bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-400 cursor-not-allowed select-none">
-                      <Download className="h-4 w-4" aria-hidden="true" />
-                      {t("detail.downloadNotAvailable")}
-                    </span>
-                  )}
-                </div>
+                  </div>
+                )}
               </section>
             )}
 

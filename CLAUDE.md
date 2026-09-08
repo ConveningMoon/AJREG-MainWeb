@@ -456,6 +456,17 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-09-08** — **La ficha esconde el botón de PDF si la propiedad no tiene ficha en PDF.**
+  Mismo criterio que los planos, aplicado al botón bajo la descripción: sin `detailPdfUrl`
+  ya no se pinta la píldora apagada "Detalles disponibles próximamente" — ni el separador
+  que la acompañaba — porque ofrecía algo que no se puede hacer. Borrada la clave i18n
+  `houses.detail.downloadNotAvailable` en EN y ES. **Nota:** hoy las 10 propiedades
+  publicadas de A&J tienen `detail_pdf_url`, así que ninguna llegaba a esa rama; el cambio
+  es la regla y la limpieza del código muerto, no un arreglo visible.
+  **Verificado:** `next build` + runtime contra el CRM real (`riverbend-twinhome` con PDF y
+  2 planos, `oak-street-cottage` con PDF y 0 planos): el botón real sale en las dos y no
+  queda ninguna píldora `cursor-not-allowed`.
+
 - **2026-09-08** — **La ficha no muestra "Plano de planta" si la propiedad no tiene planos.**
   Antes la sección salía siempre y, sin imágenes, pintaba una tarjeta "Plano disponible
   próximamente" que ocupaba lo mismo que un plano real sin darle nada al visitante. Ahora
