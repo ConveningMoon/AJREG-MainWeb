@@ -1,6 +1,7 @@
 import "server-only";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { seedListings, type Listing } from "@/data/listings";
+import { toPropertyEmbeds } from "@/lib/property-embeds";
 
 // Listings now come from the ITMANO CRM database (tenant A&J = `tenant-aj`),
 // which is the single source of truth. The CRM exposes published properties to
@@ -14,7 +15,7 @@ const LISTING_COLUMNS = [
   "list_price", "address", "city", "sqft", "bedrooms",
   "bathrooms_full", "bathrooms_half", "year_built", "garage_spaces", "lot_sqft",
   "description_en", "description_es", "features_en", "features_es",
-  "image_url", "gallery", "floor_plans", "detail_pdf_url",
+  "image_url", "gallery", "floor_plans", "detail_pdf_url", "web_embeds",
 ].join(",");
 
 // CRM property_type is a coarse enum; the site shows a friendly label. Seeded
@@ -74,6 +75,7 @@ function mapRow(r: Record<string, unknown>): Listing {
     featuresEs:     arr(r.features_es).length ? arr(r.features_es) : (seed?.featuresEs ?? []),
     floorPlans:     arr(r.floor_plans).length ? arr(r.floor_plans) : (seed?.floorPlans ?? []),
     detailPdfUrl:   (r.detail_pdf_url ?? seed?.detailPdfUrl ?? undefined) as string | undefined,
+    embeds:         toPropertyEmbeds(r.web_embeds),
   };
 }
 

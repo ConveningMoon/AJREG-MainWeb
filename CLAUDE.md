@@ -383,6 +383,35 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   purgar la caché de este sitio). Env `NEXT_PUBLIC_ITMANO_NEWSLETTER_CHANNEL_ID`.
 **→ commit:** `feat: newsletter page + edition archive from the CRM`
 
+**Mini-Fase 6f — Tours 3D y multimedia en la ficha de propiedad**
+- El CRM ganó la columna `properties.web_embeds` (jsonb, migración 113 del CRM):
+  `[{url, provider, title, placement}]`. Guarda **sólo la url**, nunca el `<iframe>`
+  que pega el agente — pintar ese HTML obligaría a un `dangerouslySetInnerHTML` en
+  una página pública con la marca del cliente, y eso convierte a cualquiera que
+  pueda editar una propiedad en alguien capaz de inyectar `<script>`.
+- `lib/property-embeds.ts` (nuevo) es el **espejo de lectura** de
+  `src/lib/services/property-embeds.ts` del CRM: revalida cada url contra la lista
+  blanca de hosts (Zillow view-imx, Matterport /show, iGuide, YouTube, Vimeo,
+  Google Maps /maps/embed) y normaliza (watch→embed, etc.). Se revalida aquí
+  aunque el CRM ya lo haya hecho: es una base de otro producto y una url con un
+  host inesperado no debe acabar en un iframe de esta web. También acepta el
+  snippet `<iframe …>` completo por si la fila se editó a mano — de él sólo saca
+  el `src`, que pasa por la misma lista blanca. Lo que no pasa la validación se
+  descarta en silencio en vez de tumbar la ficha.
+- `Listing.embeds` + `web_embeds` en la lista explícita de columnas de
+  `lib/listings.ts` (el grant por columna a `anon` ya viene hecho del CRM).
+- `components/houses/PropertyEmbeds.tsx` (server component) pinta la sección con
+  el mismo chrome que las demás de la ficha (`rounded-xl bg-white p-6 shadow-sm
+  ring-1 ring-navy-900/5`, título display navy): iframe propio en caja 16/9 (4/3
+  para mapas), `loading="lazy"`, badge del proveedor y enlace "Abrir en {proveedor}"
+  — la salida de emergencia si el proveedor se niega a que lo embeban y el recuadro
+  queda en blanco. No renderiza nada si no hay embeds de ese tipo.
+- Colocación según el `placement` que elige el agente en el CRM: `tour` →
+  **"Recorrido virtual"**, justo después de "Sobre esta casa"; `extra` →
+  **"Video y multimedia"**, antes de "Plano de planta".
+- i18n `houses.detail.tourTitle` / `mediaTitle` / `embedOpen` (EN/ES).
+**→ commit:** `feat: 3d tour and media embeds on the property page`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -426,6 +455,22 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-09-08** — **Tours 3D y multimedia en la ficha de propiedad.**
+  Ver **Mini-Fase 6f** arriba. En resumen: se lee la columna `web_embeds` del CRM y
+  la ficha construye su propio `<iframe>` a partir de la url ya validada contra una
+  lista blanca de proveedores — nunca se pinta el HTML que pegó el agente. El tour
+  3D va después de "Sobre esta casa" y el video/mapa antes de "Plano de planta",
+  según el `placement` que el agente elige en el CRM. **Verificado:** `next build`
+  (42 páginas, sin errores de tipos); el parser probado con 10 casos, entre ellos el
+  snippet `<iframe>` de Zillow tal cual, entidades `&amp;` en el src, la ficha
+  `/homedetails/` (no embebible), un host fuera de la lista, `javascript:` y un
+  `<script>` pegado en el campo — los cinco últimos se descartan; y render real en
+  `next start`/`next dev` inyectando un embed de prueba: el orden de secciones sale
+  correcto en EN y ES y la sección se ve con el mismo chrome que el resto de la
+  ficha. **Pendiente/a verificar por el usuario:** hoy las 10 propiedades publicadas
+  tienen `web_embeds` vacío, así que la sección no aparece en ninguna todavía —
+  cargar un tour desde el CRM para verlo en vivo.
 
 - **2026-09-02** — **Newsletter: página de suscripción + archivo de ediciones servido desde el CRM.**
   Ver **Mini-Fase 6e** arriba para el detalle. En resumen: `/newsletter` (captación +
