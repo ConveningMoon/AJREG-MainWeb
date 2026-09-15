@@ -132,8 +132,8 @@ primerizos, clientes de reubicación.
 - `/` — **Home**
 - `/houses` — **Listados** (estáticos por ahora)
 - `/contact-us` — **Contacto**
-- `/events/feel-good-social` — **Feel Good Social** → campaña de evento en inglés
-  (20 de septiembre de 2026, 1–5 PM, Sandbridge Farmhouse) con RSVP a ITMANO.
+- `/events/feel-good-social` — **Feel Good Giveaway** → formulario de rifa en inglés
+  para abrir durante el evento, con calificación opcional y envío a ITMANO.
 - `/team/[slug]` — **Equipo** → `adriana-melendez`, `john-leonard`,
   `melany-valencia`, `viviane-chiu`
   *(Nota: en Webflow son páginas separadas; aquí se unifican en un template con
@@ -414,24 +414,28 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - i18n `houses.detail.tourTitle` / `mediaTitle` / `embedOpen` (EN/ES).
 **→ commit:** `feat: 3d tour and media embeds on the property page`
 
-**Mini-Fase 6g — Feel Good Social event campaign**
+**Mini-Fase 6g — Feel Good Social giveaway campaign**
 - Nueva ruta `/[locale]/events/feel-good-social`, con contenido de campaña
   intencionalmente en inglés incluso si se llega desde el locale español.
-- Dirección visual “garden invitation in motion”: extensión temporal de la marca
-  con rosa pétalo, frambuesa y blush, conservando navy/cream, tipografías existentes
-  y el layout global. Decoración con corazones, flores y partículas CSS; respeta
-  `prefers-reduced-motion` y no requiere imágenes inventadas del evento.
-- Datos confirmados: 20 de septiembre de 2026, 1–5 PM, Sandbridge Farmhouse;
-  workouts, juegos, vendors y comida. La dirección exacta, precio, capacidad y
-  vendors concretos no se inventan ni se publican.
-- RSVP corto: nombre y email obligatorios; apellido, teléfono e interés principal
-  opcionales. Envía desde el navegador al intake público ITMANO
-  `chn_xk4qyhwgff6e` por el rewrite first-party `/api/intake/*`, con honeypot vacío,
-  `language: en`, `source_url` y `form_answers[]` para `event_interest`.
+- La ruta dejó de promocionar o registrar asistencia al evento: ahora es una
+  entrada compacta a la rifa para personas que ya están allí. No muestra fecha,
+  hora, lugar, actividades ni afirma premio, reglas o mecánica no suministrados.
+- Dirección visual “gift ticket in hand”: una sola superficie blush/frambuesa,
+  regalo SVG geométrico y formulario progresivo de dos pasos, optimizado primero
+  para teléfono. Las transiciones usan easing exponencial, el retorno al formulario
+  hace scroll suave y `prefers-reduced-motion` elimina el desplazamiento espacial.
+- Nombre y email son obligatorios; apellido y teléfono opcionales. La intención
+  `buy | sell | invest | raffle_only` abre preguntas opcionales de plazo, zona,
+  financiamiento, presupuesto, agente, motivación o listado. Las respuestas usan
+  exactamente las claves y códigos puntuables de ITMANO (`timeline`, `area`,
+  `financing`, `budget_amount`, `agent_status`, `sell_motivation`, `listing_status`).
+- Envía desde el navegador al intake público `chn_xk4qyhwgff6e` por el rewrite
+  first-party `/api/intake/*`, con honeypot vacío, `language: en`, `source_url` y
+  `form_answers[]`.
 - Medición de vistas obligatoria mediante `<ItmanoBeacon>` y el mismo channel ID.
   Env var: `NEXT_PUBLIC_ITMANO_FEEL_GOOD_SOCIAL_CHANNEL_ID`.
 
-**→ commit:** `feat: feel good social event page`
+**→ commit:** `feat: redesign feel good social as giveaway`
 
 ---
 
@@ -477,19 +481,16 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
-- **2026-09-15** — **Nueva campaña `/events/feel-good-social` con RSVP a ITMANO.**
-  Página en inglés para el evento del 20 de septiembre de 2026, 1–5 PM, en
-  Sandbridge Farmhouse. Diseño rosa/frambuesa con decoraciones florales y corazones,
-  responsive y con movimiento reducido accesible. El formulario corto usa el intake
-  público del canal `chn_xk4qyhwgff6e` mediante el proxy first-party, manda honeypot,
-  `source_url` y el interés opcional como `form_answers`, y la página carga el beacon
-  obligatorio para vistas/conversión. Se añadió metadata de evento, JSON-LD,
-  sitemap y env documentada. Ver **Mini-Fase 6g** para el detalle.
-  **Verificado:** JSON de mensajes, TypeScript, ESLint, `next build` (42 páginas),
-  HTTP 200 para la campaña y `/intake.js` servido como JavaScript, URL presente
-  en sitemap, validación del formulario, semántica `required`/`aria-describedby`,
-  y revisión visual desktop 1440×900 + móvil 390×844. No se envió un RSVP ficticio
-  para no contaminar los leads reales del evento.
+- **2026-09-15** — **`/events/feel-good-social` cambia de RSVP a entrada de rifa.**
+  Se eliminó toda la información de fecha, horario, lugar y actividades porque la
+  página se usa durante el evento. Ahora presenta un regalo SVG y un formulario
+  progresivo de dos pasos pensado para teléfono. El segundo paso recoge intención
+  y, cuando aplica, respuestas opcionales con las claves de scoring del CRM para
+  compradores, vendedores e inversionistas; “Just the giveaway” no inventa una
+  intención inmobiliaria. Conserva el canal, proxy first-party, honeypot y beacon.
+  Ver **Mini-Fase 6g** para el detalle. **Verificado:** mensajes JSON, TypeScript,
+  ESLint, `next build` (42 páginas), validación/foco, ramas buyer/seller y revisión
+  visual desktop 1440×900 + móvil 390×844. No se envió una entrada ficticia al CRM.
 
 - **2026-09-08** — **La ficha esconde el botón de PDF si la propiedad no tiene ficha en PDF.**
   Mismo criterio que los planos, aplicado al botón bajo la descripción: sin `detailPdfUrl`

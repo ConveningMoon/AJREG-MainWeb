@@ -60,9 +60,10 @@ the A&J brand recognizable.
 - Product and implementation record: `CLAUDE.md`
 - Existing CRM intake and measurement patterns: `next.config.ts`,
   `src/components/ItmanoBeacon.tsx`, and newsletter form components
-- The Feel Good Social date, time, venue name, audience, activities, and ITMANO
-  channel contract were supplied by the user; no exact street address or event
-  photography was supplied.
+- The Feel Good Social raffle is filled out during the event. Its in-event purpose,
+  English content, ITMANO channel contract, and need for lead-qualification answers
+  were supplied by the user; no prize, rules, eligibility, or winner mechanics were
+  supplied and none may be claimed.
 
 ## Product Principles
 
