@@ -55,3 +55,10 @@ graphify-out/.graphify_labels.json
 
 graphify-out/
 .claude/
+
+# Impeccable local harness state and generated review evidence. The durable
+# design sidecar and surface briefs under .impeccable remain versioned.
+.codex/hooks.json
+.cursor/hooks.json
+.impeccable/config.local.json
+.impeccable/review/

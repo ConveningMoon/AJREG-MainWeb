@@ -498,6 +498,90 @@
       "phoneRequired": "Please enter a valid phone number."
     }
   },
+  "feelGoodSocial": {
+    "meta": {
+      "title": "Feel Good Social — September 20 at Sandbridge Farmhouse",
+      "description": "Join a feel-good afternoon created by women, for women, with workouts, games, vendors and food at Sandbridge Farmhouse on September 20, 2026."
+    },
+    "hero": {
+      "month": "September",
+      "title": "Feel Good Social",
+      "subtitle": "An afternoon created by women, for women — with movement, games, vendors, good food and plenty of room to simply feel good.",
+      "cta": "Save my spot",
+      "secondaryCta": "See what’s waiting",
+      "posterStatement": "Come as you are. Leave a little lighter.",
+      "posterBody": "Move, play, browse, taste and connect at Sandbridge Farmhouse.",
+      "host": "A&J Real Estate Group",
+      "seal": "Women for women"
+    },
+    "experience": {
+      "title": "Come for the movement. Stay for the joy.",
+      "body": "Feel Good Social brings together the little things that reset a day: an energizing workout, a game that makes you laugh, something delicious and new people worth meeting."
+    },
+    "activities": {
+      "workouts": {
+        "title": "Move",
+        "body": "Discover workout experiences designed to get you moving and feeling energized."
+      },
+      "games": {
+        "title": "Play",
+        "body": "Make room for lighthearted games, shared laughs and an easy way to connect."
+      },
+      "vendors": {
+        "title": "Browse",
+        "body": "Meet vendors bringing their ideas, products and feel-good energy to the afternoon."
+      },
+      "food": {
+        "title": "Taste",
+        "body": "Enjoy good food while you slow down, catch up and take in the day."
+      }
+    },
+    "details": {
+      "time": "1:00–5:00 PM",
+      "timeSuffix": "PM · September 20",
+      "timeBody": "Four easygoing hours to move, play, eat, browse and spend time in good company.",
+      "venue": "Sandbridge Farmhouse",
+      "venueBody": "The home of Feel Good Social on September 20. The exact street address is intentionally not published here."
+    },
+    "rsvp": {
+      "title": "This afternoon has your name on it.",
+      "body": "Leave your details below to register for Feel Good Social. We’ll keep your RSVP connected to the email you use here.",
+      "note": "September 20 · 1–5 PM"
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "optional": "optional",
+      "interest": "What are you most excited about?",
+      "interestPlaceholder": "Choose one",
+      "interests": {
+        "workouts": "The workouts",
+        "games": "The games",
+        "vendors": "Discovering the vendors",
+        "food": "The food",
+        "everything": "A little bit of everything"
+      },
+      "submit": "Register for Feel Good Social",
+      "submitting": "Registering…",
+      "contactNote": "A&J Real Estate Group may use these details to contact you about this event."
+    },
+    "validation": {
+      "firstName": "Please enter your first name.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "Please enter a valid phone number or leave this field blank."
+    },
+    "result": {
+      "successTitle": "You’re on the list.",
+      "successBody": "Your RSVP is in. We can’t wait to welcome you to Feel Good Social on September 20.",
+      "duplicateTitle": "We already have your RSVP.",
+      "duplicateBody": "This email is already connected to the event, so there’s nothing else you need to do.",
+      "errorTitle": "We couldn’t register you just yet.",
+      "errorBody": "Please check your connection and try again. If the problem continues, contact A&J Real Estate Group directly."
+    }
+  },
   "team": {
     "profile": {
       "back": "Back to home",

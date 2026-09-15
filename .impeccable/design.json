@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T07:52:42Z",
+  "title": "Design System: A&J Real Estate Group",
+  "extensions": {
+    "colorMeta": {
+      "navy-50": {
+        "role": "neutral",
+        "displayName": "Navy Mist 50",
+        "canonical": "#f1f4f6",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-100": {
+        "role": "neutral",
+        "displayName": "Navy Mist 100",
+        "canonical": "#d2dadf",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-200": {
+        "role": "neutral",
+        "displayName": "Navy Mist 200",
+        "canonical": "#b4c0c8",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-300": {
+        "role": "neutral",
+        "displayName": "Navy Mist 300",
+        "canonical": "#96a7b1",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-400": {
+        "role": "neutral",
+        "displayName": "Navy Mist 400",
+        "canonical": "#778d9a",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-500": {
+        "role": "primary",
+        "displayName": "Slate Blue",
+        "canonical": "#597383",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-600": {
+        "role": "primary",
+        "displayName": "Harbor Slate 600",
+        "canonical": "#475e70",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-700": {
+        "role": "primary",
+        "displayName": "Harbor Slate 700",
+        "canonical": "#344a5d",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-800": {
+        "role": "primary",
+        "displayName": "Harbor Navy 800",
+        "canonical": "#22354a",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-900": {
+        "role": "primary",
+        "displayName": "Harbor Navy",
+        "canonical": "#102037",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "navy-950": {
+        "role": "primary",
+        "displayName": "Deep Harbor",
+        "canonical": "#0a1321",
+        "tonalRamp": ["#0a1321", "#102037", "#22354a", "#344a5d", "#597383", "#96a7b1", "#d2dadf", "#f1f4f6"]
+      },
+      "taupe": {
+        "role": "secondary",
+        "displayName": "Warm Taupe",
+        "canonical": "#49443e",
+        "tonalRamp": ["oklch(15% 0.01 70)", "oklch(27% 0.015 70)", "#49443e", "oklch(50% 0.018 70)", "oklch(62% 0.015 70)", "oklch(74% 0.012 70)", "oklch(86% 0.008 70)", "oklch(95% 0.004 70)"]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Soft Cream",
+        "canonical": "#fff7f5",
+        "tonalRamp": ["oklch(15% 0.012 25)", "oklch(27% 0.012 25)", "oklch(39% 0.012 25)", "oklch(51% 0.012 25)", "oklch(63% 0.012 25)", "oklch(75% 0.012 25)", "oklch(87% 0.012 25)", "#fff7f5"]
+      },
+      "blush": {
+        "role": "neutral",
+        "displayName": "Quiet Blush",
+        "canonical": "#e9d8d0",
+        "tonalRamp": ["oklch(15% 0.025 35)", "oklch(27% 0.028 35)", "oklch(39% 0.03 35)", "oklch(51% 0.03 35)", "oklch(63% 0.027 35)", "oklch(75% 0.022 35)", "#e9d8d0", "oklch(95% 0.008 35)"]
+      },
+      "gold": {
+        "role": "tertiary",
+        "displayName": "Heirloom Gold",
+        "canonical": "#c7a260",
+        "tonalRamp": ["oklch(15% 0.065 78)", "oklch(27% 0.085 78)", "oklch(39% 0.105 78)", "oklch(51% 0.115 78)", "#c7a260", "oklch(75% 0.09 78)", "oklch(87% 0.05 78)", "oklch(95% 0.02 78)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero statements and rare high-impact editorial moments."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page and section headings, commonly paired with an eyebrow."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card, modal, and sidebar titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions, guidance, forms, and reading content in either locale."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, dates, metadata, statuses, and compact utilities."
+      }
+    },
+    "shadows": [
+      {
+        "name": "surface-rest",
+        "value": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "purpose": "Quiet separation for white cards and form containers on cream."
+      },
+      {
+        "name": "interactive-lift",
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "purpose": "Hovering cards and open dropdowns."
+      },
+      {
+        "name": "dialog-lift",
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        "purpose": "Dialogs and full-attention overlays only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "150ms ease",
+        "purpose": "Default color, border, and small transform transitions."
+      },
+      {
+        "name": "pop-in",
+        "value": "220ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Dialog and focused overlay entrances, disabled when reduced motion is requested."
+      },
+      {
+        "name": "media-scale",
+        "value": "500ms ease",
+        "purpose": "Restrained image zoom inside interactive cards."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Gold Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The default high-emphasis action on global A&J surfaces.",
+      "html": "<button class=\"ds-btn-primary\">VIEW HOMES <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border: 0; border-radius: 0.25rem; background: var(--color-gold, #c7a260); color: var(--color-navy-950, #0a1321); padding: 1rem 1.75rem; font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background-color 150ms ease, transform 150ms ease; } .ds-btn-primary:hover { background: color-mix(in srgb, var(--color-gold, #c7a260) 85%, transparent); transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-navy-900, #102037); outline-offset: 2px; } .ds-btn-primary:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Secondary Outline Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A lower-emphasis action for use on a dark navy field.",
+      "html": "<button class=\"ds-btn-secondary\">GET THE GUIDE</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; border: 1px solid color-mix(in srgb, var(--color-gold, #c7a260) 60%, transparent); border-radius: 0.25rem; background: transparent; color: var(--color-cream, #fff7f5); padding: 1rem 1.75rem; font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease; } .ds-btn-secondary:hover { border-color: var(--color-gold, #c7a260); background: color-mix(in srgb, var(--color-gold, #c7a260) 10%, transparent); color: var(--color-gold, #c7a260); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-gold, #c7a260); outline-offset: 2px; } .ds-btn-secondary:active { background: color-mix(in srgb, var(--color-gold, #c7a260) 16%, transparent); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "The warm, clearly focused field used in contact and task forms.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-name\">FIRST NAME <span aria-hidden=\"true\">*</span></label><input class=\"ds-field\" id=\"ds-name\" type=\"text\" placeholder=\"Your name\">",
+      "css": ".ds-field-label { display: block; margin-bottom: 0.375rem; color: var(--color-navy-800, #22354a); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; font-weight: 500; } .ds-field-label span { color: var(--color-gold, #c7a260); } .ds-field { display: block; width: 100%; border: 1px solid var(--color-navy-200, #b4c0c8); border-radius: 0.5rem; background: color-mix(in srgb, var(--color-cream, #fff7f5) 40%, transparent); color: var(--color-navy-900, #102037); padding: 0.625rem 1rem; font-family: var(--font-body, Montserrat, sans-serif); font-size: 1rem; transition: border-color 150ms ease, box-shadow 150ms ease; } .ds-field::placeholder { color: var(--color-navy-400, #778d9a); } .ds-field:hover { border-color: var(--color-navy-400, #778d9a); } .ds-field:focus-visible { border-color: var(--color-gold, #c7a260); outline: none; box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-gold, #c7a260) 30%, transparent); }"
+    },
+    {
+      "name": "Editorial Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A reusable content-card treatment for properties and editorial issues.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-body\"><p class=\"ds-card-label\">FEATURED</p><h3>Warm expertise, close to home.</h3><p>Clear information presented with a calm editorial rhythm.</p><a href=\"#\">VIEW DETAILS <span aria-hidden=\"true\">↗</span></a></div></article>",
+      "css": ".ds-card { overflow: hidden; border-radius: 1rem; background: #fff; color: var(--color-navy-900, #102037); box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); outline: 1px solid rgba(16, 32, 55, 0.08); transition: transform 300ms ease, box-shadow 300ms ease; } .ds-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); } .ds-card-media { aspect-ratio: 3 / 2; background: linear-gradient(135deg, var(--color-navy-800, #22354a), var(--color-navy-500, #597383)); } .ds-card-body { padding: 1.5rem; } .ds-card-label { margin: 0; color: var(--color-gold, #c7a260); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; } .ds-card h3 { margin: 0.75rem 0 0; font-family: var(--font-display, \"EB Garamond\", serif); font-size: 1.5rem; line-height: 1.25; } .ds-card p:not(.ds-card-label) { margin: 0.75rem 0 0; color: var(--color-navy-700, #344a5d); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; line-height: 1.625; } .ds-card a { display: inline-flex; gap: 0.375rem; margin-top: 1.5rem; color: var(--color-navy-900, #102037); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; font-weight: 600; text-decoration: none; } .ds-card a:hover { color: var(--color-gold, #c7a260); } .ds-card a:focus-visible { outline: 2px solid var(--color-gold, #c7a260); outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A compact categorical marker for listing state, language, or selection.",
+      "html": "<span class=\"ds-chip\">AVAILABLE</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; border-radius: 9999px; background: var(--color-gold, #c7a260); color: var(--color-navy-950, #0a1321); padding: 0.25rem 0.75rem; font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; } .ds-chip:hover { background: color-mix(in srgb, var(--color-gold, #c7a260) 88%, transparent); } .ds-chip:focus-visible { outline: 2px solid var(--color-navy-900, #102037); outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "The cream-to-gold global navigation link with a growing active underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Preview navigation\"><a class=\"ds-nav-link\" href=\"#\">HOUSES</a><a class=\"ds-nav-link ds-nav-link-active\" href=\"#\">OUR TEAM</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2rem; background: var(--color-navy-900, #102037); padding: 1rem 1.5rem; } .ds-nav-link { position: relative; color: color-mix(in srgb, var(--color-cream, #fff7f5) 90%, transparent); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: color 150ms ease; } .ds-nav-link::after { position: absolute; left: 0; bottom: -0.375rem; width: 0; height: 2px; background: var(--color-gold, #c7a260); content: \"\"; transition: width 150ms ease; } .ds-nav-link:hover, .ds-nav-link-active { color: var(--color-gold, #c7a260); } .ds-nav-link:hover::after, .ds-nav-link-active::after { width: 100%; } .ds-nav-link:focus-visible { outline: 2px solid var(--color-cream, #fff7f5); outline-offset: 4px; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "custom",
+      "description": "The recurring gold rule and tracked label that introduces sections.",
+      "html": "<span class=\"ds-eyebrow\"><span class=\"ds-eyebrow-rule\" aria-hidden=\"true\"></span>WHO WE ARE</span>",
+      "css": ".ds-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; color: var(--color-gold, #c7a260); font-family: var(--font-body, Montserrat, sans-serif); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; } .ds-eyebrow-rule { width: 3rem; height: 2px; background: var(--color-gold, #c7a260); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Welcome Home",
+    "overview": "The A&J visual system pairs the composure of a trusted real-estate advisor with the warmth of a family and community welcome. Deep navy establishes credibility, cream and blush keep pages humane and inviting, and restrained gold marks the moments that deserve attention. The result is clean and elegant without becoming remote, loud, or status-driven.\n\nEditorial EB Garamond headlines supply aspiration and personality while Montserrat keeps navigation, forms, facts, and multilingual content clear. Real team, home, family, and community imagery should lead whenever suitable source material exists; decorative treatments remain subordinate to that human evidence.",
+    "keyCharacteristics": [
+      "Warm authority rather than corporate severity.",
+      "Editorial display type paired with highly legible utility text.",
+      "Deep navy anchors, warm light surfaces, and sparing gold accents.",
+      "Real people, homes, and community context over generic luxury signaling.",
+      "Clear actions, visible focus, and responsive layouts in English and Spanish."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Is a Signal Rule",
+        "body": "Use gold for actions, active states, icons, and short accents; its restraint is what gives it authority.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Ground Rule",
+        "body": "Default public pages to cream or a deliberate navy field. Use pure white inside contained surfaces rather than as the site's overall atmosphere.",
+        "section": "colors"
+      },
+      {
+        "name": "The Editorial-and-Utility Rule",
+        "body": "Use EB Garamond to create emotional hierarchy and Montserrat to make information and actions effortless to scan.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two-Voice Rule",
+        "body": "Do not add another display or body family. Express variation through scale, weight, case, and spacing within the established pair.",
+        "section": "typography"
+      },
+      {
+        "name": "The Clear Path Rule",
+        "body": "Each surface should make the next action obvious in the reading order, with layout supporting the action rather than competing with it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Earned Elevation Rule",
+        "body": "Keep static sections calm. Add conspicuous shadow only when an element floats, opens, or responds to interaction.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Radius Has a Job Rule",
+        "body": "Use small corners for decisive controls, larger corners for welcoming containers, and full pills only for compact categorical elements.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do anchor global surfaces in the confirmed navy, slate, cream, blush, and gold identity.",
+      "Do pair expressive EB Garamond hierarchy with clear Montserrat copy and controls.",
+      "Do use real team, home, family, and community imagery when approved source assets exist.",
+      "Do preserve visible keyboard focus, sufficient contrast, reduced-motion behavior, and responsive English/Spanish layouts.",
+      "Do keep event-specific color, illustration, and motion decisions in that event's surface brief unless repeated use establishes them as a system pattern."
+    ],
+    "donts": [
+      "Don't flood a page with gold or use it as a large generic background; it is a directional accent.",
+      "Don't replace warm cream with stark white across entire pages or substitute unrelated cool grays for the navy tonal scale.",
+      "Don't introduce a third font family or use decorative display type for form labels and body copy.",
+      "Don't use heavy shadow on every container; elevation must communicate hierarchy or interaction.",
+      "Don't promote the Feel Good Social raspberry palette, particles, botanical marks, or invitation composition into global tokens or reusable rules."
+    ]
+  }
+}

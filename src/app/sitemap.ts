@@ -31,6 +31,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...localizedEntries("/contact-us",{ changeFrequency: "monthly",  priority: 0.8 }),
     ...localizedEntries("/newsletter",{ changeFrequency: "weekly",   priority: 0.8 }),
     ...localizedEntries("/check-in",  { changeFrequency: "yearly",   priority: 0.3 }),
+    {
+      url: `${SITE_URL}/en/events/feel-good-social`,
+      lastModified: new Date("2026-09-15"),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    },
   ];
 
   // Published editions live in the CRM, so the list is read at build/revalidate

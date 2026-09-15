@@ -1,0 +1,86 @@
+.eventPage {
+  --event-ink: #38152c;
+  --event-berry: #a4134c;
+  --event-pink: #f4b8cb;
+  --event-blush: #f9dce6;
+  --event-paper: #fff9f8;
+  background: var(--event-paper);
+  color: var(--event-ink);
+}
+
+.eventPage ::selection {
+  background: var(--event-berry);
+  color: #fff;
+}
+
+:global(html.feel-good-social-scroll) {
+  scrollbar-color: var(--event-berry, #a4134c) var(--event-blush, #f9dce6);
+}
+
+:global(html.feel-good-social-scroll)::-webkit-scrollbar {
+  width: 12px;
+}
+
+:global(html.feel-good-social-scroll)::-webkit-scrollbar-track {
+  background: #f9dce6;
+}
+
+:global(html.feel-good-social-scroll)::-webkit-scrollbar-thumb {
+  border: 3px solid #f9dce6;
+  border-radius: 999px;
+  background: #a4134c;
+}
+
+.petalField {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  color: var(--particle-color, #a4134c);
+  opacity: var(--opacity, 0.38);
+  animation: petal-float var(--duration, 7s) cubic-bezier(0.22, 1, 0.36, 1)
+    var(--delay, 0s) infinite alternate;
+  transform: rotate(var(--rotation, -8deg));
+  will-change: transform;
+}
+
+.settledParticle {
+  position: absolute;
+  color: #c95d82;
+  opacity: 0.34;
+  pointer-events: none;
+  animation: quiet-bloom 5s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+}
+
+@keyframes petal-float {
+  from {
+    transform: translate3d(0, 0, 0) rotate(var(--rotation, -8deg));
+  }
+  to {
+    transform: translate3d(var(--drift-x, 18px), var(--drift-y, -24px), 0)
+      rotate(calc(var(--rotation, -8deg) + 18deg));
+  }
+}
+
+@keyframes quiet-bloom {
+  from {
+    transform: scale(0.92) rotate(-4deg);
+  }
+  to {
+    transform: scale(1.06) rotate(5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle,
+  .settledParticle {
+    animation: none;
+  }
+}
