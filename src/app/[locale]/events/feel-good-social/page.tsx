@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: SOCIAL_IMAGE,
           width: 1200,
           height: 630,
-          alt: "Feel Good Giveaway by A&J Real Estate Group",
+          alt: "Feel Good Giveaway by Melany Valencia for A&J Real Estate Group",
         },
       ],
     },
@@ -95,6 +95,7 @@ export default async function FeelGoodSocialPage({
               <h1 id="raffle-title" className={styles.title}>
                 {t("hero.title")}
               </h1>
+              <p className={styles.byline}>by Melany Valencia</p>
               <p className={styles.subtitle}>{t("hero.subtitle")}</p>
             </div>
           </div>

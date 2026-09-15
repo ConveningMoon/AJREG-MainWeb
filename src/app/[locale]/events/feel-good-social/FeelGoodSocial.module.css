@@ -130,6 +130,17 @@
   letter-spacing: -0.035em;
 }
 
+.byline {
+  width: fit-content;
+  margin-top: 0.45rem;
+  color: var(--raffle-deep);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+}
+
 .subtitle {
   max-width: 38rem;
   margin-top: 0.65rem;
