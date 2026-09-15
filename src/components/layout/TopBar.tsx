@@ -7,7 +7,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 export async function TopBar() {
   const t = await getTranslations();
   return (
-    <div className="hidden bg-navy-950 text-navy-100 md:block">
+    <div data-site-topbar className="hidden bg-navy-950 text-navy-100 md:block">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs">
         <div className="flex items-center gap-6">
           <a

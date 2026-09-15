@@ -28,3 +28,9 @@ QUALITY BAR: At 390px, match the clarity and touch comfort of a polished native 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 
 Memorable moment: a wrapped gift arrives once with a soft, weighted settling motion; afterward the interface stays calm and task-focused. Unresolved: prize, drawing, eligibility, and winner-notification details remain intentionally unclaimed because they were not supplied.
+
+## Finish record
+
+- 2026-09-15: The campaign top bar and navigation use deep berry fields only while this route is present; the shared footer is hidden for the focused onsite flow. CSS `:has()` applies the treatment on the server-rendered page, with the existing document class as a hydration fallback.
+- Social preview: `public/images/events/feel-good-giveaway-og.png`, 1200×630 PNG. Generated with OpenAI ImageGen from a campaign-specific prompt requesting a blush paper backdrop, raspberry gift, pink ribbon, restrained gold accents, and the exact “FEEL GOOD GIVEAWAY” / “A&J REAL ESTATE GROUP” text; cropped and resized locally from the generated landscape master.
+- Finish verdict: pass. Production build and targeted lint pass; live browser verification confirms the pink chrome and hidden footer on the campaign, navy chrome and visible footer on `/en`, and valid OG/Twitter tags. Repository-wide lint remains blocked by unrelated pre-existing errors outside this surface.

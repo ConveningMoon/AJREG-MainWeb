@@ -52,6 +52,35 @@
   background: #a4134c;
 }
 
+/* This campaign owns its chrome without changing the shared site theme. */
+:global(body):has(.rafflePage) :global([data-site-topbar]),
+:global(html.feel-good-social-scroll [data-site-topbar]) {
+  background: #5b0c2a;
+  color: #ffe9f0;
+}
+
+:global(body):has(.rafflePage) :global([data-site-nav]),
+:global(html.feel-good-social-scroll [data-site-nav]) {
+  background: #761037;
+  box-shadow: 0 10px 30px -18px rgb(56 21 44 / 0.72);
+}
+
+:global(body):has(.rafflePage) :global([data-site-nav] #mobile-menu),
+:global(html.feel-good-social-scroll [data-site-nav] #mobile-menu) {
+  border-color: #8c123f;
+  background: #761037;
+}
+
+:global(body):has(.rafflePage) :global([data-site-nav] #mobile-menu > div),
+:global(html.feel-good-social-scroll [data-site-nav] #mobile-menu > div) {
+  border-color: #8c123f;
+}
+
+:global(body):has(.rafflePage) :global([data-site-footer]),
+:global(html.feel-good-social-scroll [data-site-footer]) {
+  display: none;
+}
+
 .ambientShape {
   position: absolute;
   top: -11rem;

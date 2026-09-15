@@ -11,7 +11,7 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t-2 border-gold/25 bg-navy-900 text-navy-100">
+    <footer data-site-footer className="border-t-2 border-gold/25 bg-navy-900 text-navy-100">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div className="lg:col-span-1">

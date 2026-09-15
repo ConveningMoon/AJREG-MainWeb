@@ -51,7 +51,10 @@ export function Navbar() {
     }`;
 
   return (
-    <header className="sticky top-0 z-50 bg-navy-900 shadow-sm shadow-navy-950/30">
+    <header
+      data-site-nav
+      className="sticky top-0 z-50 bg-navy-900 shadow-sm shadow-navy-950/30"
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5">
         {/* Logo */}
         <Link
