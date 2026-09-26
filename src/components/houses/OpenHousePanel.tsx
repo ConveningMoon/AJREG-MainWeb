@@ -1,13 +1,13 @@
 "use client";
 
-import { FormEvent, useEffect, useId, useMemo, useState } from "react";
+import { FormEvent, useEffect, useId, useMemo, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import {
   AlertCircle,
   CalendarDays,
+  CalendarPlus,
   CheckCircle2,
   Clock3,
-  Download,
   Loader2,
   MessageSquareText,
   Users,
@@ -41,6 +41,10 @@ type SubmitStatus =
   | { state: "created" | "updated" }
   | { state: "error"; message: string };
 
+const subscribeToTimeZone = () => () => {};
+const getBrowserTimeZone = () => Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+const getServerTimeZone = () => null;
+
 export function OpenHousePanel({
   openHouse,
   locale,
@@ -51,9 +55,13 @@ export function OpenHousePanel({
   const t = useTranslations("houses.detail.openHouse");
   const fieldId = useId();
   const [now, setNow] = useState(() => new Date(openHouse.fetched_at).getTime());
-  const [response, setResponse] = useState<"yes" | "no">("yes");
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({ state: "idle" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const viewerTimeZone = useSyncExternalStore(
+    subscribeToTimeZone,
+    getBrowserTimeZone,
+    getServerTimeZone
+  );
 
   useEffect(() => {
     const interval = window.setInterval(() => setNow(Date.now()), 1_000);
@@ -63,9 +71,11 @@ export function OpenHousePanel({
   const countdown = getCountdown(openHouse, now);
 
   const eventDate = useMemo(() => {
+    if (!viewerTimeZone) return null;
+
     try {
       return new Intl.DateTimeFormat(locale, {
-        timeZone: openHouse.timezone,
+        timeZone: viewerTimeZone,
         dateStyle: "full",
       }).format(new Date(openHouse.starts_at));
     } catch {
@@ -73,12 +83,14 @@ export function OpenHousePanel({
         new Date(openHouse.starts_at)
       );
     }
-  }, [locale, openHouse.starts_at, openHouse.timezone]);
+  }, [locale, openHouse.starts_at, viewerTimeZone]);
 
   const eventTime = useMemo(() => {
+    if (!viewerTimeZone) return null;
+
     try {
       const formatter = new Intl.DateTimeFormat(locale, {
-        timeZone: openHouse.timezone,
+        timeZone: viewerTimeZone,
         timeStyle: "short",
       });
       return `${formatter.format(new Date(openHouse.starts_at))}–${formatter.format(
@@ -90,7 +102,7 @@ export function OpenHousePanel({
         new Date(openHouse.ends_at)
       )}`;
     }
-  }, [locale, openHouse.ends_at, openHouse.starts_at, openHouse.timezone]);
+  }, [locale, openHouse.ends_at, openHouse.starts_at, viewerTimeZone]);
 
   if (countdown.state === "ended") return null;
 
@@ -117,8 +129,8 @@ export function OpenHousePanel({
             email: String(formData.get("email") ?? "").trim(),
             phone: String(formData.get("phone") ?? "").trim() || undefined,
             language: locale === "es" ? "es" : "en",
-            response,
-            guests: response === "yes" ? Number(formData.get("guests") ?? 0) : 0,
+            response: "yes",
+            guests: Number(formData.get("guests") ?? 0),
             website: String(formData.get("website") ?? ""),
           }),
         }
@@ -138,7 +150,6 @@ export function OpenHousePanel({
 
       setSubmitStatus({ state: body.status === "updated" ? "updated" : "created" });
       form.reset();
-      setResponse("yes");
     } catch {
       setSubmitStatus({ state: "error", message: t("form.genericError") });
     } finally {
@@ -169,14 +180,25 @@ export function OpenHousePanel({
             </h2>
 
             <div className="mt-6 space-y-3 text-sm text-navy-100">
-              <p className="flex items-start gap-3">
-                <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-                <time dateTime={openHouse.starts_at}>{eventDate}</time>
-              </p>
-              <p className="flex items-start gap-3">
-                <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-                <span>{eventTime} · {openHouse.timezone}</span>
-              </p>
+              {viewerTimeZone && eventDate && eventTime ? (
+                <>
+                  <p className="flex items-start gap-3">
+                    <CalendarDays className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                    <time dateTime={openHouse.starts_at}>{eventDate}</time>
+                  </p>
+                  <p className="flex items-start gap-3">
+                    <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                    <span>
+                      {eventTime} · {t("localTimeZone", { timeZone: viewerTimeZone })}
+                    </span>
+                  </p>
+                </>
+              ) : (
+                <p className="flex items-start gap-3" aria-live="polite">
+                  <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
+                  <span>{t("localTimeLoading")}</span>
+                </p>
+              )}
             </div>
 
             {openHouse.public_notes && (
@@ -231,7 +253,7 @@ export function OpenHousePanel({
                 href={`https://app.itmano.com/api/open-houses/${openHouse.id}/ics`}
                 className="mt-7 inline-flex items-center gap-2 rounded-sm border border-gold/60 px-4 py-2.5 text-sm font-semibold text-cream transition-colors hover:border-gold hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
-                <Download className="h-4 w-4" aria-hidden="true" />
+                <CalendarPlus className="h-4 w-4" aria-hidden="true" />
                 {t("addToCalendar")}
               </a>
             )}
@@ -264,32 +286,6 @@ export function OpenHousePanel({
                   </div>
                 )}
 
-                <fieldset>
-                  <legend className="text-sm font-semibold text-navy-800">{t("form.response")}</legend>
-                  <div className="mt-2 grid grid-cols-2 gap-2">
-                    {(["yes", "no"] as const).map((value) => (
-                      <label
-                        key={value}
-                        className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border px-3 py-2.5 text-sm font-semibold transition-colors ${
-                          response === value
-                            ? "border-navy-700 bg-gold/15 text-navy-900"
-                            : "border-navy-400 text-navy-700 hover:border-navy-700"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="response"
-                          value={value}
-                          checked={response === value}
-                          onChange={() => setResponse(value)}
-                          className="accent-gold"
-                        />
-                        {t(`form.response${value === "yes" ? "Yes" : "No"}`)}
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="text-sm font-semibold text-navy-800" htmlFor={`${fieldId}-first-name`}>
                     {t("form.firstName")} <span className="text-red-700">*</span>
@@ -309,24 +305,22 @@ export function OpenHousePanel({
                   </label>
                 </div>
 
-                {response === "yes" && (
-                  <label className="block max-w-xs text-sm font-semibold text-navy-800" htmlFor={`${fieldId}-guests`}>
-                    <span className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-gold" aria-hidden="true" />
-                      {t("form.guests")}
-                    </span>
-                    <input
-                      id={`${fieldId}-guests`}
-                      name="guests"
-                      type="number"
-                      min={0}
-                      max={10}
-                      step={1}
-                      defaultValue={0}
-                      className={inputClass}
-                    />
-                  </label>
-                )}
+                <label className="block max-w-xs text-sm font-semibold text-navy-800" htmlFor={`${fieldId}-guests`}>
+                  <span className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-gold" aria-hidden="true" />
+                    {t("form.guests")}
+                  </span>
+                  <input
+                    id={`${fieldId}-guests`}
+                    name="guests"
+                    type="number"
+                    min={0}
+                    max={10}
+                    step={1}
+                    defaultValue={0}
+                    className={inputClass}
+                  />
+                </label>
 
                 <label className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
                   Website
