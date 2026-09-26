@@ -4,6 +4,8 @@ export type ListingStatus = "available" | "pending" | "sold";
 
 export type Listing = {
   id: string;
+  /** Internal CRM property UUID; the public route continues to use `id` (slug). */
+  crmId?: string;
   name: string;
   neighborhood?: string;
   propertyType?: string;

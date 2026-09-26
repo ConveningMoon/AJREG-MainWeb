@@ -174,7 +174,44 @@
       "backToListings": "Back to listings",
       "share": "Share",
       "download": "Download details",
-      "imageAlt": "{name} — photo {n}"
+      "imageAlt": "{name} — photo {n}",
+      "openHouse": {
+        "label": "Open house",
+        "title": "Come experience this home in person",
+        "cancelledTitle": "Open house update",
+        "cancelledMessage": "This open house was cancelled.",
+        "live": "The open house is happening now",
+        "startsIn": "Doors open in",
+        "countdownLabel": "Time remaining until the open house",
+        "units": {
+          "days": "Days",
+          "hours": "Hours",
+          "minutes": "Minutes",
+          "seconds": "Seconds"
+        },
+        "addToCalendar": "Add to calendar",
+        "notesLabel": "Additional information",
+        "form": {
+          "title": "Will we see you there?",
+          "subtitle": "Share your response and the hosting agent will be ready to welcome you.",
+          "response": "Your response",
+          "responseYes": "Yes, I'll attend",
+          "responseNo": "I can't attend",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "email": "Email",
+          "phone": "Phone",
+          "guests": "Additional guests (0–10)",
+          "optional": "optional",
+          "submit": "Send RSVP",
+          "submitting": "Sending…",
+          "createdTitle": "Your RSVP is confirmed",
+          "createdBody": "Thank you. The hosting agent has received your response.",
+          "updatedTitle": "Your RSVP was updated",
+          "updatedBody": "We saved your latest response for this open house.",
+          "genericError": "We couldn't send your response. Please check your details and try again."
+        }
+      }
     }
   },
   "contact": {

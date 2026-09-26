@@ -50,6 +50,7 @@ function mapRow(r: Record<string, unknown>): Listing {
 
   return {
     id,
+    crmId:           str(r.id) || undefined,
     name: str(r.name),
     neighborhood:   (r.neighborhood ?? seed?.neighborhood ?? undefined) as string | undefined,
     propertyType:   (seed?.propertyType ?? PROPERTY_TYPE_LABELS[str(r.property_type)] ?? undefined) as string | undefined,
