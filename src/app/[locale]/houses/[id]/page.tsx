@@ -10,7 +10,9 @@ import { PropertyGallery } from "@/components/houses/PropertyGallery";
 import { FloorPlanCarousel } from "@/components/houses/FloorPlanCarousel";
 import { ShareButton } from "@/components/houses/ShareButton";
 import { PropertyEmbeds } from "@/components/houses/PropertyEmbeds";
+import { OpenHousePanel } from "@/components/houses/OpenHousePanel";
 import { brand } from "@/lib/brand";
+import { getOpenHouseForProperty } from "@/lib/open-houses";
 import { routing } from "@/i18n/routing";
 import { seedListings } from "@/data/listings";
 
@@ -63,6 +65,10 @@ export default async function PropertyDetailPage({
   ]);
 
   if (!listing) notFound();
+
+  const openHouse = listing.crmId
+    ? await getOpenHouseForProperty(listing.crmId)
+    : null;
 
   const t  = await getTranslations({ locale, namespace: "houses" });
   const tc = await getTranslations({ locale, namespace: "common" });
@@ -172,6 +178,13 @@ export default async function PropertyDetailPage({
             ))}
           </div>
         </div>
+
+        {openHouse && (
+          <OpenHousePanel
+            openHouse={openHouse}
+            locale={locale}
+          />
+        )}
 
         {/* Content grid */}
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">

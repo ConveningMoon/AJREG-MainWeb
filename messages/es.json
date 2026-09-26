@@ -174,7 +174,44 @@
       "backToListings": "Volver a listados",
       "share": "Compartir",
       "download": "Descargar detalles",
-      "imageAlt": "{name} — foto {n}"
+      "imageAlt": "{name} — foto {n}",
+      "openHouse": {
+        "label": "Casa abierta",
+        "title": "Ven a conocer esta casa en persona",
+        "cancelledTitle": "Actualización de la casa abierta",
+        "cancelledMessage": "Esta casa abierta fue cancelada.",
+        "live": "La casa abierta está ocurriendo ahora",
+        "startsIn": "Abrimos las puertas en",
+        "countdownLabel": "Tiempo restante para la casa abierta",
+        "units": {
+          "days": "Días",
+          "hours": "Horas",
+          "minutes": "Minutos",
+          "seconds": "Segundos"
+        },
+        "addToCalendar": "Agregar al calendario",
+        "notesLabel": "Información adicional",
+        "form": {
+          "title": "¿Te esperamos?",
+          "subtitle": "Comparte tu respuesta para que el agente anfitrión esté listo para recibirte.",
+          "response": "Tu respuesta",
+          "responseYes": "Sí, asistiré",
+          "responseNo": "No podré asistir",
+          "firstName": "Nombre",
+          "lastName": "Apellido",
+          "email": "Correo electrónico",
+          "phone": "Teléfono",
+          "guests": "Acompañantes adicionales (0–10)",
+          "optional": "opcional",
+          "submit": "Enviar confirmación",
+          "submitting": "Enviando…",
+          "createdTitle": "Tu asistencia está confirmada",
+          "createdBody": "Gracias. El agente anfitrión recibió tu respuesta.",
+          "updatedTitle": "Tu respuesta fue actualizada",
+          "updatedBody": "Guardamos tu respuesta más reciente para esta casa abierta.",
+          "genericError": "No pudimos enviar tu respuesta. Revisa los datos e inténtalo de nuevo."
+        }
+      }
     }
   },
   "contact": {
