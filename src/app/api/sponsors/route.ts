@@ -8,6 +8,18 @@ import { galaEvent, getSponsorTier } from "@/data/christmasGala";
 // Adriana so she can follow up. Apps Script cannot read request headers, so
 // the shared secret travels in the body; it never reaches the browser.
 
+// Google's HTML error pages bury the message under inline scripts; keep the
+// visible text so the log says what actually failed.
+function readableText(html: string) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;|&#160;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 400);
+}
+
 export async function POST(req: NextRequest) {
   if (Date.now() > new Date(galaEvent.sponsorDeadline).getTime()) {
     return NextResponse.json({ ok: false, error: "closed" }, { status: 410 });
@@ -84,7 +96,7 @@ export async function POST(req: NextRequest) {
       console.error(
         "[sponsors] sheet webhook rejected",
         { postStatus: posted.status, finalStatus: res.status, redirected: Boolean(location) },
-        json ?? text.slice(0, 300),
+        json ?? readableText(text),
       );
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
