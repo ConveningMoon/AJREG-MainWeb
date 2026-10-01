@@ -66,7 +66,10 @@ function handlePost_(e) {
   } catch (err) {
     return json_({ ok: false, error: 'bad_json' });
   }
-  if (!data || data.secret !== props.getProperty('SHARED_SECRET')) {
+  // Trimmed on both ends: a stray space or newline from copy-paste is the
+  // usual reason the two copies of the secret stop matching.
+  var expected = String(props.getProperty('SHARED_SECRET') || '').trim();
+  if (!data || !expected || String(data.secret || '').trim() !== expected) {
     return json_({ ok: false, error: 'unauthorized' });
   }
 
@@ -160,6 +163,8 @@ function testSetup() {
   var ss = getSpreadsheet_(props);
   console.log('Sheet: ' + ss.getName() + ' — ' + ss.getUrl());
   console.log('NOTIFY_EMAIL: ' + (props.getProperty('NOTIFY_EMAIL') || '(missing)'));
-  console.log('SHARED_SECRET set: ' + Boolean(props.getProperty('SHARED_SECRET')));
+  var secret = String(props.getProperty('SHARED_SECRET') || '').trim();
+  // Length only — compare it with the SPONSOR_SHEET_SECRET length in Vercel.
+  console.log('SHARED_SECRET length: ' + secret.length);
   console.log('Emails left today: ' + MailApp.getRemainingDailyQuota());
 }
