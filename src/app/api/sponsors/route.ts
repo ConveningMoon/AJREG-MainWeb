@@ -37,7 +37,11 @@ export async function POST(req: NextRequest) {
   const offersRaffle = tier.id !== "community";
 
   try {
-    const res = await fetch(webhookUrl, {
+    // Apps Script answers the POST with a 302 to a googleusercontent.com URL
+    // that only accepts GET. Following it automatically can re-send a POST
+    // there (→ 405), so the hop is done by hand: POST once, then GET the
+    // Location, which is where doPost's JSON response lives.
+    const posted = await fetch(webhookUrl, {
       method: "POST",
       // text/plain keeps Apps Script from needing a CORS/preflight story and
       // lands the raw JSON in e.postData.contents.
@@ -61,12 +65,27 @@ export async function POST(req: NextRequest) {
         language: locale,
         sourceUrl: req.headers.get("referer") ?? "",
       }),
-      redirect: "follow",
+      redirect: "manual",
       cache: "no-store",
     });
-    const json = (await res.json().catch(() => null)) as { ok?: boolean } | null;
+    const location = posted.headers.get("location");
+    const res =
+      posted.status >= 300 && posted.status < 400 && location
+        ? await fetch(new URL(location, webhookUrl), { method: "GET", cache: "no-store" })
+        : posted;
+    const text = await res.text();
+    let json: { ok?: boolean; error?: string } | null = null;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      json = null;
+    }
     if (!res.ok || !json?.ok) {
-      console.error("[sponsors] sheet webhook rejected", res.status, json);
+      console.error(
+        "[sponsors] sheet webhook rejected",
+        { postStatus: posted.status, finalStatus: res.status, redirected: Boolean(location) },
+        json ?? text.slice(0, 300),
+      );
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
   } catch (error) {
