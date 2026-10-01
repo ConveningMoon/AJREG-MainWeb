@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
   if (v.fax) return NextResponse.json({ ok: true });
 
   const webhookUrl = process.env.SPONSOR_SHEET_WEBHOOK_URL;
-  const secret = process.env.SPONSOR_SHEET_SECRET;
+  const secret = process.env.SPONSOR_SHEET_SECRET?.trim();
   if (!webhookUrl || !secret) {
     console.error("[sponsors] SPONSOR_SHEET_WEBHOOK_URL / SPONSOR_SHEET_SECRET not configured");
     return NextResponse.json({ ok: false, error: "config" }, { status: 503 });
@@ -97,6 +97,9 @@ export async function POST(req: NextRequest) {
         "[sponsors] sheet webhook rejected",
         { postStatus: posted.status, finalStatus: res.status, redirected: Boolean(location) },
         json ?? readableText(text),
+        // Length only, never the value: lets the length be compared with the
+        // SHARED_SECRET that testSetup() prints in Apps Script.
+        json?.error === "unauthorized" ? `secret length sent: ${secret.length}` : "",
       );
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
