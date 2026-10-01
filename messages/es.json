@@ -732,7 +732,10 @@
   "christmasGala": {
     "meta": {
       "title": "Patrocina la Gala Christmas Party 2026",
-      "description": "Presenta tu negocio ante más de 100 invitados —clientes de A&J y sus familias— el 5 de diciembre de 2026 en Virginia Beach. Mesa de exhibición, tiempo en pantalla y un video promocional producido para ti."
+      "description": "Presenta tu negocio ante más de 100 invitados —clientes de A&J y sus familias— el 5 de diciembre de 2026 en Virginia Beach. Mesa de exhibición, tiempo en pantalla y un video promocional producido para ti.",
+      "shareTitle": "Patrocina la Gala de Navidad de A&J · 5 dic 2026",
+      "shareDescription": "Presenta tu negocio ante más de 100 invitados en Virginia Beach. Paquetes desde $350 y video producido por A&J desde $750. Solicitudes hasta el 28 de noviembre.",
+      "imageAlt": "Patrocina nuestra Gala de Navidad: paquetes desde $350, sábado 5 de diciembre de 2026 en Virginia Beach"
     },
     "hero": {
       "title": "Tu negocio, protagonista en nuestra gala de Navidad.",

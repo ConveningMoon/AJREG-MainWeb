@@ -732,7 +732,10 @@
   "christmasGala": {
     "meta": {
       "title": "Sponsor the Gala Christmas Party 2026",
-      "description": "Put your business in front of 100+ guests — A&J clients and their families — on December 5, 2026 in Virginia Beach. Vendor tables, screen time and a promo video produced for you."
+      "description": "Put your business in front of 100+ guests — A&J clients and their families — on December 5, 2026 in Virginia Beach. Vendor tables, screen time and a promo video produced for you.",
+      "shareTitle": "Sponsor the A&J Christmas Gala · Dec 5, 2026",
+      "shareDescription": "Put your business in front of 100+ guests in Virginia Beach. Packages from $350 — video produced by A&J from $750. Applications close Nov 28.",
+      "imageAlt": "Sponsor our Christmas Gala — packages from $350, Saturday December 5, 2026 in Virginia Beach"
     },
     "hero": {
       "title": "Your business, center stage at our Christmas gala.",

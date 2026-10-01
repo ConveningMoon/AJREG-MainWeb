@@ -58,6 +58,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "christmasGala.meta" });
+  // Absolute URL: some link previewers (WhatsApp) ignore relative og:image.
+  const shareImage = `${SITE_URL}/images/events/christmas-gala-sponsors-og-${locale === "es" ? "es" : "en"}.jpg`;
   return {
     title: t("title"),
     description: t("description"),
@@ -67,9 +69,18 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
+      siteName: "A&J Real Estate Group",
+      locale: locale === "es" ? "es_US" : "en_US",
       url: `${SITE_URL}/${locale}${PATH}`,
-      title: t("title"),
-      description: t("description"),
+      title: t("shareTitle"),
+      description: t("shareDescription"),
+      images: [{ url: shareImage, width: 1200, height: 630, alt: t("imageAlt"), type: "image/jpeg" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("shareTitle"),
+      description: t("shareDescription"),
+      images: [shareImage],
     },
   };
 }
