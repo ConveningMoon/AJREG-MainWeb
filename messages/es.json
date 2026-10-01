@@ -728,5 +728,266 @@
       "title": "Newsletter",
       "description": "Novedades del mercado y datos por zona en Virginia y Carolina del Norte, por el equipo de A&J Real Estate Group — con fuentes, fecha y en lenguaje claro."
     }
+  },
+  "christmasGala": {
+    "meta": {
+      "title": "Patrocina la Gala Christmas Party 2026",
+      "description": "Presenta tu negocio ante más de 100 invitados —clientes de A&J y sus familias— el 5 de diciembre de 2026 en Virginia Beach. Mesa de exhibición, tiempo en pantalla y un video promocional producido para ti."
+    },
+    "hero": {
+      "title": "Tu negocio, protagonista en nuestra gala de Navidad.",
+      "subtitle": "Una noche, más de 100 invitados —clientes de A&J y sus familias— y pantallas por todo el salón. Desde $750 grabamos y editamos tu video para que se proyecte allí.",
+      "eventName": "Gala Christmas Party · A Wonderland Celebration",
+      "date": "Sábado, 5 de diciembre de 2026",
+      "time": "7:00 – 11:00 PM",
+      "venue": "The Royal Courtyard at West Neck, Virginia Beach",
+      "apply": "Quiero ser sponsor",
+      "compare": "Comparar paquetes",
+      "screenLabel": "Video de invitación",
+      "screenSoon": "Muy pronto",
+      "screenAlt": "Espacio para el video de invitación de la gala, actualmente en producción"
+    },
+    "countdown": {
+      "label": "Las solicitudes de sponsors cierran en",
+      "closedLabel": "Las solicitudes de sponsors están cerradas",
+      "days": "días",
+      "hours": "h",
+      "minutes": "min",
+      "seconds": "seg",
+      "deadline": "Fecha límite: {date}",
+      "bar": "Las solicitudes cierran en",
+      "barApply": "Aplicar",
+      "barShort": "Cierra en"
+    },
+    "audience": {
+      "title": "Quiénes estarán en el salón",
+      "lead": "Es la noche en que A&J agradece a los clientes y familias que nos confiaron su hogar. Más de 100 invitados, elegantes, relajados y con ganas de celebrar: el mejor momento para conocerlos.",
+      "groups": {
+        "newOwners": {
+          "title": "Nuevos propietarios",
+          "body": "Familias que acaban de comprar y ahora necesitan seguros, muebles, contratistas, servicios y todo lo que viene después del cierre."
+        },
+        "military": {
+          "title": "Familias militares",
+          "body": "Hogares que se mudan a Hampton Roads y están armando su red local desde cero."
+        },
+        "hispanic": {
+          "title": "Familias hispanas y brasileñas",
+          "body": "Una comunidad leal que prefiere negocios que la entiendan, en su idioma."
+        },
+        "sellers": {
+          "title": "Vendedores e inversionistas",
+          "body": "Clientes que se mudan, crecen o amplían su portafolio en Virginia y Carolina del Norte."
+        }
+      },
+      "facts": "Solo adultos · Vestimenta semi-formal · Virginia Beach, VA"
+    },
+    "screens": {
+      "title": "Tu negocio en cada pantalla",
+      "lead": "El salón está rodeado de pantallas. Con los paquetes Bronze, Silver y Gold, nuestro equipo produce un video corto de tu negocio —grabación y edición incluidas— y se proyecta durante la gala.",
+      "steps": {
+        "film": {
+          "title": "Grabamos",
+          "body": "Agendamos contigo una grabación corta en tu negocio o con tu equipo."
+        },
+        "edit": {
+          "title": "Editamos",
+          "body": "Lo convertimos en un promo pulido con tu logo, listo para las pantallas grandes."
+        },
+        "play": {
+          "title": "Se proyecta esa noche",
+          "body": "Tu video corre en las pantallas del salón frente a todos los invitados."
+        }
+      },
+      "included": "Incluido desde $750, sin costo adicional.",
+      "plan": {
+        "yours": "Tu video",
+        "screens": "Pantallas del salón",
+        "vendors": "Mesas de exhibición",
+        "guests": "Mesas de invitados",
+        "note": "Ilustración de referencia, no es el plano real del salón."
+      }
+    },
+    "packages": {
+      "title": "Elige tu paquete",
+      "lead": "Todos los paquetes apoyan la celebración. Los niveles más altos ponen tu negocio frente a los invitados toda la noche.",
+      "perks": "Qué incluye",
+      "tickets": "{count, plural, =0 {Sin entradas al evento} one {# entrada al evento} other {# entradas al evento}}",
+      "spotsLeft": "{count, plural, one {Solo queda # cupo} other {Solo quedan # cupos}}",
+      "applyFor": "Aplicar a {tier}",
+      "mostVisible": "Máxima visibilidad",
+      "videoIncluded": "Video producido por A&J",
+      "noTable": "Sin mesa",
+      "compareTitle": "Lado a lado",
+      "rows": {
+        "tickets": "Entradas al evento",
+        "table": "Mesa de exhibición",
+        "video": "Video producido para las pantallas",
+        "logo": "Exposición del logo",
+        "talk": "Tiempo para hablar",
+        "raffle": "Premio de rifa y reconocimiento",
+        "social": "Destacado en redes sociales",
+        "recognition": "Reconocimiento en el evento"
+      },
+      "cells": {
+        "tablePremium": "Ubicación de alta visibilidad",
+        "yes": "Incluido",
+        "no": "No incluido",
+        "videoDedicated": "Dedicado, pantalla principal",
+        "videoShort": "Promo corto",
+        "videoProduced": "Promo corto",
+        "logoPremium": "Todo el material y promoción",
+        "logoMaterials": "Material del evento",
+        "logoRotation": "Rotación de sponsors en pantalla",
+        "talkLong": "3–5 minutos",
+        "talkShort": "1–2 minutos"
+      }
+    },
+    "tiers": {
+      "gold": "Gold",
+      "silver": "Silver",
+      "bronze": "Bronze",
+      "community": "Community"
+    },
+    "benefits": {
+      "logoPremium": "Logo en lugar destacado en todo el material y la promoción del evento",
+      "logoMaterials": "Logo en el material del evento",
+      "logoRotation": "Logo en la rotación de sponsors en pantalla",
+      "tablePremium": "Mesa de exhibición en una ubicación de alta visibilidad",
+      "table": "Mesa de exhibición",
+      "videoDedicated": "Video promocional dedicado en la pantalla principal, producido por A&J",
+      "videoShort": "Video promocional corto en pantalla, producido por A&J",
+      "videoProduced": "Video promocional corto en pantalla, producido por A&J",
+      "talkLong": "3–5 minutos para hablarle a los invitados",
+      "talkShort": "1–2 minutos para hablarle a los invitados",
+      "raffle": "Opción de donar un premio para la rifa, con reconocimiento al entregarlo",
+      "socialSpotlight": "Destacado en redes sociales y reconocimiento en el evento",
+      "recognition": "Reconocimiento en el evento",
+      "recognitionMaterials": "Reconocimiento en el material del evento y durante la noche"
+    },
+    "process": {
+      "title": "Cómo funciona",
+      "steps": {
+        "apply": {
+          "title": "Aplica en dos minutos",
+          "body": "Elige tu paquete y cuéntanos de tu negocio. No se paga nada en línea."
+        },
+        "call": {
+          "title": "Adriana te contacta",
+          "body": "Ella confirma tu paquete personalmente y te explica las opciones de pago."
+        },
+        "prepare": {
+          "title": "Te preparamos",
+          "body": "Envías tu logo y tu premio de rifa, y agendamos la grabación de tu video."
+        },
+        "night": {
+          "title": "5 de diciembre: tu noche",
+          "body": "Monta tu mesa, conoce a los invitados y mira tu negocio en las pantallas."
+        }
+      }
+    },
+    "faq": {
+      "title": "Lo que preguntan los sponsors",
+      "items": {
+        "payment": {
+          "q": "¿Cómo se paga?",
+          "a": "No se paga en línea. Después de aplicar, Adriana te contacta para confirmar tu paquete y acordar la forma de pago que mejor le funcione a tu negocio."
+        },
+        "deadline": {
+          "q": "¿Hay fecha límite?",
+          "a": "Sí. Las solicitudes cierran el {date}, una semana antes de la gala, para tener tiempo de grabar tu video e incluir tu logo en el material del evento."
+        },
+        "video": {
+          "q": "¿Qué incluye el video?",
+          "a": "Para los sponsors Bronze, Silver y Gold, nuestro equipo se encarga de la grabación y la edición de un video corto de tu negocio. Se proyecta en las pantallas del salón durante el evento."
+        },
+        "raffle": {
+          "q": "¿Cómo funciona el premio de la rifa?",
+          "a": "Es opcional. Tú traes el artículo y nosotros nos encargamos del resto; tu negocio recibe reconocimiento cuando se entrega el premio."
+        },
+        "guests": {
+          "q": "¿Quiénes asisten?",
+          "a": "Más de 100 invitados: clientes de A&J y sus familias. Es un evento solo para adultos, con vestimenta semi-formal."
+        },
+        "community": {
+          "q": "¿Qué tiene de diferente el paquete Community?",
+          "a": "Community es la forma de apoyar la celebración sin mesa ni entradas: tu logo entra en la rotación de sponsors en pantalla y recibes reconocimiento en el material del evento y durante la noche."
+        }
+      }
+    },
+    "form": {
+      "title": "Aplica como sponsor",
+      "lead": "Cuéntanos de tu negocio. Adriana te contactará personalmente para confirmar tu paquete; aquí no se cobra nada.",
+      "steps": {
+        "package": "Paquete",
+        "business": "Tu negocio",
+        "contact": "Contacto",
+        "extras": "Extras"
+      },
+      "fields": {
+        "tier": "Elige tu paquete",
+        "businessName": "Nombre del negocio",
+        "industry": "Industria",
+        "industryPlaceholder": "Selecciona una industria",
+        "businessLink": "Sitio web o redes sociales",
+        "businessLinkHint": "Opcional",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "email": "Correo electrónico",
+        "phone": "Teléfono",
+        "wantsVideo": "Sí, quiero que A&J grabe y edite mi video",
+        "wantsVideoHint": "Incluido en tu paquete.",
+        "videoNotIncluded": "La producción del video está incluida a partir del paquete Bronze.",
+        "raffle": "¿Te gustaría donar un premio para la rifa?",
+        "raffleItem": "¿Qué donarías?",
+        "raffleItemPlaceholder": "p. ej. una tarjeta de regalo de $100, una canasta de spa…",
+        "message": "¿Algo más que debamos saber?",
+        "messageHint": "Opcional"
+      },
+      "industries": {
+        "mortgage": "Préstamos e hipotecas",
+        "insurance": "Seguros",
+        "homeServices": "Servicios para el hogar y contratistas",
+        "legal": "Legal y finanzas",
+        "food": "Comida y bebidas",
+        "health": "Salud y belleza",
+        "retail": "Tiendas y regalos",
+        "other": "Otro"
+      },
+      "raffleOptions": {
+        "yes": "Sí",
+        "maybe": "Tal vez",
+        "no": "No"
+      },
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando…",
+      "privacy": "Solo usamos tus datos para dar seguimiento a este patrocinio.",
+      "validation": {
+        "tier": "Elige un paquete.",
+        "businessName": "Escribe el nombre de tu negocio.",
+        "industry": "Elige una industria.",
+        "firstName": "Escribe tu nombre.",
+        "lastName": "Escribe tu apellido.",
+        "emailRequired": "Escribe tu correo.",
+        "emailInvalid": "Ese correo no parece correcto.",
+        "phone": "Escribe un teléfono con código de área."
+      },
+      "success": {
+        "title": "¡Solicitud recibida, gracias!",
+        "body": "Adriana te contactará pronto para confirmar tu paquete {tier} y los siguientes pasos.",
+        "again": "Enviar otra solicitud"
+      },
+      "error": "No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbele a Adriana por WhatsApp.",
+      "closed": {
+        "title": "Las solicitudes de sponsors están cerradas",
+        "body": "La fecha límite ya pasó. Si aún quieres apoyar la gala, escríbele a Adriana y te dirá qué es posible."
+      }
+    },
+    "close": {
+      "title": "Hagamos juntos una Navidad memorable.",
+      "body": "¿Tienes preguntas antes de aplicar? Habla directamente con Adriana.",
+      "whatsapp": "Escribir por WhatsApp",
+      "call": "Llamar al {phone}"
+    }
   }
 }

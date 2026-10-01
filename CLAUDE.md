@@ -134,6 +134,9 @@ primerizos, clientes de reubicación.
 - `/contact-us` — **Contacto**
 - `/events/feel-good-social` — **Feel Good Giveaway** → formulario de rifa en inglés
   para abrir durante el evento, con calificación opcional y envío a ITMANO.
+- `/events/christmas-gala/sponsors` — **Gala Christmas Party · Sponsors** → landing
+  bilingüe para captar patrocinadores del evento de Navidad (5-dic-2026); solicitud →
+  Google Sheet + email a Adriana (no va a ITMANO).
 - `/team/[slug]` — **Equipo** → `adriana-melendez`, `john-leonard`,
   `melany-valencia`, `viviane-chiu`
   *(Nota: en Webflow son páginas separadas; aquí se unifican en un template con
@@ -437,6 +440,42 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 **→ commit:** `feat: redesign feel good social as giveaway`
 
+**Mini-Fase 6h — Gala Christmas Party: landing de sponsors**
+- Nueva ruta `/[locale]/events/christmas-gala/sponsors`, **bilingüe EN/ES**, con la
+  navbar y el footer del sitio. Estructura "propuesta en capítulos": hero (titular,
+  datos del evento, CTAs, pantalla con el video de invitación como placeholder y
+  **cuenta regresiva en vivo** al cierre de solicitudes) → quiénes estarán en el
+  salón → "tu negocio en cada pantalla" (plano ilustrativo del salón en SVG +
+  grabamos/editamos/se proyecta) → paquetes (tarjetas en móvil, **tabla comparativa**
+  en `lg` con la columna Gold enmarcada) → cómo funciona → FAQ → formulario.
+- Hechos de la campaña en `data/christmasGala.ts` (fechas, venue, precios, tickets,
+  beneficios). **Evento: sábado 5-dic-2026, 7–11 PM** (el flyer dice "Friday" por
+  error — el 5-dic-2026 es sábado). **Cierre de sponsors: 28-nov-2026 23:59 ET.**
+  Video producido por A&J (grabación + edición) incluido desde $750 (Bronze, Silver,
+  Gold). **`spotsLeft` es un número de exhibición pedido por el cliente — no hay cupo
+  real**; se cambia en ese archivo.
+- Interacción: barra fija inferior con el reloj + "Aplicar" que aparece al pasar el
+  hero y se esconde sobre los paquetes y el formulario; cualquier "Aplicar a <nivel>"
+  preselecciona ese nivel en el formulario (evento `gala:select-tier`) y también
+  `?tier=gold` en un link compartido. Nieve en canvas solo en el hero (se pausa fuera
+  de pantalla y queda fija con `prefers-reduced-motion`).
+- Formulario (`components/events/gala/SponsorForm.tsx`, RHF + Zod
+  `lib/sponsor-schema.ts`): paquete, negocio, industria, web, nombre, apellido,
+  email, teléfono (obligatorio — Adriana llama), video sí/no ($750+), premio de rifa,
+  mensaje, honeypot `fax`. **No se cobra en línea**: Adriana contacta a cada sponsor y
+  acuerdan la forma de pago. Después del cierre el formulario muestra un estado
+  "cerrado" y la API responde 410.
+- **Destino: NO ITMANO** (los sponsors son socios, no leads; mezclarlos ensuciaría el
+  pipeline y el scoring). `POST /api/sponsors` → **Google Apps Script web app** que
+  añade una fila a la hoja "Solicitudes" (con columnas de seguimiento: Estado, Pago,
+  Logo, Video, Notas) y **envía un email a Adriana** con `replyTo` al sponsor. Script
+  y pasos de instalación: `integrations/google-apps-script/sponsor-applications.gs`.
+  El secreto viaja en el body (Apps Script no lee headers) y nunca llega al navegador.
+  Env (solo servidor): `SPONSOR_SHEET_WEBHOOK_URL`, `SPONSOR_SHEET_SECRET`. Sin ellas
+  la API responde 503 y el usuario ve el error (no se pierde en silencio).
+- i18n `christmasGala.*` (EN/ES). Agregada a `sitemap.ts`.
+**→ commit:** `feat: christmas gala sponsor landing page`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -480,6 +519,21 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-10-01** — **Landing de sponsors para la Gala Christmas Party (`/events/christmas-gala/sponsors`).**
+  Ver **Mini-Fase 6h**. Página bilingüe para que negocios locales soliciten un paquete
+  (Gold $2,000 · Silver $1,250 · Bronze $750 · Community $350), con cuenta regresiva al
+  28-nov, tabla comparativa, sección del video producido por A&J desde $750 y formulario
+  que preselecciona el paquete. Las solicitudes van a un **Google Sheet + email a
+  Adriana** vía Apps Script, no a ITMANO. **Verificado:** TypeScript, ESLint, `next build`,
+  revisión visual desktop 1440×900 + móvil 390×844 (EN/ES), validación y foco, hand-off
+  de paquete, API (400 inválido · 503 sin config · 200 honeypot descartado) y envío
+  completo contra un mock que imita la redirección 302 de Apps Script.
+  **Pendiente (usuario):** (1) crear la hoja, pegar el script, configurar `SHARED_SECRET`
+  y `NOTIFY_EMAIL`, desplegar como Web app y poner `SPONSOR_SHEET_WEBHOOK_URL` /
+  `SPONSOR_SHEET_SECRET` en Vercel y `.env.local`; (2) una solicitud real de prueba de
+  punta a punta; (3) reemplazar los placeholders cuando estén el video de invitación y
+  las fotos; (4) corregir "Friday" → "Saturday" en el flyer.
 
 - **2026-09-15** — **`/events/feel-good-social` cambia de RSVP a entrada de rifa.**
   Se eliminó toda la información de fecha, horario, lugar y actividades porque la
