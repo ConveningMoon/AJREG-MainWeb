@@ -728,5 +728,266 @@
       "title": "Newsletter",
       "description": "Market updates and neighborhood data for Virginia and North Carolina from the A&J Real Estate Group team — sourced, dated and in plain language."
     }
+  },
+  "christmasGala": {
+    "meta": {
+      "title": "Sponsor the Gala Christmas Party 2026",
+      "description": "Put your business in front of 100+ guests — A&J clients and their families — on December 5, 2026 in Virginia Beach. Vendor tables, screen time and a promo video produced for you."
+    },
+    "hero": {
+      "title": "Your business, center stage at our Christmas gala.",
+      "subtitle": "One night, more than 100 guests — A&J clients and their families — and screens all around the room. From $750 we film and edit your video so it plays there.",
+      "eventName": "Gala Christmas Party · A Wonderland Celebration",
+      "date": "Saturday, December 5, 2026",
+      "time": "7:00 – 11:00 PM",
+      "venue": "The Royal Courtyard at West Neck, Virginia Beach",
+      "apply": "Apply to sponsor",
+      "compare": "Compare packages",
+      "screenLabel": "Invitation video",
+      "screenSoon": "Premieres soon",
+      "screenAlt": "Placeholder for the gala invitation video, currently in production"
+    },
+    "countdown": {
+      "label": "Sponsor applications close in",
+      "closedLabel": "Sponsor applications are closed",
+      "days": "days",
+      "hours": "hrs",
+      "minutes": "min",
+      "seconds": "sec",
+      "deadline": "Deadline: {date}",
+      "bar": "Applications close in",
+      "barApply": "Apply",
+      "barShort": "Closes in"
+    },
+    "audience": {
+      "title": "Who will be in the room",
+      "lead": "This is A&J's thank-you night for the clients and families who trusted us with their homes. Over 100 guests, dressed up, relaxed and in a celebrating mood — the best moment to meet them.",
+      "groups": {
+        "newOwners": {
+          "title": "New homeowners",
+          "body": "Families who just bought — and now need insurance, furniture, contractors, services and everything that comes after closing."
+        },
+        "military": {
+          "title": "Military families",
+          "body": "Households relocating to Hampton Roads who are building their local network from scratch."
+        },
+        "hispanic": {
+          "title": "Spanish- and Portuguese-speaking households",
+          "body": "A loyal community that prefers businesses that understand them — in their language."
+        },
+        "sellers": {
+          "title": "Sellers and investors",
+          "body": "Clients moving up, moving on or growing a portfolio across Virginia and North Carolina."
+        }
+      },
+      "facts": "Adults only · Semi-formal attire · Virginia Beach, VA"
+    },
+    "screens": {
+      "title": "Your business on every screen",
+      "lead": "The venue is surrounded by screens. With the Bronze, Silver and Gold packages, our team produces a short video for your business — recording and editing included — and it plays during the gala.",
+      "steps": {
+        "film": {
+          "title": "We film",
+          "body": "We schedule a short shoot with you at your business or with your team."
+        },
+        "edit": {
+          "title": "We edit",
+          "body": "We cut it into a polished promo with your logo, ready for the big screens."
+        },
+        "play": {
+          "title": "It plays on the night",
+          "body": "Your video runs on the screens around the room in front of every guest."
+        }
+      },
+      "included": "Included from $750 — no extra cost.",
+      "plan": {
+        "yours": "Your video",
+        "screens": "Screens around the room",
+        "vendors": "Vendor tables",
+        "guests": "Guest tables",
+        "note": "Illustrative layout, not the venue's floor plan."
+      }
+    },
+    "packages": {
+      "title": "Choose your package",
+      "lead": "Every package supports the celebration. The higher tiers put your business in front of guests all night long.",
+      "perks": "What's included",
+      "tickets": "{count, plural, =0 {No event tickets} one {# event ticket} other {# event tickets}}",
+      "spotsLeft": "{count, plural, one {Only # spot left} other {Only # spots left}}",
+      "applyFor": "Apply for {tier}",
+      "mostVisible": "Most visibility",
+      "videoIncluded": "Video produced by A&J",
+      "noTable": "No table",
+      "compareTitle": "Side by side",
+      "rows": {
+        "tickets": "Event tickets",
+        "table": "Vendor table",
+        "video": "Video produced for the screens",
+        "logo": "Logo exposure",
+        "talk": "Time to speak",
+        "raffle": "Raffle prize & recognition",
+        "social": "Social media spotlight",
+        "recognition": "Event recognition"
+      },
+      "cells": {
+        "tablePremium": "High-visibility location",
+        "yes": "Included",
+        "no": "Not included",
+        "videoDedicated": "Dedicated, main screen",
+        "videoShort": "Short promo",
+        "videoProduced": "Short promo",
+        "logoPremium": "All materials & promotions",
+        "logoMaterials": "Event materials",
+        "logoRotation": "Sponsor rotation on screen",
+        "talkLong": "3–5 minutes",
+        "talkShort": "1–2 minutes"
+      }
+    },
+    "tiers": {
+      "gold": "Gold",
+      "silver": "Silver",
+      "bronze": "Bronze",
+      "community": "Community"
+    },
+    "benefits": {
+      "logoPremium": "Premium logo placement on all event materials and promotions",
+      "logoMaterials": "Logo displayed on event materials",
+      "logoRotation": "Logo included in the sponsor rotation on screen",
+      "tablePremium": "Vendor table in a high-visibility location",
+      "table": "Vendor table",
+      "videoDedicated": "Dedicated promotional video on the main screen — produced by A&J",
+      "videoShort": "Short promotional video on screen — produced by A&J",
+      "videoProduced": "Short promotional video on screen — produced by A&J",
+      "talkLong": "3–5 minutes to speak to the guests",
+      "talkShort": "1–2 minutes to speak to the guests",
+      "raffle": "Option to donate a raffle prize, with recognition when it's presented",
+      "socialSpotlight": "Social media spotlight and event recognition",
+      "recognition": "Event recognition",
+      "recognitionMaterials": "Recognition on event materials and during the event"
+    },
+    "process": {
+      "title": "How it works",
+      "steps": {
+        "apply": {
+          "title": "Apply in two minutes",
+          "body": "Pick your package and tell us about your business. No payment online."
+        },
+        "call": {
+          "title": "Adriana contacts you",
+          "body": "She confirms your package personally and walks you through the payment options."
+        },
+        "prepare": {
+          "title": "We get you ready",
+          "body": "Send your logo and raffle prize, and we schedule your video shoot."
+        },
+        "night": {
+          "title": "December 5: your night",
+          "body": "Set up your table, meet the guests and watch your business on the screens."
+        }
+      }
+    },
+    "faq": {
+      "title": "Questions sponsors ask",
+      "items": {
+        "payment": {
+          "q": "How do I pay?",
+          "a": "You don't pay online. After you apply, Adriana contacts you to confirm your package and agree on the payment option that works best for your business."
+        },
+        "deadline": {
+          "q": "Is there a deadline?",
+          "a": "Yes. Sponsor applications close on {date}, one week before the gala, so we have time to film your video and include your logo in the event materials."
+        },
+        "video": {
+          "q": "What does the video include?",
+          "a": "For Bronze, Silver and Gold sponsors our team handles the recording and editing of a short video about your business. It plays on the screens around the venue during the event."
+        },
+        "raffle": {
+          "q": "How does the raffle prize work?",
+          "a": "It's optional. You bring the item, we handle the rest — and your business is recognized when the prize is presented."
+        },
+        "guests": {
+          "q": "Who attends?",
+          "a": "More than 100 guests: A&J clients and their families. It's an adults-only event with semi-formal attire."
+        },
+        "community": {
+          "q": "What's different about the Community package?",
+          "a": "Community is the way to support the celebration without a table or tickets: your logo is included in the sponsor rotation on screen and you're recognized on event materials and during the event."
+        }
+      }
+    },
+    "form": {
+      "title": "Apply to sponsor",
+      "lead": "Tell us about your business. Adriana will reach out personally to confirm your package — nothing is charged here.",
+      "steps": {
+        "package": "Package",
+        "business": "Your business",
+        "contact": "Contact",
+        "extras": "Extras"
+      },
+      "fields": {
+        "tier": "Choose your package",
+        "businessName": "Business name",
+        "industry": "Industry",
+        "industryPlaceholder": "Select an industry",
+        "businessLink": "Website or social media",
+        "businessLinkHint": "Optional",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phone": "Phone",
+        "wantsVideo": "Yes, I'd like A&J to film and edit my video",
+        "wantsVideoHint": "Included with your package.",
+        "videoNotIncluded": "Video production is included from the Bronze package up.",
+        "raffle": "Would you like to donate a raffle prize?",
+        "raffleItem": "What would you donate?",
+        "raffleItemPlaceholder": "e.g. a $100 gift card, a spa basket…",
+        "message": "Anything else we should know?",
+        "messageHint": "Optional"
+      },
+      "industries": {
+        "mortgage": "Mortgage & lending",
+        "insurance": "Insurance",
+        "homeServices": "Home services & contractors",
+        "legal": "Legal & financial",
+        "food": "Food & beverage",
+        "health": "Health & beauty",
+        "retail": "Retail & gifts",
+        "other": "Other"
+      },
+      "raffleOptions": {
+        "yes": "Yes",
+        "maybe": "Maybe",
+        "no": "No"
+      },
+      "submit": "Send application",
+      "submitting": "Sending…",
+      "privacy": "We only use your information to follow up on this sponsorship.",
+      "validation": {
+        "tier": "Choose a package.",
+        "businessName": "Enter your business name.",
+        "industry": "Choose an industry.",
+        "firstName": "Enter your first name.",
+        "lastName": "Enter your last name.",
+        "emailRequired": "Enter your email.",
+        "emailInvalid": "That email doesn't look right.",
+        "phone": "Enter a phone number with area code."
+      },
+      "success": {
+        "title": "Application received — thank you!",
+        "body": "Adriana will contact you soon to confirm your {tier} package and the next steps.",
+        "again": "Send another application"
+      },
+      "error": "We couldn't send your application. Please try again, or message Adriana on WhatsApp.",
+      "closed": {
+        "title": "Sponsor applications are closed",
+        "body": "The deadline has passed. If you'd still like to support the gala, message Adriana — she'll let you know what's possible."
+      }
+    },
+    "close": {
+      "title": "Let's make this Christmas memorable — together.",
+      "body": "Questions before you apply? Talk to Adriana directly.",
+      "whatsapp": "Message on WhatsApp",
+      "call": "Call {phone}"
+    }
   }
 }

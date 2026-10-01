@@ -31,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...localizedEntries("/contact-us",{ changeFrequency: "monthly",  priority: 0.8 }),
     ...localizedEntries("/newsletter",{ changeFrequency: "weekly",   priority: 0.8 }),
     ...localizedEntries("/check-in",  { changeFrequency: "yearly",   priority: 0.3 }),
+    ...localizedEntries("/events/christmas-gala/sponsors", { changeFrequency: "weekly", priority: 0.8 }),
     {
       url: `${SITE_URL}/en/events/feel-good-social`,
       lastModified: new Date("2026-09-15"),
