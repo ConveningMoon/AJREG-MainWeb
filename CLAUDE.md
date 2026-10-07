@@ -474,6 +474,13 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   Env (solo servidor): `SPONSOR_SHEET_WEBHOOK_URL`, `SPONSOR_SHEET_SECRET`. Sin ellas
   la API responde 503 y el usuario ve el error (no se pierde en silencio).
 - i18n `christmasGala.*` (EN/ES). Agregada a `sitemap.ts`.
+- **Tarjeta al compartir el link:** imagen 1200×630 por idioma
+  (`public/images/events/christmas-gala-sponsors-og-{en,es}.jpg`, navy + oro, título,
+  los 4 precios, fecha y cierre) + `og:title`/`og:description` propios
+  (`christmasGala.meta.share*`). URL absoluta al dominio de producción (WhatsApp ignora
+  las relativas), así que en un preview de Vercel la imagen sólo aparece tras desplegar a
+  producción. Generador: `scripts/og/christmas-gala-sponsors.py` (HTML → Chrome headless
+  → JPEG); regenerar si cambian fechas o precios.
 **→ commit:** `feat: christmas gala sponsor landing page`
 
 ---
