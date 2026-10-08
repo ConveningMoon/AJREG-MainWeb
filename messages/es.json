@@ -1188,5 +1188,117 @@
       "print": "Imprimir esta página",
       "note": "Las estimaciones son guías generales, no cotizaciones. Tus números dependerán de la casa y de dónde esté."
     }
+  },
+  "hogar": {
+    "meta": {
+      "title": "¿Cuánto puede pagar tu familia con tranquilidad?",
+      "description": "4 preguntas, 60 segundos, tu número real. Sin compromiso."
+    },
+    "ui": {
+      "langAria": "Idioma",
+      "back": "Atrás",
+      "continue": "Continuar",
+      "stepOf": "Pregunta {n} de {total}"
+    },
+    "welcome": {
+      "title": "¿Cuánto puede pagar tu familia con tranquilidad?",
+      "body": "4 preguntas, 60 segundos, tu número real. Sin compromiso.",
+      "cta": "Empezar",
+      "micro": "Tus respuestas son privadas.",
+      "agent": "Adriana Meléndez · A&J Real Estate Group"
+    },
+    "q1": {
+      "title": "¿Cuántas personas viven en tu casa?",
+      "value": "{count, plural, one {# persona} other {# personas}}",
+      "decrease": "Una persona menos",
+      "increase": "Una persona más"
+    },
+    "q2": {
+      "title": "¿Cuál es el ingreso mensual de tu hogar antes de impuestos?",
+      "help": "Suma a todos los que aportan. Un aproximado está bien.",
+      "input": "Ingreso mensual",
+      "error": "Escribe un aproximado entre $1 y $50,000 al mes."
+    },
+    "q3": {
+      "title": "¿Cuánto pagas al mes en deudas? (carro, tarjetas, préstamos)",
+      "help": "No incluyas renta ni servicios.",
+      "input": "Pagos mensuales de deudas",
+      "error": "Escribe un monto entre $0 y $20,000. Si no tienes deudas, pon $0."
+    },
+    "q4": {
+      "title": "¿Cuánto tienes ahorrado para la entrada y los gastos de cierre?",
+      "help": "Incluye regalos familiares si los hay.",
+      "input": "Ahorro disponible",
+      "error": "Escribe un monto entre $0 y $500,000. Si aún no tienes ahorros, pon $0."
+    },
+    "form": {
+      "title": "¿A dónde te enviamos tu resultado?",
+      "body": "Adriana te escribirá por WhatsApp solo para explicártelo. Sin presión.",
+      "name": "Nombre",
+      "phone": "WhatsApp",
+      "phoneHelp": "Número de EE. UU. de 10 dígitos",
+      "email": "Correo electrónico",
+      "timeline": {
+        "label": "¿Cuándo te gustaría mudarte?",
+        "options": {
+          "under_3_months": "En 0–3 meses",
+          "3_6_months": "En 3–6 meses",
+          "6_12_months": "En 6–12 meses",
+          "over_12_explorando": "Más de 12 meses o solo explorando"
+        }
+      },
+      "language": "Idioma preferido de contacto",
+      "consent": "Acepto que A&J Real Estate Group y mi agente me contacten por WhatsApp, llamada, mensaje de texto o email sobre mi consulta. Pueden aplicar tarifas de mensajes y datos. Puedo cancelar cuando quiera. Mi consentimiento no es requisito para comprar.",
+      "submit": "Ver mi resultado",
+      "errors": {
+        "name": "Cuéntanos tu nombre.",
+        "phone": "Escribe un celular de EE. UU. de 10 dígitos.",
+        "email": "Escribe un correo electrónico válido.",
+        "timeline": "Elige cuándo te gustaría mudarte.",
+        "consent": "Marca la casilla para que Adriana pueda escribirte."
+      }
+    },
+    "result": {
+      "greeting": "Tu resultado, {name}",
+      "heroLead": "Tu familia puede mirar casas de hasta",
+      "heroTail": "con tranquilidad",
+      "bandsTitle": "Tu rango",
+      "bands": {
+        "tranquilo": "Tranquilo",
+        "comodo": "Cómodo",
+        "maximo": "Máximo estimado"
+      },
+      "bandMonthly": "≈ {monthly} al mes",
+      "bandsNote": "Pagos mensuales aproximados, incluyendo impuestos y seguro.",
+      "cashTitle": "Efectivo para entrar",
+      "cashBody": "Para la entrada ({down} %) y el cierre (~{closing} %) necesitarías ≈ {cash}.",
+      "cashCovered": "Tu ahorro cubre la entrada y el cierre.",
+      "cashGap": "Te faltarían ≈ {gap}. Es un punto de partida, no un obstáculo: existen programas de asistencia para la entrada en Virginia, y Adriana te explica si podrías calificar.",
+      "spaceTitle": "Espacio que suelen buscar hogares como el tuyo",
+      "spaceBody": "Hogares de {count, plural, one {# persona} other {# personas}} suelen buscar {beds} dormitorios.",
+      "tightTitle": "Con tus datos actuales, el número se ajusta mucho",
+      "tightDebts": "Con tus deudas actuales, el número se ajusta mucho — pero hay pasos concretos que lo mejoran. Adriana puede armar un plan contigo.",
+      "tightGeneral": "Con tus datos actuales, el número se ajusta mucho — pero hay pasos concretos que lo mejoran. Adriana puede armar un plan contigo.",
+      "stepsTitle": "Tus próximos pasos",
+      "steps": {
+        "assistance": "Pregunta por asistencia para la entrada en Virginia. Hay programas para compradores primerizos, con requisitos de elegibilidad.",
+        "debts": "Revisa cómo bajar tus pagos mensuales de deudas: cada dólar menos mejora tu número.",
+        "lender": "Habla con un prestamista para tu pre-aprobación real.",
+        "no_new_debt": "Evita abrir deudas nuevas (carro, tarjetas) antes de pedir tu pre-aprobación.",
+        "talk": "Adriana puede repasar este resultado contigo y ayudarte a planear tu siguiente paso."
+      },
+      "cta": "Hablar con Adriana por WhatsApp",
+      "ctaMessage": "Hola Adriana, soy {name}. Hice la calculadora en tu stand y mi número cómodo salió ≈ {price}. ¿Podemos hablar?",
+      "ctaMessageTight": "Hola Adriana, soy {name}. Hice la calculadora en tu stand y me gustaría armar un plan. ¿Podemos hablar?",
+      "save": "Guardar mi resultado",
+      "saveHint": "Toma una captura de pantalla para guardar tu resultado.",
+      "shareTitle": "Mi resultado — A&J Real Estate Group",
+      "shareText": "Mi familia puede mirar casas de hasta ~{price} con tranquilidad. Hice la calculadora de A&J Real Estate Group.",
+      "shareTextTight": "Hice la calculadora de A&J Real Estate Group para ver cuánto puede pagar mi familia con tranquilidad.",
+      "pending": "Tus datos están guardados en este dispositivo y llegarán a Adriana en cuanto vuelvas a tener conexión.",
+      "disclaimer": "Esta es una estimación educativa, no una oferta de préstamo, pre-aprobación ni asesoría financiera. Las tasas, primas, impuestos y seguros reales varían. Los programas de asistencia tienen requisitos de elegibilidad.",
+      "rateNote": "Tasa de referencia: {rate} % (actualizada {date}).",
+      "equalHousing": "Igualdad de oportunidades en la vivienda"
+    }
   }
 }

@@ -141,6 +141,11 @@ primerizos, clientes de reubicación.
   preguntas (lead magnet de Melany para un evento en Norfolk) → formulario →
   resultado con 4 pilares. Envío a ITMANO (canal `chn_tg9y844y2ef4`). No va en el
   nav ni en el sitemap (se comparte por QR/enlace; `noindex`).
+- `/hogar` — **Calculadora familiar** (lead magnet de Adriana) → 4 preguntas
+  (personas, ingreso, deudas, ahorro) → formulario → número "cómodo" + rango +
+  efectivo necesario. Evento "Carpa Familiar" (11-oct-2026). Envío a ITMANO
+  (canal `chn_qsf1vrmg8tsc`). `/hogar` redirige a `/es/hogar` conservando el query;
+  `noindex`, fuera del nav y del sitemap (se comparte por QR).
 - `/team/[slug]` — **Equipo** → `adriana-melendez`, `john-leonard`,
   `melany-valencia`, `viviane-chiu`
   *(Nota: en Webflow son páginas separadas; aquí se unifican en un template con
@@ -549,6 +554,57 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   más reciente; (3) QR [STRETCH].
 **→ commit:** `feat: home wellness check lead magnet (melany event)`
 
+**Mini-Fase 6j — Calculadora familiar `/hogar` (lead magnet de Adriana)**
+- Nueva ruta `/[locale]/hogar` (`/hogar?src=…` → `/es/hogar`, por un `redirects()` de
+  `next.config.ts` que corre antes del proxy de idioma: el público es hispano, así que
+  el español es el default aunque el teléfono esté en inglés; `?lang=en` lo cambia).
+  Bienvenida → 4 preguntas (stepper de personas 1–10; ingreso, deudas y ahorro con
+  prefijo `$` y chips) → formulario → resultado. Mismo patrón móvil que `/wellness`
+  (375 px, botón principal `sticky` con `safe-area-inset-bottom`, áreas ≥ 48 px,
+  inputs a 16 px, toggle ES/EN **sin navegar**, oculta TopBar/Navbar/Footer con `:has()`).
+- **Motor** (`lib/hogar/engine.ts`, puro, 7 tests): reutiliza **`lib/affordability.ts`**
+  (mismo modelo FHA/tasa/impuestos que `/wellness`; ahí viven todos los parámetros) y
+  solo añade las bandas de pago por DTI — Tranquilo `min(25 %, 36 % − deudas)`, Cómodo
+  `min(28 %, 36 % − deudas)`, Máximo `min(31 %, 43 % − deudas)` —, el efectivo
+  necesario sobre el precio **ya redondeado** (hacia abajo a $5k), los dormitorios
+  guía por tamaño de hogar (sin recomendar zonas: Fair Housing) y los próximos pasos
+  (máx. 3). Fixture del brief (6000/400/15000/4 personas) → $185k · **$205k** · $230k,
+  efectivo $13,325. Caso "ajustado" (banda cómoda < `MIN_MEANINGFUL_PRICE` = $50k o ≤ 0):
+  nunca se muestra "$0"; sale el mensaje de plan con Adriana y **no** se manda
+  `budget_amount` ni cifras de efectivo.
+- **CRM = ITMANO, no Supabase** (el brief original hablaba de insertar en Supabase +
+  scoring propio + notificación; el canal de evento del CRM ya asigna, puntúa y avisa).
+  `lib/hogar/crm.ts` arma el contrato: `intent: "buy"` (activa el fit), `timeline` con
+  los códigos del CRM, `budget_amount` = precio cómodo calculado, más `household_size`,
+  `monthly_income`, `monthly_debts`, `savings`, `affordability_range`, `cash_needed`,
+  `cash_gap`, `bedrooms_suggested`, `preferred_language`, `source_detail` (el `?src=`),
+  `contact_consent` (frase exacta + versión + idioma + timestamp) y `lead_magnet`.
+  **No se manda `area`** (el brief no pregunta zona; sin ella el CRM deja `geo_fit` sin
+  determinar, no resta puntos). **No se manda `financing`** (no se pregunta).
+- **El correo es obligatorio** (el CRM exige `first_name` + `email`; el brief lo tenía
+  opcional). El consentimiento incluye "email" por esa razón.
+- **Resiliencia** (`lib/hogar/intake.ts`, módulo propio con su cola
+  `ajreg.hogar.pending.v1`): el resultado se muestra al instante; el envío va en
+  segundo plano y, si falla, se guarda y reintenta (2/5/15/45/120 s, máx. 5, y al
+  volver `online`). Mismo email = mismo lead en el CRM. Honeypot `website`.
+  `lib/hogar/` y `components/hogar/` **no importan** nada de `/wellness` salvo
+  `wellnessConfig.brokerage` (un solo nombre legal para todos los lead magnets),
+  `EqualHousingMark` y `track.ts`: los dos lead magnets se despliegan y cambian por
+  separado.
+- **Medición:** `<ItmanoBeacon channelPublicId="chn_qsf1vrmg8tsc">` (script local
+  `/intake.js`, rewrite ya existente). Eventos `lm_*` por `lib/wellness/track.ts`
+  con `agent: "adriana"` y el `src`.
+- Config en `lib/hogar/config.ts` (canal, `defaultSrc` = `adriana-evento-familiar-2026-10-11`,
+  WhatsApp de Adriana +1 407 715 9052, versión de consentimiento). Env
+  `NEXT_PUBLIC_ITMANO_HOGAR_CHANNEL_ID`. i18n `hogar.*` (EN/ES).
+- **PENDIENTE:** (1) nombre legal del brokerage (`wellnessConfig.brokerage.legalName`,
+  compartido; hoy muestra "A&J Real Estate Group"); (2) actualizar `rate30` en
+  `lib/affordability.ts` con el PMMS semanal más reciente (afecta también a `/wellness`);
+  (3) QR [STRETCH] sin generar — apuntar a
+  `https://ajrealestateva.com/hogar?src=adriana-evento-familiar-2026-10-11`;
+  (4) lead de prueba real de punta a punta (no se envió ninguno).
+**→ commit:** `feat: family affordability calculator lead magnet (adriana event)`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -592,6 +648,20 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-10-08** — **Calculadora familiar `/hogar` para el evento de Adriana (11-oct).**
+  Ver **Mini-Fase 6j**. Lead magnet móvil bilingüe (ES por defecto) de 4 preguntas que
+  termina en el número "cómodo", un rango Tranquilo/Cómodo/Máximo, el efectivo
+  necesario y los próximos pasos; el lead va al canal de evento de ITMANO
+  (`chn_qsf1vrmg8tsc`) con intake público first-party, honeypot, beacon de vistas y
+  cola de reintento offline. Reutiliza `lib/affordability.ts`. **Verificado:** TypeScript,
+  ESLint, `next build` (`/es/hogar` y `/en/hogar` prerenderizadas), 10 tests nuevos
+  (fixture del brief + 4 casos borde + contrato del CRM), y en el navegador a 375 px:
+  flujo ES completo, validación, EN, cuerpo enviado idéntico al contrato, caso
+  "ajustado", brecha de efectivo, sin red → resultado visible + cola → reintento al
+  volver `online` sin duplicados, `/intake.js` devuelve JavaScript y `window.itmano`
+  existe. El esquema del canal se comprobó con un POST inválido (400 solo por
+  `first_name`/`email`); **no se envió ningún lead real de prueba**.
 
 - **2026-10-08** — **Lead magnet "Home Wellness Check" (`/wellness`) para el evento de Melany.**
   Ver **Mini-Fase 6i**. Quiz móvil bilingüe de 6 preguntas que termina en un

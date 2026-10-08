@@ -1,0 +1,164 @@
+/* Family affordability calculator (/hogar) — focused, phone-first flow. Owns the
+   full screen, so the site's top bar, navbar and footer step aside (the flow has
+   its own header). Same look as the other event lead magnets, kept as its own
+   module so each one can evolve without touching the other. */
+
+:global(body):has(.page) :global([data-site-topbar]),
+:global(body):has(.page) :global([data-site-nav]),
+:global(body):has(.page) :global([data-site-footer]) {
+  display: none;
+}
+
+.page {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  background:
+    radial-gradient(60rem 28rem at 110% -8%, rgb(233 216 208 / 0.65), transparent 70%),
+    var(--color-cream);
+  color: var(--color-navy-900);
+}
+
+.page ::selection {
+  background: var(--color-gold);
+  color: var(--color-navy-950);
+}
+
+.sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background: linear-gradient(to top, var(--color-cream) 72%, rgb(255 247 245 / 0));
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid rgb(16 32 55 / 0.2);
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.75rem 0.9rem;
+  font-size: 1rem; /* 16px: stops iOS zooming on focus */
+  color: var(--color-navy-900);
+}
+
+.inputJoined {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 1px;
+  border-color: var(--color-gold);
+}
+
+.input[aria-invalid="true"] {
+  border-color: #8a3b2c;
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgb(16 32 55 / 0.14);
+  border-radius: 0.9rem;
+  background: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--color-navy-900);
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease,
+    transform 160ms ease;
+}
+
+.option:active {
+  transform: scale(0.985);
+}
+
+.option:focus-visible,
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.optionOn {
+  border-color: var(--color-navy-900);
+  background: var(--color-navy-900);
+  color: var(--color-cream);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  min-height: 3.5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.primary {
+  background: var(--color-gold);
+  color: var(--color-navy-950);
+}
+
+.primary:hover {
+  background: #d3b273;
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(0.985);
+}
+
+.secondary {
+  border: 1px solid rgb(16 32 55 / 0.25);
+  color: var(--color-navy-800);
+  min-height: 3rem;
+  font-weight: 600;
+}
+
+.bar {
+  transition: width 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stepIn {
+  animation: step-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepIn {
+    animation: none;
+  }
+  .bar,
+  .option,
+  .primary,
+  .secondary {
+    transition: none;
+  }
+  .option:active,
+  .primary:active,
+  .secondary:active {
+    transform: none;
+  }
+}
