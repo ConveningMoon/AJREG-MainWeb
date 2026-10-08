@@ -14,7 +14,6 @@ import type { Evaluation, WellnessAnswers } from "./engine.ts";
 import { cashValue, monthlyValue } from "./engine.ts";
 
 export type Language = "en" | "es";
-export type ContactMethod = "text" | "whatsapp" | "call" | "email";
 
 type Translate = (key: string, values?: Record<string, string | number>) => string;
 
@@ -30,7 +29,6 @@ export interface WellnessSubmission {
   /** 10 US digits, no country code. */
   phoneDigits: string;
   email: string;
-  contactMethod: ContactMethod;
   language: Language;
   answers: WellnessAnswers;
   evaluation: Evaluation;
@@ -130,18 +128,6 @@ export function buildIntakeBody(sub: WellnessSubmission, t: Translate): IntakeBo
       question: "Home Wellness Check — pillar results",
       value: pillarsValue,
       label: pillarsLabel,
-    },
-    {
-      key: "preferred_contact",
-      question: t("form.contactMethod"),
-      value: sub.contactMethod,
-      label: t(`form.methods.${sub.contactMethod}`),
-    },
-    {
-      key: "preferred_language",
-      question: t("form.language"),
-      value: sub.language,
-      label: sub.language === "es" ? "Español" : "English",
     },
     // Proof of consent: the exact sentence shown next to the checkbox.
     {

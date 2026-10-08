@@ -1010,7 +1010,14 @@
       "title": "Tu Chequeo de Bienestar del Hogar",
       "body": "6 preguntas rápidas. Descubre en qué punto estás en el camino hacia tu próxima casa — y qué hacer ahora. Gratis, privado y sin presión.",
       "cta": "Empezar mi chequeo",
-      "micro": "Toma aproximadamente un minuto."
+      "micro": "Toma aproximadamente un minuto.",
+      "heading": "Tu Chequeo de <em>Bienestar</em> del Hogar",
+      "chips": [
+        "6 preguntas rápidas",
+        "Gratis y privado",
+        "Sin presión"
+      ],
+      "photoAlt": "Melany Valencia sosteniendo la llave de una casa"
     },
     "q1": {
       "title": "¿Dónde estás hoy?",
@@ -1077,21 +1084,12 @@
       "phone": "Número de celular",
       "phoneHelp": "Número de EE. UU. de 10 dígitos",
       "email": "Correo electrónico",
-      "contactMethod": "¿Cómo prefieres que te contacten?",
-      "methods": {
-        "text": "Mensaje de texto",
-        "whatsapp": "WhatsApp",
-        "call": "Llamada",
-        "email": "Correo"
-      },
-      "language": "Idioma preferido",
       "consent": "Acepto que A&J Real Estate Group y mi agente me contacten por mensaje de texto, WhatsApp, llamada o email sobre mi consulta. Pueden aplicar tarifas de mensajes y datos. Puedo cancelar cuando quiera. Mi consentimiento no es requisito para comprar.",
       "submit": "Ver mi Chequeo",
       "errors": {
         "name": "Cuéntanos tu nombre.",
         "phone": "Escribe un celular de EE. UU. de 10 dígitos.",
         "email": "Escribe un correo electrónico válido.",
-        "contactMethod": "Elige cómo prefieres que te contacten.",
         "consent": "Marca la casilla para que Melany pueda escribirte."
       }
     },
@@ -1158,14 +1156,19 @@
       },
       "cta": "Hablar con Melany",
       "ctaMessage": "Hola Melany, soy {name}. Acabo de hacer el Chequeo de Bienestar del Hogar y me encantaría conversar sobre mis próximos pasos.",
-      "ctaEmailSubject": "Mi Chequeo de Bienestar del Hogar",
       "share": "Enviar a una amiga o amigo",
       "shareTitle": "Tu Chequeo de Bienestar del Hogar",
       "shareText": "6 preguntas rápidas para ver en qué punto estás en el camino hacia tu próxima casa.",
       "pending": "Tus datos están guardados en este dispositivo y llegarán a Melany en cuanto vuelvas a tener conexión.",
       "disclaimer": "Esta es una guía educativa de bienestar, no una evaluación de crédito, oferta de préstamo, pre-aprobación ni asesoría financiera. El crédito es autodescrito. Las tasas, primas, impuestos y seguros reales varían. Los programas de asistencia tienen requisitos de elegibilidad.",
       "rateNote": "Las estimaciones usan la tasa de referencia {rate} % (actualizada {date}).",
-      "equalHousing": "Igualdad de oportunidades en la vivienda"
+      "equalHousing": "Igualdad de oportunidades en la vivienda",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "text": "Mensaje",
+        "call": "Llamar"
+      },
+      "more": "O escríbele a Melany por"
     },
     "costs": {
       "meta": {

@@ -526,6 +526,26 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   `wellness.form.consent` (EN/ES); se guarda como respuesta `contact_consent` con
   la frase completa como `label` y `yes|v<versión>|<idioma>|<timestamp>` como
   `value`. Versión en `wellnessConfig.consentVersion` (subirla si cambia el copy).
+- **Rediseño visual (2026-10-08):** mundo "peony bloom" para un evento de bienestar
+  para mujeres, sin decirlo en el copy (Fair Housing): fondo malla blush/durazno/lavanda
+  sobre crema A&J, tinta navy, acento rosa palo `#a8405c` y destellos dorados.
+  Bienvenida con el retrato de Melany (`hero-team/Melany_Portrait.webp`) en un arco
+  con la llave en la mano; titular EB Garamond con la palabra clave en cursiva rosa
+  (`welcome.heading` lleva `<em>`; se lee crudo porque ICU lo trataría como etiqueta
+  rica); opciones tipo "pebble" con flor/check; progreso en puntos que se alargan;
+  pilares como tarjetas tintadas (verde salvia / durazno / lavanda) con 3 flores
+  según el estado; confeti al mostrar el resultado.
+  **Librerías:** `@tsparticles/react` + `@tsparticles/slim` (pétalos cayendo, chunk
+  aparte con `next/dynamic`, se monta con `requestIdleCallback` y NO se carga con
+  `prefers-reduced-motion` ni `saveData`; 11 partículas, 24 fps), `canvas-confetti`
+  (ráfaga de pétalos/corazones/oro, `disableForReducedMotion`) y `motion` con
+  `LazyMotion` (entrada de pantallas y opciones, píldora del toggle de idioma con
+  `layoutId`). Las transiciones son solo de entrada (sin `AnimatePresence`): el DOM
+  cambia al instante aunque el reloj de frames esté estrangulado.
+- **Preferencias de contacto eliminadas** del formulario (canal y idioma preferidos);
+  el lead sale con `language` = idioma activo y ya no manda `preferred_contact` ni
+  `preferred_language`. El botón "Hablar con Melany" abre WhatsApp con el mensaje
+  precargado y debajo van "Mensaje" y "Llamar" como alternativas.
 - **El correo es obligatorio** (el contrato del CRM lo exige; el brief original lo
   tenía opcional). Por eso el canal "Email" siempre está disponible.
 - **Resiliencia:** el resultado se calcula en cliente y se muestra de inmediato; el
@@ -544,9 +564,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - **Config confirmada:** el botón "Hablar con Melany" usa su línea directa
   (321-888-0712, `wellnessConfig.agent.phoneE164`); dominio `ajrealestateva.com`
   (QR → `https://ajrealestateva.com/wellness?src=melany-event-2026-10-09`, aún sin generar).
-- **PENDIENTE:** (1) nombre legal del brokerage (`wellnessConfig.brokerage.legalName`,
-  hoy muestra "A&J Real Estate Group"); (2) actualizar `rate30` con el PMMS semanal
-  más reciente; (3) QR [STRETCH].
+- Nombre del brokerage: se queda "A&J Real Estate Group" (confirmado). **QR
+  suspendido** (lo genera el usuario). **PENDIENTE:** actualizar `rate30` con el
+  PMMS semanal más reciente.
 **→ commit:** `feat: home wellness check lead magnet (melany event)`
 
 ---

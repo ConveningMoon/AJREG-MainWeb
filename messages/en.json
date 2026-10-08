@@ -1010,7 +1010,14 @@
       "title": "Your Home Wellness Check",
       "body": "6 quick questions. See where you stand on the road to your next home — and exactly what to do next. Free, private, no pressure.",
       "cta": "Start my check",
-      "micro": "Takes about a minute."
+      "micro": "Takes about a minute.",
+      "heading": "Your Home <em>Wellness</em> Check",
+      "chips": [
+        "6 quick questions",
+        "Free and private",
+        "No pressure"
+      ],
+      "photoAlt": "Melany Valencia holding a house key"
     },
     "q1": {
       "title": "Where are you today?",
@@ -1077,21 +1084,12 @@
       "phone": "Mobile number",
       "phoneHelp": "10-digit US number",
       "email": "Email",
-      "contactMethod": "Preferred way to reach you",
-      "methods": {
-        "text": "Text message",
-        "whatsapp": "WhatsApp",
-        "call": "Phone call",
-        "email": "Email"
-      },
-      "language": "Preferred language",
       "consent": "I agree that A&J Real Estate Group and my agent may contact me by text, WhatsApp, call or email about my inquiry. Message and data rates may apply. I can opt out anytime. Consent is not a condition of purchase.",
       "submit": "See my Wellness Check",
       "errors": {
         "name": "Please tell us your name.",
         "phone": "Enter a 10-digit US mobile number.",
         "email": "Enter a valid email address.",
-        "contactMethod": "Pick how you'd like to be reached.",
         "consent": "Please check the box so Melany can reach out."
       }
     },
@@ -1158,14 +1156,19 @@
       },
       "cta": "Talk with Melany",
       "ctaMessage": "Hi Melany, it's {name}. I just did the Home Wellness Check and I'd love to talk through my next steps.",
-      "ctaEmailSubject": "My Home Wellness Check",
       "share": "Send to a friend",
       "shareTitle": "Your Home Wellness Check",
       "shareText": "6 quick questions to see where you stand on the road to your next home.",
       "pending": "Your details are saved on this device and will reach Melany as soon as you're back online.",
       "disclaimer": "This is an educational wellness guide, not a credit evaluation, loan offer, pre-approval or financial advice. Credit is self-described. Actual rates, premiums, taxes and insurance vary. Assistance programs have eligibility requirements.",
       "rateNote": "Estimates use reference rate {rate}% (updated {date}).",
-      "equalHousing": "Equal Housing Opportunity"
+      "equalHousing": "Equal Housing Opportunity",
+      "channels": {
+        "whatsapp": "WhatsApp",
+        "text": "Text",
+        "call": "Call"
+      },
+      "more": "Or reach Melany by"
     },
     "costs": {
       "meta": {
