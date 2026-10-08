@@ -992,5 +992,201 @@
       "whatsapp": "Message on WhatsApp",
       "call": "Call {phone}"
     }
+  },
+  "wellness": {
+    "meta": {
+      "title": "Your Home Wellness Check",
+      "description": "6 quick questions. See where you stand on the road to your next home — and exactly what to do next. Free, private, no pressure."
+    },
+    "ui": {
+      "langAria": "Language",
+      "back": "Back",
+      "continue": "Continue",
+      "stepOf": "Question {n} of {total}",
+      "optional": "Optional",
+      "chooseMany": "Choose as many as you like"
+    },
+    "welcome": {
+      "title": "Your Home Wellness Check",
+      "body": "6 quick questions. See where you stand on the road to your next home — and exactly what to do next. Free, private, no pressure.",
+      "cta": "Start my check",
+      "micro": "Takes about a minute."
+    },
+    "q1": {
+      "title": "Where are you today?",
+      "options": {
+        "rent": "I rent",
+        "family": "I live with family or roommates",
+        "owner": "I own and I'm thinking of selling or moving",
+        "other": "Something else"
+      }
+    },
+    "q2": {
+      "title": "When would you like to be in your next home?",
+      "options": {
+        "under_3_months": "Within 3 months",
+        "3_6_months": "3–6 months",
+        "6_12_months": "6–12 months",
+        "over_12_explorando": "More than a year / just exploring"
+      }
+    },
+    "q3": {
+      "title": "How much cash could you put toward a down payment and closing costs?",
+      "help": "Savings, family gifts, or equity you'd keep if you're selling. A rough range is fine.",
+      "options": {
+        "lt5k": "Under $5,000",
+        "5to15k": "$5,000–$15,000",
+        "15to30k": "$15,000–$30,000",
+        "30plus": "$30,000+",
+        "unsure": "Not sure yet"
+      }
+    },
+    "q4": {
+      "title": "What monthly housing payment would feel comfortable — taxes and insurance included?",
+      "options": {
+        "lt1200": "Under $1,200",
+        "1200to1800": "$1,200–$1,800",
+        "1800to2500": "$1,800–$2,500",
+        "2500plus": "$2,500+",
+        "unsure": "Not sure yet"
+      }
+    },
+    "q5": {
+      "title": "How would you describe your credit today?",
+      "options": {
+        "unchecked": "I haven't checked it recently",
+        "improving": "I'm working on improving it",
+        "good": "Good",
+        "excellent": "Very good or excellent"
+      }
+    },
+    "q6": {
+      "title": "What would you like to feel clearer about?",
+      "options": {
+        "process": "The buying process",
+        "downPayment": "Down payment help",
+        "hiddenCosts": "Hidden costs of owning",
+        "credit": "My credit",
+        "where": "Where to live"
+      }
+    },
+    "form": {
+      "title": "Where should we send your Wellness Check?",
+      "body": "Melany will reach out just to walk you through it. No pressure, ever.",
+      "name": "Name",
+      "phone": "Mobile number",
+      "phoneHelp": "10-digit US number",
+      "email": "Email",
+      "contactMethod": "Preferred way to reach you",
+      "methods": {
+        "text": "Text message",
+        "whatsapp": "WhatsApp",
+        "call": "Phone call",
+        "email": "Email"
+      },
+      "language": "Preferred language",
+      "consent": "I agree that A&J Real Estate Group and my agent may contact me by text, WhatsApp, call or email about my inquiry. Message and data rates may apply. I can opt out anytime. Consent is not a condition of purchase.",
+      "submit": "See my Wellness Check",
+      "errors": {
+        "name": "Please tell us your name.",
+        "phone": "Enter a 10-digit US mobile number.",
+        "email": "Enter a valid email address.",
+        "contactMethod": "Pick how you'd like to be reached.",
+        "consent": "Please check the box so Melany can reach out."
+      }
+    },
+    "result": {
+      "greeting": "Here's your Home Wellness Check, {name}.",
+      "overall": {
+        "four": "You're in a strong position.",
+        "three": "You're closer than you think.",
+        "some": "You have a clear starting point.",
+        "none": "Great news: you know exactly where to begin."
+      },
+      "status": {
+        "strong": "Strong",
+        "almost": "Almost there",
+        "start": "Start here"
+      },
+      "pillars": {
+        "savings": "Savings",
+        "credit": "Credit",
+        "number": "Your number",
+        "clarity": "Clarity"
+      },
+      "pillarLine": {
+        "savings": {
+          "strong": "Your cash looks ready for a down payment and closing costs at your comfortable payment.",
+          "almost": "You're part of the way there — a little more cash or some down payment help can close the gap.",
+          "start": "Building a cash cushion, or finding out how much you need, is a great first move."
+        },
+        "credit": {
+          "strong": "By your own description, your credit is working in your favor.",
+          "almost": "You're already improving it — a few steady months can make a real difference.",
+          "start": "A quick look at your reports is a simple, free place to begin."
+        },
+        "number": {
+          "strong": "You know what payment feels comfortable — that's a powerful anchor.",
+          "almost": "You have a sense of your budget, and we can sharpen it together.",
+          "start": "Choosing a monthly number you can live with is a great first step."
+        },
+        "clarity": {
+          "strong": "You know what lies ahead, which makes the next conversation easy.",
+          "almost": "A few things to sort out — completely normal at this stage.",
+          "start": "There's a lot to untangle, and a good guide makes it feel much lighter."
+        }
+      },
+      "stepsTitle": "Your next 3 steps",
+      "steps": {
+        "savings_vhda": "Ask about down payment help. Virginia Housing offers a grant of about 2–2.5% of the price for eligible first-time buyers (income limits, a free homebuyer class and other requirements apply).",
+        "savings_fha": "FHA loans allow as little as 3.5% down with a 580+ credit score.",
+        "credit_start": "Pull your free credit reports at annualcreditreport.com and check them for errors.",
+        "credit_almost": "Keep balances low and payments on time for a few months before you apply.",
+        "number_start": "Choose a monthly number you can live with after all costs. A common guide is keeping housing at or below about 28% of your gross income.",
+        "clarity_process": "Melany can map the buying process step by step for your timeline.",
+        "clarity_where": "Melany can walk you through areas and commutes based on your budget and priorities.",
+        "generic_talk": "Melany can review these results with you and help you plan your next move."
+      },
+      "hidden": {
+        "title": "Hidden costs",
+        "body": "42% of homeowners say hidden costs and maintenance are their biggest regret (American Home Shield, 2025).",
+        "cta": "See the hidden-costs checklist"
+      },
+      "estimate": {
+        "label": "Rough estimate",
+        "body": "At about {monthly}/month, many buyers look at homes around {price} — you'd typically need about {cash} for down payment and closing."
+      },
+      "cta": "Talk with Melany",
+      "ctaMessage": "Hi Melany, it's {name}. I just did the Home Wellness Check and I'd love to talk through my next steps.",
+      "ctaEmailSubject": "My Home Wellness Check",
+      "share": "Send to a friend",
+      "shareTitle": "Your Home Wellness Check",
+      "shareText": "6 quick questions to see where you stand on the road to your next home.",
+      "pending": "Your details are saved on this device and will reach Melany as soon as you're back online.",
+      "disclaimer": "This is an educational wellness guide, not a credit evaluation, loan offer, pre-approval or financial advice. Credit is self-described. Actual rates, premiums, taxes and insurance vary. Assistance programs have eligibility requirements.",
+      "rateNote": "Estimates use reference rate {rate}% (updated {date}).",
+      "equalHousing": "Equal Housing Opportunity"
+    },
+    "costs": {
+      "meta": {
+        "title": "Hidden costs of owning a home — checklist",
+        "description": "A one-page checklist of the costs that come after the purchase price."
+      },
+      "title": "The hidden-costs checklist",
+      "intro": "The purchase price is only part of the picture. Use this list to plan for what comes with owning a home.",
+      "items": {
+        "tax": "Property tax",
+        "insurance": "Homeowners insurance",
+        "flood": "Flood insurance (coastal Virginia areas)",
+        "hoa": "HOA or condo fees",
+        "maintenance": "Maintenance reserve — a common rule of thumb is about 1% of the home's value per year",
+        "utilities": "Utilities: electricity, water, internet",
+        "moving": "Moving expenses",
+        "repairs": "Initial repairs",
+        "closing": "Closing costs — about 3% of the price"
+      },
+      "print": "Print this page",
+      "note": "Estimates are general guides, not quotes. Your numbers will depend on the home and where it is."
+    }
   }
 }

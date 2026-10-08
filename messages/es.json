@@ -992,5 +992,201 @@
       "whatsapp": "Escribir por WhatsApp",
       "call": "Llamar al {phone}"
     }
+  },
+  "wellness": {
+    "meta": {
+      "title": "Tu Chequeo de Bienestar del Hogar",
+      "description": "6 preguntas rápidas. Descubre en qué punto estás en el camino hacia tu próxima casa — y qué hacer ahora. Gratis, privado y sin presión."
+    },
+    "ui": {
+      "langAria": "Idioma",
+      "back": "Atrás",
+      "continue": "Continuar",
+      "stepOf": "Pregunta {n} de {total}",
+      "optional": "Opcional",
+      "chooseMany": "Elige las que quieras"
+    },
+    "welcome": {
+      "title": "Tu Chequeo de Bienestar del Hogar",
+      "body": "6 preguntas rápidas. Descubre en qué punto estás en el camino hacia tu próxima casa — y qué hacer ahora. Gratis, privado y sin presión.",
+      "cta": "Empezar mi chequeo",
+      "micro": "Toma aproximadamente un minuto."
+    },
+    "q1": {
+      "title": "¿Dónde estás hoy?",
+      "options": {
+        "rent": "Rento",
+        "family": "Vivo con familia o con otras personas",
+        "owner": "Soy dueña/o y pienso vender o mudarme",
+        "other": "Otra situación"
+      }
+    },
+    "q2": {
+      "title": "¿Cuándo te gustaría estar en tu próxima casa?",
+      "options": {
+        "under_3_months": "En menos de 3 meses",
+        "3_6_months": "3–6 meses",
+        "6_12_months": "6–12 meses",
+        "over_12_explorando": "Más de un año / solo explorando"
+      }
+    },
+    "q3": {
+      "title": "¿Cuánto efectivo podrías destinar a la entrada y los gastos de cierre?",
+      "help": "Ahorros, regalos familiares o el capital que conservarías si vendes. Un rango aproximado está bien.",
+      "options": {
+        "lt5k": "Menos de $5,000",
+        "5to15k": "$5,000–$15,000",
+        "15to30k": "$15,000–$30,000",
+        "30plus": "$30,000+",
+        "unsure": "Aún no lo sé"
+      }
+    },
+    "q4": {
+      "title": "¿Qué pago mensual de vivienda te sentiría cómodo — con impuestos y seguro incluidos?",
+      "options": {
+        "lt1200": "Menos de $1,200",
+        "1200to1800": "$1,200–$1,800",
+        "1800to2500": "$1,800–$2,500",
+        "2500plus": "$2,500+",
+        "unsure": "Aún no lo sé"
+      }
+    },
+    "q5": {
+      "title": "¿Cómo describirías tu crédito hoy?",
+      "options": {
+        "unchecked": "No lo he revisado recientemente",
+        "improving": "Estoy trabajando en mejorarlo",
+        "good": "Bueno",
+        "excellent": "Muy bueno o excelente"
+      }
+    },
+    "q6": {
+      "title": "¿Sobre qué te gustaría tener más claridad?",
+      "options": {
+        "process": "El proceso de compra",
+        "downPayment": "Ayuda para la entrada",
+        "hiddenCosts": "Costos ocultos de ser dueña/o",
+        "credit": "Mi crédito",
+        "where": "Dónde vivir"
+      }
+    },
+    "form": {
+      "title": "¿Dónde te enviamos tu Chequeo?",
+      "body": "Melany te escribirá solo para explicártelo. Sin presión, nunca.",
+      "name": "Nombre",
+      "phone": "Número de celular",
+      "phoneHelp": "Número de EE. UU. de 10 dígitos",
+      "email": "Correo electrónico",
+      "contactMethod": "¿Cómo prefieres que te contacten?",
+      "methods": {
+        "text": "Mensaje de texto",
+        "whatsapp": "WhatsApp",
+        "call": "Llamada",
+        "email": "Correo"
+      },
+      "language": "Idioma preferido",
+      "consent": "Acepto que A&J Real Estate Group y mi agente me contacten por mensaje de texto, WhatsApp, llamada o email sobre mi consulta. Pueden aplicar tarifas de mensajes y datos. Puedo cancelar cuando quiera. Mi consentimiento no es requisito para comprar.",
+      "submit": "Ver mi Chequeo",
+      "errors": {
+        "name": "Cuéntanos tu nombre.",
+        "phone": "Escribe un celular de EE. UU. de 10 dígitos.",
+        "email": "Escribe un correo electrónico válido.",
+        "contactMethod": "Elige cómo prefieres que te contacten.",
+        "consent": "Marca la casilla para que Melany pueda escribirte."
+      }
+    },
+    "result": {
+      "greeting": "Aquí está tu Chequeo de Bienestar del Hogar, {name}.",
+      "overall": {
+        "four": "Estás en una posición sólida.",
+        "three": "Estás más cerca de lo que crees.",
+        "some": "Tienes un punto de partida claro.",
+        "none": "Buena noticia: sabes exactamente por dónde empezar."
+      },
+      "status": {
+        "strong": "Fuerte",
+        "almost": "Casi listo",
+        "start": "Empieza aquí"
+      },
+      "pillars": {
+        "savings": "Ahorro",
+        "credit": "Crédito",
+        "number": "Tu número",
+        "clarity": "Claridad"
+      },
+      "pillarLine": {
+        "savings": {
+          "strong": "Tu efectivo luce listo para una entrada y los gastos de cierre con el pago que te resulta cómodo.",
+          "almost": "Ya vas a medio camino: un poco más de efectivo o ayuda para la entrada pueden cerrar la brecha.",
+          "start": "Armar un colchón de efectivo, o saber cuánto necesitas, es un excelente primer paso."
+        },
+        "credit": {
+          "strong": "Según tu propia descripción, tu crédito juega a tu favor.",
+          "almost": "Ya lo estás mejorando: unos meses constantes pueden hacer una gran diferencia.",
+          "start": "Echar un vistazo a tus reportes es un punto de partida sencillo y gratuito."
+        },
+        "number": {
+          "strong": "Sabes qué pago te resulta cómodo, y eso es un ancla poderosa.",
+          "almost": "Tienes una idea de tu presupuesto, y juntos podemos afinarla.",
+          "start": "Elegir un pago mensual con el que puedas vivir es un gran primer paso."
+        },
+        "clarity": {
+          "strong": "Sabes lo que viene, y eso hace más fácil la próxima conversación.",
+          "almost": "Hay algunas cosas por aclarar, algo totalmente normal en esta etapa.",
+          "start": "Hay mucho por desenredar, y con una buena guía todo se siente más liviano."
+        }
+      },
+      "stepsTitle": "Tus próximos 3 pasos",
+      "steps": {
+        "savings_vhda": "Pregunta por ayuda para la entrada. Virginia Housing ofrece una subvención de alrededor del 2–2.5 % del precio para compradores primerizos elegibles (aplican límites de ingreso, una clase gratuita de compradores y otros requisitos).",
+        "savings_fha": "Los préstamos FHA permiten desde 3.5 % de entrada con puntaje de 580 o más.",
+        "credit_start": "Pide tus reportes de crédito gratis en annualcreditreport.com y revísalos por si hay errores.",
+        "credit_almost": "Mantén saldos bajos y pagos al día por unos meses antes de aplicar.",
+        "number_start": "Elige un pago mensual con el que puedas vivir después de todos los costos. Una guía común es mantener la vivienda en 28 % o menos de tu ingreso bruto.",
+        "clarity_process": "Melany puede mostrarte el proceso paso a paso según tu plazo.",
+        "clarity_where": "Melany puede explicarte zonas y trayectos según tu presupuesto y tus prioridades.",
+        "generic_talk": "Melany puede repasar estos resultados contigo y ayudarte a planear tu siguiente paso."
+      },
+      "hidden": {
+        "title": "Costos ocultos",
+        "body": "El 42 % de los dueños dice que los costos ocultos y el mantenimiento son su mayor arrepentimiento (American Home Shield, 2025).",
+        "cta": "Ver la lista de costos ocultos"
+      },
+      "estimate": {
+        "label": "Estimación aproximada",
+        "body": "Con unos {monthly} al mes, muchas personas miran casas de alrededor de {price}; normalmente necesitarías unos {cash} para la entrada y el cierre."
+      },
+      "cta": "Hablar con Melany",
+      "ctaMessage": "Hola Melany, soy {name}. Acabo de hacer el Chequeo de Bienestar del Hogar y me encantaría conversar sobre mis próximos pasos.",
+      "ctaEmailSubject": "Mi Chequeo de Bienestar del Hogar",
+      "share": "Enviar a una amiga o amigo",
+      "shareTitle": "Tu Chequeo de Bienestar del Hogar",
+      "shareText": "6 preguntas rápidas para ver en qué punto estás en el camino hacia tu próxima casa.",
+      "pending": "Tus datos están guardados en este dispositivo y llegarán a Melany en cuanto vuelvas a tener conexión.",
+      "disclaimer": "Esta es una guía educativa de bienestar, no una evaluación de crédito, oferta de préstamo, pre-aprobación ni asesoría financiera. El crédito es autodescrito. Las tasas, primas, impuestos y seguros reales varían. Los programas de asistencia tienen requisitos de elegibilidad.",
+      "rateNote": "Las estimaciones usan la tasa de referencia {rate} % (actualizada {date}).",
+      "equalHousing": "Igualdad de oportunidades en la vivienda"
+    },
+    "costs": {
+      "meta": {
+        "title": "Costos ocultos de ser dueña/o — lista de verificación",
+        "description": "Una lista de una hoja con los costos que vienen después del precio de compra."
+      },
+      "title": "La lista de costos ocultos",
+      "intro": "El precio de compra es solo una parte. Usa esta lista para planear lo que trae consigo ser dueña/o de una casa.",
+      "items": {
+        "tax": "Impuesto a la propiedad",
+        "insurance": "Seguro del hogar",
+        "flood": "Seguro contra inundación (zonas costeras de Virginia)",
+        "hoa": "Cuotas de HOA o condominio",
+        "maintenance": "Reserva de mantenimiento: una regla práctica común es alrededor del 1 % del valor de la casa al año",
+        "utilities": "Servicios: luz, agua, internet",
+        "moving": "Gastos de mudanza",
+        "repairs": "Reparaciones iniciales",
+        "closing": "Costos de cierre: alrededor del 3 % del precio"
+      },
+      "print": "Imprimir esta página",
+      "note": "Las estimaciones son guías generales, no cotizaciones. Tus números dependerán de la casa y de dónde esté."
+    }
   }
 }
