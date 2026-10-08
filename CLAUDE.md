@@ -137,6 +137,10 @@ primerizos, clientes de reubicación.
 - `/events/christmas-gala/sponsors` — **Gala Christmas Party · Sponsors** → landing
   bilingüe para captar patrocinadores del evento de Navidad (5-dic-2026); solicitud →
   Google Sheet + email a Adriana (no va a ITMANO).
+- `/wellness` (+ `/wellness/costs`) — **Home Wellness Check** → quiz móvil de 6
+  preguntas (lead magnet de Melany para un evento en Norfolk) → formulario →
+  resultado con 4 pilares. Envío a ITMANO (canal `chn_tg9y844y2ef4`). No va en el
+  nav ni en el sitemap (se comparte por QR/enlace; `noindex`).
 - `/team/[slug]` — **Equipo** → `adriana-melendez`, `john-leonard`,
   `melany-valencia`, `viviane-chiu`
   *(Nota: en Webflow son páginas separadas; aquí se unifican en un template con
@@ -483,6 +487,68 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   → JPEG); regenerar si cambian fechas o precios.
 **→ commit:** `feat: christmas gala sponsor landing page`
 
+**Mini-Fase 6i — Home Wellness Check (lead magnet de Melany)**
+- Nueva ruta `/[locale]/wellness` (`/wellness?src=…` redirige a `/en/wellness` o al
+  idioma del navegador): bienvenida → 6 preguntas (una por pantalla, un toque
+  avanza solo, Q6 multiselección con "Continuar") → formulario de captura →
+  resultado. Pensado para celular a 375 px: botón principal `sticky` abajo con
+  `safe-area-inset-bottom`, áreas táctiles ≥ 48 px, inputs a 16 px, sin librerías
+  de charts, transiciones de 220 ms (CSS, sin `motion`) y `prefers-reduced-motion`.
+  Oculta TopBar/Navbar/Footer del sitio (tiene su propio encabezado con logo y
+  toggle EN/ES) con el mismo patrón `:has()` de Feel Good Social.
+- **Idioma:** las dos lenguas viajan al cliente (solo el slice `wellness` de cada
+  `messages/*.json`) y el toggle cambia al instante **sin navegar**, para no perder
+  las respuestas a mitad del quiz. Prioridad: `?lang=` → `sessionStorage` → locale de
+  la ruta. `?src=` se sanea (`a-z0-9._-`, 64 car.) y por defecto es
+  `melany-event-2026-10-09`.
+- **Motor** (módulos puros con tests `node --test src/lib/wellness/engine.test.ts`,
+  13 casos incl. los fixtures A/B/C del brief): `lib/affordability.ts` (FHA 30 años:
+  `monthlyCostPerDollar`, `priceFromMonthly`, `cashNeeded`, `roundDownTo`,
+  `estimateFromMonthly`; **todos los parámetros —tasa 6.75 %, 3.5 % entrada, UFMIP,
+  MIP, impuestos VA, seguro, cierre— viven en `affordabilityConfig`** con `version`
+  y `lastUpdated`; **será reutilizado por `/hogar` de Adriana**) y
+  `lib/wellness/engine.ts` (4 pilares Savings/Credit/Your number/Clarity →
+  `strong|almost|start`, resumen global, selección de los 3 pasos). Para importar
+  `.ts` desde `node --test` se activó `allowImportingTsExtensions` en `tsconfig`.
+- **CRM = ITMANO, no Supabase.** El brief original pedía insertar el lead en una
+  tabla propia + scoring + notificación; el canal de evento del CRM ya hace
+  asignación, scoring y aviso al agente, así que **no se escribe nada en Supabase**.
+  `lib/wellness/crm.ts` arma el cuerpo del contrato (`first_name`, `last_name`,
+  `email`, `phone` `+1 xxx xxx xxxx`, `language`, `intent`, `source_url`, honeypot
+  `website` vacío, `form_answers[]`). `intent` = `sell` si Q1 = "soy dueña/o…", si
+  no `buy`. Claves que puntúan: `timeline` (códigos del CRM) y `budget_amount`
+  (el precio que el pago cómodo puede sostener, **calculado por nosotros** y
+  etiquetado así; solo si eligió un rango). El resto se guarda tal cual para que
+  Melany lo vea: `situation`, `down_payment_cash`, `comfortable_monthly_payment`,
+  `credit_self_described`, `topics_of_interest`, `wellness_pillars`,
+  `preferred_contact`, `preferred_language`, `lead_magnet`.
+- **Consentimiento:** casilla sin premarcar con la frase exacta de
+  `wellness.form.consent` (EN/ES); se guarda como respuesta `contact_consent` con
+  la frase completa como `label` y `yes|v<versión>|<idioma>|<timestamp>` como
+  `value`. Versión en `wellnessConfig.consentVersion` (subirla si cambia el copy).
+- **El correo es obligatorio** (el contrato del CRM lo exige; el brief original lo
+  tenía opcional). Por eso el canal "Email" siempre está disponible.
+- **Resiliencia:** el resultado se calcula en cliente y se muestra de inmediato; el
+  envío va en segundo plano. Si la red falla, el lead se guarda en `localStorage`
+  (`ajreg.wellness.pending.v1`) y se reintenta con backoff (2/5/15/45/120 s, máx. 5)
+  y al volver `online`. Sin duplicados: el CRM trata mismo email = mismo lead y
+  `already_submitted` cuenta como éxito. Un 4xx (≠ 429) no se reintenta.
+- **Medición:** `<ItmanoBeacon channelPublicId="chn_tg9y844y2ef4">` (script local
+  `/intake.js`). Eventos `lm_*` por `lib/wellness/track.ts` (dataLayer si existe;
+  consola en desarrollo — no hay proveedor de analytics todavía).
+- `/[locale]/wellness/costs`: lista imprimible de costos ocultos (1 hoja, botón
+  imprimir); el resultado la abre en pestaña nueva para no perder el resultado.
+- **Fair Housing:** sin preguntas prohibidas, sin recomendar zonas, texto neutral;
+  el evento y su organizadora no aparecen en la página (solo `src` interno).
+- i18n `wellness.*` (EN/ES). Env `NEXT_PUBLIC_ITMANO_WELLNESS_CHANNEL_ID`.
+- **Config confirmada:** el botón "Hablar con Melany" usa su línea directa
+  (321-888-0712, `wellnessConfig.agent.phoneE164`); dominio `ajrealestateva.com`
+  (QR → `https://ajrealestateva.com/wellness?src=melany-event-2026-10-09`, aún sin generar).
+- **PENDIENTE:** (1) nombre legal del brokerage (`wellnessConfig.brokerage.legalName`,
+  hoy muestra "A&J Real Estate Group"); (2) actualizar `rate30` con el PMMS semanal
+  más reciente; (3) QR [STRETCH].
+**→ commit:** `feat: home wellness check lead magnet (melany event)`
+
 ---
 
 ## 🔧 CONVENCIONES
@@ -526,6 +592,19 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-10-08** — **Lead magnet "Home Wellness Check" (`/wellness`) para el evento de Melany.**
+  Ver **Mini-Fase 6i**. Quiz móvil bilingüe de 6 preguntas que termina en un
+  resultado de 4 pilares (ahorro, crédito, tu número, claridad), 3 próximos pasos y
+  una estimación orientativa; el lead va al canal de evento de ITMANO
+  (`chn_tg9y844y2ef4`) con intake público first-party, honeypot, beacon de vistas
+  y cola de reintento offline. Módulo reutilizable `lib/affordability.ts` (para
+  `/hogar`). **Verificado:** TypeScript, ESLint, 13 tests del motor (fixtures A/B/C),
+  y en el navegador a 375 px: flujo EN y ES completo, `?lang=`, validación y foco,
+  cuerpo enviado al contrato, fallo de red → resultado visible + cola →
+  reintento al volver `online` sin cola residual, `window.itmano` presente.
+  El esquema del canal se comprobó con un POST inválido (400 solo por
+  `first_name`/`email`, lo demás acepta); **no se envió ningún lead real de prueba**.
 
 - **2026-10-01** — **Landing de sponsors para la Gala Christmas Party (`/events/christmas-gala/sponsors`).**
   Ver **Mini-Fase 6h**. Página bilingüe para que negocios locales soliciten un paquete
