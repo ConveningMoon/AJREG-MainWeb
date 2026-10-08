@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   // no la tocan, no depende de CORS, y no se cruza con el bot-check del otro
   // dominio, que desde una IP de VPN puede devolver un reto en vez de la
   // respuesta. intake.js deriva su base de su propio `src`.
+  // Short, QR-friendly link for the family calculator: /hogar?src=... lands on
+  // the Spanish version (the audience is Spanish-first) with the query intact.
+  // Runs before the locale proxy, so it is not redirected to /en by browser language.
+  async redirects() {
+    return [{ source: "/hogar", destination: "/es/hogar", permanent: false }];
+  },
   async rewrites() {
     return [
       { source: "/intake.js",         destination: "https://app.itmano.com/intake.js" },
