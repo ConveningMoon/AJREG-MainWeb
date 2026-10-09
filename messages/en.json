@@ -1045,7 +1045,9 @@
       "body": "4 quick questions, 60 seconds, your real number. No obligation.",
       "cta": "Start",
       "micro": "Your answers are private.",
-      "agent": "Adriana Meléndez · A&J Real Estate Group"
+      "agent": "Adriana Meléndez · A&J Real Estate Group",
+      "headLead": "What can your family",
+      "headEm": "comfortably afford?"
     },
     "q1": {
       "title": "How many people live in your home?",
@@ -1072,10 +1074,10 @@
       "error": "Enter an amount between $0 and $500,000. If you have no savings yet, enter $0."
     },
     "form": {
-      "title": "Where should we send your result?",
-      "body": "Adriana will message you on WhatsApp just to walk you through it. No pressure.",
+      "title": "Last step to see your number",
+      "body": "Add your name and email and your result appears right away. No pressure.",
       "name": "First name",
-      "phone": "WhatsApp number",
+      "phone": "Mobile (optional)",
       "phoneHelp": "10-digit US number",
       "email": "Email",
       "timeline": {
@@ -1087,15 +1089,15 @@
           "over_12_explorando": "More than 12 months or just exploring"
         }
       },
-      "language": "Preferred contact language",
-      "consent": "I agree that A&J Real Estate Group and my agent may contact me by WhatsApp, call, text message or email about my inquiry. Message and data rates may apply. I can opt out anytime. Consent is not a condition of purchase.",
+      "language": "Language for your emails",
+      "consent": "I agree to receive occasional emails from A&J Real Estate Group with news and helpful housing information, no advertising. I can unsubscribe anytime.",
       "submit": "See my result",
       "errors": {
         "name": "Tell us your name.",
         "phone": "Enter a 10-digit US mobile number.",
         "email": "Enter a valid email address.",
         "timeline": "Choose when you'd like to move.",
-        "consent": "Check the box so Adriana can reach out."
+        "consent": "Check the box to continue."
       }
     },
     "result": {

@@ -16,8 +16,8 @@ type Translate = (key: string, values?: Record<string, string | number>) => stri
 
 export interface HogarSubmission {
   name: string;
-  /** 10 US digits, no country code. */
-  phoneDigits: string;
+  /** 10 US digits, no country code. Optional: the only consent collected is for news emails. */
+  phoneDigits?: string | null;
   email: string;
   timeline: TimelineId;
   language: Language;
@@ -125,9 +125,10 @@ export function buildIntakeBody(sub: HogarSubmission, t: Translate): IntakeBody 
       label: `${sub.src} · event ${hogarConfig.eventDate}`,
     },
     // Proof of consent: the exact sentence shown next to the checkbox.
+    // Scope is news emails only: no text, WhatsApp or call outreach is consented to.
     {
-      key: "contact_consent",
-      question: "Consent to be contacted (WhatsApp, call, text or email)",
+      key: "email_news_consent",
+      question: "Consent to receive news emails (no advertising)",
       value: `yes|v${hogarConfig.consentVersion}|${sub.language}|${sub.consentAtIso}`,
       label: sub.consentText,
     },
@@ -146,7 +147,7 @@ export function buildIntakeBody(sub: HogarSubmission, t: Translate): IntakeBody 
     first_name: firstName,
     ...(lastName ? { last_name: lastName } : {}),
     email: sub.email,
-    phone: formatUsPhone(sub.phoneDigits),
+    ...(sub.phoneDigits ? { phone: formatUsPhone(sub.phoneDigits) } : {}),
     language: sub.language,
     // Always a buyer-model score: the calculator is about what a family can afford to buy.
     intent: "buy",

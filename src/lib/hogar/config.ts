@@ -23,7 +23,7 @@ export const hogarConfig = {
    */
   brokerage: brand.brokerage,
   /** Bump when the consent copy in messages changes (stored with every lead). */
-  consentVersion: "2026-10-08",
+  consentVersion: "2026-10-09",
 } as const;
 
 /** Keep ?src= values to a safe, short token — it ends up in the CRM source URL. */

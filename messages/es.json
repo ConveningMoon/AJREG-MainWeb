@@ -1045,7 +1045,9 @@
       "body": "4 preguntas, 60 segundos, tu número real. Sin compromiso.",
       "cta": "Empezar",
       "micro": "Tus respuestas son privadas.",
-      "agent": "Adriana Meléndez · A&J Real Estate Group"
+      "agent": "Adriana Meléndez · A&J Real Estate Group",
+      "headLead": "¿Cuánto puede pagar tu familia",
+      "headEm": "con tranquilidad?"
     },
     "q1": {
       "title": "¿Cuántas personas viven en tu casa?",
@@ -1072,10 +1074,10 @@
       "error": "Escribe un monto entre $0 y $500,000. Si aún no tienes ahorros, pon $0."
     },
     "form": {
-      "title": "¿A dónde te enviamos tu resultado?",
-      "body": "Adriana te escribirá por WhatsApp solo para explicártelo. Sin presión.",
+      "title": "Último paso para ver tu número",
+      "body": "Pon tu nombre y tu correo y tu resultado aparece al instante. Sin presión.",
       "name": "Nombre",
-      "phone": "WhatsApp",
+      "phone": "Celular (opcional)",
       "phoneHelp": "Número de EE. UU. de 10 dígitos",
       "email": "Correo electrónico",
       "timeline": {
@@ -1087,15 +1089,15 @@
           "over_12_explorando": "Más de 12 meses o solo explorando"
         }
       },
-      "language": "Idioma preferido de contacto",
-      "consent": "Acepto que A&J Real Estate Group y mi agente me contacten por WhatsApp, llamada, mensaje de texto o email sobre mi consulta. Pueden aplicar tarifas de mensajes y datos. Puedo cancelar cuando quiera. Mi consentimiento no es requisito para comprar.",
+      "language": "Idioma de tus correos",
+      "consent": "Acepto recibir correos ocasionales de A&J Real Estate Group con noticias e información útil sobre vivienda, sin publicidad. Puedo cancelar cuando quiera.",
       "submit": "Ver mi resultado",
       "errors": {
         "name": "Cuéntanos tu nombre.",
         "phone": "Escribe un celular de EE. UU. de 10 dígitos.",
         "email": "Escribe un correo electrónico válido.",
         "timeline": "Elige cuándo te gustaría mudarte.",
-        "consent": "Marca la casilla para que Adriana pueda escribirte."
+        "consent": "Marca la casilla para continuar."
       }
     },
     "result": {
