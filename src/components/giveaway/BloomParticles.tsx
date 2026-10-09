@@ -1,9 +1,9 @@
 "use client";
 
-// Drifting petals and gold sparkles behind the quiz (tsParticles, slim bundle).
+// Drifting petals and gold sparkles behind the giveaway page (tsParticles, slim bundle).
 // Loaded lazily after first paint by WellnessCheck and skipped entirely for
 // people who asked for reduced motion or a data saver, so it can never touch
-// the quiz's load time.
+// the page's load time.
 
 import { useMemo } from "react";
 import { Particles, ParticlesProvider } from "@tsparticles/react";
@@ -55,7 +55,7 @@ export default function BloomParticles() {
 
   return (
     <ParticlesProvider init={loadSlim}>
-      <Particles id="wellness-petals" options={options} className="pointer-events-none absolute inset-0" />
+      <Particles id="giveaway-petals" options={options} className="pointer-events-none absolute inset-0" />
     </ParticlesProvider>
   );
 }

@@ -12,5 +12,13 @@ export const brand = {
   instagramHandle: "@adrysofi_realestate",
   instagramHref: "https://instagram.com/adrysofi_realestate",
   facebookHref: "https://facebook.com/adryrealestate",
+  /**
+   * One brokerage name for every lead magnet. `legalName` stays null until the
+   * exact legal name is confirmed — pages show `displayName` meanwhile.
+   */
+  brokerage: {
+    legalName: null as string | null,
+    displayName: "A&J Real Estate Group",
+  },
   googleMapsUrl: "https://share.google/nIJD0LiznYYfeFsVb",
 } as const;

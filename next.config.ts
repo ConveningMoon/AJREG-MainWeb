@@ -13,7 +13,11 @@ const nextConfig: NextConfig = {
   // the Spanish version (the audience is Spanish-first) with the query intact.
   // Runs before the locale proxy, so it is not redirected to /en by browser language.
   async redirects() {
-    return [{ source: "/hogar", destination: "/es/hogar", permanent: false }];
+    return [
+      { source: "/hogar", destination: "/es/hogar", permanent: false },
+      // The giveaway first shipped at /wellness; keep any link already shared alive.
+      { source: "/:locale(en|es)/wellness", destination: "/:locale/giveaway", permanent: false },
+    ];
   },
   async rewrites() {
     return [

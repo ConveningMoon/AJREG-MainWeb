@@ -15,5 +15,5 @@ export function track(event: string, props: Props = {}) {
   const payload = { event, ...context, ...props };
   const w = window as unknown as { dataLayer?: unknown[] };
   if (Array.isArray(w.dataLayer)) w.dataLayer.push(payload);
-  if (process.env.NODE_ENV !== "production") console.debug("[wellness]", payload);
+  if (process.env.NODE_ENV !== "production") console.debug("[giveaway]", payload);
 }
