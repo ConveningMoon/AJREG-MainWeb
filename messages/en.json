@@ -1028,5 +1028,117 @@
       "body": "Thank you for entering. Good luck!",
       "pending": "Your entry is saved on this device and will be sent as soon as you're back online."
     }
+  },
+  "hogar": {
+    "meta": {
+      "title": "What can your family comfortably afford?",
+      "description": "4 quick questions, 60 seconds, your real number. No obligation."
+    },
+    "ui": {
+      "langAria": "Language",
+      "back": "Back",
+      "continue": "Continue",
+      "stepOf": "Question {n} of {total}"
+    },
+    "welcome": {
+      "title": "What can your family comfortably afford?",
+      "body": "4 quick questions, 60 seconds, your real number. No obligation.",
+      "cta": "Start",
+      "micro": "Your answers are private.",
+      "agent": "Adriana Meléndez · A&J Real Estate Group"
+    },
+    "q1": {
+      "title": "How many people live in your home?",
+      "value": "{count, plural, one {# person} other {# people}}",
+      "decrease": "One fewer person",
+      "increase": "One more person"
+    },
+    "q2": {
+      "title": "What's your household's monthly income before taxes?",
+      "help": "Add up everyone who contributes. A rough number is fine.",
+      "input": "Monthly income",
+      "error": "Enter a rough amount between $1 and $50,000 a month."
+    },
+    "q3": {
+      "title": "How much do you pay monthly toward debts? (car, cards, loans)",
+      "help": "Don't include rent or utilities.",
+      "input": "Monthly debt payments",
+      "error": "Enter an amount between $0 and $20,000. If you have no debts, enter $0."
+    },
+    "q4": {
+      "title": "How much do you have saved for a down payment and closing costs?",
+      "help": "Include family gifts if applicable.",
+      "input": "Savings available",
+      "error": "Enter an amount between $0 and $500,000. If you have no savings yet, enter $0."
+    },
+    "form": {
+      "title": "Where should we send your result?",
+      "body": "Adriana will message you on WhatsApp just to walk you through it. No pressure.",
+      "name": "First name",
+      "phone": "WhatsApp number",
+      "phoneHelp": "10-digit US number",
+      "email": "Email",
+      "timeline": {
+        "label": "When would you like to move?",
+        "options": {
+          "under_3_months": "In 0–3 months",
+          "3_6_months": "In 3–6 months",
+          "6_12_months": "In 6–12 months",
+          "over_12_explorando": "More than 12 months or just exploring"
+        }
+      },
+      "language": "Preferred contact language",
+      "consent": "I agree that A&J Real Estate Group and my agent may contact me by WhatsApp, call, text message or email about my inquiry. Message and data rates may apply. I can opt out anytime. Consent is not a condition of purchase.",
+      "submit": "See my result",
+      "errors": {
+        "name": "Tell us your name.",
+        "phone": "Enter a 10-digit US mobile number.",
+        "email": "Enter a valid email address.",
+        "timeline": "Choose when you'd like to move.",
+        "consent": "Check the box so Adriana can reach out."
+      }
+    },
+    "result": {
+      "greeting": "Your result, {name}",
+      "heroLead": "Your family can comfortably look at homes up to",
+      "heroTail": "",
+      "bandsTitle": "Your range",
+      "bands": {
+        "tranquilo": "Relaxed",
+        "comodo": "Comfortable",
+        "maximo": "Estimated max"
+      },
+      "bandMonthly": "≈ {monthly} / month",
+      "bandsNote": "Approximate monthly payments, including taxes and insurance.",
+      "cashTitle": "Cash to get in",
+      "cashBody": "For the down payment ({down}%) and closing (~{closing}%) you would need ≈ {cash}.",
+      "cashCovered": "Your savings cover the down payment and closing.",
+      "cashGap": "You would be about {gap} short. That's a starting point, not a wall: down payment assistance programs exist in Virginia, and Adriana can tell you whether you might qualify.",
+      "spaceTitle": "Space households like yours usually look for",
+      "spaceBody": "Households of {count, plural, one {# person} other {# people}} usually look for {beds} bedrooms.",
+      "tightTitle": "With your current numbers, things are tight",
+      "tightDebts": "With your current debts the number is tight — but there are concrete steps that improve it. Adriana can build a plan with you.",
+      "tightGeneral": "With your current numbers the figure is tight — but there are concrete steps that improve it. Adriana can build a plan with you.",
+      "stepsTitle": "Your next steps",
+      "steps": {
+        "assistance": "Ask about down payment assistance in Virginia. Programs exist for first-time buyers, with eligibility requirements.",
+        "debts": "Look at how lowering your monthly debt payments helps: every dollar less improves your number.",
+        "lender": "Talk to a lender for your real pre-approval.",
+        "no_new_debt": "Avoid opening new debt (car, cards) before you ask for pre-approval.",
+        "talk": "Adriana can walk through this result with you and help plan your next step."
+      },
+      "cta": "Chat with Adriana on WhatsApp",
+      "ctaMessage": "Hi Adriana, I'm {name}. I used the calculator at your booth and my comfortable number came out around {price}. Can we talk?",
+      "ctaMessageTight": "Hi Adriana, I'm {name}. I used the calculator at your booth and I'd like to build a plan. Can we talk?",
+      "save": "Save my result",
+      "saveHint": "Take a screenshot to save your result.",
+      "shareTitle": "My result — A&J Real Estate Group",
+      "shareText": "My family can comfortably look at homes up to ~{price}. I used the A&J Real Estate Group calculator.",
+      "shareTextTight": "I used the A&J Real Estate Group calculator to see what my family can comfortably afford.",
+      "pending": "Your details are saved on this device and will reach Adriana as soon as you're back online.",
+      "disclaimer": "This is an educational estimate, not a loan offer, pre-approval or financial advice. Actual rates, premiums, taxes and insurance vary. Assistance programs have eligibility requirements.",
+      "rateNote": "Reference rate: {rate}% (updated {date}).",
+      "equalHousing": "Equal Housing Opportunity"
+    }
   }
 }
