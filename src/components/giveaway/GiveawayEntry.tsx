@@ -16,7 +16,7 @@ import {
   watchConnectivity,
   type Language,
 } from "@/lib/giveaway/crm";
-import { setTrackContext, track } from "@/lib/giveaway/track";
+import { setTrackContext, track } from "@/lib/track";
 import { celebrate } from "./celebrate";
 import { GiftArt } from "./GiftArt";
 import styles from "./Giveaway.module.css";

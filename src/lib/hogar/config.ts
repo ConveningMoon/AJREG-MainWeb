@@ -3,7 +3,6 @@
 // The financial parameters themselves live in lib/affordability.ts.
 
 import { brand } from "../brand.ts";
-import { wellnessConfig } from "../wellness/config.ts";
 
 export const hogarConfig = {
   /** ITMANO public intake channel ("Carpa Familiar" event). Public id, no secret. */
@@ -20,9 +19,9 @@ export const hogarConfig = {
   },
   /**
    * One brokerage name for every lead magnet: set `legalName` once, in
-   * wellnessConfig.brokerage (still pending the exact legal name).
+   * brand.brokerage (still pending the exact legal name).
    */
-  brokerage: wellnessConfig.brokerage,
+  brokerage: brand.brokerage,
   /** Bump when the consent copy in messages changes (stored with every lead). */
   consentVersion: "2026-10-08",
 } as const;

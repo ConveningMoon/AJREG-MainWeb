@@ -1,4 +1,4 @@
-// Affordability math shared by the lead magnets (/wellness today, /hogar next).
+// Affordability math shared by the lead magnets (/hogar).
 //
 // Pure functions + one config object: no UI, no I/O, so it is unit-testable and
 // safe to import from server or client code. Change the numbers in

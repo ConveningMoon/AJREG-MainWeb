@@ -27,8 +27,8 @@ import {
   watchConnectivity,
   type Language,
 } from "@/lib/hogar/intake";
-import { setTrackContext, track } from "@/lib/wellness/track";
-import { EqualHousingMark } from "@/components/wellness/EqualHousingMark";
+import { setTrackContext, track } from "@/lib/track";
+import { EqualHousingMark } from "@/components/ui/EqualHousingMark";
 import { Field, OptionButton, StickyBar } from "./HogarParts";
 import styles from "./Hogar.module.css";
 
