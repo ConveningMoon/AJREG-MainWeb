@@ -137,10 +137,11 @@ primerizos, clientes de reubicación.
 - `/events/christmas-gala/sponsors` — **Gala Christmas Party · Sponsors** → landing
   bilingüe para captar patrocinadores del evento de Navidad (5-dic-2026); solicitud →
   Google Sheet + email a Adriana (no va a ITMANO).
-- `/wellness` (+ `/wellness/costs`) — **Home Wellness Check** → quiz móvil de 6
-  preguntas (lead magnet de Melany para un evento en Norfolk) → formulario →
-  resultado con 4 pilares. Envío a ITMANO (canal `chn_tg9y844y2ef4`). No va en el
-  nav ni en el sitemap (se comparte por QR/enlace; `noindex`).
+- `/giveaway` — **Good For Her Giveaway by Melany Valencia** → página de una
+  sola pantalla (título, descripción corta y formulario-boleto: nombre, correo,
+  celular opcional, consentimiento de correo). Envío a ITMANO (canal
+  `chn_tg9y844y2ef4`). No va en el nav ni en el sitemap (se comparte por QR/enlace;
+  `noindex`). `/wellness` redirige aquí (primer nombre de la ruta).
 - `/team/[slug]` — **Equipo** → `adriana-melendez`, `john-leonard`,
   `melany-valencia`, `viviane-chiu`
   *(Nota: en Webflow son páginas separadas; aquí se unifican en un template con
@@ -487,87 +488,58 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   → JPEG); regenerar si cambian fechas o precios.
 **→ commit:** `feat: christmas gala sponsor landing page`
 
-**Mini-Fase 6i — Home Wellness Check (lead magnet de Melany)**
-- Nueva ruta `/[locale]/wellness` (`/wellness?src=…` redirige a `/en/wellness` o al
-  idioma del navegador): bienvenida → 6 preguntas (una por pantalla, un toque
-  avanza solo, Q6 multiselección con "Continuar") → formulario de captura →
-  resultado. Pensado para celular a 375 px: botón principal `sticky` abajo con
-  `safe-area-inset-bottom`, áreas táctiles ≥ 48 px, inputs a 16 px, sin librerías
-  de charts, transiciones de 220 ms (CSS, sin `motion`) y `prefers-reduced-motion`.
-  Oculta TopBar/Navbar/Footer del sitio (tiene su propio encabezado con logo y
-  toggle EN/ES) con el mismo patrón `:has()` de Feel Good Social.
-- **Idioma:** las dos lenguas viajan al cliente (solo el slice `wellness` de cada
-  `messages/*.json`) y el toggle cambia al instante **sin navegar**, para no perder
-  las respuestas a mitad del quiz. Prioridad: `?lang=` → `sessionStorage` → locale de
-  la ruta. `?src=` se sanea (`a-z0-9._-`, 64 car.) y por defecto es
-  `melany-event-2026-10-09`.
-- **Motor** (módulos puros con tests `node --test src/lib/wellness/engine.test.ts`,
-  13 casos incl. los fixtures A/B/C del brief): `lib/affordability.ts` (FHA 30 años:
-  `monthlyCostPerDollar`, `priceFromMonthly`, `cashNeeded`, `roundDownTo`,
-  `estimateFromMonthly`; **todos los parámetros —tasa 6.75 %, 3.5 % entrada, UFMIP,
-  MIP, impuestos VA, seguro, cierre— viven en `affordabilityConfig`** con `version`
-  y `lastUpdated`; **será reutilizado por `/hogar` de Adriana**) y
-  `lib/wellness/engine.ts` (4 pilares Savings/Credit/Your number/Clarity →
-  `strong|almost|start`, resumen global, selección de los 3 pasos). Para importar
-  `.ts` desde `node --test` se activó `allowImportingTsExtensions` en `tsconfig`.
-- **CRM = ITMANO, no Supabase.** El brief original pedía insertar el lead en una
-  tabla propia + scoring + notificación; el canal de evento del CRM ya hace
-  asignación, scoring y aviso al agente, así que **no se escribe nada en Supabase**.
-  `lib/wellness/crm.ts` arma el cuerpo del contrato (`first_name`, `last_name`,
-  `email`, `phone` `+1 xxx xxx xxxx`, `language`, `intent`, `source_url`, honeypot
-  `website` vacío, `form_answers[]`). `intent` = `sell` si Q1 = "soy dueña/o…", si
-  no `buy`. Claves que puntúan: `timeline` (códigos del CRM) y `budget_amount`
-  (el precio que el pago cómodo puede sostener, **calculado por nosotros** y
-  etiquetado así; solo si eligió un rango). El resto se guarda tal cual para que
-  Melany lo vea: `situation`, `down_payment_cash`, `comfortable_monthly_payment`,
-  `credit_self_described`, `topics_of_interest`, `wellness_pillars`,
-  `preferred_contact`, `preferred_language`, `lead_magnet`.
-- **Consentimiento:** casilla sin premarcar con la frase exacta de
-  `wellness.form.consent` (EN/ES); se guarda como respuesta `contact_consent` con
-  la frase completa como `label` y `yes|v<versión>|<idioma>|<timestamp>` como
-  `value`. Versión en `wellnessConfig.consentVersion` (subirla si cambia el copy).
-- **Rediseño visual (2026-10-08):** mundo "peony bloom" para un evento de bienestar
-  para mujeres, sin decirlo en el copy (Fair Housing): fondo malla blush/durazno/lavanda
-  sobre crema A&J, tinta navy, acento rosa palo `#a8405c` y destellos dorados.
-  Bienvenida con el retrato de Melany (`hero-team/Melany_Portrait.webp`) en un arco
-  con la llave en la mano; titular EB Garamond con la palabra clave en cursiva rosa
-  (`welcome.heading` lleva `<em>`; se lee crudo porque ICU lo trataría como etiqueta
-  rica); opciones tipo "pebble" con flor/check; progreso en puntos que se alargan;
-  pilares como tarjetas tintadas (verde salvia / durazno / lavanda) con 3 flores
-  según el estado; confeti al mostrar el resultado.
-  **Librerías:** `@tsparticles/react` + `@tsparticles/slim` (pétalos cayendo, chunk
-  aparte con `next/dynamic`, se monta con `requestIdleCallback` y NO se carga con
-  `prefers-reduced-motion` ni `saveData`; 11 partículas, 24 fps), `canvas-confetti`
-  (ráfaga de pétalos/corazones/oro, `disableForReducedMotion`) y `motion` con
-  `LazyMotion` (entrada de pantallas y opciones, píldora del toggle de idioma con
-  `layoutId`). Las transiciones son solo de entrada (sin `AnimatePresence`): el DOM
-  cambia al instante aunque el reloj de frames esté estrangulado.
-- **Preferencias de contacto eliminadas** del formulario (canal y idioma preferidos);
-  el lead sale con `language` = idioma activo y ya no manda `preferred_contact` ni
-  `preferred_language`. El botón "Hablar con Melany" abre WhatsApp con el mensaje
-  precargado y debajo van "Mensaje" y "Llamar" como alternativas.
-- **El correo es obligatorio** (el contrato del CRM lo exige; el brief original lo
-  tenía opcional). Por eso el canal "Email" siempre está disponible.
-- **Resiliencia:** el resultado se calcula en cliente y se muestra de inmediato; el
-  envío va en segundo plano. Si la red falla, el lead se guarda en `localStorage`
-  (`ajreg.wellness.pending.v1`) y se reintenta con backoff (2/5/15/45/120 s, máx. 5)
-  y al volver `online`. Sin duplicados: el CRM trata mismo email = mismo lead y
-  `already_submitted` cuenta como éxito. Un 4xx (≠ 429) no se reintenta.
+**Mini-Fase 6i — Good For Her Giveaway (evento de Melany)**
+- **Historia:** nació como un quiz "Home Wellness Check" (6 preguntas + 4 pilares +
+  estimación FHA) y el 2026-10-09 se convirtió en un **giveaway**: se eliminó TODO el
+  quiz y queda solo el formulario de datos personales. Ruta final
+  `/[locale]/giveaway`; `/en|es/wellness` redirige (302 en `next.config.ts`) para no
+  romper enlaces ya compartidos (`/wellness` → `/en/giveaway`, el `?src=` se conserva).
+- **Página:** un encabezado con el logo y el toggle EN/ES, una ilustración SVG de
+  regalos (`GiftArt`: regalo rosa grande con listón dorado + dos pequeños, destellos y
+  confeti), el título **"Enter the Good For Her Giveaway by Melany Valencia"** (ES:
+  "Participa en el Giveaway Good For Her de Melany Valencia"; `hero.heading` lleva
+  `<em>` y se lee crudo porque ICU lo trataría como etiqueta rica), una descripción
+  corta y el formulario con forma de **boleto de rifa** (muescas laterales con
+  `mask` + línea perforada). Al enviar, el boleto se reemplaza por "You're in, {name}!"
+  y sale una ráfaga de confeti. Oculta TopBar/Navbar/Footer (patrón `:has()`).
+- **Formulario:** nombre y correo obligatorios (el correo lo exige el contrato del
+  CRM), celular opcional (+1, 10 dígitos si se escribe), casilla de consentimiento
+  obligatoria sin premarcar, honeypot `website`. **Sin preguntas, sin preferencias de
+  contacto y sin ningún mensaje de texto/WhatsApp.**
+- **Términos cortos (solo correo):** "Acepto recibir correos ocasionales de A&J Real
+  Estate Group con noticias y novedades (sin publicidad). Puedo cancelar la
+  suscripción cuando quiera." (`giveaway.form.consent`). Se guarda como respuesta
+  `email_news_consent` con la frase exacta como `label` y
+  `yes|v<versión>|<idioma>|<timestamp>` como `value` (`giveawayConfig.consentVersion`;
+  subirla si cambia el copy). No se afirma premio, reglas ni mecánica de sorteo.
+- **CRM = ITMANO** (intake público, first-party por el rewrite `/api/intake/*`, sin
+  secreto): `lib/giveaway/crm.ts` arma `first_name`, `last_name?`, `email`, `phone?`
+  (`+1 xxx xxx xxxx`), `language` (idioma activo), `source_url`, honeypot vacío y
+  `form_answers` (`email_news_consent`, `lead_magnet`). Sin `intent`: es un lead de
+  evento (suma el `event_submission` del CRM). **Resiliencia:** la confirmación se
+  muestra al instante y el envío va en segundo plano; si falla la red se guarda en
+  `localStorage` (`ajreg.giveaway.pending.v1`) y se reintenta (2/5/15/45/120 s, máx. 5)
+  y al volver `online`; mismo email = mismo lead en el CRM (sin duplicados).
 - **Medición:** `<ItmanoBeacon channelPublicId="chn_tg9y844y2ef4">` (script local
-  `/intake.js`). Eventos `lm_*` por `lib/wellness/track.ts` (dataLayer si existe;
-  consola en desarrollo — no hay proveedor de analytics todavía).
-- `/[locale]/wellness/costs`: lista imprimible de costos ocultos (1 hoja, botón
-  imprimir); el resultado la abre en pestaña nueva para no perder el resultado.
-- **Fair Housing:** sin preguntas prohibidas, sin recomendar zonas, texto neutral;
-  el evento y su organizadora no aparecen en la página (solo `src` interno).
-- i18n `wellness.*` (EN/ES). Env `NEXT_PUBLIC_ITMANO_WELLNESS_CHANNEL_ID`.
-- **Config confirmada:** el botón "Hablar con Melany" usa su línea directa
-  (321-888-0712, `wellnessConfig.agent.phoneE164`); dominio `ajrealestateva.com`
-  (QR → `https://ajrealestateva.com/wellness?src=melany-event-2026-10-09`, aún sin generar).
-- Nombre del brokerage: se queda "A&J Real Estate Group" (confirmado). **QR
-  suspendido** (lo genera el usuario). **PENDIENTE:** actualizar `rate30` con el
-  PMMS semanal más reciente.
-**→ commit:** `feat: home wellness check lead magnet (melany event)`
+  `/intake.js`); eventos `lm_*` por `lib/giveaway/track.ts` (dataLayer si existe).
+  Env `NEXT_PUBLIC_ITMANO_GIVEAWAY_CHANNEL_ID`.
+- **Diseño "peony bloom"** (blush/durazno/lavanda sobre crema A&J, tinta navy, acento
+  rosa palo `#a8405c`, destellos dorados) y **librerías:** `@tsparticles/react` +
+  `@tsparticles/slim` (pétalos cayendo; chunk aparte con `next/dynamic`, se monta con
+  `requestIdleCallback` y NO se carga con `prefers-reduced-motion` ni `saveData`),
+  `canvas-confetti` (`disableForReducedMotion`) y `motion` con `LazyMotion` (entrada
+  de secciones y píldora del toggle de idioma). Animaciones CSS del regalo y destellos
+  se apagan con movimiento reducido.
+- **Idioma:** las dos lenguas viajan al cliente y el toggle cambia sin navegar.
+  Prioridad: `?lang=` → `sessionStorage` → locale de la ruta. `?src=` se sanea y por
+  defecto es `melany-event-2026-10-09`.
+- `lib/affordability.ts` (FHA: precio ↔ pago mensual ↔ efectivo necesario, con
+  `affordabilityConfig` y tests en `affordability.test.ts`) **se conserva sin uso**
+  para el lead magnet `/hogar` de Adriana. Pendiente: actualizar `rate30` con el PMMS
+  semanal cuando se use.
+- Config: dominio `ajrealestateva.com` (QR → `https://ajrealestateva.com/giveaway?src=melany-event-2026-10-09`;
+  **QR lo genera el usuario**).
+**→ commit:** `feat: turn the wellness check into the good for her giveaway`
 
 ---
 
@@ -612,6 +584,17 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-10-09** — **El quiz "Home Wellness Check" se convierte en el "Good For Her Giveaway" (`/giveaway`).**
+  Ver **Mini-Fase 6i**. Se eliminó el quiz completo (preguntas, pilares, estimación,
+  página de costos ocultos) y se dejó una sola pantalla: título, descripción corta,
+  ilustración de regalos y un formulario-boleto (nombre, correo, celular opcional). Los
+  términos ahora son una frase corta solo sobre recibir noticias por correo (sin
+  publicidad, sin SMS/WhatsApp). Mismo canal ITMANO `chn_tg9y844y2ef4`, misma cola de
+  reintento offline y mismo beacon. `/wellness` redirige a `/giveaway`.
+  **Verificado:** TypeScript, ESLint, 5 tests de `affordability`, `next build` y en el
+  navegador a 375 px (validación y foco, cuerpo enviado al contrato, estado de éxito,
+  redirección con `?src=`). **No se envió ninguna participación real de prueba.**
 
 - **2026-10-08** — **Lead magnet "Home Wellness Check" (`/wellness`) para el evento de Melany.**
   Ver **Mini-Fase 6i**. Quiz móvil bilingüe de 6 preguntas que termina en un

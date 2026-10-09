@@ -3,9 +3,9 @@ import { hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ItmanoBeacon } from "@/components/ItmanoBeacon";
-import { WellnessCheck } from "@/components/wellness/WellnessCheck";
+import { GiveawayEntry } from "@/components/giveaway/GiveawayEntry";
 import { routing } from "@/i18n/routing";
-import { wellnessConfig } from "@/lib/wellness/config";
+import { giveawayConfig } from "@/lib/giveaway/config";
 
 export async function generateMetadata({
   params,
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "wellness.meta" });
+  const t = await getTranslations({ locale, namespace: "giveaway.meta" });
   return {
     title: t("title"),
     description: t("description"),
@@ -24,27 +24,23 @@ export async function generateMetadata({
 
 // Static on purpose: `?src=` is read in the browser, so the page can be cached
 // at the edge (event Wi-Fi is the bottleneck, not our server).
-export default async function WellnessPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function GiveawayPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  // Both languages go to the client so the EN/ES toggle switches instantly,
-  // mid-quiz, without a navigation that would drop the answers.
+  // Both languages go to the client so the EN/ES toggle switches instantly.
   const [en, es] = await Promise.all(
     routing.locales.map(async (l) => {
       const messages = (await getMessages({ locale: l })) as Record<string, unknown>;
-      return messages.wellness as Record<string, unknown>;
+      return messages.giveaway as Record<string, unknown>;
     }),
   );
 
   return (
     <>
-      <ItmanoBeacon channelPublicId={wellnessConfig.channelId} />
-      <WellnessCheck
-        copy={{ en, es }}
-        initialLang={locale === "es" ? "es" : "en"}
-      />
+      <ItmanoBeacon channelPublicId={giveawayConfig.channelId} />
+      <GiveawayEntry copy={{ en, es }} initialLang={locale === "es" ? "es" : "en"} />
     </>
   );
 }

@@ -1,0 +1,283 @@
+/* Good For Her giveaway — a soft, blooming, phone-first entry page.
+   World: peony blush + peach + lavender mist over A&J cream, navy ink, gold
+   sparkle. Owns the full screen, so the site's top bar, navbar and footer step
+   aside (the page has its own header). */
+
+:global(body):has(.page) :global([data-site-topbar]),
+:global(body):has(.page) :global([data-site-nav]),
+:global(body):has(.page) :global([data-site-footer]) {
+  display: none;
+}
+
+.page {
+  --ink: #102037;
+  --ink-soft: #3b4f63;
+  --rose: #a8405c;
+  --rose-deep: #8a2f49;
+  --rose-200: #f4c7d1;
+  --rose-100: #fbe3e8;
+  --peach: #fde3d6;
+  --mist: #ebe1f7;
+  --cream: #fff6f3;
+  --gold: #c7a260;
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  overflow-x: clip;
+  background:
+    radial-gradient(42rem 26rem at -12% 0%, var(--peach), transparent 68%),
+    radial-gradient(36rem 28rem at 112% 18%, var(--rose-200), transparent 66%),
+    radial-gradient(40rem 30rem at 0% 100%, var(--mist), transparent 64%),
+    radial-gradient(30rem 22rem at 100% 100%, var(--rose-100), transparent 70%),
+    var(--cream);
+  color: var(--ink);
+}
+
+.page ::selection {
+  background: var(--rose);
+  color: #fff;
+}
+
+/* Petals + sparkles live behind everything and never take a tap. */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+
+.langWrap {
+  position: relative;
+  display: flex;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.62);
+  padding: 0.25rem;
+  box-shadow: 0 0 0 1px rgb(168 64 92 / 0.16);
+  backdrop-filter: blur(10px);
+}
+
+.langBtn {
+  position: relative;
+  z-index: 1;
+  min-height: 2.6rem;
+  min-width: 3.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  transition: color 180ms ease;
+}
+
+.langOn {
+  color: #fff;
+}
+
+.langPill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--rose);
+}
+
+.langBtn:focus-visible,
+.primary:focus-visible {
+  outline: 2px solid var(--rose);
+  outline-offset: 3px;
+}
+
+/* ── Hero art + title ───────────────────────────────────────────────────── */
+
+.gift {
+  display: block;
+  margin-inline: auto;
+  width: min(68%, 14.5rem);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 22px 18px rgb(138 47 73 / 0.18));
+}
+
+.giftMain {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: gift-bob 3.6s ease-in-out infinite;
+}
+
+.twinkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes gift-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.title em {
+  display: block;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--rose);
+}
+
+/* ── Ticket (the form card) ─────────────────────────────────────────────── */
+
+.ticketWrap {
+  filter: drop-shadow(0 22px 22px rgb(138 47 73 / 0.22));
+}
+
+.ticket {
+  --notch: 3.35rem;
+  position: relative;
+  background: rgb(255 255 255 / 0.94);
+  border-radius: 1.5rem;
+  /* Half-circle bites out of both sides at the perforation, like a raffle ticket. */
+  -webkit-mask:
+    radial-gradient(circle 0.8rem at 0 var(--notch), #0000 97%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 0.8rem at 100% var(--notch), #0000 97%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle 0.8rem at 0 var(--notch), #0000 97%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle 0.8rem at 100% var(--notch), #0000 97%, #000) right / 51% 100% no-repeat;
+}
+
+.stub {
+  display: flex;
+  height: var(--notch);
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.perforation {
+  margin-inline: 1.1rem;
+  border-top: 2px dashed rgb(168 64 92 / 0.3);
+}
+
+/* ── Fields ─────────────────────────────────────────────────────────────── */
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 3.4rem;
+  border: 1.5px solid rgb(168 64 92 / 0.22);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 1rem; /* 16px: stops iOS zooming on focus */
+  color: var(--ink);
+  caret-color: var(--rose);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgb(168 64 92 / 0.16);
+}
+
+.input[aria-invalid="true"] {
+  border-color: #b4452f;
+}
+
+.inputJoined {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.prefix {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid rgb(168 64 92 / 0.22);
+  border-right: 0;
+  border-radius: 1rem 0 0 1rem;
+  background: var(--rose-100);
+  padding: 0 0.9rem;
+  font-weight: 600;
+  color: var(--rose-deep);
+}
+
+.consent {
+  display: flex;
+  cursor: pointer;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  background: var(--rose-100);
+  padding: 0.85rem;
+}
+
+.consent input {
+  accent-color: var(--rose);
+}
+
+.consent:has(input:focus-visible) {
+  outline: 2px solid var(--rose);
+  outline-offset: 2px;
+}
+
+/* ── Button ─────────────────────────────────────────────────────────────── */
+
+.primary {
+  display: inline-flex;
+  min-height: 3.6rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 1.2rem;
+  background: var(--rose);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 16px 26px -14px rgb(138 47 73 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.25);
+  transition: background-color 180ms ease;
+}
+
+.primary:hover {
+  background: var(--rose-deep);
+}
+
+.primary:disabled {
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .giftMain,
+  .twinkle {
+    animation: none;
+  }
+  .input,
+  .primary,
+  .langBtn {
+    transition: none;
+  }
+}

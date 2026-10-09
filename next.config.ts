@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
       { source: "/api/newsletters/:path*", destination: "https://app.itmano.com/api/newsletters/:path*" },
     ];
   },
+  // The giveaway first shipped at /wellness; keep any link already shared alive.
+  async redirects() {
+    return [
+      { source: "/:locale(en|es)/wellness", destination: "/:locale/giveaway", permanent: false },
+    ];
+  },
   images: {
     remotePatterns: [
       // Webflow CDN where the current site's assets live (used while we
