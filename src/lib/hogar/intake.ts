@@ -27,7 +27,7 @@ export interface IntakeBody {
   first_name: string;
   last_name?: string;
   email: string;
-  phone: string;
+  phone?: string;
   language: Language;
   intent: "buy" | "sell" | "invest";
   source_url: string;
@@ -56,9 +56,9 @@ export function formatPhoneInput(raw: string): string {
   return d;
 }
 
-/** Stable id: same phone + same campaign + same day = same lead. */
-export function idempotencyKey(phoneDigits: string, src: string, date = new Date()): string {
-  const input = `${phoneDigits}|${src}|${date.toISOString().slice(0, 10)}`;
+/** Stable id: same email + same campaign + same day = same lead (the CRM dedupes on email too). */
+export function idempotencyKey(email: string, src: string, date = new Date()): string {
+  const input = `${email.trim().toLowerCase()}|${src}|${date.toISOString().slice(0, 10)}`;
   let h = 5381;
   for (let i = 0; i < input.length; i++) h = ((h << 5) + h + input.charCodeAt(i)) | 0;
   return `hg_${(h >>> 0).toString(36)}`;

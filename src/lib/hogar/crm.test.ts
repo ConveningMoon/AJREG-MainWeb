@@ -46,8 +46,15 @@ test("scoring keys use the CRM's exact codes; budget_amount is the comfortable p
   assert.equal(a.cash_gap.value, "0");
   assert.equal(a.household_size.value, "4");
   assert.equal(a.lead_magnet.value, "family-affordability-calculator");
-  assert.match(a.contact_consent.value, /^yes\|v[^|]+\|es\|2026-10-11T/);
-  assert.equal(a.contact_consent.label, "consent sentence");
+  assert.match(a.email_news_consent.value, /^yes\|v[^|]+\|es\|2026-10-11T/);
+  assert.equal(a.email_news_consent.label, "consent sentence");
+});
+
+test("phone is optional: omitted from the body when not given", () => {
+  const sub = { ...submission({ household: 2, income: 5000, debts: 0, savings: 9000 }), phoneDigits: null };
+  const body = buildIntakeBody(sub, t);
+  assert.equal("phone" in body, false);
+  assert.equal(body.email, "maria@ejemplo.com");
 });
 
 test("tight result: no budget_amount and no misleading cash figures", () => {

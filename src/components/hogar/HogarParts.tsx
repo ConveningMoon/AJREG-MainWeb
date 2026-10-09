@@ -13,24 +13,20 @@ export function OptionButton({
   selected,
   onClick,
   children,
-  compact,
 }: {
   selected: boolean;
   onClick: () => void;
   children: React.ReactNode;
-  compact?: boolean;
 }) {
   return (
     <button
       type="button"
       aria-pressed={selected}
       onClick={onClick}
-      className={`${styles.option} ${compact ? "min-h-12 justify-center text-center text-[15px]" : "min-h-14 text-left"} ${
-        selected ? styles.optionOn : ""
-      }`}
+      className={`${styles.option} min-h-12 justify-center text-center text-[15px] ${selected ? styles.optionOn : ""}`}
     >
-      <span className="flex-1">{children}</span>
-      {!compact && selected && <Check className="h-4 w-4" strokeWidth={3} aria-hidden="true" />}
+      {selected && <Check className="h-4 w-4 shrink-0" strokeWidth={3.5} aria-hidden="true" />}
+      <span>{children}</span>
     </button>
   );
 }
@@ -50,13 +46,13 @@ export function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-navy-900">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-bold text-navy-900">
         {label}
       </label>
       {children}
-      {help && !error && <p className="mt-1 text-xs text-navy-500">{help}</p>}
+      {help && !error && <p className="mt-1 text-xs font-medium text-navy-700">{help}</p>}
       {error && (
-        <p id={`${id}-err`} className="mt-1.5 text-sm text-[#8a3b2c]" role="alert">
+        <p id={`${id}-err`} className="mt-1.5 text-sm font-bold text-[#a50f4c]" role="alert">
           {error}
         </p>
       )}

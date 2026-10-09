@@ -565,11 +565,17 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   los códigos del CRM, `budget_amount` = precio cómodo calculado, más `household_size`,
   `monthly_income`, `monthly_debts`, `savings`, `affordability_range`, `cash_needed`,
   `cash_gap`, `bedrooms_suggested`, `preferred_language`, `source_detail` (el `?src=`),
-  `contact_consent` (frase exacta + versión + idioma + timestamp) y `lead_magnet`.
+  `email_news_consent` (frase exacta + versión + idioma + timestamp) y `lead_magnet`.
   **No se manda `area`** (el brief no pregunta zona; sin ella el CRM deja `geo_fit` sin
   determinar, no resta puntos). **No se manda `financing`** (no se pregunta).
 - **El correo es obligatorio** (el CRM exige `first_name` + `email`; el brief lo tenía
-  opcional). El consentimiento incluye "email" por esa razón.
+  opcional). **Términos cortos, solo correo:** "Acepto recibir correos ocasionales de
+  A&J Real Estate Group con noticias e información útil sobre vivienda, sin publicidad.
+  Puedo cancelar cuando quiera." (`hogar.form.consent`, versión `2026-10-09` en
+  `hogarConfig.consentVersion`; subirla si cambia el copy). El equipo **no enviará
+  texto, WhatsApp ni llamadas**: por eso el celular es **opcional** (solo se manda si
+  se escribe y es válido) y el copy ya no promete que Adriana escribirá. El botón
+  "Hablar con Adriana por WhatsApp" del resultado sigue (lo inicia la familia).
 - **Resiliencia** (`lib/hogar/intake.ts`, módulo propio con su cola
   `ajreg.hogar.pending.v1`): el resultado se muestra al instante; el envío va en
   segundo plano y, si falla, se guarda y reintenta (2/5/15/45/120 s, máx. 5, y al
@@ -584,10 +590,29 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - Config en `lib/hogar/config.ts` (canal, `defaultSrc` = `adriana-evento-familiar-2026-10-11`,
   WhatsApp de Adriana +1 407 715 9052, versión de consentimiento). Env
   `NEXT_PUBLIC_ITMANO_HOGAR_CHANNEL_ID`. i18n `hogar.*` (EN/ES).
+- **Diseño "rótulo de feria bajo la carpa"** (rediseño 2026-10-09; el primero se
+  juzgó feo y ordinario para un evento de familias latinas). El mundo visual es de
+  campaña y **no** toca los tokens globales (ver `.impeccable/surfaces/` → contrato
+  de dirección): campo **amarillo cempasúchil** `#f7b500` con tinta navy A&J, rosa
+  mexicano `#c8185f` para acciones y elecciones, turquesa `#0a7a76` de apoyo y
+  tableros crema con marco de filete navy. **Bowlby One** (solo esta ruta, vía
+  `next/font`, `components/hogar/fonts.ts`) como voz de rotulista para titulares y el
+  precio; Montserrat para todo lo legible. Arte propio en `HogarArt.tsx`: toldo a
+  rayas con festón (tile SVG repetido), **banderines de papel picado como medidor de
+  progreso** (5 banderas, accesible como `progressbar`), ilustración de la casita, y
+  personitas que cuentan el hogar. El resultado es un **letrero que cuelga y se
+  balancea**, con el precio pintado (cuenta hacia arriba) y **tres etiquetas
+  colgantes** (Tranquilo/Cómodo/Máximo).
+  **Bibliotecas:** `@tsparticles/slim` (`PapelParticles.tsx`, confeti de papel a la
+  deriva, chunk aparte con `next/dynamic`, se monta con `requestIdleCallback` y no se
+  carga con `prefers-reduced-motion` ni `saveData`), `canvas-confetti`
+  (`celebrate.ts`, una ráfaga al colgar el letrero; `disableForReducedMotion`) y
+  `motion` con `LazyMotion` (personitas, cuenta del precio). Cero dependencias nuevas
+  (ya estaban por el giveaway).
 - **PENDIENTE:** (1) nombre legal del brokerage (`wellnessConfig.brokerage.legalName`,
   compartido; hoy muestra "A&J Real Estate Group"); (2) actualizar `rate30` en
   `lib/affordability.ts` con el PMMS semanal más reciente (afecta también a `/wellness`);
-  (3) QR [STRETCH] sin generar — apuntar a
+  (3) QR: lo genera el usuario — apuntar a
   `https://ajrealestateva.com/hogar?src=adriana-evento-familiar-2026-10-11`;
   (4) lead de prueba real de punta a punta (no se envió ninguno).
 **→ commit:** `feat: family affordability calculator lead magnet (adriana event)`
@@ -635,6 +660,20 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ## 📒 CHANGELOG DEL PROYECTO
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
+
+- **2026-10-09** — **Rediseño de `/hogar` ("rótulo de feria bajo la carpa") + términos cortos solo correo.**
+  Ver **Mini-Fase 6j**. Nueva identidad visual pensada para familias latinas en un evento
+  (toldo a rayas, banderines de papel picado como progreso, letrero pintado que cuelga
+  con el precio y etiquetas colgantes), con partículas (`@tsparticles/slim`), confeti
+  (`canvas-confetti`) y `motion`. Los términos pasan a una sola frase: solo recibir
+  correos de noticias, sin publicidad; el celular es opcional y se retiró toda promesa
+  de WhatsApp/SMS (el consentimiento se guarda como `email_news_consent`, versión
+  `2026-10-09`). **Verificado:** TypeScript, ESLint, 11 tests, `next build`
+  (`/es/hogar` y `/en/hogar` prerenderizadas) y en el navegador a 375 px y 1280 px:
+  flujo completo ES/EN, validación, cuerpo enviado sin teléfono y con el nuevo
+  consentimiento, precio dentro del letrero y sin desborde horizontal. Encontrado y
+  corregido en la inspección: las banderas se apilaban (el `transform` CSS pisaba el
+  de posición SVG). **No se envió ningún lead real de prueba.**
 
 - **2026-10-09** — **El quiz "Home Wellness Check" se convierte en el "Good For Her Giveaway" (`/giveaway`).**
   Ver **Mini-Fase 6i**. Se eliminó el quiz completo (preguntas, pilares, estimación,
