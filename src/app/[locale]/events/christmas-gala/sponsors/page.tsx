@@ -11,6 +11,7 @@ import {
 } from "@/data/christmasGala";
 import { brand } from "@/lib/brand";
 import { Countdown } from "@/components/events/gala/Countdown";
+import { InvitationVideo } from "@/components/events/gala/InvitationVideo";
 import { Snowfall } from "@/components/events/gala/Snowfall";
 import { StickyApplyBar } from "@/components/events/gala/StickyApplyBar";
 import { ApplyButton } from "@/components/events/gala/ApplyButton";
@@ -172,35 +173,13 @@ export default async function ChristmasGalaSponsorsPage({
 
           </div>
 
-          {/* Venue screen holding the invitation video (in production). */}
+          {/* Vertical (9:16) invitation video, framed as a venue screen. */}
           {/* Mobile: countdown right after the CTAs, then the screen.
               Desktop: screen, then countdown, keeping both inside 900px. */}
           <div className="flex flex-col lg:col-span-5">
-            <figure className="order-2 mt-12 lg:order-1 lg:mt-0">
-              <div className="rounded-md bg-gradient-to-b from-navy-700 to-navy-800 p-2 shadow-xl ring-1 ring-gold/25">
-                <div
-                  role="img"
-                  aria-label={t("hero.screenAlt")}
-                  className="relative grid aspect-video place-items-center overflow-hidden rounded-sm bg-[radial-gradient(ellipse_at_center,#22354a,#0a1321_75%)]"
-                >
-                  <Image
-                    src="/images/logo-white_2.webp"
-                    alt=""
-                    width={576}
-                    height={340}
-                    className="absolute w-2/5 opacity-[0.08]"
-                  />
-                  <span className="relative text-center">
-                    <span className="block font-display text-2xl font-semibold text-cream sm:text-3xl">
-                      {t("hero.screenLabel")}
-                    </span>
-                    <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.2em] text-navy-200">
-                      {t("hero.screenSoon")}
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </figure>
+            <div className="order-2 mt-12 lg:order-1 lg:mt-0">
+              <InvitationVideo />
+            </div>
             <div className="order-1 rounded-md lg:order-2 lg:mt-10 bg-navy-900/70 px-6 py-6 ring-1 ring-gold/20 sm:px-8">
               <Countdown deadlineLabel={t("countdown.deadline", { date: deadline })} />
             </div>

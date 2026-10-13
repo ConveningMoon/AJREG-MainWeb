@@ -14,6 +14,14 @@ export const galaEvent = {
   venueMapUrl:
     "https://www.google.com/maps/search/?api=1&query=3100+Arnold+Palmer+Dr+Virginia+Beach+VA+23456",
   expectedGuests: 100,
+  // Vertical 9:16 invitation video shown in the sponsor-page hero. Leave null
+  // until it exists (the hero shows a "premieres soon" slate). `src` is an
+  // absolute URL to an H.264/AAC .mp4 — host it in Vercel Blob, not in git —
+  // and `poster` a small 9:16 still (fine to keep in /public).
+  invitationVideo: {
+    src: "https://0f1swnfk31oszxu1.public.blob.vercel-storage.com/Final_Sponsor_2.mp4",
+    poster: "/images/events/christmas-gala-invitation-poster.webp",
+  } as null | { src: string; poster?: string },
 } as const;
 
 export const sponsorTierIds = ["gold", "silver", "bronze", "community"] as const;
