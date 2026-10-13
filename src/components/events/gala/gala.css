@@ -1,0 +1,59 @@
+/* Campaign-only art direction: a winter invitation, gold foil and stage light. */
+.gala-landing { --gala-evergreen: #143b35; --gala-wine: #512832; }
+.gala-landing h2 { letter-spacing: -.025em; }
+.gala-hero { background: radial-gradient(ellipse at 95% 15%, var(--gala-evergreen), transparent 58%), var(--color-navy-950); }
+.gala-hero::before, .gala-hero::after { content: ""; position: absolute; pointer-events: none; border: 1px solid color-mix(in srgb, var(--color-gold) 25%, transparent); border-radius: 50%; width: 38rem; height: 38rem; right: -12rem; top: -27rem; z-index: -1; }
+.gala-hero::after { width: 44rem; height: 44rem; right: -15rem; top: -30rem; }
+.gala-kicker { display: flex; align-items: center; gap: 1rem; color: var(--color-gold); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 1.75rem; }
+.gala-kicker::before { content: ""; width: 2rem; height: 1px; background: currentColor; }
+.gala-hero-title em { color: var(--color-gold); font-weight: 500; }
+.gala-video { position: relative; width: 100%; margin: auto; padding: .6rem; border: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent); background: color-mix(in srgb, var(--color-navy-950) 75%, transparent); }
+.gala-video::before { content: ""; position: absolute; inset: -.55rem; border: 1px solid color-mix(in srgb, var(--color-gold) 16%, transparent); pointer-events: none; }
+.gala-video video { display: block; width: 100%; aspect-ratio: 9/16; object-fit: contain; background: black; }
+.gala-countdown-section { position: relative; background: var(--color-navy-950); border-top: 1px solid color-mix(in srgb, var(--color-gold) 25%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--color-gold) 25%, transparent); text-align: center; padding: 3rem 1.5rem; }
+.gala-countdown-section::before { content: "✧"; display: block; color: var(--color-gold); font-size: 1.75rem; margin-bottom: .75rem; }
+.gala-audience { position: relative; }
+.gala-audience-stat { display: flex; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--color-blush); padding-bottom: 1rem; margin-bottom: 2rem; }
+.gala-audience-stat strong { font-family: var(--font-display); font-weight: 500; font-size: 5rem; line-height: 1; }
+.gala-audience-stat span { max-width: 10rem; font-size: .8rem; color: var(--color-navy-600); }
+.gala-audience dl > div { transition: padding .2s, background-color .2s; }
+.gala-audience dl > div:hover { background: color-mix(in srgb, var(--color-blush) 25%, transparent); padding-inline: .75rem; }
+.gala-screens { background: radial-gradient(ellipse at 80% 40%, var(--gala-evergreen), transparent 65%), var(--color-navy-950); }
+.gala-showcase { min-width: 0; }
+.gala-moment-controls { display: flex; gap: .35rem; padding: .35rem; border: 1px solid color-mix(in srgb, var(--color-gold) 30%, transparent); background: var(--color-navy-950); }
+.gala-moment-controls button { flex: 1; display: flex; justify-content: center; align-items: center; gap: .5rem; padding: .85rem .5rem; font-size: .75rem; color: var(--color-navy-100); cursor: pointer; transition: background-color .2s, color .2s; }
+.gala-moment-controls button[aria-pressed="true"] { background: var(--color-gold); color: var(--color-navy-950); }
+.gala-moment-controls button:focus-visible { outline: 2px solid var(--color-cream); outline-offset: 3px; }
+.gala-brand-preview { position: relative; min-height: 27rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border: 1px solid color-mix(in srgb, var(--color-gold) 30%, transparent); border-top: 0; background: radial-gradient(ellipse at 50% 15%, var(--color-navy-700), var(--color-navy-950) 75%); }
+.gala-light-strand { position: absolute; top: -1.8rem; left: -5%; width: 110%; height: 4.5rem; border-bottom: 1px solid var(--color-gold); border-radius: 50%; display: flex; justify-content: space-evenly; align-items: flex-end; padding-bottom: .2rem; }
+.gala-light-strand i { width: .4rem; height: .65rem; border-radius: 50%; background: var(--color-gold); box-shadow: 0 0 12px var(--color-gold); }
+.gala-stage-halo { position: absolute; top: 2rem; left: 10%; width: 80%; height: 20rem; border-radius: 50% 50% 0 0; border: 1px solid color-mix(in srgb, var(--color-gold) 18%, transparent); }
+.gala-brand-art { position: relative; display: flex; flex-direction: column; align-items: center; padding: 4rem 2rem 1rem; }
+.gala-brand-screen { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 12rem; padding: 1.5rem; text-align: center; border: .3rem solid var(--color-navy-700); outline: 1px solid var(--color-gold); background: radial-gradient(ellipse at top right, var(--gala-evergreen), var(--color-navy-950)); color: var(--color-gold); }
+.gala-brand-wordmark { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; color: var(--color-cream); margin: .6rem 0; }
+.gala-brand-tagline { font-size: .65rem; text-transform: uppercase; letter-spacing: .18em; }
+.gala-brand-rule { width: 2rem; height: 1px; margin: 1rem; background: var(--color-gold); }
+.gala-brand-signature { font-size: .6rem; color: var(--color-navy-100); letter-spacing: .12em; }
+.gala-screen-pedestal { height: 1rem; width: 65%; background: linear-gradient(var(--color-navy-500), var(--color-navy-900)); clip-path: polygon(8% 0,92% 0,100% 100%,0 100%); }
+.gala-display-table { position: relative; width: 108%; height: 2.5rem; border-top: .4rem solid var(--color-gold); background: var(--gala-wine); display: flex; justify-content: space-evenly; }
+.gala-display-table span { position: relative; top: -1.5rem; width: 1.5rem; height: 1.1rem; background: var(--color-cream); border: 2px solid var(--color-gold); }
+.gala-community-orbit { display: flex; width: 100%; justify-content: space-around; color: var(--color-gold); margin-bottom: 1rem; }
+.gala-community-orbit svg { width: 2.2rem; height: 2.2rem; stroke-width: 1; }
+.gala-preview-caption { position: relative; padding: 1.5rem 2rem 2rem; text-align: center; }
+.gala-preview-caption p { font-family: var(--font-display); font-size: 1.75rem; color: var(--color-cream); }
+.gala-preview-caption span { display: block; font-size: .8rem; line-height: 1.6; color: var(--color-navy-100); margin-top: .5rem; }
+.gala-packages table { border-top: 1px solid var(--color-gold); }
+.gala-packages thead th { border-bottom: 1px solid var(--color-blush); }
+.gala-packages thead th:not(:nth-child(2)) { background: color-mix(in srgb, white 65%, var(--color-cream)); }
+.gala-packages thead th:nth-child(3) { border-top: 3px solid var(--color-navy-300); }
+.gala-packages thead th:nth-child(4) { border-top: 3px solid #94664b; }
+.gala-packages thead th:nth-child(5) { border-top: 3px solid var(--gala-evergreen); }
+.gala-packages tbody tr:hover td:not(:nth-child(2)) { background: color-mix(in srgb, var(--color-blush) 20%, transparent); }
+.gala-process { background: color-mix(in srgb, var(--color-blush) 40%, var(--color-cream)); }
+.gala-process ol > li { padding: 1.5rem; background: var(--color-cream); border-bottom: 2px solid var(--color-blush); }
+.gala-process ol > li:last-child { border-bottom-color: var(--color-gold); }
+.gala-faq details[open] { background: color-mix(in srgb, var(--color-blush) 25%, transparent); padding-inline: 1rem; }
+.gala-apply { background: radial-gradient(ellipse at 0% 100%, var(--gala-evergreen), transparent 60%), var(--color-navy-950); }
+@media (min-width: 1024px) { .gala-video { max-width: none; } }
+@media (max-width: 639px) { .gala-video { max-width: 24rem; } .gala-brand-art { padding-inline: 1.5rem; } .gala-moment-controls button { flex-direction: column; gap: .3rem; font-size: .7rem; } .gala-preview-caption { padding-inline: 1.25rem; } }
+@media (prefers-reduced-motion: reduce) { .gala-landing *, .gala-landing *::before, .gala-landing *::after { transition: none !important; animation: none !important; } }

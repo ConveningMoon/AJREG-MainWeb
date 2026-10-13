@@ -732,14 +732,14 @@
   "christmasGala": {
     "meta": {
       "title": "Sponsor the Gala Christmas Party 2026",
-      "description": "Put your business in front of 100+ guests — A&J clients and their families — on December 5, 2026 in Virginia Beach. Vendor tables, screen time and a promo video produced for you.",
+      "description": "Introduce your business to 100+ guests: A&J clients, local businesses and Latino communities. Christmas gala, December 5, 2026 in Virginia Beach.",
       "shareTitle": "Sponsor the A&J Christmas Gala · Dec 5, 2026",
       "shareDescription": "Put your business in front of 100+ guests in Virginia Beach. Packages from $350 — video produced by A&J from $750. Applications close Nov 28.",
       "imageAlt": "Sponsor our Christmas Gala — packages from $350, Saturday December 5, 2026 in Virginia Beach"
     },
     "hero": {
-      "title": "Your business, center stage at our Christmas gala.",
-      "subtitle": "One night, more than 100 guests — A&J clients and their families — and screens all around the room. From $750 we film and edit your video so it plays there.",
+      "title": "Your business, <em>in the spotlight</em> at our Christmas gala.",
+      "subtitle": "An evening to connect with 100+ guests: A&J clients, local businesses and Latino communities. From $750, we film and edit your video for the gala screens.",
       "eventName": "Gala Christmas Party · A Wonderland Celebration",
       "date": "Saturday, December 5, 2026",
       "time": "7:00 – 11:00 PM",
@@ -748,7 +748,8 @@
       "compare": "Compare packages",
       "screenLabel": "Invitation video",
       "screenSoon": "Premieres soon",
-      "screenAlt": "Placeholder for the gala invitation video, currently in production"
+      "screenAlt": "Placeholder for the gala invitation video, currently in production",
+      "kicker": "Christmas · Community · Connections"
     },
     "countdown": {
       "label": "Sponsor applications close in",
@@ -763,8 +764,8 @@
       "barShort": "Closes in"
     },
     "audience": {
-      "title": "Who will be in the room",
-      "lead": "This is A&J's thank-you night for the clients and families who trusted us with their homes. Over 100 guests, dressed up, relaxed and in a celebrating mood — the best moment to meet them.",
+      "title": "One evening. A whole community.",
+      "lead": "We celebrate the families who trusted us with their homes, the businesses that bring our city to life and the Latino communities that connect us. An opportunity to share stories, meet people and build connections in person.",
       "groups": {
         "newOwners": {
           "title": "New homeowners",
@@ -775,19 +776,24 @@
           "body": "Households relocating to Hampton Roads who are building their local network from scratch."
         },
         "hispanic": {
-          "title": "Spanish- and Portuguese-speaking households",
-          "body": "A loyal community that prefers businesses that understand them — in their language."
+          "title": "Latino communities",
+          "body": "Families and members of our Latino communities, bringing their stories, cultures and local connections."
         },
         "sellers": {
           "title": "Sellers and investors",
           "body": "Clients moving up, moving on or growing a portfolio across Virginia and North Carolina."
+        },
+        "localBusinesses": {
+          "title": "Local businesses",
+          "body": "Entrepreneurs, shops and local professionals coming together to celebrate and meet their community."
         }
       },
-      "facts": "Adults only · Semi-formal attire · Virginia Beach, VA"
+      "facts": "Adults only · Semi-formal attire · Virginia Beach, VA",
+      "stat": "guests to celebrate and connect"
     },
     "screens": {
-      "title": "Your business on every screen",
-      "lead": "The venue is surrounded by screens. With the Bronze, Silver and Gold packages, our team produces a short video for your business — recording and editing included — and it plays during the gala.",
+      "title": "Give your brand its moment.",
+      "lead": "From your business to the gala screens. With Bronze, Silver and Gold, our team films and edits your promotional video to share during the celebration.",
       "steps": {
         "film": {
           "title": "We film",
@@ -803,12 +809,29 @@
         }
       },
       "included": "Included from $750 — no extra cost.",
-      "plan": {
-        "yours": "Your video",
-        "screens": "Screens around the room",
-        "vendors": "Vendor tables",
-        "guests": "Guest tables",
-        "note": "Illustrative layout, not the venue's floor plan."
+      "showcase": {
+        "label": "Explore your brand presence",
+        "brand": "Your brand here",
+        "signature": "GALA CHRISTMAS PARTY · 2026",
+        "note": "Conceptual illustration of sponsorship opportunities. It does not depict the venue or its layout. Benefits depend on your selected package.",
+        "screen": {
+          "label": "On screen",
+          "tagline": "A story worth sharing",
+          "title": "Your story, on screen.",
+          "body": "A video filmed and edited by A&J for the gala. Included with Bronze, Silver and Gold."
+        },
+        "table": {
+          "label": "In person",
+          "tagline": "Let’s talk about your business",
+          "title": "From an introduction to a conversation.",
+          "body": "A table to present your business and meet guests. Included with Bronze, Silver and Gold."
+        },
+        "community": {
+          "label": "Community",
+          "tagline": "Celebrate what connects us",
+          "title": "A brand that joins the celebration.",
+          "body": "Your logo and recognition during the event, including with the Community package."
+        }
       }
     },
     "packages": {
@@ -910,7 +933,7 @@
         },
         "guests": {
           "q": "Who attends?",
-          "a": "More than 100 guests: A&J clients and their families. It's an adults-only event with semi-formal attire."
+          "a": "100+ guests: A&J clients and their families, local businesses and Latino communities. This is an adults-only event with semi-formal attire."
         },
         "community": {
           "q": "What's different about the Community package?",

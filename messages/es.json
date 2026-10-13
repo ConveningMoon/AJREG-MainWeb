@@ -732,14 +732,14 @@
   "christmasGala": {
     "meta": {
       "title": "Patrocina la Gala Christmas Party 2026",
-      "description": "Presenta tu negocio ante más de 100 invitados —clientes de A&J y sus familias— el 5 de diciembre de 2026 en Virginia Beach. Mesa de exhibición, tiempo en pantalla y un video promocional producido para ti.",
+      "description": "Presenta tu negocio ante más de 100 invitados: clientes de A&J, negocios locales y comunidades latinas. Gala de Navidad, 5 de diciembre de 2026 en Virginia Beach.",
       "shareTitle": "Patrocina la Gala de Navidad de A&J · 5 dic 2026",
       "shareDescription": "Presenta tu negocio ante más de 100 invitados en Virginia Beach. Paquetes desde $350 y video producido por A&J desde $750. Solicitudes hasta el 28 de noviembre.",
       "imageAlt": "Patrocina nuestra Gala de Navidad: paquetes desde $350, sábado 5 de diciembre de 2026 en Virginia Beach"
     },
     "hero": {
-      "title": "Tu negocio, protagonista en nuestra gala de Navidad.",
-      "subtitle": "Una noche, más de 100 invitados —clientes de A&J y sus familias— y pantallas por todo el salón. Desde $750 grabamos y editamos tu video para que se proyecte allí.",
+      "title": "Tu negocio, <em>protagonista</em> en nuestra gala de Navidad.",
+      "subtitle": "Una noche para conectar con más de 100 invitados: clientes de A&J, negocios locales y comunidades latinas. Desde $750, grabamos y editamos tu video para las pantallas de la gala.",
       "eventName": "Gala Christmas Party · A Wonderland Celebration",
       "date": "Sábado, 5 de diciembre de 2026",
       "time": "7:00 – 11:00 PM",
@@ -748,7 +748,8 @@
       "compare": "Comparar paquetes",
       "screenLabel": "Video de invitación",
       "screenSoon": "Muy pronto",
-      "screenAlt": "Espacio para el video de invitación de la gala, actualmente en producción"
+      "screenAlt": "Espacio para el video de invitación de la gala, actualmente en producción",
+      "kicker": "Navidad · Comunidad · Conexiones"
     },
     "countdown": {
       "label": "Las solicitudes de sponsors cierran en",
@@ -763,8 +764,8 @@
       "barShort": "Cierra en"
     },
     "audience": {
-      "title": "Quiénes estarán en el salón",
-      "lead": "Es la noche en que A&J agradece a los clientes y familias que nos confiaron su hogar. Más de 100 invitados, elegantes, relajados y con ganas de celebrar: el mejor momento para conocerlos.",
+      "title": "Una noche. Toda una comunidad.",
+      "lead": "Celebramos a las familias que nos confiaron su hogar, a los negocios que dan vida a nuestra ciudad y a las comunidades latinas que nos unen. Una oportunidad para conversar, compartir y crear conexiones en persona.",
       "groups": {
         "newOwners": {
           "title": "Nuevos propietarios",
@@ -775,19 +776,24 @@
           "body": "Hogares que se mudan a Hampton Roads y están armando su red local desde cero."
         },
         "hispanic": {
-          "title": "Familias hispanas y brasileñas",
-          "body": "Una comunidad leal que prefiere negocios que la entiendan, en su idioma."
+          "title": "Comunidades latinas",
+          "body": "Familias y miembros de nuestras comunidades latinas, con sus historias, culturas y conexiones locales."
         },
         "sellers": {
           "title": "Vendedores e inversionistas",
           "body": "Clientes que se mudan, crecen o amplían su portafolio en Virginia y Carolina del Norte."
+        },
+        "localBusinesses": {
+          "title": "Negocios locales",
+          "body": "Emprendedores, comercios y profesionales de nuestra zona que se reúnen para celebrar y conocer a su comunidad."
         }
       },
-      "facts": "Solo adultos · Vestimenta semi-formal · Virginia Beach, VA"
+      "facts": "Solo adultos · Vestimenta semi-formal · Virginia Beach, VA",
+      "stat": "invitados para celebrar y conectar"
     },
     "screens": {
-      "title": "Tu negocio en cada pantalla",
-      "lead": "El salón está rodeado de pantallas. Con los paquetes Bronze, Silver y Gold, nuestro equipo produce un video corto de tu negocio —grabación y edición incluidas— y se proyecta durante la gala.",
+      "title": "Dale a tu marca su momento.",
+      "lead": "De tu negocio a las pantallas de la gala. En Bronze, Silver y Gold, nuestro equipo graba y edita tu video promocional para presentarlo durante la celebración.",
       "steps": {
         "film": {
           "title": "Grabamos",
@@ -803,12 +809,29 @@
         }
       },
       "included": "Incluido desde $750, sin costo adicional.",
-      "plan": {
-        "yours": "Tu video",
-        "screens": "Pantallas del salón",
-        "vendors": "Mesas de exhibición",
-        "guests": "Mesas de invitados",
-        "note": "Ilustración de referencia, no es el plano real del salón."
+      "showcase": {
+        "label": "Explora la presencia de tu marca",
+        "brand": "Tu marca aquí",
+        "signature": "GALA CHRISTMAS PARTY · 2026",
+        "note": "Representación conceptual de las oportunidades de patrocinio. No muestra el recinto ni su distribución. Los beneficios dependen del paquete elegido.",
+        "screen": {
+          "label": "En pantalla",
+          "tagline": "Una historia que merece verse",
+          "title": "Tu historia, en pantalla.",
+          "body": "Video grabado y editado por A&J para la gala. Incluido en Bronze, Silver y Gold."
+        },
+        "table": {
+          "label": "En persona",
+          "tagline": "Conversemos de tu negocio",
+          "title": "De una presentación a una conversación.",
+          "body": "Una mesa para mostrar tu negocio y conocer invitados. Incluida en Bronze, Silver y Gold."
+        },
+        "community": {
+          "label": "Comunidad",
+          "tagline": "Celebremos lo que nos une",
+          "title": "Una marca que acompaña la celebración.",
+          "body": "Tu logo y reconocimiento durante el evento, también con el paquete Community."
+        }
       }
     },
     "packages": {
@@ -910,7 +933,7 @@
         },
         "guests": {
           "q": "¿Quiénes asisten?",
-          "a": "Más de 100 invitados: clientes de A&J y sus familias. Es un evento solo para adultos, con vestimenta semi-formal."
+          "a": "Más de 100 invitados: clientes de A&J y sus familias, negocios locales y comunidades latinas. Es un evento solo para adultos, con vestimenta semi-formal."
         },
         "community": {
           "q": "¿Qué tiene de diferente el paquete Community?",

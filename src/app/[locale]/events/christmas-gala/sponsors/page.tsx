@@ -16,7 +16,8 @@ import { Snowfall } from "@/components/events/gala/Snowfall";
 import { StickyApplyBar } from "@/components/events/gala/StickyApplyBar";
 import { ApplyButton } from "@/components/events/gala/ApplyButton";
 import { SponsorForm } from "@/components/events/gala/SponsorForm";
-import { RoomPlan } from "@/components/events/gala/RoomPlan";
+import { BrandShowcase } from "@/components/events/gala/BrandShowcase";
+import "@/components/events/gala/gala.css";
 
 const SITE_URL = "https://ajrealestateva.com";
 const PATH = "/events/christmas-gala/sponsors";
@@ -35,7 +36,7 @@ const matrix: { row: string; cells: Record<SponsorTierId, Cell> }[] = [
   { row: "recognition", cells: { gold: "yes", silver: "yes", bronze: "yes", community: "yes" } },
 ];
 
-const audienceGroups = ["newOwners", "military", "hispanic", "sellers"] as const;
+const audienceGroups = ["newOwners", "localBusinesses", "hispanic", "military", "sellers"] as const;
 const screenSteps = ["film", "edit", "play"] as const;
 const processSteps = ["apply", "call", "prepare", "night"] as const;
 const faqItems = ["payment", "deadline", "video", "raffle", "guests", "community"] as const;
@@ -113,12 +114,12 @@ export default async function ChristmasGalaSponsorsPage({
   );
 
   return (
-    <main className="bg-cream">
+    <main className="gala-landing bg-cream">
       {/* ── Hero ───────────────────────────────────────────────────────── */}
       <section
         id="gala-hero"
         aria-labelledby="gala-title"
-        className="relative isolate overflow-hidden bg-navy-950 text-cream"
+        className="gala-hero relative isolate overflow-hidden text-cream"
       >
         <div
           aria-hidden="true"
@@ -128,11 +129,12 @@ export default async function ChristmasGalaSponsorsPage({
 
         <div className="mx-auto grid max-w-7xl gap-14 px-6 pb-16 pt-12 sm:pt-16 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-10 lg:pb-20 lg:pt-16">
           <div className="lg:col-span-7">
+            <p className="gala-kicker">{t("hero.kicker")}</p>
             <h1
               id="gala-title"
-              className="font-display text-[clamp(2.75rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-balance"
+              className="gala-hero-title font-display text-[clamp(2.75rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-balance"
             >
-              {t("hero.title")}
+              {t.rich("hero.title", { em: (chunks) => <em>{chunks}</em> })}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy-100">{t("hero.subtitle")}</p>
 
@@ -173,24 +175,21 @@ export default async function ChristmasGalaSponsorsPage({
 
           </div>
 
-          {/* Vertical (9:16) invitation video, framed as a venue screen. */}
-          {/* Mobile: countdown right after the CTAs, then the screen.
-              Desktop: screen, then countdown, keeping both inside 900px. */}
-          <div className="flex flex-col lg:col-span-5">
-            <div className="order-2 mt-12 lg:order-1 lg:mt-0">
-              <InvitationVideo />
-            </div>
-            <div className="order-1 rounded-md lg:order-2 lg:mt-10 bg-navy-900/70 px-6 py-6 ring-1 ring-gold/20 sm:px-8">
-              <Countdown deadlineLabel={t("countdown.deadline", { date: deadline })} />
-            </div>
+          <div className="min-w-0 lg:col-span-5 lg:self-stretch lg:flex lg:items-center">
+            <InvitationVideo />
           </div>
         </div>
       </section>
 
+      <section className="gala-countdown-section" aria-labelledby="gala-countdown-label">
+        <Countdown deadlineLabel={t("countdown.deadline", { date: deadline })} />
+      </section>
+
       {/* ── Audience ───────────────────────────────────────────────────── */}
-      <section aria-labelledby="audience-title" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+      <section aria-labelledby="audience-title" className="gala-audience mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
+            <p className="gala-audience-stat"><strong>{galaEvent.expectedGuests}+</strong><span>{t("audience.stat")}</span></p>
             <h2 id="audience-title" className="font-display text-4xl font-semibold leading-tight text-navy text-balance sm:text-5xl">
               {t("audience.title")}
             </h2>
@@ -213,7 +212,7 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       {/* ── Screens + video production ─────────────────────────────────── */}
-      <section aria-labelledby="screens-title" className="bg-navy-900 text-cream">
+      <section aria-labelledby="screens-title" className="gala-screens text-cream">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-6">
@@ -227,15 +226,7 @@ export default async function ChristmasGalaSponsorsPage({
               </p>
             </div>
             <div className="lg:col-span-6">
-              <RoomPlan
-                labels={{
-                  yours: t("screens.plan.yours"),
-                  screens: t("screens.plan.screens"),
-                  vendors: t("screens.plan.vendors"),
-                  guests: t("screens.plan.guests"),
-                  note: t("screens.plan.note"),
-                }}
-              />
+              <BrandShowcase />
             </div>
           </div>
 
@@ -254,7 +245,7 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       {/* ── Packages ───────────────────────────────────────────────────── */}
-      <section id="packages" aria-labelledby="packages-title" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+      <section id="packages" aria-labelledby="packages-title" className="gala-packages mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="max-w-2xl">
           <h2 id="packages-title" className="font-display text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             {t("packages.title")}
@@ -394,7 +385,7 @@ export default async function ChristmasGalaSponsorsPage({
                     <td key={tier.id} className={`px-5 pb-7 pt-6 ${gold ? "rounded-b-2xl bg-navy-900 shadow-[inset_0_-1px_0_#c7a260,inset_1px_0_0_#c7a260,inset_-1px_0_0_#c7a260]" : ""}`}>
                       <ApplyButton
                         tier={tier.id}
-                        className={`inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-sm px-3 py-3.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
+                        className={`inline-flex w-full items-center justify-center gap-2 rounded-sm px-3 py-3.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
                           gold
                             ? "bg-gold text-navy-950 hover:bg-[#d4b273]"
                             : "border border-navy-900 text-navy hover:bg-navy-900 hover:text-cream"
@@ -412,13 +403,12 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       {/* ── How it works ───────────────────────────────────────────────── */}
-      <section aria-labelledby="process-title" className="bg-blush/40">
+      <section aria-labelledby="process-title" className="gala-process">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <h2 id="process-title" className="font-display text-4xl font-semibold leading-tight text-navy sm:text-5xl">
             {t("process.title")}
           </h2>
           <ol className="relative mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            <span aria-hidden="true" className="absolute left-0 right-0 top-[0.6875rem] hidden h-px bg-navy-200 lg:block" />
             {processSteps.map((step, i) => (
               <li key={step} className="relative">
                 <span
@@ -438,7 +428,7 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────────────────── */}
-      <section aria-labelledby="faq-title" className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+      <section aria-labelledby="faq-title" className="gala-faq mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <h2 id="faq-title" className="font-display text-4xl font-semibold leading-tight text-navy text-balance sm:text-5xl lg:col-span-4">
             {t("faq.title")}
@@ -463,7 +453,7 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       {/* ── Apply ──────────────────────────────────────────────────────── */}
-      <section id="apply" aria-labelledby="apply-title" className="scroll-mt-16 bg-navy-950 text-cream">
+      <section id="apply" aria-labelledby="apply-title" className="gala-apply scroll-mt-16 text-cream">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10 lg:px-10 lg:py-28">
           <div className="lg:col-span-4 lg:row-start-1">
             <h2 id="apply-title" className="font-display text-4xl font-semibold leading-tight text-balance sm:text-5xl">

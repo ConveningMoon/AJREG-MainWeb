@@ -1,9 +1,3 @@
-// Invitation video for the gala sponsor hero. Vertical (9:16) because that is
-// how the clip is shot and shared — the frame is a portrait "venue screen"
-// narrow enough that the video and the countdown below it fit one viewport.
-// Until `galaEvent.invitationVideo` is set it shows the "premieres soon" slate
-// in the same 9:16 box, so the layout does not shift when the video lands.
-
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { galaEvent } from "@/data/christmasGala";
@@ -13,8 +7,8 @@ export async function InvitationVideo() {
   const video = galaEvent.invitationVideo;
 
   return (
-    <figure className="mx-auto w-full max-w-[17rem] sm:max-w-[19rem] lg:max-w-64">
-      <div className="rounded-md bg-gradient-to-b from-navy-700 to-navy-800 p-2 shadow-xl ring-1 ring-gold/25">
+    <figure className="gala-video">
+      <div>
         {video ? (
           <video
             // `#t=0.001` makes iOS Safari paint the first frame as a poster
