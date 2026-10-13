@@ -448,9 +448,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 **Mini-Fase 6h — Gala Christmas Party: landing de sponsors**
 - Nueva ruta `/[locale]/events/christmas-gala/sponsors`, **bilingüe EN/ES**, con la
   navbar y el footer del sitio. Estructura "propuesta en capítulos": hero (titular,
-  datos del evento, CTAs, pantalla con el video de invitación como placeholder y
-  **cuenta regresiva en vivo** al cierre de solicitudes) → quiénes estarán en el
-  salón → "tu negocio en cada pantalla" (plano ilustrativo del salón en SVG +
+  datos del evento, CTAs y video vertical a todo el ancho de la segunda columna) →
+  **cuenta regresiva en vivo**, centrada en su propia sección → clientes, negocios
+  locales y comunidades latinas → presencia de marca (canvas conceptual interactivo +
   grabamos/editamos/se proyecta) → paquetes (tarjetas en móvil, **tabla comparativa**
   en `lg` con la columna Gold enmarcada) → cómo funciona → FAQ → formulario.
 - Hechos de la campaña en `data/christmasGala.ts` (fechas, venue, precios, tickets,
@@ -480,9 +480,8 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   la API responde 503 y el usuario ve el error (no se pierde en silencio).
 - i18n `christmasGala.*` (EN/ES). Agregada a `sitemap.ts`.
 - **Video de invitación vertical 9:16** (`components/events/gala/InvitationVideo.tsx`,
-  server component): marco de "pantalla del salón" en retrato (`max-w` 17/19/16rem en
-  móvil/`sm`/`lg`, para que video + cuenta regresiva quepan en 1440×900), `<video
-  controls playsInline preload="metadata">` con `object-contain` (un clip que no sea
+  server component): video a todo el ancho de la columna derecha del hero, con marco
+  dorado doble; en móvil se limita a 24rem. `<video controls playsInline>` con `object-contain` (un clip que no sea
   exactamente 9:16 recibe barras, no se recorta el logo del sponsor). La fuente es
   `galaEvent.invitationVideo` en `data/christmasGala.ts` (`{ src, poster? }`); mientras
   sea `null` se ve el slate "Muy pronto" en la misma caja 9:16, así que el layout no
@@ -674,6 +673,15 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-13** — **Rediseño de sponsors de la gala.** Video vertical a todo el ancho
+  de la segunda columna; cuenta regresiva centrada como sección independiente.
+  Audiencia EN/ES ampliada a negocios locales y comunidades latinas en hero, SEO,
+  sección de audiencia y FAQ. `BrandShowcase` reemplaza `RoomPlan`: canvas conceptual
+  interactivo (pantalla, mesa y comunidad), sin representar la distribución del
+  recinto. Motion con LazyMotion y reduced-motion; estilos de campaña aislados en
+  `gala.css`: verde nocturno, marco dorado, luces navideñas, jerarquía editorial y
+  refinamientos de paquetes, proceso, FAQ y formulario.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 

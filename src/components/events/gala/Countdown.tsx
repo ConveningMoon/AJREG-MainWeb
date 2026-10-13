@@ -40,7 +40,7 @@ export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
   const parts = useDeadlineCountdown();
 
   if (parts?.done) {
-    return <p className="font-display text-2xl text-cream">{t("closedLabel")}</p>;
+    return <p id="gala-countdown-label" className="font-display text-2xl text-cream">{t("closedLabel")}</p>;
   }
 
   const units = [
@@ -61,7 +61,7 @@ export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
         role="timer"
         aria-labelledby="gala-countdown-label"
         aria-live="off"
-        className="mt-3 flex items-end gap-1 sm:gap-2"
+        className="mt-6 flex items-end justify-center gap-1 sm:gap-4"
       >
         {units.map((unit, i) => (
           <div key={unit.key} className="flex items-end gap-1 sm:gap-2">
@@ -71,7 +71,7 @@ export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
               </span>
             )}
             <div className="flex min-w-[3.25rem] flex-col items-center sm:min-w-[4.25rem]">
-              <span className="font-display text-5xl font-semibold leading-none tabular-nums text-gold sm:text-6xl">
+              <span className="font-display text-6xl font-semibold leading-none tabular-nums text-gold sm:text-7xl">
                 {unit.value}
               </span>
               <span className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-navy-200">
