@@ -492,9 +492,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   del proyecto (1080×1920, 59 s, `moov` al inicio) con poster
   `public/images/events/christmas-gala-invitation-poster.webp` (fotograma a 3 s). Con
   poster el `<video>` usa `preload="none"`: la página no descarga nada del video hasta que
-  alguien pulsa play (la salida de Blob se paga por visita).
-  **Ojo:** el archivo subido pesa **284 MB (38 Mbps, 60 fps)**; la versión web
-  recomprimida (~28 MB, 3.8 Mbps, 30 fps) debe reemplazarlo cambiando solo `src`.
+  alguien pulsa play (la salida de Blob se paga por visita). Se publica la versión web
+  `Final_Sponsor_2_web.mp4` (27.9 MB, 3.8 Mbps, 30 fps); el original de 284 MB (38 Mbps,
+  60 fps) sigue en el Blob pero ya no se referencia.
 - **Tarjeta al compartir el link:** imagen 1200×630 por idioma
   (`public/images/events/christmas-gala-sponsors-og-{en,es}.jpg`, navy + oro, título,
   los 4 precios, fecha y cierre) + `og:title`/`og:description` propios
@@ -728,8 +728,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   regresiva dentro de 900px a 1440×900). **Pendiente (usuario):** subir el video a Vercel
   Blob y pegar la URL (y un poster 9:16 opcional) en `data/christmasGala.ts`.
   **Actualización 2026-10-13:** URL del Blob y poster ya conectados (verificado en
-  `next dev`: 1080×1920, 59 s, reproduce, 0 peticiones a Blob al cargar la página).
-  **Pendiente:** subir la versión recomprimida (284 MB → ~28 MB) y cambiar `src`.
+  `next dev`: 1080×1920, 59 s, reproduce, 0 peticiones a Blob al cargar la página) y
+  luego `src` cambiado a la versión recomprimida de 27.9 MB (mismos bytes que el archivo
+  local; ffprobe: 1080×1920, 30 fps, 3.76 Mbps). Se puede borrar del Blob el original.
 
 - **2026-10-01** — **Landing de sponsors para la Gala Christmas Party (`/events/christmas-gala/sponsors`).**
   Ver **Mini-Fase 6h**. Página bilingüe para que negocios locales soliciten un paquete
