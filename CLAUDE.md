@@ -479,6 +479,22 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   Env (solo servidor): `SPONSOR_SHEET_WEBHOOK_URL`, `SPONSOR_SHEET_SECRET`. Sin ellas
   la API responde 503 y el usuario ve el error (no se pierde en silencio).
 - i18n `christmasGala.*` (EN/ES). Agregada a `sitemap.ts`.
+- **Video de invitación vertical 9:16** (`components/events/gala/InvitationVideo.tsx`,
+  server component): marco de "pantalla del salón" en retrato (`max-w` 17/19/16rem en
+  móvil/`sm`/`lg`, para que video + cuenta regresiva quepan en 1440×900), `<video
+  controls playsInline preload="metadata">` con `object-contain` (un clip que no sea
+  exactamente 9:16 recibe barras, no se recorta el logo del sponsor). La fuente es
+  `galaEvent.invitationVideo` en `data/christmasGala.ts` (`{ src, poster? }`); mientras
+  sea `null` se ve el slate "Muy pronto" en la misma caja 9:16, así que el layout no
+  se mueve al publicar el video. **El .mp4 no se commitea al repo**: se aloja en Vercel
+  Blob (H.264 + AAC, 1080×1920, 30 fps, ~3–4 Mbps, ≲30 MB) y se pega la URL absoluta en
+  ese archivo. **Video publicado (2026-10-13):** `Final_Sponsor_2.mp4` en el Blob público
+  del proyecto (1080×1920, 59 s, `moov` al inicio) con poster
+  `public/images/events/christmas-gala-invitation-poster.webp` (fotograma a 3 s). Con
+  poster el `<video>` usa `preload="none"`: la página no descarga nada del video hasta que
+  alguien pulsa play (la salida de Blob se paga por visita). Se publica la versión web
+  `Final_Sponsor_2_web.mp4` (27.9 MB, 3.8 Mbps, 30 fps); el original de 284 MB (38 Mbps,
+  60 fps) sigue en el Blob pero ya no se referencia.
 - **Tarjeta al compartir el link:** imagen 1200×630 por idioma
   (`public/images/events/christmas-gala-sponsors-og-{en,es}.jpg`, navy + oro, título,
   los 4 precios, fecha y cierre) + `og:title`/`og:description` propios
@@ -661,6 +677,11 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 > Registrar aquí **cada cambio mayor** con fecha. Lo más reciente arriba.
 
+- **2026-10-13** — **`AGENTS.md` para Codex.** Guía operativa corta en la raíz (comandos
+  que funcionan con el `&` de la ruta de Windows, verificación, mapa del código, i18n,
+  destino de cada formulario, secretos, medios pesados en Vercel Blob, git). `CLAUDE.md`
+  sigue siendo el documento maestro; ambos se mantienen al día.
+
 - **2026-10-09** — **Rediseño de `/hogar` ("rótulo de feria bajo la carpa") + términos cortos solo correo.**
   Ver **Mini-Fase 6j**. Nueva identidad visual pensada para familias latinas en un evento
   (toldo a rayas, banderines de papel picado como progreso, letrero pintado que cuelga
@@ -698,6 +719,18 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   reintento al volver `online` sin cola residual, `window.itmano` presente.
   El esquema del canal se comprobó con un POST inválido (400 solo por
   `first_name`/`email`, lo demás acepta); **no se envió ningún lead real de prueba**.
+
+- **2026-10-12** — **Video de invitación vertical (9:16) en el hero de la landing de sponsors.**
+  Ver **Mini-Fase 6h**. El placeholder horizontal 16:9 pasa a un marco portrait y el
+  hero lee `galaEvent.invitationVideo`; sin URL sigue mostrando "Muy pronto".
+  **Verificado:** tsc/eslint sobre los archivos tocados y render real en `next dev` con un
+  clip 720×1280 de prueba (ratio 0.5625 exacto, sin scroll horizontal a 390px, cuenta
+  regresiva dentro de 900px a 1440×900). **Pendiente (usuario):** subir el video a Vercel
+  Blob y pegar la URL (y un poster 9:16 opcional) en `data/christmasGala.ts`.
+  **Actualización 2026-10-13:** URL del Blob y poster ya conectados (verificado en
+  `next dev`: 1080×1920, 59 s, reproduce, 0 peticiones a Blob al cargar la página) y
+  luego `src` cambiado a la versión recomprimida de 27.9 MB (mismos bytes que el archivo
+  local; ffprobe: 1080×1920, 30 fps, 3.76 Mbps). Se puede borrar del Blob el original.
 
 - **2026-10-01** — **Landing de sponsors para la Gala Christmas Party (`/events/christmas-gala/sponsors`).**
   Ver **Mini-Fase 6h**. Página bilingüe para que negocios locales soliciten un paquete
