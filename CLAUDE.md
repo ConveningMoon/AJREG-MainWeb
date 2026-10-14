@@ -682,8 +682,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   pino y ornamentos laterales. Solo tres grupos ilustrados: clientes de A&J,
   comunidades latinas y negocios locales. `Final_Sponsor_3.mp4` comprimido fuera
   del repo a `Final_Sponsor_3_web.mp4`: H.264/AAC, 720×1280, 30 fps, faststart,
-  15.4 MB frente a 387 MB. **Pendiente:** el usuario sube el archivo a Vercel Blob
-  y comparte su URL; hasta entonces `invitationVideo.src` conserva el video anterior.
+  15.4 MB frente a 387 MB. **Publicado en Blob y conectado:** `invitationVideo.src`
+  apunta a `Final_Sponsor_3_web.mp4`, URL compartida por el usuario y verificada
+  (HTTP 200, `video/mp4`, 15,395,315 bytes).
 
 - **2026-10-13** — **Rediseño de sponsors de la gala.** Video vertical a todo el ancho
   de la segunda columna; cuenta regresiva centrada como sección independiente.

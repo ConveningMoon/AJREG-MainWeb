@@ -43,4 +43,4 @@ Review desktop 1440×900 and mobile 390×844, ES/EN; check page width, all canva
 - Native video uses a festive evergreen-and-gold play overlay; controls appear once playback starts. Loading stays deferred until the visitor presses play. Errors offer a localized retry message.
 - Countdown height is reduced: no star or date sentence, 1.5rem vertical padding, static evergreen branches and wine/gold ornaments at either side. Mobile artwork moves to the edges to keep digits clear.
 - Only three audience groups remain: A&J Real Estate Group clients, Latino communities and local businesses, represented by house, community-handshake and storefront line drawings.
-- Replacement video was compressed locally outside the repo. Blob URL is pending from the user; no guessed URL or committed MP4.
+- Replacement video was compressed locally outside the repo. The user supplied the Blob URL for `Final_Sponsor_3_web.mp4`; it is now connected and verified (HTTP 200, video/mp4, 15,395,315 bytes). No MP4 is committed.
