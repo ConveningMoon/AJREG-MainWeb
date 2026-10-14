@@ -30,9 +30,17 @@ CONVERSION: Existing tier-to-form selection, URL preselection, sticky applicatio
 
 - Evergreen `#143b35` and wine `#512832` are confined to `gala.css`; bronze `#94664b` is a decorative package rule. Global tokens remain the brand source.
 - Deep gold `#8a6a2f` for small text on cream and hover gold `#d4b273` are inherited from the original campaign.
-- Snowfall, radial stage light, light strand and authored CSS brand canvas are campaign illustration. No new raster assets or third-party asset provenance to track.
+- Snowfall, radial stage light, light strand and authored CSS brand canvas are campaign illustration. New thumbnail: user-supplied `10 v2.00_00_03_39.Still001.png`, resized to 720×1280 WebP without cropping or generative changes.
 - Pricing comparison keeps the Gold column and uses thin category rules. Preparation steps use cream panels on blush; open FAQ items gain a quiet background; the form sits on the evergreen night field.
 
 ## Finish verification
 
 Review desktop 1440×900 and mobile 390×844, ES/EN; check page width, all canvas views, tier handoff, FAQ disclosure and countdown below the hero. Run TypeScript, scoped ESLint and production build. Never submit a live sponsor test application.
+
+
+## Media and audience refinement — 2026-10-14
+
+- Native video uses a festive evergreen-and-gold play overlay; controls appear once playback starts. Loading stays deferred until the visitor presses play. Errors offer a localized retry message.
+- Countdown height is reduced: no star or date sentence, 1.5rem vertical padding, static evergreen branches and wine/gold ornaments at either side. Mobile artwork moves to the edges to keep digits clear.
+- Only three audience groups remain: A&J Real Estate Group clients, Latino communities and local businesses, represented by house, community-handshake and storefront line drawings.
+- Replacement video was compressed locally outside the repo. The user supplied the Blob URL for `Final_Sponsor_3_web.mp4`; it is now connected and verified (HTTP 200, video/mp4, 15,395,315 bytes). No MP4 is committed.

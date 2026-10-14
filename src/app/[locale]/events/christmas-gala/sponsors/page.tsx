@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ArrowRight, CalendarDays, Check, Clock, MapPin, MessageCircle, Phone, Minus } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, Clock, MapPin, MessageCircle, Phone, Minus, House, HeartHandshake, Store } from "lucide-react";
 import {
   formatUsd,
   galaEvent,
@@ -16,6 +16,7 @@ import { Snowfall } from "@/components/events/gala/Snowfall";
 import { StickyApplyBar } from "@/components/events/gala/StickyApplyBar";
 import { ApplyButton } from "@/components/events/gala/ApplyButton";
 import { SponsorForm } from "@/components/events/gala/SponsorForm";
+import { HolidaySprig } from "@/components/events/gala/HolidaySprig";
 import { BrandShowcase } from "@/components/events/gala/BrandShowcase";
 import "@/components/events/gala/gala.css";
 
@@ -36,7 +37,11 @@ const matrix: { row: string; cells: Record<SponsorTierId, Cell> }[] = [
   { row: "recognition", cells: { gold: "yes", silver: "yes", bronze: "yes", community: "yes" } },
 ];
 
-const audienceGroups = ["newOwners", "localBusinesses", "hispanic", "military", "sellers"] as const;
+const audienceGroups = [
+  { id: "clients", icon: House },
+  { id: "hispanic", icon: HeartHandshake },
+  { id: "localBusinesses", icon: Store },
+] as const;
 const screenSteps = ["film", "edit", "play"] as const;
 const processSteps = ["apply", "call", "prepare", "night"] as const;
 const faqItems = ["payment", "deadline", "video", "raffle", "guests", "community"] as const;
@@ -182,7 +187,9 @@ export default async function ChristmasGalaSponsorsPage({
       </section>
 
       <section className="gala-countdown-section" aria-labelledby="gala-countdown-label">
-        <Countdown deadlineLabel={t("countdown.deadline", { date: deadline })} />
+        <HolidaySprig className="gala-countdown-sprig gala-countdown-sprig-left" />
+        <Countdown />
+        <HolidaySprig className="gala-countdown-sprig gala-countdown-sprig-right" />
       </section>
 
       {/* ── Audience ───────────────────────────────────────────────────── */}
@@ -199,9 +206,10 @@ export default async function ChristmasGalaSponsorsPage({
             </p>
           </div>
           <dl className="divide-y divide-navy-100 border-y border-navy-100 lg:col-span-7">
-            {audienceGroups.map((group) => (
+            {audienceGroups.map(({ id: group, icon: Icon }) => (
               <div key={group} className="grid gap-2 py-7 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-8">
-                <dt className="font-display text-2xl font-semibold leading-snug text-navy">
+                <dt className="flex items-center gap-4 font-display text-2xl font-semibold leading-snug text-navy">
+                  <span className="gala-audience-symbol" aria-hidden="true"><Icon size={30} strokeWidth={1.4} /></span>
                   {t(`audience.groups.${group}.title`)}
                 </dt>
                 <dd className="leading-relaxed text-navy-600">{t(`audience.groups.${group}.body`)}</dd>

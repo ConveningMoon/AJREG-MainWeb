@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { galaEvent } from "@/data/christmasGala";
+import { InvitationPlayer } from "./InvitationPlayer";
 
 export async function InvitationVideo() {
   const t = await getTranslations("christmasGala.hero");
@@ -10,22 +11,7 @@ export async function InvitationVideo() {
     <figure className="gala-video">
       <div>
         {video ? (
-          <video
-            // `#t=0.001` makes iOS Safari paint the first frame as a poster
-            // when none is provided, instead of a black box.
-            src={video.poster ? video.src : `${video.src}#t=0.001`}
-            poster={video.poster}
-            aria-label={t("screenLabel")}
-            controls
-            playsInline
-            // With a poster nothing is downloaded until play: the clip is large and
-            // every visit would otherwise pull seconds of it from Blob.
-            preload={video.poster ? "none" : "metadata"}
-            controlsList="nodownload"
-            // `contain`, not `cover`: a clip that is slightly off 9:16 gets
-            // bars instead of a cropped sponsor logo.
-            className="aspect-[9/16] w-full rounded-sm bg-black object-contain"
-          />
+          <InvitationPlayer src={video.src} poster={video.poster} />
         ) : (
           <div
             role="img"
