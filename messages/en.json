@@ -749,7 +749,9 @@
       "screenLabel": "Invitation video",
       "screenSoon": "Premieres soon",
       "screenAlt": "Placeholder for the gala invitation video, currently in production",
-      "kicker": "Christmas · Community · Connections"
+      "kicker": "Christmas · Community · Connections",
+      "play": "Watch invitation",
+      "playError": "We couldn’t play the video. Press again to retry."
     },
     "countdown": {
       "label": "Sponsor applications close in",
@@ -758,7 +760,6 @@
       "hours": "hrs",
       "minutes": "min",
       "seconds": "sec",
-      "deadline": "Deadline: {date}",
       "bar": "Applications close in",
       "barApply": "Apply",
       "barShort": "Closes in"
@@ -767,21 +768,13 @@
       "title": "One evening. A whole community.",
       "lead": "We celebrate the families who trusted us with their homes, the businesses that bring our city to life and the Latino communities that connect us. An opportunity to share stories, meet people and build connections in person.",
       "groups": {
-        "newOwners": {
-          "title": "New homeowners",
-          "body": "Families who just bought — and now need insurance, furniture, contractors, services and everything that comes after closing."
-        },
-        "military": {
-          "title": "Military families",
-          "body": "Households relocating to Hampton Roads who are building their local network from scratch."
+        "clients": {
+          "title": "A&J Real Estate Group clients",
+          "body": "The people and families who trusted us with their homes and are part of the A&J community."
         },
         "hispanic": {
           "title": "Latino communities",
           "body": "Families and members of our Latino communities, bringing their stories, cultures and local connections."
-        },
-        "sellers": {
-          "title": "Sellers and investors",
-          "body": "Clients moving up, moving on or growing a portfolio across Virginia and North Carolina."
         },
         "localBusinesses": {
           "title": "Local businesses",

@@ -20,7 +20,7 @@ export const galaEvent = {
   // and `poster` a small 9:16 still (fine to keep in /public).
   invitationVideo: {
     src: "https://0f1swnfk31oszxu1.public.blob.vercel-storage.com/Final_Sponsor_2_web.mp4",
-    poster: "/images/events/christmas-gala-invitation-poster.webp",
+    poster: "/images/events/christmas-gala-invitation-poster-v3.webp",
   } as null | { src: string; poster?: string },
 } as const;
 

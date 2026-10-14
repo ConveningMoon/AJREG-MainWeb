@@ -35,7 +35,7 @@ export function useDeadlineCountdown() {
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
+export function Countdown() {
   const t = useTranslations("christmasGala.countdown");
   const parts = useDeadlineCountdown();
 
@@ -61,7 +61,7 @@ export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
         role="timer"
         aria-labelledby="gala-countdown-label"
         aria-live="off"
-        className="mt-6 flex items-end justify-center gap-1 sm:gap-4"
+        className="mt-3 flex items-end justify-center gap-1 sm:gap-4"
       >
         {units.map((unit, i) => (
           <div key={unit.key} className="flex items-end gap-1 sm:gap-2">
@@ -81,7 +81,6 @@ export function Countdown({ deadlineLabel }: { deadlineLabel: string }) {
           </div>
         ))}
       </div>
-      <p className="mt-4 text-sm text-navy-200">{deadlineLabel}</p>
     </div>
   );
 }

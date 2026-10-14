@@ -449,7 +449,7 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - Nueva ruta `/[locale]/events/christmas-gala/sponsors`, **bilingüe EN/ES**, con la
   navbar y el footer del sitio. Estructura "propuesta en capítulos": hero (titular,
   datos del evento, CTAs y video vertical a todo el ancho de la segunda columna) →
-  **cuenta regresiva en vivo**, centrada en su propia sección → clientes, negocios
+  **cuenta regresiva en vivo**, compacta y centrada con ornamentos laterales → clientes, negocios
   locales y comunidades latinas → presencia de marca (canvas conceptual interactivo +
   grabamos/editamos/se proyecta) → paquetes (tarjetas en móvil, **tabla comparativa**
   en `lg` con la columna Gold enmarcada) → cómo funciona → FAQ → formulario.
@@ -480,8 +480,9 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   la API responde 503 y el usuario ve el error (no se pierde en silencio).
 - i18n `christmasGala.*` (EN/ES). Agregada a `sitemap.ts`.
 - **Video de invitación vertical 9:16** (`components/events/gala/InvitationVideo.tsx`,
-  server component): video a todo el ancho de la columna derecha del hero, con marco
-  dorado doble; en móvil se limita a 24rem. `<video controls playsInline>` con `object-contain` (un clip que no sea
+  server wrapper + `InvitationPlayer` cliente): video a todo el ancho de la columna derecha del hero, con marco
+  dorado doble; en móvil se limita a 24rem. Play navideño accesible y controles
+  nativos tras iniciar. `<video playsInline>` con `object-contain` (un clip que no sea
   exactamente 9:16 recibe barras, no se recorta el logo del sponsor). La fuente es
   `galaEvent.invitationVideo` en `data/christmasGala.ts` (`{ src, poster? }`); mientras
   sea `null` se ve el slate "Muy pronto" en la misma caja 9:16, así que el layout no
@@ -673,6 +674,16 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-14** — **Ajustes de medios y audiencia de sponsors.** Thumbnail nuevo
+  aportado por el usuario, convertido a WebP 720×1280 (~81 KB); reproductor cliente
+  con botón de play navideño, controles nativos tras iniciar y mensaje de error.
+  Cuenta regresiva compacta sin estrella ni texto de fecha límite, con ramas de
+  pino y ornamentos laterales. Solo tres grupos ilustrados: clientes de A&J,
+  comunidades latinas y negocios locales. `Final_Sponsor_3.mp4` comprimido fuera
+  del repo a `Final_Sponsor_3_web.mp4`: H.264/AAC, 720×1280, 30 fps, faststart,
+  15.4 MB frente a 387 MB. **Pendiente:** el usuario sube el archivo a Vercel Blob
+  y comparte su URL; hasta entonces `invitationVideo.src` conserva el video anterior.
 
 - **2026-10-13** — **Rediseño de sponsors de la gala.** Video vertical a todo el ancho
   de la segunda columna; cuenta regresiva centrada como sección independiente.

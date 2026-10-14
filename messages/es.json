@@ -749,7 +749,9 @@
       "screenLabel": "Video de invitación",
       "screenSoon": "Muy pronto",
       "screenAlt": "Espacio para el video de invitación de la gala, actualmente en producción",
-      "kicker": "Navidad · Comunidad · Conexiones"
+      "kicker": "Navidad · Comunidad · Conexiones",
+      "play": "Ver invitación",
+      "playError": "No pudimos reproducir el video. Pulsa de nuevo para intentarlo."
     },
     "countdown": {
       "label": "Las solicitudes de sponsors cierran en",
@@ -758,7 +760,6 @@
       "hours": "h",
       "minutes": "min",
       "seconds": "seg",
-      "deadline": "Fecha límite: {date}",
       "bar": "Las solicitudes cierran en",
       "barApply": "Aplicar",
       "barShort": "Cierra en"
@@ -767,21 +768,13 @@
       "title": "Una noche. Toda una comunidad.",
       "lead": "Celebramos a las familias que nos confiaron su hogar, a los negocios que dan vida a nuestra ciudad y a las comunidades latinas que nos unen. Una oportunidad para conversar, compartir y crear conexiones en persona.",
       "groups": {
-        "newOwners": {
-          "title": "Nuevos propietarios",
-          "body": "Familias que acaban de comprar y ahora necesitan seguros, muebles, contratistas, servicios y todo lo que viene después del cierre."
-        },
-        "military": {
-          "title": "Familias militares",
-          "body": "Hogares que se mudan a Hampton Roads y están armando su red local desde cero."
+        "clients": {
+          "title": "Clientes de A&J Real Estate Group",
+          "body": "Las personas y familias que nos confiaron su hogar y forman parte de la comunidad de A&J."
         },
         "hispanic": {
           "title": "Comunidades latinas",
           "body": "Familias y miembros de nuestras comunidades latinas, con sus historias, culturas y conexiones locales."
-        },
-        "sellers": {
-          "title": "Vendedores e inversionistas",
-          "body": "Clientes que se mudan, crecen o amplían su portafolio en Virginia y Carolina del Norte."
         },
         "localBusinesses": {
           "title": "Negocios locales",
