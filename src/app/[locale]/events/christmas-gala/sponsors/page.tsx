@@ -66,7 +66,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "christmasGala.meta" });
   // Absolute URL: some link previewers (WhatsApp) ignore relative og:image.
-  const shareImage = `${SITE_URL}/images/events/christmas-gala-sponsors-og-${locale === "es" ? "es" : "en"}.jpg`;
+  const shareImage = `${SITE_URL}/images/events/christmas-gala-sponsors-og-${locale === "es" ? "es" : "en"}.jpg?v=invitation-20261014`;
   return {
     title: t("title"),
     description: t("description"),

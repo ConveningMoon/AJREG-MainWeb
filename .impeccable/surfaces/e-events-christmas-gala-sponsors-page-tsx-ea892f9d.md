@@ -44,3 +44,12 @@ Review desktop 1440×900 and mobile 390×844, ES/EN; check page width, all canva
 - Countdown height is reduced: no star or date sentence, 1.5rem vertical padding, static evergreen branches and wine/gold ornaments at either side. Mobile artwork moves to the edges to keep digits clear.
 - Only three audience groups remain: A&J Real Estate Group clients, Latino communities and local businesses, represented by house, community-handshake and storefront line drawings.
 - Replacement video was compressed locally outside the repo. The user supplied the Blob URL for `Final_Sponsor_3_web.mp4`; it is now connected and verified (HTTP 200, video/mp4, 15,395,315 bytes). No MP4 is committed.
+
+
+## Invitation sharing artwork — 2026-10-14
+
+The EN/ES OG cards are now 1200×630 ivory invitations on evergreen, with fine gold rules, symmetrical pine branches and wine/green ornaments. The existing A&J logo and EB Garamond/Montserrat remain authoritative. Event date, time and venue lead; sponsorship price and deadline form a small closing line. The OG/Twitter image URL is versioned to distinguish this artwork from the old package comparison card.
+
+Provenance: botanical strokes and ornaments authored in `scripts/og/christmas-gala-sponsors.py`; existing `logo-white_2.webp` recolored through its alpha mask; brand fonts from the Next build cache. No generative images or remote assets. Copy comes from `christmasGala.meta.invitation` in both message files; venue from `data/christmasGala.ts`. Pillow renders at 3× and downsamples to JPEG.
+
+Validation: both final JPEGs visually inspected at 1200×630 (ES 180,028 bytes; EN 176,316 bytes). Actual local metadata verified in ES/EN: OG and Twitter use the matching versioned absolute URL. TypeScript and scoped ESLint pass. Production build attempted twice; failed only fetching the existing EB Garamond, Montserrat and Bowlby One from Google Fonts due to network errors.

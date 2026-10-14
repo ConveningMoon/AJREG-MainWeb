@@ -1,61 +1,165 @@
-# Generates public/images/events/christmas-gala-sponsors-og-{en,es}.jpg (1200x630).
-# Usage: python3 scripts/og/christmas-gala-sponsors.py, then render each og-<locale>.html with
-# headless Chrome (--window-size=1200,630 --screenshot) and convert to JPEG (sips -s format jpeg).
-# Edit dates/prices here if they change in src/data/christmasGala.ts.
-import random, sys
-import os
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-copy = {
-  "en": dict(lang="en", title="Sponsor our<br>Christmas Gala", sub="Put your business in front of 100+ guests &mdash; A&amp;J clients and their families.",
-             date="Sat &middot; Dec 5, 2026", place="Virginia Beach", deadline="Applications close Nov 28",
-             video="Video produced by A&amp;J from $750", head="Sponsor packages",
-             tiers=[("Gold","$2,000"),("Silver","$1,250"),("Bronze","$750"),("Community","$350")]),
-  "es": dict(lang="es", title="Patrocina nuestra<br>Gala de Navidad", sub="Presenta tu negocio ante m&aacute;s de 100 invitados: clientes de A&amp;J y sus familias.",
-             date="S&aacute;b &middot; 5 dic 2026", place="Virginia Beach", deadline="Solicitudes hasta el 28 nov",
-             video="Video producido por A&amp;J desde $750", head="Paquetes de sponsor",
-             tiers=[("Gold","$2,000"),("Silver","$1,250"),("Bronze","$750"),("Community","$350")]),
-}
-random.seed(7)
-flakes = "".join(
-  f'<circle cx="{random.uniform(0,1200):.0f}" cy="{random.uniform(0,630):.0f}" r="{random.choice([1,1.2,1.6,2,2.4]):.1f}" fill="#fff7f5" opacity="{random.uniform(.18,.6):.2f}"/>'
-  for _ in range(90))
-for key, c in copy.items():
-    rows = "".join(
-      f'<div class="row{" gold" if i==0 else ""}"><span>{n}</span><b>{p}</b></div>' for i,(n,p) in enumerate(c["tiers"]))
-    html = f"""<!doctype html><html lang="{c['lang']}"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,600;1,500&family=Montserrat:wght@500;600;700&display=block" rel="stylesheet">
-<style>
-*{{margin:0;padding:0;box-sizing:border-box}}
-html,body{{width:1200px;height:630px;overflow:hidden}}
-body{{position:relative;background:#0a1321;color:#fff7f5;font-family:Montserrat,sans-serif}}
-.glow{{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 80% 40%,rgba(199,162,96,.22),transparent 70%),radial-gradient(ellipse 60% 80% at 0% 110%,rgba(52,74,93,.6),transparent 70%)}}
-svg.snow{{position:absolute;inset:0}}
-.frame{{position:absolute;inset:24px;border:1px solid rgba(199,162,96,.35);border-radius:14px}}
-.left{{position:absolute;left:72px;top:64px;width:640px}}
-.logo{{height:76px}}
-h1{{margin-top:26px;font-family:'EB Garamond',serif;font-weight:600;font-size:{86 if key=='en' else 80}px;line-height:.98;letter-spacing:-.02em}}
-.sub{{margin-top:22px;font-size:25px;line-height:1.42;color:#d2dadf;max-width:600px}}
-.facts{{position:absolute;left:72px;bottom:60px;display:flex;gap:12px;align-items:center}}
-.pill{{border-radius:999px;padding:11px 20px;font-size:18px;white-space:nowrap;font-weight:600;background:#22354a;color:#fff7f5}}
-.pill.gold{{background:#c7a260;color:#0a1321}}
-.card{{position:absolute;right:64px;top:70px;width:392px;border-radius:16px;background:#102037;box-shadow:0 20px 25px -5px rgba(0,0,0,.35),inset 0 0 0 1px rgba(199,162,96,.45);padding:28px 30px 26px}}
-.card h2{{font-size:16px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#96a7b1}}
-.row{{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-top:1px solid #22354a;font-size:22px;font-weight:600;color:#d2dadf}}
-.card h2+.row{{margin-top:14px}}
-.row b{{font-family:'EB Garamond',serif;font-size:36px;font-weight:600;color:#fff7f5;font-variant-numeric:tabular-nums}}
-.row.gold span{{color:#c7a260}} .row.gold b{{color:#c7a260;font-size:42px}}
-.video{{margin-top:12px;padding-top:16px;border-top:1px solid #22354a;font-family:'EB Garamond',serif;font-style:italic;font-weight:500;font-size:21px;line-height:1.25;color:#e9d8d0;white-space:nowrap}}
-</style></head><body>
-<div class="glow"></div>
-<svg class="snow" width="1200" height="630">{flakes}</svg>
-<div class="frame"></div>
-<div class="left">
-  <img class="logo" src="file://{ROOT}/public/images/logo-white_2.webp" alt="">
-  <h1>{c['title']}</h1>
-  <p class="sub">{c['sub']}</p>
-</div>
-<div class="facts"><span class="pill">{c['date']} &middot; {c['place']}</span><span class="pill gold">{c['deadline']}</span></div>
-<div class="card"><h2>{c['head']}</h2>{rows}<p class="video">{c['video']}</p></div>
-</body></html>"""
-    open(f"og-{key}.html","w").write(html)
-print("ok")
+"""Render bilingual Christmas invitation OG cards (1200 x 630) with Pillow.
+
+Run a Next build first to cache the project's EB Garamond and Montserrat fonts,
+then: python scripts/og/christmas-gala-sponsors.py
+Requires Pillow, fonttools and brotli. No browser, remote fonts or API needed.
+Artwork is authored here; logo is the existing A&J asset. Copy lives in messages.
+"""
+from pathlib import Path
+from io import BytesIO
+import json
+import math
+import random
+import re
+
+from PIL import Image, ImageDraw, ImageFont
+from fontTools.ttLib import TTFont
+
+ROOT = Path(__file__).resolve().parents[2]
+SIZE = (1200, 630)
+SCALE = 3
+CREAM = '#fff7f5'
+NAVY = '#102037'
+GOLD = '#c7a260'
+DEEP_GOLD = '#8a6a2f'
+GREEN = '#143b35'
+WINE = '#512832'
+
+
+def cached_fonts():
+    """Use the same Latin fonts Next ships, without maintaining font copies."""
+    result = {}
+    for path in sorted((ROOT / '.next').glob('**/static/media/*.woff2')):
+        font = TTFont(path)
+        family = font['name'].getDebugName(1) or ''
+        if family != 'EB Garamond' and not family.startswith('Montserrat'):
+            continue
+        # The Latin subset must support both languages, including accented copy.
+        if not set(map(ord, 'A&J Navidad invitación diciembre')).issubset(font.getBestCmap()):
+            continue
+        key = 'body' if family.startswith('Montserrat') else 'display'
+        if key in result:
+            continue
+        font.flavor = None
+        data = BytesIO()
+        font.save(data)
+        result[key] = data.getvalue()
+    if set(result) != {'body', 'display'}:
+        raise RuntimeError('Run next build first: cached Latin EB Garamond and Montserrat fonts are required.')
+    return result
+
+
+FONTS = cached_fonts()
+
+
+def face(kind, size, weight=500):
+    font = ImageFont.truetype(BytesIO(FONTS[kind]), round(size * SCALE))
+    try:
+        axes = font.get_variation_axes()
+        font.set_variation_by_axes([weight if a['name'] == b'Weight' else a['default'] for a in axes])
+    except (OSError, AttributeError):
+        pass
+    return font
+
+
+def point(x, y):
+    return (round(x * SCALE), round(y * SCALE))
+
+
+def line(draw, coords, fill, width=1):
+    draw.line([point(x, y) for x, y in coords], fill=fill, width=max(1, round(width * SCALE)))
+
+
+def center(draw, text, y, font, color, tracking=0):
+    widths = [draw.textlength(c, font=font) for c in text]
+    width = sum(widths) + tracking * SCALE * max(0, len(text) - 1)
+    x = (SIZE[0] * SCALE - width) / 2
+    if not tracking:
+        draw.text((SIZE[0] * SCALE / 2, y * SCALE), text, font=font, fill=color, anchor='mt')
+    else:
+        for char, char_width in zip(text, widths):
+            draw.text((x, y * SCALE), char, font=font, fill=color, anchor='lt')
+            x += char_width + tracking * SCALE
+
+
+def sprig(draw, origin, angle, length, seed):
+    """Evergreen needles as vector strokes, layered away from the typography."""
+    rng = random.Random(seed)
+    ox, oy = origin
+    vx, vy = math.cos(angle), math.sin(angle)
+    px, py = -vy, vx
+    line(draw, [(ox, oy), (ox + length * vx, oy + length * vy)], '#8b8459', 1.1)
+    for i in range(5, int(length), 6):
+        bx, by = ox + i * vx, oy + i * vy
+        needle = (1 - i / length) * 23 + 10
+        for side in (-1, 1):
+            color = rng.choice(['#143b35', '#285546', '#476451', '#6b7b59'])
+            end = (bx - vx * needle * .5 + px * needle * side, by - vy * needle * .5 + py * needle * side)
+            line(draw, [(bx, by), end], color, .8)
+
+
+def ornament(draw, x, y, radius, color):
+    line(draw, [(x, 40), (x, y - radius - 5)], GOLD, .8)
+    draw.rectangle([point(x - 4, y - radius - 5), point(x + 4, y - radius)], fill=GOLD)
+    draw.ellipse([point(x - radius, y - radius), point(x + radius, y + radius)], fill=color, outline=GOLD, width=SCALE)
+    draw.arc([point(x - radius + 6, y - radius + 4), point(x + radius - 6, y + radius - 4)], 100, 255, fill=GOLD, width=SCALE)
+    line(draw, [(x - radius + 3, y + 3), (x + radius - 3, y + 3)], GOLD, .6)
+
+
+def render(locale):
+    messages = json.loads((ROOT / 'messages' / f'{locale}.json').read_text(encoding='utf-8'))['christmasGala']
+    c = messages['meta']['invitation']
+    canvas = Image.new('RGB', (SIZE[0] * SCALE, SIZE[1] * SCALE), '#0b2826')
+    draw = ImageDraw.Draw(canvas)
+    # A wide matte evergreen edge around an ivory invitation with fine foil rules.
+    draw.rectangle([point(34, 26), point(1166, 604)], fill=CREAM)
+    draw.rectangle([point(23, 16), point(1177, 614)], outline=GOLD, width=SCALE)
+    draw.rectangle([point(46, 38), point(1154, 592)], outline=GOLD, width=SCALE)
+    draw.rectangle([point(53, 45), point(1147, 585)], outline='#e9d8d0', width=SCALE)
+
+    # Delicate symmetric boughs, rendered at 3x for sharp edges in small previews.
+    for mirror in (False, True):
+        layer = Image.new('RGBA', canvas.size)
+        d = ImageDraw.Draw(layer)
+        for x, y, angle, length, seed in [(58, 29, .18, 238, 3), (49, 35, .83, 172, 7), (43, 39, 1.35, 189, 11), (150, 46, .7, 83, 17)]:
+            sprig(d, (x, y), angle, length, seed)
+        ornament(d, 126, 128, 26, WINE)
+        ornament(d, 205, 96, 17, GREEN)
+        if mirror:
+            layer = layer.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        canvas.paste(layer, (0, 0), layer)
+    # Smaller evergreen flourishes at the bottom corners.
+    for x, y, a in [(54, 586, -.18), (54, 586, -.95), (1146, 586, math.pi + .18), (1146, 586, math.pi + .95)]:
+        sprig(draw, (x, y), a, 134, int(x + y))
+
+    # Existing transparent logo, recolored using its alpha (no invented logo).
+    logo = Image.open(ROOT / 'public/images/logo-white_2.webp').convert('RGBA')
+    logo.thumbnail((146 * SCALE, 88 * SCALE), Image.Resampling.LANCZOS)
+    ink = Image.new('RGBA', logo.size, NAVY)
+    ink.putalpha(logo.getchannel('A'))
+    canvas.paste(ink, (round((SIZE[0] * SCALE - ink.width) / 2), 65 * SCALE), ink)
+
+    center(draw, c['eyebrow'], 167, face('body', 15, 600), DEEP_GOLD, 2.4)
+    center(draw, c['title'], 201, face('display', 100, 500), NAVY)
+    center(draw, c['theme'], 309, face('display', 25), DEEP_GOLD)
+    line(draw, [(445, 353), (576, 353)], GOLD, .8)
+    line(draw, [(624, 353), (755, 353)], GOLD, .8)
+    draw.polygon([point(600, 347), point(606, 353), point(600, 359), point(594, 353)], fill=GOLD)
+    center(draw, c['date'], 377, face('body', 22, 600), NAVY, 1)
+    center(draw, messages['hero']['time'], 413, face('display', 27), NAVY)
+    event_source = (ROOT / 'src/data/christmasGala.ts').read_text(encoding='utf-8')
+    venue = re.search(r'venueName: "([^"]+)"', event_source).group(1)
+    center(draw, venue, 455, face('body', 17, 500), NAVY)
+    center(draw, c['city'], 484, face('body', 14, 500), DEEP_GOLD, 2)
+    line(draw, [(357, 525), (843, 525)], '#e9d8d0', .8)
+    center(draw, c['footer'], 543, face('body', 16, 500), NAVY)
+
+    result = canvas.resize(SIZE, Image.Resampling.LANCZOS)
+    out = ROOT / 'public/images/events' / f'christmas-gala-sponsors-og-{locale}.jpg'
+    result.save(out, quality=93, subsampling=0, optimize=True)
+    print(f'{locale}: {out.relative_to(ROOT)} ({out.stat().st_size:,} bytes)')
+
+
+if __name__ == '__main__':
+    for locale in ('es', 'en'):
+        render(locale)

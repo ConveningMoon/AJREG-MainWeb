@@ -735,7 +735,15 @@
       "description": "Presenta tu negocio ante más de 100 invitados: clientes de A&J, negocios locales y comunidades latinas. Gala de Navidad, 5 de diciembre de 2026 en Virginia Beach.",
       "shareTitle": "Patrocina la Gala de Navidad de A&J · 5 dic 2026",
       "shareDescription": "Presenta tu negocio ante más de 100 invitados en Virginia Beach. Paquetes desde $350 y video producido por A&J desde $750. Solicitudes hasta el 28 de noviembre.",
-      "imageAlt": "Patrocina nuestra Gala de Navidad: paquetes desde $350, sábado 5 de diciembre de 2026 en Virginia Beach"
+      "imageAlt": "Invitación navideña de A&J: Gala de Navidad, 5 de diciembre de 2026, 7–11 PM, The Royal Courtyard at West Neck, Virginia Beach. Patrocinios desde $350.",
+      "invitation": {
+        "eyebrow": "UNA INVITACIÓN A PATROCINAR",
+        "title": "Gala de Navidad",
+        "theme": "A Wonderland Celebration",
+        "date": "SÁBADO · 5 DE DICIEMBRE · 2026",
+        "city": "VIRGINIA BEACH",
+        "footer": "Patrocinios desde $350  ·  Solicitudes hasta el 28 de noviembre"
+      }
     },
     "hero": {
       "title": "Tu negocio, <em>protagonista</em> en nuestra gala de Navidad.",

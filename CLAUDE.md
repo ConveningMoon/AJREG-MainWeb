@@ -496,12 +496,15 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   `Final_Sponsor_2_web.mp4` (27.9 MB, 3.8 Mbps, 30 fps); el original de 284 MB (38 Mbps,
   60 fps) sigue en el Blob pero ya no se referencia.
 - **Tarjeta al compartir el link:** imagen 1200×630 por idioma
-  (`public/images/events/christmas-gala-sponsors-og-{en,es}.jpg`, navy + oro, título,
-  los 4 precios, fecha y cierre) + `og:title`/`og:description` propios
+  (`public/images/events/christmas-gala-sponsors-og-{en,es}.jpg`): invitación crema,
+  borde verde nocturno, marco dorado, pino y esferas; título, fecha, horario, recinto
+  y cierre de patrocinio + `og:title`/`og:description` propios
   (`christmasGala.meta.share*`). URL absoluta al dominio de producción (WhatsApp ignora
   las relativas), así que en un preview de Vercel la imagen sólo aparece tras desplegar a
-  producción. Generador: `scripts/og/christmas-gala-sponsors.py` (HTML → Chrome headless
-  → JPEG); regenerar si cambian fechas o precios.
+  producción. Generador: `scripts/og/christmas-gala-sponsors.py` (Pillow + fontTools + Brotli,
+  dibujo vectorial a 3× → JPEG, fuentes EB Garamond/Montserrat de `.next`).
+  Copy en `christmasGala.meta.invitation` EN/ES; URL con versión para actualizar
+  caché de imagen. Regenerar después de un build si cambian los datos o el copy.
 **→ commit:** `feat: christmas gala sponsor landing page`
 
 **Mini-Fase 6i — Good For Her Giveaway (evento de Melany)**
@@ -674,6 +677,14 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-14** — **OG navideño como invitación elegante.** Nuevas imágenes EN/ES
+  1200×630 con tarjeta crema, marco dorado, fondo verde, ramas de pino y esferas
+  vino/verde. Logo y tipografías de la marca; fecha, horario y lugar como protagonistas.
+  El patrocinio desde $350 y el cierre permanecen en una línea final. Generador
+  reproducible con Pillow y fuentes del build; copy localizado y alt actualizados.
+  URL OG/Twitter versionada `invitation-20261014`. Arte original de código, sin
+  imágenes generadas ni activos externos.
 
 - **2026-10-14** — **Ajustes de medios y audiencia de sponsors.** Thumbnail nuevo
   aportado por el usuario, convertido a WebP 720×1280 (~81 KB); reproductor cliente
