@@ -1,0 +1,159 @@
+/* Full-width private invitation; site chrome is hidden only while this page exists. */
+body:has(.gala-rsvp) [data-site-nav],
+body:has(.gala-rsvp) [data-site-topbar],
+body:has(.gala-rsvp) [data-site-footer] { display: none; }
+.gala-rsvp { --gala-evergreen: #143b35; --gala-wine: #512832; background: var(--color-navy-950); color: var(--color-cream); flex: 1; min-height: 100svh; }
+html:has(.gala-envelope) { overflow: hidden; }
+.gala-rsvp-layout { position: relative; display: grid; width: 100%; min-height: 100svh; background: radial-gradient(ellipse at 0% 0%, var(--gala-evergreen), transparent 70%), var(--color-navy-950); }
+.gala-rsvp-invitation { position: relative; isolation: isolate; overflow: hidden; padding: 1.25rem 1.5rem .75rem; }
+.gala-rsvp-atmosphere { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.gala-rsvp-invitation-content { position: relative; z-index: 1; text-align: center; }
+.gala-rsvp-language { position: absolute; right: 1.25rem; top: 1rem; z-index: 20; }
+.gala-rsvp-language button { min-height: 2.75rem; min-width: 2rem; }
+.gala-rsvp-logo { width: 5.5rem; height: auto; margin: 0 0 1rem; }
+.gala-rsvp-home { display: block; width: fit-content; }
+.gala-rsvp-eyebrow { color: var(--color-gold); font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; }
+.gala-rsvp-star, .gala-rsvp-rule, .gala-rsvp-signature { display: none; }
+.gala-rsvp h1 { font-family: var(--font-display); font-size: clamp(2.6rem, 10vw, 3.5rem); font-weight: 500; line-height: 1; letter-spacing: -.035em; margin-top: .75rem; }
+.gala-rsvp h1 em { display: block; font-weight: 400; color: var(--color-gold); }
+.gala-rsvp-lead { margin: .75rem auto 0; font-size: .8rem; line-height: 1.6; color: var(--color-navy-100); }
+.gala-rsvp-event-panel { min-width: 0; padding: 0 1.5rem 1.5rem; text-align: center; }
+.gala-rsvp-ticket { text-align: center; }
+.gala-rsvp-facts { display: grid; grid-template-columns: 1fr 1fr 1.55fr; align-items: start; font-size: .8rem; line-height: 1.5; }
+.gala-rsvp-facts > div { min-width: 0; padding: .75rem .3rem; }
+.gala-rsvp-facts dt { display: flex; justify-content: center; align-items: center; gap: .35rem; color: var(--color-gold); font-size: .58rem; text-transform: uppercase; letter-spacing: .06em; }
+.gala-rsvp-facts dd { margin-top: .45rem; }
+.gala-rsvp-facts dd span, .gala-rsvp-facts time span { display: block; color: var(--color-navy-100); font-size: .65rem; }
+.gala-rsvp-ticket-date strong { display: block; font: 500 2.3rem/.95 var(--font-display); margin-bottom: .3rem; }
+.gala-rsvp-ticket-time strong { display: flex; justify-content: center; align-items: center; min-height: 2.2rem; font: 500 1.25rem/1 var(--font-display); white-space: nowrap; margin-bottom: .3rem; }
+.gala-rsvp-venue-link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; font-size: .75rem; font-weight: 600; line-height: 1.5; text-decoration: underline; text-decoration-color: var(--color-gold); text-underline-offset: .25rem; }
+.gala-rsvp-venue-link:hover { color: var(--color-gold); }
+.gala-rsvp-facts .gala-rsvp-address { margin-top: .35rem; font-size: .65rem; line-height: 1.6; color: var(--color-navy-200); }
+.gala-rsvp-map { display: inline-flex; align-items: center; gap: .4rem; padding-block: .5rem; margin-top: .25rem; font-size: .75rem; text-decoration: underline; text-underline-offset: .3rem; }
+.gala-rsvp-details { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.5rem; padding: .8rem .5rem; font-size: .7rem; color: var(--color-navy-100); }
+.gala-rsvp-details > span { display: flex; justify-content: center; align-items: center; gap: .4rem; }
+.gala-rsvp-details svg { flex-shrink: 0; color: var(--color-gold); }
+.gala-rsvp-sprig { position: absolute; width: 6rem; top: -2rem; color: var(--gala-evergreen); opacity: .7; pointer-events: none; }
+.gala-rsvp-sprig-left { left: -3rem; transform: rotate(115deg); }
+.gala-rsvp-sprig-right { right: -3rem; transform: scaleX(-1) rotate(115deg); }
+.gala-rsvp-form-panel { min-width: 0; padding: 1rem 1.5rem 1.5rem; color: var(--color-navy-900); }
+.gala-rsvp-form-panel form, .gala-rsvp-success { width: 100%; margin: auto; padding: 2.25rem 1.5rem; background: white; border-radius: 1rem; }
+.gala-rsvp-form-panel h2, .gala-rsvp-form-intro { text-align: center; }
+.gala-rsvp-form-panel form > .gala-rsvp-eyebrow { display: none; }
+.gala-rsvp h2 { font-family: var(--font-display); font-size: 2rem; line-height: 1.05; letter-spacing: -.025em; margin-bottom: .5rem; }
+.gala-rsvp-form-intro { font-size: .8rem; line-height: 1.6; color: var(--color-navy-600); margin-bottom: 1rem; }
+.gala-rsvp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem .75rem; }
+.gala-rsvp-fields > div { min-width: 0; }
+.gala-rsvp-full { grid-column: 1 / -1; }
+.gala-rsvp-fields label, .gala-rsvp-guests legend { font-size: .75rem; font-weight: 600; }
+.gala-rsvp-optional { font-weight: 400; font-size: .65rem; color: var(--color-navy-600); }
+.gala-rsvp-fields input { display: block; width: 100%; min-width: 0; min-height: 2.75rem; margin-top: .35rem; padding: .6rem .75rem; border: 1px solid var(--color-navy-200); border-radius: var(--radius-sm); background: var(--color-cream); color: var(--color-navy-900); font-size: 1rem; }
+.gala-rsvp input:focus-visible, .gala-rsvp a:focus-visible, .gala-rsvp button:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
+.gala-rsvp-fields input[aria-invalid='true'] { border-color: var(--gala-wine); }
+.gala-rsvp-guests { margin-top: 1rem; }
+.gala-rsvp-guests > p { margin-top: .4rem; font-size: .75rem; line-height: 1.6; color: var(--color-navy-600); }
+.gala-rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .6rem; }
+.gala-rsvp-choices label { display: flex; align-items: center; gap: .5rem; cursor: pointer; border: 1px solid var(--color-navy-200); border-radius: var(--radius-sm); min-height: 3rem; padding: .7rem .6rem; font-size: .75rem; }
+.gala-rsvp-choices label:has(input:checked) { border-color: var(--gala-evergreen); background: color-mix(in srgb, var(--gala-evergreen) 6%, white); }
+.gala-rsvp-choices input { accent-color: var(--gala-evergreen); width: 1rem; height: 1rem; flex-shrink: 0; }
+.gala-rsvp-total { display: flex; align-items: center; gap: .6rem; font-size: .8rem; font-weight: 600; margin: 1rem 0; }
+.gala-rsvp-submit { display: flex; align-items: center; justify-content: center; gap: .75rem; width: 100%; min-height: 3rem; padding: .8rem 1rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--gala-evergreen); color: var(--color-cream); font-size: .85rem; font-weight: 600; transition: filter .2s; }
+.gala-rsvp-submit:hover { filter: brightness(1.1); }
+.gala-rsvp-submit:disabled { opacity: .6; cursor: wait; }
+.gala-rsvp-note { font-size: .7rem; line-height: 1.6; color: var(--color-navy-600); text-align: center; margin-top: .75rem; }
+.gala-rsvp-error { color: var(--gala-wine); font-size: .75rem; font-weight: 600; margin: .5rem 0; }
+.gala-rsvp-success > p:not(.gala-rsvp-eyebrow) { line-height: 1.8; font-size: .9rem; }
+.gala-rsvp-check { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; color: var(--color-gold); border: 1px solid var(--color-gold); border-radius: 50%; margin-bottom: 1.5rem; }
+@media (min-width: 640px) and (max-width: 899px) {
+ .gala-rsvp-invitation, .gala-rsvp-form-panel, .gala-rsvp-event-panel { padding-inline: 8%; }
+}
+@media (min-width: 900px), (min-width: 740px) and (orientation: landscape) {
+ .gala-rsvp-layout { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; }
+ .gala-rsvp-invitation { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem clamp(2rem, 4vw, 5rem) 0; }
+ .gala-rsvp-layout::after { content: ''; position: absolute; pointer-events: none; top: 1rem; bottom: 1rem; left: 1rem; width: calc(50% - 2rem); border: 1px solid color-mix(in srgb, var(--color-gold) 38%, transparent); }
+ .gala-rsvp-invitation-content { max-width: 42rem; margin: auto; }
+ .gala-rsvp-logo { width: 8rem; margin: 0 auto 1.25rem; }
+ .gala-rsvp-home { margin-inline: auto; }
+ .gala-rsvp h1 { font-size: clamp(3.5rem, 6.5vw, 7.5rem); margin-top: 1rem; }
+ .gala-rsvp h1 em { display: block; }
+ .gala-rsvp-lead { font-size: .9rem; margin-top: 1.25rem; }
+ .gala-rsvp-rule { display: block; width: 4rem; height: 1px; background: var(--color-gold); margin: 1.5rem auto; }
+ .gala-rsvp-event-panel { grid-column: 1; grid-row: 2; padding: 0 clamp(2rem, 4vw, 5rem) 2rem; }
+ .gala-rsvp-event-panel > .gala-rsvp-ticket { max-width: 42rem; margin-inline: auto; }
+ .gala-rsvp-facts > div { padding: 1rem .75rem; }
+ .gala-rsvp-facts dt { font-size: .65rem; }
+ .gala-rsvp-ticket-time strong { font-size: clamp(1.2rem, 2vw, 1.75rem); }
+ .gala-rsvp-venue-link { font-size: .85rem; }
+ .gala-rsvp-signature { display: block; font-family: var(--font-display); font-style: italic; font-size: 1.35rem; margin-top: 1rem; color: var(--color-gold); }
+ .gala-rsvp-sprig { width: 10rem; }
+ .gala-rsvp-form-panel { grid-column: 2; grid-row: 1 / 3; display: flex; align-items: center; padding: 2rem clamp(2rem, 4vw, 5rem); background: var(--color-cream); }
+ .gala-rsvp-form-panel form, .gala-rsvp-success { max-width: 42rem; padding: 0; border-radius: 0; background: transparent; }
+ .gala-rsvp-form-panel form > .gala-rsvp-eyebrow { display: block; color: var(--color-navy-600); }
+ .gala-rsvp h2 { font-size: clamp(2.5rem, 3vw, 3.5rem); margin-top: .75rem; }
+ .gala-rsvp-form-intro { margin-bottom: 1.5rem; }
+ .gala-rsvp-form-intro, .gala-rsvp-guests > p, .gala-rsvp-optional, .gala-rsvp-note { color: var(--color-navy-600); }
+ .gala-rsvp-fields { gap: 1.25rem; }
+ .gala-rsvp-fields input { min-height: 3rem; background: white; }
+ .gala-rsvp-choices label { border-color: var(--color-navy-200); }
+ .gala-rsvp-choices label:has(input:checked) { border-color: var(--gala-evergreen); background: color-mix(in srgb, var(--gala-evergreen) 6%, var(--color-cream)); }
+ .gala-rsvp-choices input { accent-color: var(--gala-evergreen); }
+ .gala-rsvp-submit { background: var(--gala-evergreen); color: var(--color-cream); min-height: 3.5rem; }
+ .gala-rsvp-error { color: var(--gala-wine); }
+ .gala-rsvp-fields input[aria-invalid='true'] { border-color: var(--gala-wine); }
+ .gala-rsvp-check { color: var(--gala-evergreen); }
+}
+@media (prefers-reduced-motion: reduce) { .gala-rsvp *, .gala-rsvp *::before, .gala-rsvp *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+/* A full-viewport paper envelope, built as accessible HTML with Motion flaps. */
+.gala-envelope { position: fixed; inset: 0; z-index: 80; width: 100%; height: 100dvh; min-height: 100svh; overflow: hidden; isolation: isolate; perspective: 1400px; color: var(--color-navy-900); }
+.gala-envelope-back, .gala-envelope-front { position: absolute; inset: 0; }
+.gala-envelope-back { z-index: 0; }
+.gala-envelope-front { z-index: 2; perspective: 1400px; }
+.gala-envelope-front::after, .gala-envelope-paper::before, .gala-envelope-letter::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url('/images/events/christmas-gala-paper-grain.svg'); background-size: 256px 256px; mix-blend-mode: multiply; opacity: .28; z-index: 8; }
+.gala-envelope-letter { position: absolute; z-index: 1; top: 29%; left: 50%; translate: -50% 0; width: 76%; max-width: 56rem; height: 66%; padding: clamp(1.5rem, 4vw, 4rem); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--color-gold); border-radius: .25rem; background: var(--color-cream); box-shadow: 0 8px 40px rgb(0 0 0 / .18), inset 0 0 0 .6rem var(--color-cream), inset 0 0 0 calc(.6rem + 1px) var(--color-gold); }
+.gala-envelope-letter-eyebrow { font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--color-taupe); }
+.gala-envelope-letter-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1; margin: 1rem 0 1.5rem; }
+.gala-envelope-letter-title em { display: block; color: var(--color-taupe); }
+.gala-envelope-letter > svg { color: var(--color-gold); }
+.gala-envelope-paper { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--color-gold) 4%, transparent) 3px 4px), var(--color-cream); }
+.gala-envelope-paper::after { content: ''; position: absolute; inset: 1rem; border: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent); }
+.gala-envelope-fold { position: absolute; inset: 0; pointer-events: none; }
+.gala-envelope-fold-left { clip-path: polygon(0 0, 54% 54%, 0 100%); background: linear-gradient(110deg, var(--color-blush), var(--color-cream) 70%); }
+.gala-envelope-fold-right { clip-path: polygon(100% 0, 46% 54%, 100% 100%); background: linear-gradient(250deg, var(--color-blush), var(--color-cream) 70%); }
+.gala-envelope-fold-bottom { clip-path: polygon(0 100%, 50% 48%, 100% 100%); background: linear-gradient(0deg, var(--color-cream) 40%, color-mix(in srgb, var(--color-gold) 18%, var(--color-cream))); }
+.gala-envelope-flap { position: absolute; inset: 0; z-index: 2; clip-path: polygon(0 0, 100% 0, 50% 56%); transform-origin: center top; background: linear-gradient(180deg, var(--color-cream) 30%, color-mix(in srgb, var(--color-blush) 55%, var(--color-cream))); backface-visibility: visible; }
+.gala-envelope-heading { position: absolute; z-index: 3; top: 9%; left: 50%; translate: -50% 0; width: calc(100% - 4rem); max-width: 45rem; text-align: center; pointer-events: none; }
+.gala-envelope-logo { width: 7rem; height: auto; margin: 0 auto 1.25rem; filter: brightness(0); opacity: .8; }
+.gala-envelope-home { display: block; width: fit-content; margin-inline: auto; pointer-events: auto; }
+.gala-envelope-heading > p { font-size: .65rem; letter-spacing: .17em; text-transform: uppercase; color: var(--color-taupe); }
+.gala-envelope-heading h2 { font-family: var(--font-display); font-size: clamp(2.3rem, 5vw, 4.5rem); font-weight: 500; line-height: 1; margin: .75rem auto 0; max-width: 38rem; }
+.gala-envelope-sprig { position: absolute; z-index: 4; width: clamp(8rem, 22vw, 23rem); color: var(--gala-evergreen); pointer-events: none; }
+.gala-envelope-sprig-left { left: -2rem; bottom: -1.5rem; transform: rotate(-20deg); }
+.gala-envelope-sprig-right { right: -2rem; bottom: -1.5rem; transform: scaleX(-1) rotate(-20deg); }
+.gala-envelope-language { position: absolute; top: 1rem; right: 1.5rem; z-index: 5; }
+.gala-envelope-language button { min-height: 2.75rem; min-width: 2rem; }
+.gala-envelope-language button:not([aria-current='true']) { color: var(--color-navy-600); }
+.gala-envelope-language > svg { color: var(--color-navy-500); }
+.gala-envelope-language button[aria-current='true'] { color: var(--color-taupe); }
+.gala-envelope-language button:hover { color: var(--gala-evergreen); }
+.gala-envelope-language button:focus-visible { outline: 2px solid var(--gala-evergreen); outline-offset: 3px; }
+.gala-envelope-seal { position: absolute; z-index: 6; top: 54%; left: 50%; translate: -50% -50%; width: clamp(6.5rem, 11vw, 8.5rem); aspect-ratio: 1; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .1rem; color: var(--color-gold); background: radial-gradient(circle at 35% 25%, color-mix(in srgb, var(--gala-wine) 75%, var(--color-blush)), var(--gala-wine) 55%, color-mix(in srgb, var(--gala-wine) 75%, var(--color-navy-950))); border-radius: 47% 53% 49% 51% / 51% 46% 54% 49%; box-shadow: inset 2px 3px 4px color-mix(in srgb, var(--color-blush) 25%, transparent), inset -3px -5px 6px rgb(0 0 0 / .25), 0 10px 18px rgb(0 0 0 / .2); }
+.gala-envelope-seal::before { content: ''; position: absolute; inset: .55rem; border: 1px solid color-mix(in srgb, var(--color-gold) 70%, transparent); border-radius: 50%; box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-gold) 12%, transparent); }
+.gala-envelope-seal > span:not(.gala-envelope-seal-year) { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1; }
+.gala-envelope-seal .gala-envelope-seal-year { font-size: .5rem; letter-spacing: .2em; margin-top: .3rem; }
+.gala-envelope-seal:focus-visible { outline: 3px solid var(--gala-evergreen); outline-offset: .6rem; }
+.gala-envelope-seal:disabled { cursor: default; }
+.gala-envelope-closing { position: absolute; z-index: 3; top: 70%; left: 50%; translate: -50% 0; width: calc(100% - 4rem); text-align: center; }
+.gala-envelope-prompt { font-size: .7rem; letter-spacing: .13em; text-transform: uppercase; line-height: 1.8; max-width: 22rem; margin: auto; color: var(--color-taupe); }
+.gala-envelope-signature { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; margin-top: 1.75rem; }
+.gala-noscript-note { padding: 1rem; text-align: center; background: var(--color-cream); color: var(--color-navy-900); }
+@media (max-height: 600px) and (orientation: landscape) {
+ .gala-envelope-heading { top: 4%; }
+ .gala-envelope-logo { width: 4rem; margin-bottom: .4rem; }
+ .gala-envelope-heading h2 { font-size: 2rem; margin-top: .35rem; max-width: none; }
+ .gala-envelope-seal { width: 5.5rem; top: 57%; }
+ .gala-envelope-seal > svg { width: 18px; height: 18px; }
+ .gala-envelope-seal > span:not(.gala-envelope-seal-year) { font-size: 1.7rem; }
+ .gala-envelope-closing { top: 77%; }
+ .gala-envelope-signature { margin-top: .4rem; font-size: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .gala-envelope *, .gala-envelope { scroll-behavior: auto !important; } }

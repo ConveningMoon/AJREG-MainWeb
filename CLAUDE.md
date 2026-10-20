@@ -137,6 +137,9 @@ primerizos, clientes de reubicación.
 - `/events/christmas-gala/sponsors` — **Gala Christmas Party · Sponsors** → landing
   bilingüe para captar patrocinadores del evento de Navidad (5-dic-2026); solicitud →
   Google Sheet + email a Adriana (no va a ITMANO).
+- `/events/christmas-gala` — **RSVP de invitados** → invitación privada gratuita
+  bilingüe, confirmación automática en ITMANO; invitado principal + un acompañante
+  adulto como máximo. Se comparte por enlace, sin sitemap/nav y con `noindex`.
 - `/giveaway` — **Good For Her Giveaway by Melany Valencia** → página de una
   sola pantalla (título, descripción corta y formulario-boleto: nombre, correo,
   celular opcional, consentimiento de correo). Envío a ITMANO (canal
@@ -507,6 +510,88 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   caché de imagen. Regenerar después de un build si cambian los datos o el copy.
 **→ commit:** `feat: christmas gala sponsor landing page`
 
+**Mini-Fase 6h.1 — RSVP privado de invitados de Navidad (2026-10-20)**
+- Ruta `/[locale]/events/christmas-gala`, ES/EN; entrada gratuita, solo adultos,
+  vestimenta semiformal y sin fecha límite de RSVP, confirmado por el usuario.
+  No modifica la captación de sponsors ni reutiliza su video comercial.
+- Invitación editorial verde nocturno/crema, marco dorado y `HolidaySprig`;
+  nieve en canvas vía `next/dynamic` (estática con movimiento reducido), iconos
+  lucide-react y `LazyMotion` para botón y confirmación. Tokens globales intactos.
+- **Layout ajustado el 2026-10-20:** horizontal a todo el ancho, dos columnas
+  sin límite exterior y altura mínima de viewport; nav, topbar y footer ocultos
+  solo cuando existe `.gala-rsvp`, mediante selectores `body:has()`. Selector EN/ES
+  independiente. En teléfono, invitación compacta y formulario en tarjeta blanca
+  dentro de la superficie verde continua; horizontal conserva su columna crema
+  completa. Nombres en dos columnas, inputs de al menos 44 px.
+  QA adicional ES/EN a 1920×1080 y 844×390, además de los tamaños habituales;
+  sin overflow, RSVP simulado y cambio de idioma correctos, sponsors conserva
+  su navegación/footer. TypeScript y ESLint focalizado pasan.
+- **Invitación móvil y OG (2026-10-20):** logo enlaza explícitamente a `/`.
+  Datos organizados como invitación: fecha/horario/lugar en una sola fila,
+  nombre del lugar enlazado al mapa (44 px) y textos de adultos/vestimenta
+  semiformal con iconos. Continúa el fondo verde alrededor de la tarjeta del form.
+  OG/Twitter propios EN/ES, JPEG 1200×630 (~188/187 KB), URL absoluta versionada;
+  crema con marcos dorados, pinos, esferas y logo original, copy de invitados sin
+  precios ni cierre de patrocinio. `galaRsvp.share.*` / `meta.imageAlt` guardan el copy.
+  Regenerar: `python scripts/og/christmas-gala-sponsors.py --audience rsvp`
+  (sin argumento conserva sponsors; requiere fuentes del build y Pillow/fontTools/
+  Brotli). Arte de código que reutiliza el generador existente, sin imagen generada.
+  Verificados visualmente ambos JPEG y ES/EN desktop/móvil; TypeScript, ESLint y
+  build completo pasan. El preview social público requiere publicar los assets.
+- **Experiencia de apertura (2026-10-20):** primero aparece un sobre navideño
+  que cubre el viewport (papel crema, pliegues, pino, sello vino/dorado A&J).
+  `RsvpEnvelope` usa `LazyMotion` para desprender el sello, abrir la solapa en 3D,
+  extraer una capa de carta y deslizar el sobre hacia abajo antes de revelar
+  la invitación (~1.5 s); el botón nativo funciona por toque/clic/Enter/Espacio, bloquea
+  dobles activaciones y pasa el foco al titular. `prefers-reduced-motion` elimina
+  el giro y usa fundido breve. No guarda estado ni añade cookies; recargar vuelve
+  a mostrar el sobre. Logo a `/` y selector EN/ES también en la portada.
+- **Orden actual:** introducción → fecha/horario/lugar → formulario. Los datos
+  quedan libres, centrados y sin borde/fondo envolvente; adultos y vestimenta
+  semiformal son textos sin apariencia de botones. En móvil, el formulario es
+  una tarjeta blanca con padding 2.25rem × 1.5rem y radio 1rem dentro del fondo
+  verde azulado. Horizontal recupera la columna crema de ancho completo, sin la
+  tarjeta inset agregada después; título/subtítulo del form centrados en ambos.
+  Desktop conserva los datos a la izquierda y el form a la derecha. Sin JavaScript se muestran los
+  datos y un aviso para activarlo; el form permanece oculto para evitar un envío
+  nativo accidental. Todos los nuevos textos viven en `galaRsvp.envelope.*` EN/ES.
+- **Textura y detalles (2026-10-21):** grano de papel SVG de 256px con ruido
+  determinista y repetible (`public/images/events/christmas-gala-paper-grain.svg`),
+  superpuesto a pliegues y carta interior. Fecha, horario y lugar en la misma fila
+  también en móvil; dirección debajo del nombre del recinto en su misma columna.
+  Se elimina «Cómo llegar» y el nombre del
+  recinto abre el mapa. Durante la extracción, el contenido ya está detrás pero
+  permanece inert/aria-hidden; se libera el scroll y se enfoca el titular al final.
+  Movimiento reducido omite giro, extracción y desplazamiento. Sin cambios al CRM.
+- **QA de apertura:** ES/EN a 1440×900, 390×844 y 844×390; portada sin scroll,
+  apertura, foco, orden móvil, tarjeta blanca, sin overflow ni errores de
+  hidratación. Teclado y movimiento reducido pasan; RSVP simulado de 2 asistentes
+  y fallback sin JavaScript verificados. Build, TypeScript y ESLint pasan.
+- `RsvpForm` usa RHF + Zod (`lib/gala-rsvp.ts`): nombre obligatorio, apellido
+  opcional, correo obligatorio, teléfono opcional y selector de 0/1 acompañantes.
+  Máximo 2 asistentes por registro; no se piden datos del acompañante.
+- Navegador → `/api/intake/chn_aylnf8qdyyhz/submit`, con honeypot `website` vacío,
+  idioma y `source_url`. `form_answers` incluye `extra_guests` (0/1) y
+  `total_attendees` (1/2), preguntas y etiquetas localizadas. Son claves propias
+  admitidas por el contrato aportado, sin scoring ni preguntas inmobiliarias.
+- Sin casilla ni campos de consentimiento publicitario por instrucción expresa:
+  datos para gestionar participación en el evento, sin prometer correos automáticos.
+  Solo una respuesta `ok: true` y `created` confirma el registro; `already_submitted`
+  muestra estado específico sin afirmar que cambió el número de asistentes.
+  Error/timeout conserva campos y permite reintento; bloqueo de envío concurrente.
+- `ItmanoBeacon` usa `/intake.js` con el mismo canal y rewrites ya existentes;
+  no hay nuevas variables de entorno ni secretos. Noindex/nofollow, fuera del nav
+  y sitemap: privada por distribución del enlace, sin autenticación de invitados.
+- Pruebas de esquema/payload en `gala-rsvp.test.ts`; QA con CRM interceptado,
+  sin crear leads reales. La subida del contador en el panel CRM requiere revisión
+  del equipo después de publicar.
+- **Verificado:** TypeScript, ESLint focalizado, 3 pruebas node:test y build de
+  producción completo (55 páginas). Navegador ES/EN a 1440×900 y 390×844, sin
+  overflow horizontal ni errores de hidratación; validación, confirmación solo/con
+  acompañante, duplicado, error con datos conservados, cambio de idioma en la
+  misma ruta y nieve estática con movimiento reducido. `/intake.js` devuelve
+  JavaScript y `window.itmano` existe. Envíos de QA interceptados localmente.
+
 **Mini-Fase 6i — Good For Her Giveaway (evento de Melany)**
 - **Historia:** nació como un quiz "Home Wellness Check" (6 preguntas + 4 pilares +
   estimación FHA) y el 2026-10-09 se convirtió en un **giveaway**: se eliminó TODO el
@@ -677,6 +762,51 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-21** — **RSVP listo para rama de entrega.** Nombre del recinto y
+  dirección agrupados en la misma columna junto a fecha y horario. Apertura del
+  sobre acelerada de ~2.5 a ~1.5 segundos manteniendo la secuencia física y la
+  alternativa de movimiento reducido. Rama `codex/christmas-gala-rsvp` basada
+  en `origin/main`, con toda la landing e integración de invitados en un solo commit.
+
+- **2026-10-21** — **RSVP: apertura física del sobre y ajustes de presentación.**
+  Sello desprendido → solapa en perspectiva → carta extraída → sobre hacia abajo;
+  textura de papel SVG sobre todos los pliegues. Fecha/horario/lugar en una fila,
+  nombre del recinto abre el mapa y sin botón «Cómo llegar». Se restaura la columna
+  crema horizontal; tarjeta móvil con más padding y esquinas suaves, títulos
+  centrados. QA ES/EN desktop/móvil/horizontal, TypeScript y ESLint pasan.
+
+- **2026-10-20** — **Sobre navideño interactivo para abrir el RSVP.** Portada de
+  pantalla completa con sello de cera A&J y apertura animada con Motion, accesible
+  por teclado y adaptada a movimiento reducido. Datos del evento antes del form,
+  libres de recuadro y centrados; formulario blanco dentro del fondo verde azulado
+  en ambos formatos. EN/ES, logo a inicio, fallback sin JS y QA de apertura incluidos.
+
+- **2026-10-20** — **RSVP: formulario antes de los detalles en móvil.** El bloque
+  del evento sigue al formulario en el DOM y en teléfono; conserva la composición
+  de dos columnas en desktop. Fecha, horario, lugar y mapa centrados; adultos y
+  vestimenta semiformal como textos organizados, sin apariencia de botones.
+
+- **2026-10-20** — **Invitación RSVP: datos agrupados y tarjeta social propia.**
+  Logo lleva a `/`; fecha y horario comparten una fila, lugar y botón de mapa
+  ocupan el ancho, y adultos/vestimenta quedan en una franja con iconos. Nuevos
+  OG EN/ES 1200×630 para WhatsApp y otras redes, con arte navideño y copy de
+  invitados. Generador existente ampliado con `--audience rsvp`, metadatos
+  absolutos y versionados. Build, TypeScript, ESLint y QA responsive pasan.
+
+- **2026-10-20** — **RSVP a todo el ancho y móvil integrado.** Eliminado el límite
+  exterior; desktop aprovecha el viewport, y móvil une la invitación compacta al
+  formulario sobre el mismo fondo verde. Nav/topbar/footer ocultos solo en RSVP,
+  con selector EN/ES propio. Verificación visual ES/EN en desktop, móvil, pantalla
+  ancha y teléfono horizontal; sin overflow ni cambios al flujo del CRM.
+
+- **2026-10-20** — **RSVP privado para la Gala de Navidad.** Nueva landing EN/ES
+  `/events/christmas-gala`, invitación gratuita para adultos y vestimenta semiformal.
+  Formulario a ITMANO `chn_aylnf8qdyyhz`, sin preguntas inmobiliarias ni publicidad;
+  registra 0/1 acompañantes y 1/2 asistentes totales. Confirmación automática,
+  duplicado y error diferenciados, medición first-party, noindex y sin sitemap.
+  Diseño navideño con pino, marco dorado, nieve y Motion; documentación y pruebas
+  del contrato incluidas. Ver **Mini-Fase 6h.1**.
 
 - **2026-10-14** — **OG navideño como invitación elegante.** Nuevas imágenes EN/ES
   1200×630 con tarjeta crema, marco dorado, fondo verde, ramas de pino y esferas
