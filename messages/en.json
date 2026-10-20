@@ -1166,5 +1166,80 @@
       "rateNote": "Reference rate: {rate}% (updated {date}).",
       "equalHousing": "Equal Housing Opportunity"
     }
+  },
+  "galaRsvp": {
+    "meta": {
+      "title": "RSVP · Christmas Gala 2026",
+      "description": "A private invitation from A&J Real Estate Group. RSVP for our Christmas celebration on December 5 in Virginia Beach.",
+      "imageAlt": "A private A&J Christmas Gala invitation, December 5, 2026, 7–11 PM in Virginia Beach."
+    },
+    "eyebrow": "Private invitation · Complimentary admission",
+    "title": "Let’s celebrate",
+    "titleAccent": "Christmas",
+    "lead": "We would love to share a special evening with you and celebrate Christmas together.",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "venueLabel": "Venue",
+    "time": "7:00–11:00 p.m. · Eastern Time",
+    "directions": "Get directions",
+    "adults": "Adults only",
+    "dressCode": "Semi-formal attire",
+    "signature": "With love, A&J Real Estate Group",
+    "form": {
+      "eyebrow": "Gala Christmas Party · 2026",
+      "title": "Join the celebration",
+      "lead": "Confirm your attendance. You are welcome to bring one adult guest.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "optional": "(optional)",
+      "extraGuests": "Will you bring a guest?",
+      "guestHelp": "One adult guest is welcome per invitation.",
+      "guests": {
+        "0": "Just me",
+        "1": "Me + 1 guest"
+      },
+      "totalLabel": "Total attendees, including you",
+      "totals": {
+        "0": "1 attendee in total · just you",
+        "1": "2 attendees in total · you and your guest"
+      },
+      "submit": "Confirm my attendance",
+      "submitting": "Confirming…",
+      "note": "Your attendance is confirmed when registration is complete. We will use your details to manage your participation in this event.",
+      "website": "Website"
+    },
+    "errors": {
+      "required": "Please enter your first name.",
+      "tooLong": "This field is too long.",
+      "emailInvalid": "Please enter a valid email address.",
+      "guestInvalid": "Choose whether you will bring one guest or come on your own.",
+      "submit": "We could not confirm your RSVP. Check your connection and try again."
+    },
+    "success": {
+      "eyebrow": "Gala Christmas Party · 2026",
+      "createdTitle": "Your attendance is confirmed!",
+      "createdBody": "We look forward to seeing you on December 5, from 7:00 to 11:00 p.m. Eastern Time, at The Royal Courtyard at West Neck. We can’t wait to celebrate with you!",
+      "already_submittedTitle": "Your RSVP is already registered",
+      "already_submittedBody": "We already received a registration with this email for the event. To confirm or change your party size, please contact the A&J team."
+    },
+    "home": "Go to the home page",
+    "timeShort": "7–11 PM",
+    "timeZone": "Eastern Time",
+    "share": {
+      "eyebrow": "YOU’RE INVITED",
+      "title": "Let’s celebrate Christmas",
+      "theme": "An evening to celebrate together",
+      "footer": "Private invitation · Complimentary admission · Please RSVP"
+    },
+    "envelope": {
+      "label": "Christmas invitation envelope",
+      "eyebrow": "A special invitation for you",
+      "title": "The magic is in being together",
+      "open": "Tap the seal to open your invitation",
+      "signature": "With love, A&J Real Estate Group",
+      "javascript": "Enable JavaScript to open the animated invitation and confirm your attendance."
+    }
   }
 }

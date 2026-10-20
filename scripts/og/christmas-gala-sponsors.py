@@ -2,6 +2,7 @@
 
 Run a Next build first to cache the project's EB Garamond and Montserrat fonts,
 then: python scripts/og/christmas-gala-sponsors.py
+Guest RSVP: python scripts/og/christmas-gala-sponsors.py --audience rsvp
 Requires Pillow, fonttools and brotli. No browser, remote fonts or API needed.
 Artwork is authored here; logo is the existing A&J asset. Copy lives in messages.
 """
@@ -11,6 +12,7 @@ import json
 import math
 import random
 import re
+import argparse
 
 from PIL import Image, ImageDraw, ImageFont
 from fontTools.ttLib import TTFont
@@ -106,9 +108,12 @@ def ornament(draw, x, y, radius, color):
     line(draw, [(x - radius + 3, y + 3), (x + radius - 3, y + 3)], GOLD, .6)
 
 
-def render(locale):
-    messages = json.loads((ROOT / 'messages' / f'{locale}.json').read_text(encoding='utf-8'))['christmasGala']
+def render(locale, audience='sponsors'):
+    all_messages = json.loads((ROOT / 'messages' / f'{locale}.json').read_text(encoding='utf-8'))
+    messages = all_messages['christmasGala']
     c = messages['meta']['invitation']
+    if audience == 'rsvp':
+        c = {**c, **all_messages['galaRsvp']['share']}
     canvas = Image.new('RGB', (SIZE[0] * SCALE, SIZE[1] * SCALE), '#0b2826')
     draw = ImageDraw.Draw(canvas)
     # A wide matte evergreen edge around an ivory invitation with fine foil rules.
@@ -140,13 +145,17 @@ def render(locale):
     canvas.paste(ink, (round((SIZE[0] * SCALE - ink.width) / 2), 65 * SCALE), ink)
 
     center(draw, c['eyebrow'], 167, face('body', 15, 600), DEEP_GOLD, 2.4)
-    center(draw, c['title'], 201, face('display', 100, 500), NAVY)
+    title_size = 100
+    while draw.textlength(c['title'], font=face('display', title_size, 500)) > 960 * SCALE:
+        title_size -= 1
+    center(draw, c['title'], 201, face('display', title_size, 500), NAVY)
     center(draw, c['theme'], 309, face('display', 25), DEEP_GOLD)
     line(draw, [(445, 353), (576, 353)], GOLD, .8)
     line(draw, [(624, 353), (755, 353)], GOLD, .8)
     draw.polygon([point(600, 347), point(606, 353), point(600, 359), point(594, 353)], fill=GOLD)
     center(draw, c['date'], 377, face('body', 22, 600), NAVY, 1)
-    center(draw, messages['hero']['time'], 413, face('display', 27), NAVY)
+    time_text = all_messages['galaRsvp']['time'] if audience == 'rsvp' else messages['hero']['time']
+    center(draw, time_text, 413, face('display', 27), NAVY)
     event_source = (ROOT / 'src/data/christmasGala.ts').read_text(encoding='utf-8')
     venue = re.search(r'venueName: "([^"]+)"', event_source).group(1)
     center(draw, venue, 455, face('body', 17, 500), NAVY)
@@ -155,11 +164,14 @@ def render(locale):
     center(draw, c['footer'], 543, face('body', 16, 500), NAVY)
 
     result = canvas.resize(SIZE, Image.Resampling.LANCZOS)
-    out = ROOT / 'public/images/events' / f'christmas-gala-sponsors-og-{locale}.jpg'
+    out = ROOT / 'public/images/events' / f'christmas-gala-{audience}-og-{locale}.jpg'
     result.save(out, quality=93, subsampling=0, optimize=True)
     print(f'{locale}: {out.relative_to(ROOT)} ({out.stat().st_size:,} bytes)')
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--audience', choices=('sponsors', 'rsvp'), default='sponsors')
+    args = parser.parse_args()
     for locale in ('es', 'en'):
-        render(locale)
+        render(locale, args.audience)
