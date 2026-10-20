@@ -5,6 +5,7 @@ body:has(.gala-rsvp) [data-site-footer] { display: none; }
 .gala-rsvp { --gala-evergreen: #143b35; --gala-wine: #512832; background: var(--color-navy-950); color: var(--color-cream); flex: 1; min-height: 100svh; }
 html:has(.gala-envelope) { overflow: hidden; }
 .gala-rsvp-layout { position: relative; display: grid; width: 100%; min-height: 100svh; background: radial-gradient(ellipse at 0% 0%, var(--gala-evergreen), transparent 70%), var(--color-navy-950); }
+.gala-rsvp-banner { display: contents; }
 .gala-rsvp-invitation { position: relative; isolation: isolate; overflow: hidden; padding: 1.25rem 1.5rem .75rem; }
 .gala-rsvp-atmosphere { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
 .gala-rsvp-invitation-content { position: relative; z-index: 1; text-align: center; }
@@ -68,8 +69,9 @@ html:has(.gala-envelope) { overflow: hidden; }
  .gala-rsvp-invitation, .gala-rsvp-form-panel, .gala-rsvp-event-panel { padding-inline: 8%; }
 }
 @media (min-width: 900px), (min-width: 740px) and (orientation: landscape) {
- .gala-rsvp-layout { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; }
- .gala-rsvp-invitation { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem clamp(2rem, 4vw, 5rem) 0; }
+ .gala-rsvp-layout { grid-template-columns: 1fr 1fr; }
+ .gala-rsvp-banner { position: relative; display: flex; flex-direction: column; justify-content: center; min-height: 100svh; }
+ .gala-rsvp-invitation { padding: 3.5rem clamp(2rem, 4vw, 5rem) 0; }
  .gala-rsvp-layout::after { content: ''; position: absolute; pointer-events: none; top: 1rem; bottom: 1rem; left: 1rem; width: calc(50% - 2rem); border: 1px solid color-mix(in srgb, var(--color-gold) 38%, transparent); }
  .gala-rsvp-invitation-content { max-width: 42rem; margin: auto; }
  .gala-rsvp-logo { width: 8rem; margin: 0 auto 1.25rem; }
@@ -78,7 +80,7 @@ html:has(.gala-envelope) { overflow: hidden; }
  .gala-rsvp h1 em { display: block; }
  .gala-rsvp-lead { font-size: .9rem; margin-top: 1.25rem; }
  .gala-rsvp-rule { display: block; width: 4rem; height: 1px; background: var(--color-gold); margin: 1.5rem auto; }
- .gala-rsvp-event-panel { grid-column: 1; grid-row: 2; padding: 0 clamp(2rem, 4vw, 5rem) 2rem; }
+ .gala-rsvp-event-panel { padding: 0 clamp(2rem, 4vw, 5rem) 2rem; }
  .gala-rsvp-event-panel > .gala-rsvp-ticket { max-width: 42rem; margin-inline: auto; }
  .gala-rsvp-facts > div { padding: 1rem .75rem; }
  .gala-rsvp-facts dt { font-size: .65rem; }
@@ -86,9 +88,10 @@ html:has(.gala-envelope) { overflow: hidden; }
  .gala-rsvp-venue-link { font-size: .85rem; }
  .gala-rsvp-signature { display: block; font-family: var(--font-display); font-style: italic; font-size: 1.35rem; margin-top: 1rem; color: var(--color-gold); }
  .gala-rsvp-sprig { width: 10rem; }
- .gala-rsvp-form-panel { grid-column: 2; grid-row: 1 / 3; display: flex; align-items: center; padding: 2rem clamp(2rem, 4vw, 5rem); background: var(--color-cream); }
+ .gala-rsvp-form-panel { grid-column: 2; display: flex; align-items: center; padding: 2rem clamp(2rem, 4vw, 5rem); background: var(--color-cream); }
  .gala-rsvp-form-panel form, .gala-rsvp-success { max-width: 42rem; padding: 0; border-radius: 0; background: transparent; }
  .gala-rsvp-form-panel form > .gala-rsvp-eyebrow { display: block; color: var(--color-navy-600); }
+ .gala-rsvp-form-panel h2, .gala-rsvp-form-intro { text-align: left; }
  .gala-rsvp h2 { font-size: clamp(2.5rem, 3vw, 3.5rem); margin-top: .75rem; }
  .gala-rsvp-form-intro { margin-bottom: 1.5rem; }
  .gala-rsvp-form-intro, .gala-rsvp-guests > p, .gala-rsvp-optional, .gala-rsvp-note { color: var(--color-navy-600); }

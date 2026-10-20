@@ -42,8 +42,9 @@ export default async function ChristmasGalaRsvp({ params }: { params: Promise<{ 
       <ItmanoBeacon channelPublicId={GALA_RSVP_CHANNEL} />
       <RsvpEnvelope>
       <div className="gala-rsvp-layout">
-        <section className="gala-rsvp-invitation" aria-labelledby="invitation-title">
+        <div className="gala-rsvp-banner">
           <LocaleSwitcher className="gala-rsvp-language" />
+        <section className="gala-rsvp-invitation" aria-labelledby="invitation-title">
           <RsvpInvitation>
             <HolidaySprig className="gala-rsvp-sprig gala-rsvp-sprig-left" />
             <HolidaySprig className="gala-rsvp-sprig gala-rsvp-sprig-right" />
@@ -68,6 +69,7 @@ export default async function ChristmasGalaRsvp({ params }: { params: Promise<{ 
               </div>
           <p className="gala-rsvp-signature">{t("signature")}</p>
         </section>
+        </div>
         <section id="rsvp" className="gala-rsvp-form-panel" aria-label={t("form.title")}><RsvpForm /></section>
       </div>
       </RsvpEnvelope>

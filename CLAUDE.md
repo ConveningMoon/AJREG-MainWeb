@@ -551,7 +551,8 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   semiformal son textos sin apariencia de botones. En móvil, el formulario es
   una tarjeta blanca con padding 2.25rem × 1.5rem y radio 1rem dentro del fondo
   verde azulado. Horizontal recupera la columna crema de ancho completo, sin la
-  tarjeta inset agregada después; título/subtítulo del form centrados en ambos.
+  tarjeta inset agregada después; título/subtítulo del form a la izquierda en
+  horizontal y centrados en móvil.
   Desktop conserva los datos a la izquierda y el form a la derecha. Sin JavaScript se muestran los
   datos y un aviso para activarlo; el form permanece oculto para evitar un envío
   nativo accidental. Todos los nuevos textos viven en `galaRsvp.envelope.*` EN/ES.
@@ -762,6 +763,14 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-21** — **Ajuste exclusivo del RSVP horizontal.** Banner agrupado
+  en una columna flex centrada para mantener el espacio natural entre titular,
+  subtítulo y fecha/horario/lugar, sin que las filas de grid los separen. Encabezado
+  del formulario restaurado a la izquierda. En vertical, el contenedor usa
+  `display: contents` y conserva orden, espaciado y alineación centrada existentes.
+  QA ES/EN a 1440×900 y 390×844, TypeScript y ESLint focalizado pasan; no se
+  repitió build completo por este ajuste de presentación.
 
 - **2026-10-21** — **RSVP listo para rama de entrega.** Nombre del recinto y
   dirección agrupados en la misma columna junto a fecha y horario. Apertura del

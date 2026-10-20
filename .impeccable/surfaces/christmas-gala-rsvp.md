@@ -22,7 +22,11 @@ fills at least the viewport height. Mobile uses one continuous evergreen surface
 with introduction, free-standing event details, then a white form card inset
 within the same evergreen background. Desktop places details below the
 introduction beside the full cream form column. Mobile form padding is
-2.25rem × 1.5rem with 1rem corners; form title/subtitle are centered.
+2.25rem × 1.5rem with 1rem corners; form title/subtitle are centered on mobile
+and left-aligned on desktop. A desktop flex banner groups introduction and
+event facts with natural spacing and centers them together, avoiding spare
+grid-row space between the subtitle and facts. Its mobile wrapper uses
+`display: contents` to preserve the existing vertical presentation.
 Paired name fields and
 44px minimum inputs. Site navbar, utility bar and footer are hidden only when
 this RSVP is present; an independent EN/ES switch remains in the invitation.
