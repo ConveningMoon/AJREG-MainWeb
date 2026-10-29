@@ -34,6 +34,11 @@ html:has(.gala-envelope) { overflow: hidden; }
 .gala-rsvp-details { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.5rem; padding: .8rem .5rem; font-size: .7rem; color: var(--color-navy-100); }
 .gala-rsvp-details > span { display: flex; justify-content: center; align-items: center; gap: .4rem; }
 .gala-rsvp-details svg { flex-shrink: 0; color: var(--color-gold); }
+.gala-rsvp-availability { max-width: 22rem; margin: .7rem auto 0; padding: 1rem 0 .25rem; border-top: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent); text-align: center; }
+.gala-rsvp-availability-eyebrow { color: var(--color-gold); font-size: .58rem; text-transform: uppercase; letter-spacing: .12em; }
+.gala-rsvp-occupancy-lights { display: block; width: 100%; max-width: 22rem; height: auto; margin: 1rem auto .35rem; overflow: visible; }
+.gala-rsvp-occupied-label { color: var(--color-cream); font-size: .8rem; letter-spacing: .08em; }
+.gala-rsvp-reserve { display: inline-block; padding: .75rem .25rem; color: var(--color-gold); font-size: .7rem; font-weight: 600; text-decoration: underline; text-underline-offset: .3rem; }
 .gala-rsvp-sprig { position: absolute; width: 6rem; top: -2rem; color: var(--gala-evergreen); opacity: .7; pointer-events: none; }
 .gala-rsvp-sprig-left { left: -3rem; transform: rotate(115deg); }
 .gala-rsvp-sprig-right { right: -3rem; transform: scaleX(-1) rotate(115deg); }
@@ -104,6 +109,15 @@ html:has(.gala-envelope) { overflow: hidden; }
  .gala-rsvp-error { color: var(--gala-wine); }
  .gala-rsvp-fields input[aria-invalid='true'] { border-color: var(--gala-wine); }
  .gala-rsvp-check { color: var(--gala-evergreen); }
+}
+@media (min-width: 900px) and (min-height: 700px) and (max-height: 1000px) {
+ .gala-rsvp-invitation { padding-top: 2rem; }
+ .gala-rsvp-logo { width: 6rem; margin-bottom: .75rem; }
+ .gala-rsvp h1 { font-size: clamp(3.5rem, 5.5vw, 6rem); margin-top: .75rem; }
+ .gala-rsvp-lead { margin-top: .75rem; }
+ .gala-rsvp-rule { margin-block: .5rem; }
+ .gala-rsvp-event-panel { padding-bottom: 1.5rem; }
+ .gala-rsvp-signature { margin-top: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) { .gala-rsvp *, .gala-rsvp *::before, .gala-rsvp *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 /* A full-viewport paper envelope, built as accessible HTML with Motion flaps. */

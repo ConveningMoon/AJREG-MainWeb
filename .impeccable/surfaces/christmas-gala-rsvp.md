@@ -11,7 +11,7 @@ direct link; noindex, no sitemap or primary navigation. This is distribution
 privacy, not an authenticated invitation system.
 
 Confirmed: December 5, 2026, 7–11 PM Eastern, The Royal Courtyard at West Neck;
-semi-formal attire, adults only, no RSVP deadline. One primary attendee and at
+Formal/Gala attire, adults only, no RSVP deadline. One primary attendee and at
 most one adult companion. No companion names, payment or real estate questions.
 
 Direction: evergreen night invitation with a white RSVP card on mobile and
@@ -38,7 +38,7 @@ The logo links to `/`. Event details have no enclosing border or separate fill:
 date, time and venue occupy one row at every breakpoint. The venue name itself
 links to the map with a 44px minimum tap target; there is no directions button.
 The full address sits beneath the venue name in the same third column.
-Adults-only and semi-formal attire sit as
+Adults-only and Formal/Gala attire sit as
 centered inline captions with Users/Shirt icons beneath the address, without
 individual borders or backgrounds resembling buttons. All event-block content
 is centered, including date/time labels, venue and address.
@@ -86,3 +86,21 @@ fallback and mocked 2-attendee RSVP pass. Production build passes.
 2026-10-21 refinement: three facts in one row on desktop/mobile/landscape in
 ES/EN, venue hyperlink, rounded padded mobile form, restored desktop form
 column. Closed, unfolding, extracting and open frames visually inspected.
+
+2026-10-29 availability: confirmed capacity of 100 guests, with 89 spots currently
+available. A compact editorial gold number below the adults/attire captions
+uses existing brand fonts and colors. Values are manually maintained in
+`galaEvent.guestCapacity` / `guestSpotsAvailable`, without automatic CRM syncing
+or local decrements after registration. Localized EN/ES labels.
+
+Availability refinement: hollow glass-shaped SVG numerals show 11/100 with a
+localized spots-taken label, without a visible remaining-spots caption. Continuous clear envelopes,
+double refracted rims, white specular reflections and separate inner filaments
+replace the LED dot matrix, following the user's glass-bulb reference.
+Longer filaments, a broader interior bloom and soft outer halo increase the
+illuminated area while preserving clear glass rims and specular highlights.
+Linear HSL hue runs from green (120 degrees at 0%)
+through yellow (60 degrees at 50%) to red (0 degrees at 100%). Server-rendered
+with an accessible summary. Replaces the cell grid; no animation or fake changes.
+Limited-capacity eyebrow and RSVP anchor remain. Compact desktop spacing at
+700–1000px viewport height keeps the invitation within 900px.

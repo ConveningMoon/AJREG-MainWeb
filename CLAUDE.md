@@ -512,8 +512,21 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 
 **Mini-Fase 6h.1 — RSVP privado de invitados de Navidad (2026-10-20)**
 - Ruta `/[locale]/events/christmas-gala`, ES/EN; entrada gratuita, solo adultos,
-  vestimenta semiformal y sin fecha límite de RSVP, confirmado por el usuario.
+  vestimenta Formal/Gala y sin fecha límite de RSVP, confirmado por el usuario.
   No modifica la captación de sponsors ni reutiliza su video comercial.
+- **Disponibilidad (2026-10-29):** límite confirmado de 100 personas; contador
+  visible bajo los detalles con 11/100 puestos ocupados por ahora. Valores en
+  `galaEvent.guestCapacity` y `guestSpotsAvailable`, actualización manual sin
+  sincronización con el CRM. Copy EN/ES, tipografía y dorado existentes;
+  vestimenta «Formal/Gala» / «Formal/Gala attire».
+- **Representación de cupos (2026-10-29):** «11/100 puestos ocupados» con
+  números de vidrio hueco SVG, reflejos blancos y filamentos interiores separados,
+  siguiendo la referencia de bombillas de vidrio del usuario; sustituye los puntos
+  LED iniciales. `OccupancyLights` se renderiza en
+  servidor con resumen accesible EN/ES. Color proporcional mediante hue HSL:
+  120° verde al 0 %, 60° amarillo al 50 %, 0° rojo al 100 %. Reemplaza la cuadrícula
+  de casillas; conserva el enlace al formulario, sin texto visible de espacios
+  disponibles. Ancho fluido en móvil, sin animación.
 - Invitación editorial verde nocturno/crema, marco dorado y `HolidaySprig`;
   nieve en canvas vía `next/dynamic` (estática con movimiento reducido), iconos
   lucide-react y `LazyMotion` para botón y confirmación. Tokens globales intactos.
@@ -529,7 +542,7 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 - **Invitación móvil y OG (2026-10-20):** logo enlaza explícitamente a `/`.
   Datos organizados como invitación: fecha/horario/lugar en una sola fila,
   nombre del lugar enlazado al mapa (44 px) y textos de adultos/vestimenta
-  semiformal con iconos. Continúa el fondo verde alrededor de la tarjeta del form.
+  Formal/Gala con iconos. Continúa el fondo verde alrededor de la tarjeta del form.
   OG/Twitter propios EN/ES, JPEG 1200×630 (~188/187 KB), URL absoluta versionada;
   crema con marcos dorados, pinos, esferas y logo original, copy de invitados sin
   precios ni cierre de patrocinio. `galaRsvp.share.*` / `meta.imageAlt` guardan el copy.
@@ -548,7 +561,7 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
   a mostrar el sobre. Logo a `/` y selector EN/ES también en la portada.
 - **Orden actual:** introducción → fecha/horario/lugar → formulario. Los datos
   quedan libres, centrados y sin borde/fondo envolvente; adultos y vestimenta
-  semiformal son textos sin apariencia de botones. En móvil, el formulario es
+  Formal/Gala son textos sin apariencia de botones. En móvil, el formulario es
   una tarjeta blanca con padding 2.25rem × 1.5rem y radio 1rem dentro del fondo
   verde azulado. Horizontal recupera la columna crema de ancho completo, sin la
   tarjeta inset agregada después; título/subtítulo del form a la izquierda en
@@ -763,6 +776,15 @@ Deploy a Vercel, pruebas en preview, ajustes finales, revisión bilingüe.
 ---
 
 ## 📒 CHANGELOG DEL PROYECTO
+
+- **2026-10-29** — **Vestimenta y ocupación de la gala.** Vestimenta «Formal/Gala»
+  en ES y «Formal/Gala attire» en EN. Contador «11/100 puestos ocupados» con
+  números de vidrio SVG, reflejos y filamentos brillantes; color proporcional
+  de verde (0 %) a rojo (100 %), pasando por amarillo. Límite de 100 personas y
+  89 espacios disponibles configurados manualmente; sin sincronización con CRM.
+  No muestra el texto «89 disponibles». Conserva el diseño, enlace al formulario
+  y ancho fluido en móvil. QA ES/EN a 1440×900 y 390×844 sin overflow horizontal;
+  TypeScript, ESLint focalizado y build final completos pasan. Sin leads de prueba.
 
 - **2026-10-21** — **Ajuste exclusivo del RSVP horizontal.** Banner agrupado
   en una columna flex centrada para mantener el espacio natural entre titular,
