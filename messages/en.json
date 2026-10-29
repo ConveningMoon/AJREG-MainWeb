@@ -1183,7 +1183,13 @@
     "time": "7:00–11:00 p.m. · Eastern Time",
     "directions": "Get directions",
     "adults": "Adults only",
-    "dressCode": "Semi-formal attire",
+    "dressCode": "Formal/Gala attire",
+    "availability": {
+      "limited": "One special evening · Limited capacity",
+      "occupiedLabel": "spots taken",
+      "summary": "Of {total} spots, {occupied} are taken and {available} are available.",
+      "reserve": "Reserve your place"
+    },
     "signature": "With love, A&J Real Estate Group",
     "form": {
       "eyebrow": "Gala Christmas Party · 2026",

@@ -9,6 +9,7 @@ import { RsvpForm } from "@/components/events/gala/RsvpForm";
 import { RsvpEnvelope } from "@/components/events/gala/RsvpEnvelope";
 import { RsvpInvitation } from "@/components/events/gala/RsvpInvitation";
 import { galaEvent } from "@/data/christmasGala";
+import { OccupancyLights } from "@/components/events/gala/OccupancyLights";
 import { GALA_RSVP_CHANNEL } from "@/lib/gala-rsvp";
 import { LocaleSwitcher } from "@/components/layout/LocaleSwitcher";
 import "@/components/events/gala/rsvp.css";
@@ -37,6 +38,7 @@ export default async function ChristmasGalaRsvp({ params }: { params: Promise<{ 
   const eventDate = new Date(galaEvent.startsAt);
   const monthYear = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "America/New_York" }).format(eventDate);
   const day = new Intl.DateTimeFormat(locale, { day: "2-digit", timeZone: "America/New_York" }).format(eventDate);
+  const occupiedSpots = galaEvent.guestCapacity - galaEvent.guestSpotsAvailable;
   return (
     <main className="gala-rsvp">
       <ItmanoBeacon channelPublicId={GALA_RSVP_CHANNEL} />
@@ -66,6 +68,12 @@ export default async function ChristmasGalaRsvp({ params }: { params: Promise<{ 
                   <div className="gala-rsvp-ticket-venue"><dt><MapPin size={16} aria-hidden="true" />{t("venueLabel")}</dt><dd><a className="gala-rsvp-venue-link" href={galaEvent.venueMapUrl} target="_blank" rel="noopener noreferrer">{galaEvent.venueName}</a><span className="gala-rsvp-address">{galaEvent.venueStreet}<br />{galaEvent.venueCity}</span></dd></div>
                 </dl>
                 <div className="gala-rsvp-details"><span><Users size={15} aria-hidden="true" />{t("adults")}</span><span><Shirt size={15} aria-hidden="true" />{t("dressCode")}</span></div>
+                <div className="gala-rsvp-availability">
+                  <p className="gala-rsvp-availability-eyebrow">{t("availability.limited")}</p>
+                  <OccupancyLights occupied={occupiedSpots} capacity={galaEvent.guestCapacity} label={t("availability.summary", { occupied: occupiedSpots, available: galaEvent.guestSpotsAvailable, total: galaEvent.guestCapacity })} />
+                  <p className="gala-rsvp-occupied-label">{t("availability.occupiedLabel")}</p>
+                  <a className="gala-rsvp-reserve" href="#rsvp">{t("availability.reserve")}<span aria-hidden="true"> →</span></a>
+                </div>
               </div>
           <p className="gala-rsvp-signature">{t("signature")}</p>
         </section>

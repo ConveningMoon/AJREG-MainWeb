@@ -14,6 +14,9 @@ export const galaEvent = {
   venueMapUrl:
     "https://www.google.com/maps/search/?api=1&query=3100+Arnold+Palmer+Dr+Virginia+Beach+VA+23456",
   expectedGuests: 100,
+  // Confirmed guest limit and manually maintained availability for the RSVP page.
+  guestCapacity: 100,
+  guestSpotsAvailable: 89,
   // Vertical 9:16 invitation video shown in the sponsor-page hero. Leave null
   // until it exists (the hero shows a "premieres soon" slate). `src` is an
   // absolute URL to an H.264/AAC .mp4 — host it in Vercel Blob, not in git —
